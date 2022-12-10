@@ -1,0 +1,2819 @@
+{
+  "Revision": "WIN63-202111081545-75921380",
+  "Protocol": "Modern",
+  "Incoming": {
+    "Advertisement.GetInterstitial": {
+      "Id": 349,
+      "Structure": []
+    },
+    "Badges.GetBadgePointLimits": {
+      "Id": 2261,
+      "Structure": []
+    },
+    "Catalog.GetBonusRareInfo": {
+      "Id": 1626,
+      "Structure": []
+    },
+    "Catalog.GetCatalogIndex": {
+      "Id": 838,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "CatalogType"
+        }
+      ]
+    },
+    "Catalog.GetCatalogPage": {
+      "Id": 3047,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "PageId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "OfferId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "CatalogType"
+        }
+      ]
+    },
+    "Catalog.GetNextTargetedOffer": {
+      "Id": 3050,
+      "Structure": []
+    },
+    "Catalog.PurchaseFromCatalog": {
+      "Id": 2245,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "PageId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "OfferId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ExtraData"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Amount"
+        }
+      ]
+    },
+    "Competition.GetCurrentTimingCode": {
+      "Id": 973,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "SchedulingCode"
+        }
+      ]
+    },
+    "FriendList.FriendListUpdate": {
+      "Id": 1504,
+      "Structure": []
+    },
+    "FriendList.GetFriendRequests": {
+      "Id": 2682,
+      "Structure": []
+    },
+    "FriendList.MessengerInit": {
+      "Id": 2253,
+      "Structure": []
+    },
+    "GroupForums.GetUnreadForumsCount": {
+      "Id": 1282,
+      "Structure": []
+    },
+    "Handshake.ClientHello": {
+      "Id": 4000,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ClientVersion"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ClientName"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ClientType"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Unknown"
+        }
+      ]
+    },
+    "Handshake.InfoRetrieve": {
+      "Id": 1207,
+      "Structure": []
+    },
+    "Handshake.SSOTicket": {
+      "Id": 2616,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "SSOTicket"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Time"
+        }
+      ]
+    },
+    "Handshake.UniqueID": {
+      "Id": 1542,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "MachineId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Fingerprint"
+        },
+        {
+          "Mapping": "Conditional",
+          "Condition": "Readable",
+          "WhenTrue": {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "FlashVersion"
+          }
+        }
+      ]
+    },
+    "Handshake.VersionCheck": {
+      "Id": 2522,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "VersionId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ClientUrl"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ExternalVariablesUrl"
+        }
+      ]
+    },
+    "Help.GetCfhStatus": {
+      "Id": 1424,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "Display"
+        }
+      ]
+    },
+    "Inventory.Furni.RequestFurniInventory": {
+      "Id": 1680,
+      "Structure": []
+    },
+    "Navigator.CreateFlat": {
+      "Id": 879,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "RoomName"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Description"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "LayoutId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "CategoryId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "MaxUserCount"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TradeMode"
+        }
+      ]
+    },
+    "Navigator.GetGuestRoom": {
+      "Id": 1058,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "EnterRoom"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomForward"
+        }
+      ]
+    },
+    "Navigator.GetUserEventCats": {
+      "Id": 118,
+      "Structure": []
+    },
+    "Navigator.GetUserFlatCats": {
+      "Id": 2130,
+      "Structure": []
+    },
+    "NewNavigator.NewNavigatorInit": {
+      "Id": 2283,
+      "Structure": []
+    },
+    "NewNavigator.NewNavigatorSearch": {
+      "Id": 1693,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "SearchCode"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Filtering"
+        }
+      ]
+    },
+    "Preferences.SetNewNavigatorWindowPreferences": {
+      "Id": 985,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WindowX"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WindowY"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WindowWidth"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WindowHeight"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "LeftPaneHidden"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ResultsMode"
+        }
+      ]
+    },
+    "Purse.GetCreditsInfo": {
+      "Id": 1958,
+      "Structure": []
+    },
+    "Room.Chat.Chat": {
+      "Id": 3544,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Text"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "StyleId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TrackingId"
+        }
+      ]
+    },
+    "Room.Engine.GetFurnitureAliases": {
+      "Id": 1411,
+      "Structure": []
+    },
+    "Room.Engine.GetItemData": {
+      "Id": 2165,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ItemId"
+        }
+      ]
+    },
+    "Room.Engine.GetRoomEntryData": {
+      "Id": 1250,
+      "Structure": []
+    },
+    "Room.Engine.MoveAvatar": {
+      "Id": 778,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "X"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Y"
+        }
+      ]
+    },
+    "Room.Engine.MoveObject": {
+      "Id": 2378,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Id"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "X"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Y"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Direction"
+        }
+      ]
+    },
+    "Room.Engine.PickupObject": {
+      "Id": 3238,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ItemType"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ItemId"
+        }
+      ]
+    },
+    "Room.Engine.PlaceObject": {
+      "Id": 2735,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Values"
+        }
+      ]
+    },
+    "Room.Engine.UseFurniture": {
+      "Id": 3226,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Id"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "State"
+        }
+      ]
+    },
+    "Room.Furniture.AddSpamWallPostIt": {
+      "Id": 2883,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Id"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Location"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Color"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Text"
+        }
+      ]
+    },
+    "Room.Furniture.PlacePostIt": {
+      "Id": 245,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "StripId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Location"
+        }
+      ]
+    },
+    "Room.Session.OpenFlatConnection": {
+      "Id": 46,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Password"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Unused"
+        }
+      ]
+    },
+    "Sound.GetSoundSettings": {
+      "Id": 1713,
+      "Structure": []
+    },
+    "Tracking.EventLog": {
+      "Id": 2262,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Category"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Type"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Action"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ExtraString"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ExtraInt"
+        }
+      ]
+    },
+    "Tracking.LatencyPingReport": {
+      "Id": 3878,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "AverageLatency"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "AverageLowLatency"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "DataPoints"
+        }
+      ]
+    },
+    "Tracking.LatencyPingRequest": {
+      "Id": 579,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RequestId"
+        }
+      ]
+    },
+    "Users.GetIgnoredUsers": {
+      "Id": 3346,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Username"
+        }
+      ]
+    },
+    "Users.GetMOTD": {
+      "Id": 3545,
+      "Structure": []
+    },
+    "Users.GetUserGroupBadges": {
+      "Id": 1482,
+      "Structure": []
+    },
+    "Users.ScrGetUserInfo": {
+      "Id": 1914,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ProductName"
+        }
+      ]
+    }
+  },
+  "Outgoing": {
+    "Advertisement.Interstitial": {
+      "Id": 1996,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "CanShowInterstitial"
+        }
+      ]
+    },
+    "Availability.AvailabilityStatus": {
+      "Id": 3684,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "IsOpen"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "IsClosing"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "IsAuthentic"
+        }
+      ]
+    },
+    "CallForHelp.CfhTopicsInit": {
+      "Id": 3089,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<CallForHelpCategory>",
+          "Name": "Categories"
+        }
+      ]
+    },
+    "Catalog.CatalogIndex": {
+      "Id": 2349,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "NodeData",
+          "Name": "Root"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "NewAdditionsAvailable"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "CatalogType"
+        }
+      ]
+    },
+    "Catalog.CatalogPage": {
+      "Id": 3314,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "PageId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "CatalogType"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "LayoutCode"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<string>",
+          "Name": "Images"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<string>",
+          "Name": "Texts"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<OfferData>",
+          "Name": "Offers"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "OfferId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "AcceptSeasonCurrencyAsCredits"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<FrontPageItem>",
+          "Name": "FrontPageItems"
+        }
+      ]
+    },
+    "Catalog.PurchaseError": {
+      "Id": 169,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Reason"
+        }
+      ]
+    },
+    "Catalog.PurchaseNotAllowed": {
+      "Id": 86,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Reason"
+        }
+      ]
+    },
+    "Catalog.PurchaseOK": {
+      "Id": 3085,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "OfferData",
+          "Name": "Offer"
+        }
+      ]
+    },
+    "Competition.CurrentTimingCode": {
+      "Id": 2441,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "SchedulingCode"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Code"
+        }
+      ]
+    },
+    "FriendList.FriendRequests": {
+      "Id": 1767,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TotalCount"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<FriendRequest>",
+          "Name": "Requests"
+        }
+      ]
+    },
+    "FriendList.MessengerInit": {
+      "Id": 3679,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "UserFriendLimit"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "NormalFriendLimit"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ExtendedFriendLimit"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<FriendCategory>",
+          "Name": "Categories"
+        }
+      ]
+    },
+    "Handshake.AuthenticationOK": {
+      "Id": 3812,
+      "Structure": []
+    },
+    "Handshake.IsFirstLoginOfDay": {
+      "Id": 2662,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "IsFirstLoginOfDay"
+        }
+      ]
+    },
+    "Handshake.NoobnessLevel": {
+      "Id": 1492,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "NoobnessLevel"
+        }
+      ]
+    },
+    "Handshake.UniqueMachineID": {
+      "Id": 1601,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "MachineId"
+        }
+      ]
+    },
+    "Handshake.UserObject": {
+      "Id": 2853,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "UserId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Username"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Figure"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Gender"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "CustomData"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "RealName"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "DirectMail"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RespectTotal"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RespectLeft"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "PerRespectLeft"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "StreamPublishingAllowed"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "LastAccessDate"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "NameChangeAllowed"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "AccountSafetyLocked"
+        }
+      ]
+    },
+    "Handshake.UserRights": {
+      "Id": 554,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ClubLevel"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "SecurityLevel"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "Ambassador"
+        }
+      ]
+    },
+    "Inventory.Furni.FurniList": {
+      "Id": 2743,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TotalFragments"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "FragmentId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<FurniData>",
+          "Name": "Fragment"
+        }
+      ]
+    },
+    "Inventory.Furni.FurniListAddOrUpdate": {
+      "Id": 1751,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "BufferedList<FurniData>",
+          "Name": "Furni"
+        }
+      ]
+    },
+    "Inventory.Furni.FurniListInvalidate": {
+      "Id": 539,
+      "Structure": []
+    },
+    "Inventory.Furni.FurniListRemove": {
+      "Id": 432,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "StripId"
+        }
+      ]
+    },
+    "Inventory.Furni.PostItPlaced": {
+      "Id": 3076,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "StripId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ItemsLeft"
+        }
+      ]
+    },
+    "Inventory.Trading.TradingItemList": {
+      "Id": 193,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "FirstUserId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<TradeItemData>",
+          "Name": "FirstUserItems"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "FirstUserNumItems"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "FirstUserNumCredits"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "SecondUserId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<TradeItemData>",
+          "Name": "SecondUserItems"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "SecondUserNumItems"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "SecondUserNumCredits"
+        }
+      ]
+    },
+    "Inventory.Trading.TradingOpen": {
+      "Id": 1710,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "FirstUserId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "FirstUserCanTrade"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "SecondUserId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "SecondUserCanTrade"
+        }
+      ]
+    },
+    "Navigator.FlatCreated": {
+      "Id": 1606,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "RoomName"
+        }
+      ]
+    },
+    "Navigator.GetGuestRoomResult": {
+      "Id": 2085,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "EnterRoom"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "GuestRoomData",
+          "Name": "Room"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "RoomForward"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "StaffPick"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "GroupMember"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "AllInRoomMuted"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "RoomModerationSettings",
+          "Name": "RoomModerationSettings"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "CanMute"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "RoomChatSettings",
+          "Name": "RoomChatSettings"
+        }
+      ]
+    },
+    "Navigator.NavigatorSettings": {
+      "Id": 2312,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "HomeRoomId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomIdToEnter"
+        }
+      ]
+    },
+    "Navigator.UserEventCats": {
+      "Id": 2083,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<EventCategory>",
+          "Name": "EventCategories"
+        }
+      ]
+    },
+    "Navigator.UserFlatCats": {
+      "Id": 204,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<FlatCategory>",
+          "Name": "FlatCategories"
+        }
+      ]
+    },
+    "NewNavigator.NavigatorCollapsedCategories": {
+      "Id": 3516,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<string>",
+          "Name": "CollapsedCategories"
+        }
+      ]
+    },
+    "NewNavigator.NavigatorLiftedRooms": {
+      "Id": 3488,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<LiftedRoomData>",
+          "Name": "LiftedRooms"
+        }
+      ]
+    },
+    "NewNavigator.NavigatorMetaData": {
+      "Id": 3567,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<TopLevelContext>",
+          "Name": "TopLevelContexts"
+        }
+      ]
+    },
+    "NewNavigator.NavigatorSavedSearches": {
+      "Id": 3301,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<SavedSearch>",
+          "Name": "SavedSearches"
+        }
+      ]
+    },
+    "NewNavigator.NavigatorSearchResultBlocks": {
+      "Id": 783,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "SearchCode"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Filtering"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<SearchResultList>",
+          "Name": "Results"
+        }
+      ]
+    },
+    "NewNavigator.NewNavigatorPreferences": {
+      "Id": 3574,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WindowX"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WindowY"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WindowWidth"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WindowHeight"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "LeftPaneHidden"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ResultsMode"
+        }
+      ]
+    },
+    "Notifications.InfoFeedEnable": {
+      "Id": 3134,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "Enabled"
+        }
+      ]
+    },
+    "Notifications.MOTDNotification": {
+      "Id": 278,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<string>",
+          "Name": "Messages"
+        }
+      ]
+    },
+    "Notifications.UnseenItems": {
+      "Id": 595,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<UnseenItems>",
+          "Name": "Items"
+        }
+      ]
+    },
+    "Perk.PerkAllowances": {
+      "Id": 592,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<Perk>",
+          "Name": "Perks"
+        }
+      ]
+    },
+    "Preferences.AccountPreferences": {
+      "Id": 1488,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "UIVolume"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "FurniVolume"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TraxVolume"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "FreeFlowChatDisabled"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "RoomInvitesIgnored"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "RoomCameraFollowDisabled"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "UIFlags"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "PreferredChatStyle"
+        }
+      ]
+    },
+    "Purse.CreditBalance": {
+      "Id": 1791,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Balance"
+        }
+      ]
+    },
+    "Room.Chat.Chat": {
+      "Id": 1646,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "UserId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Text"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Gesture"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "StyleId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<Link>",
+          "Name": "Links"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TrackingId"
+        }
+      ]
+    },
+    "Room.Engine.FloorHeightMap": {
+      "Id": 1945,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "Scale"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "FixedWallsHeight"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "HeightMap"
+        }
+      ]
+    },
+    "Room.Engine.FurnitureAliases": {
+      "Id": 2340,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<FurnitureAlias>",
+          "Name": "Aliases"
+        }
+      ]
+    },
+    "Room.Engine.HeightMap": {
+      "Id": 3778,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Width"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<short>",
+          "Name": "HeightMap"
+        }
+      ]
+    },
+    "Room.Engine.ItemAdd": {
+      "Id": 2866,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "ItemData",
+          "Name": "Item"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "OwnerName"
+        }
+      ]
+    },
+    "Room.Engine.ItemDataUpdate": {
+      "Id": 93,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ItemId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "IItemData",
+          "Name": "ItemData"
+        }
+      ]
+    },
+    "Room.Engine.ItemRemove": {
+      "Id": 1133,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ItemId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "PickerId"
+        }
+      ]
+    },
+    "Room.Engine.Items": {
+      "Id": 3683,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<OwnerName>",
+          "Name": "OwnerNames"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<ItemData>",
+          "Name": "Items"
+        }
+      ]
+    },
+    "Room.Engine.ObjectAdd": {
+      "Id": 2792,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "ObjectData",
+          "Name": "Object"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "OwnerName"
+        }
+      ]
+    },
+    "Room.Engine.ObjectDataUpdate": {
+      "Id": 3458,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ItemId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "IItemData",
+          "Name": "Data"
+        }
+      ]
+    },
+    "Room.Engine.ObjectRemove": {
+      "Id": 2181,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ItemId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "Expired"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "PickerId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Delay"
+        }
+      ]
+    },
+    "Room.Engine.Objects": {
+      "Id": 171,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<OwnerName>",
+          "Name": "OwnerNames"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<ObjectData>",
+          "Name": "Objects"
+        }
+      ]
+    },
+    "Room.Engine.ObjectUpdate": {
+      "Id": 1217,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "ObjectData",
+          "Name": "Object"
+        }
+      ]
+    },
+    "Room.Engine.RoomEntryInfo": {
+      "Id": 1669,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "Owner"
+        }
+      ]
+    },
+    "Room.Engine.RoomVisualizationSettings": {
+      "Id": 619,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "WallsHidden"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WallThicknessMultiplier"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "FloorThicknessMultiplier"
+        }
+      ]
+    },
+    "Room.Engine.UserRemove": {
+      "Id": 2435,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "RoomUnitId"
+        }
+      ]
+    },
+    "Room.Engine.Users": {
+      "Id": 2471,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<RoomUser>",
+          "Name": "Users"
+        }
+      ]
+    },
+    "Room.Engine.UserUpdate": {
+      "Id": 2377,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<UserUpdate>",
+          "Name": "Updates"
+        }
+      ]
+    },
+    "Room.Furniture.RequestSpamWallPostIt": {
+      "Id": 1309,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Id"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "WallPosition",
+          "Name": "Location"
+        }
+      ]
+    },
+    "Room.Layout.RoomEntryTile": {
+      "Id": 3546,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "X"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Y"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Direction"
+        }
+      ]
+    },
+    "Room.Session.CloseConnection": {
+      "Id": 2529,
+      "Structure": []
+    },
+    "Room.Session.OpenConnection": {
+      "Id": 631,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        }
+      ]
+    },
+    "Room.Session.RoomReady": {
+      "Id": 1195,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "LayoutId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        }
+      ]
+    },
+    "RoomSettings.NoSuchFlat": {
+      "Id": 1363,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        }
+      ]
+    },
+    "Tracking.LatencyPingResponse": {
+      "Id": 1909,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RequestId"
+        }
+      ]
+    },
+    "Users.IgnoredUsers": {
+      "Id": 2698,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<string>",
+          "Name": "IgnoredUsers"
+        }
+      ]
+    },
+    "Users.ScrSendUserInfo": {
+      "Id": 2857,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ProductName"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "DaysToPeriodEnd"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "MemberPeriods"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "PeriodsSubscribedAhead"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ResponseType"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "HasEverBeenMember"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "IsVIP"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "PastClubDays"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "PastVipDays"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "MinutesUntilExpiration"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "MinutesSinceLastModified"
+        }
+      ]
+    }
+  },
+  "Structures": {
+    "CallForHelpCategory": [
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "List<CallForHelpTopic>",
+        "Name": "Topics"
+      }
+    ],
+    "CallForHelpTopic": [
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Consequence"
+      }
+    ],
+    "EmptyItemData": [
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "4"
+      }
+    ],
+    "EventCategory": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "Visible"
+      }
+    ],
+    "FlatCategory": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "Visible"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "Automatic"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "AutomaticCategory"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "GlobalCategory"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "StaffOnly"
+      }
+    ],
+    "FriendCategory": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      }
+    ],
+    "FriendRequest": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "RequesterId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "RequesterName"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "RequesterFigure"
+      }
+    ],
+    "FrontPageItem": [],
+    "FurniData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "StripId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "IFurnitureType",
+        "Name": "Type"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "ItemId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "FurnitureId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Category"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "IItemData",
+        "Name": "ExtraData"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "bool",
+        "Value": "true"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "bool",
+        "Value": "true"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "bool",
+        "Value": "true"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "bool",
+        "Value": "true"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "-1"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "bool",
+        "Value": "false"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "-1"
+      },
+      {
+        "Mapping": "Conditional",
+        "Condition": "Type == Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Floor",
+        "WhenTrue": {
+          "Mapping": "Constant",
+          "Type": "string",
+          "Value": "\"\""
+        }
+      },
+      {
+        "Mapping": "Conditional",
+        "Condition": "Type == Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Floor",
+        "WhenTrue": {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        }
+      }
+    ],
+    "FurnitureAlias": [
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Alias"
+      }
+    ],
+    "FurnitureTypeFloor": [
+      {
+        "Mapping": "Constant",
+        "Type": "string",
+        "Value": "\"S\""
+      }
+    ],
+    "FurnitureTypeWall": [
+      {
+        "Mapping": "Constant",
+        "Type": "string",
+        "Value": "\"I\""
+      }
+    ],
+    "GuestRoomData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "1"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "OwnerName"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "UserCount"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "10"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "string",
+        "Value": "\"Description\""
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "13"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "2"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "1"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "8"
+      }
+    ],
+    "ItemData": [
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "FurnitureId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "WallPosition",
+        "Name": "Position"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "IItemData",
+        "Name": "ExtraData"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "-1"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "1"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "1"
+      }
+    ],
+    "LiftedRoomData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "RoomId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "AreaId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Image"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Caption"
+      }
+    ],
+    "Link": [
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Location"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Text"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "Trusted"
+      }
+    ],
+    "NodeData": [
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "Visible"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Icon"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Localization"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "List<int>",
+        "Name": "OfferIds"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "List<NodeData>",
+        "Name": "Children"
+      }
+    ],
+    "ObjectData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "FurnitureId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "X"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Y"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Direction"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Z"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "SizeZ"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Extra"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "IItemData",
+        "Name": "ExtraData"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      }
+    ],
+    "OfferData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "LocalizationId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "IsRent"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "PriceInCredits"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "PriceInActivityPoints"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "ActivityPointsType"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "Giftable"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "List<ProductData>",
+        "Name": "Products"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "ClubLevel"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "BundlePurchaseAllowed"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "bool",
+        "Value": "false"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "PreviewImage"
+      }
+    ],
+    "OwnerName": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "UserId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Username"
+      }
+    ],
+    "Perk": [
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Code"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "ErrorMessage"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "IsAllowed"
+      }
+    ],
+    "PostItInventoryData": [
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Count"
+      }
+    ],
+    "PostItRoomData": [
+      {
+        "Mapping": "Combine",
+        "Type": "string",
+        "Fields": [
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Color"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Text"
+          }
+        ]
+      }
+    ],
+    "ProductData": [
+      {
+        "Mapping": "Field",
+        "Type": "IProductType",
+        "Name": "Type"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "FurnitureId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "ExtraData"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "ProductCount"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "bool",
+        "Value": "false"
+      }
+    ],
+    "ProductTypeFloor": [
+      {
+        "Mapping": "Constant",
+        "Type": "string",
+        "Value": "\"s\""
+      }
+    ],
+    "ProductTypeWall": [
+      {
+        "Mapping": "Constant",
+        "Type": "string",
+        "Value": "\"i\""
+      }
+    ],
+    "RoomChatSettings": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Mode"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "BubbleWidth"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "ScrollSpeed"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "FullHearRange"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "FloodSensitivity"
+      }
+    ],
+    "RoomModerationSettings": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "WhoCanMute"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "WhoCanKick"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "WhoCanBan"
+      }
+    ],
+    "RoomUser": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "IdentifierId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Motto"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Figure"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "RoomUnitId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "X"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Y"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Z"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Direction"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Type"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Gender"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "GroupId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "GroupStatus"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "GroupName"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "SwimSuit"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "AchievementScore"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "IsModerator"
+      }
+    ],
+    "SavedSearch": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "SearchCode"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Filter"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Localization"
+      }
+    ],
+    "SearchResultList": [
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "SearchCode"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Text"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "ActionAllowed"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "ForceClosed"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "ViewMode"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "List<GuestRoomData>",
+        "Name": "Rooms"
+      }
+    ],
+    "StuffData": [
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "ExtraData"
+      }
+    ],
+    "TopLevelContext": [
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "SearchCode"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "List<SavedSearch>",
+        "Name": "QuickLinks"
+      }
+    ],
+    "TradeItemData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "FurnitureId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Type"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "ItemId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "FurnitureId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Category"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "bool",
+        "Value": "true"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "IItemData",
+        "Name": "ExtraData"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      },
+      {
+        "Mapping": "Conditional",
+        "Condition": "Type == Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Floor",
+        "WhenTrue": {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        }
+      }
+    ],
+    "UnseenItems": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Category"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "List<int>",
+        "Name": "Ids"
+      }
+    ],
+    "UserUpdate": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "RoomUnitId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "X"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Y"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Z"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "BodyDirection"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "HeadDirection"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Data"
+      }
+    ],
+    "WallPosition": [
+      {
+        "Mapping": "Combine",
+        "Type": "string",
+        "Fields": [
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\":w=\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "LocationX"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\",\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "LocationY"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" l=\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "PositionX"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\",\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "PositionY"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" l\""
+          }
+        ]
+      }
+    ]
+  },
+  "Interfaces": {
+    "IFurnitureType": {
+      "Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Floor": "FurnitureTypeFloor",
+      "Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Wall": "FurnitureTypeWall"
+    },
+    "IItemData": {
+      "Skylight.Protocol.Packets.Data.Room.Object.Data.EmptyItemData": "EmptyItemData",
+      "Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItInventoryData": "PostItInventoryData",
+      "Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItRoomData": "PostItRoomData"
+    },
+    "IProductType": {
+      "Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Floor": "ProductTypeFloor",
+      "Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Wall": "ProductTypeWall"
+    }
+  }
+}

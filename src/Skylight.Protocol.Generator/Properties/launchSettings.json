@@ -1,0 +1,9 @@
+{
+  "profiles": {
+		"Skylight.Protocol.Generator": {
+			"commandName": "Project",
+			"commandLineArgs": "Skylight.Protocol.X",
+			"workingDirectory": "..\\\\"
+		}
+  }
+}

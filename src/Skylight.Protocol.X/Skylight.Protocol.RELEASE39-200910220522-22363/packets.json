@@ -1,0 +1,918 @@
+{
+  "Revision": "RELEASE39-200910220522-22363",
+  "Protocol": "Legacy",
+  "Incoming": {
+    "Advertisement.GetInterstitial": {
+      "Id": 182,
+      "Structure": []
+    },
+    "Advertisement.GetRoomAd": {
+      "Id": 126,
+      "Structure": []
+    },
+    "Handshake.CompleteDiffieHandshake": {
+      "Id": 2002,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "PublicKey"
+        }
+      ]
+    },
+    "Handshake.GetSessionParameters": {
+      "Id": 1817,
+      "Structure": []
+    },
+    "Handshake.InfoRetrieve": {
+      "Id": 7,
+      "Structure": []
+    },
+    "Handshake.InitDiffieHandshake": {
+      "Id": 206,
+      "Structure": []
+    },
+    "Handshake.SSOTicket": {
+      "Id": 204,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "SSOTicket"
+        }
+      ]
+    },
+    "Handshake.UniqueID": {
+      "Id": 813,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "MachineId"
+        }
+      ]
+    },
+    "Handshake.VersionCheck": {
+      "Id": 1170,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "VersionId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ClientUrl"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ExternalVariablesUrl"
+        }
+      ]
+    },
+    "Inventory.Furni.GetStrip": {
+      "Id": 65,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Action"
+        }
+      ]
+    },
+    "Navigator.GetGuestRoom": {
+      "Id": 21,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        }
+      ]
+    },
+    "Navigator.GetOfficialRooms": {
+      "Id": 150,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "NodeMask"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "NodeId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Depth"
+        }
+      ]
+    },
+    "Navigator.MyRoomsSearch": {
+      "Id": 16,
+      "Structure": []
+    },
+    "Room.Engine.GetFurnitureAliases": {
+      "Id": 215,
+      "Structure": []
+    },
+    "Room.Engine.GetRoomEntryData": {
+      "Id": 60,
+      "Structure": []
+    },
+    "Room.Engine.MoveAvatar": {
+      "Id": 75,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "X"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Y"
+        }
+      ]
+    },
+    "Room.Engine.PlaceObject": {
+      "Id": 90,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Values"
+        }
+      ]
+    },
+    "Room.Session.OpenFlatConnection": {
+      "Id": 2,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "IsPublicRoom"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        }
+      ]
+    }
+  },
+  "Outgoing": {
+    "Advertisement.Interstitial": {
+      "Id": 258,
+      "Structure": [
+        {
+          "Mapping": "Constant",
+          "Type": "string",
+          "Value": "\"\""
+        }
+      ]
+    },
+    "Advertisement.RoomAd": {
+      "Id": 208,
+      "Structure": [
+        {
+          "Mapping": "Constant",
+          "Type": "string",
+          "Value": "\"\""
+        }
+      ]
+    },
+    "Handshake.AuthenticationOK": {
+      "Id": 3,
+      "Structure": []
+    },
+    "Handshake.CompleteDiffieHandshake": {
+      "Id": 1,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "text",
+          "Name": "EncryptedPublicKey"
+        }
+      ]
+    },
+    "Handshake.InitDiffieHandshake": {
+      "Id": 277,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "EncryptedPrime"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        }
+      ]
+    },
+    "Handshake.SessionParameters": {
+      "Id": 257,
+      "Structure": [
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        }
+      ]
+    },
+    "Handshake.UserObject": {
+      "Id": 5,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "UserId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Username"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Figure"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Gender"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "CustomData"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Tickets"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "SwimSuit"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Film"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "DirectMail"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RespectTotal"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RespectLeft"
+        }
+      ]
+    },
+    "Inventory.Furni.FurniList": {
+      "Id": 140,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<FurniData>",
+          "Name": "Fragment"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TotalFragments"
+        }
+      ]
+    },
+    "Navigator.GetGuestRoomResult": {
+      "Id": 54,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "GuestRoomData",
+          "Name": "Room"
+        }
+      ]
+    },
+    "Navigator.GuestRoomSearchResult": {
+      "Id": 16,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<GuestRoomSearchData>",
+          "Name": "Rooms"
+        }
+      ]
+    },
+    "Navigator.OfficialRooms": {
+      "Id": 220,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "NodeMask"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "3"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "string",
+          "Value": "\"Publics\""
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "1000"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "4"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "1"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "string",
+          "Value": "\"Test Name\""
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "10"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "3"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "string",
+          "Value": "\"Desc\""
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "4"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "string",
+          "Value": "\"hh_room_terrace,hh_paalu,hh_people_pool,hh_people_paalu\""
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "1"
+        }
+      ]
+    },
+    "Room.Engine.FloorHeightMap": {
+      "Id": 470,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "text",
+          "Name": "HeightMap"
+        }
+      ]
+    },
+    "Room.Engine.FurnitureAliases": {
+      "Id": 297,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<FurnitureAlias>",
+          "Name": "Aliases"
+        }
+      ]
+    },
+    "Room.Engine.HeightMap": {
+      "Id": 31,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "text",
+          "Name": "HeightMap"
+        }
+      ]
+    },
+    "Room.Engine.Items": {
+      "Id": 45,
+      "Structure": [
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        }
+      ]
+    },
+    "Room.Engine.Objects": {
+      "Id": 32,
+      "Structure": [
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        }
+      ]
+    },
+    "Room.Engine.PublicRoomObjects": {
+      "Id": 30,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<PublicRoomObjectData>",
+          "Name": "Objects"
+        }
+      ]
+    },
+    "Room.Engine.Users": {
+      "Id": 28,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<RoomUser>",
+          "Name": "Users"
+        }
+      ]
+    },
+    "Room.Engine.UserUpdate": {
+      "Id": 34,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<UserUpdate>",
+          "Name": "Updates"
+        }
+      ]
+    },
+    "Room.Permissions.YouAreController": {
+      "Id": 42,
+      "Structure": []
+    },
+    "Room.Permissions.YouAreNotController": {
+      "Id": 43,
+      "Structure": []
+    },
+    "Room.Permissions.YouAreOwner": {
+      "Id": 47,
+      "Structure": []
+    },
+    "Room.Session.OpenConnection": {
+      "Id": 19,
+      "Structure": []
+    },
+    "Room.Session.RoomReady": {
+      "Id": 69,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "LayoutId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        }
+      ]
+    }
+  },
+  "Structures": {
+    "EmptyItemData": [
+      {
+        "Mapping": "Constant",
+        "Type": "string",
+        "Value": "\"\""
+      }
+    ],
+    "FurniData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "StripId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "StripId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Type"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "ItemId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "FurnitureId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Category"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "IItemData",
+        "Name": "ExtraData"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "1"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "1"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "1"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "-1"
+      },
+      {
+        "Mapping": "Conditional",
+        "Condition": "Type == Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Floor",
+        "WhenTrue": {
+          "Mapping": "Constant",
+          "Type": "string",
+          "Value": "\"\""
+        }
+      },
+      {
+        "Mapping": "Conditional",
+        "Condition": "Type == Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Floor",
+        "WhenTrue": {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "-1"
+        }
+      }
+    ],
+    "FurnitureAlias": [
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Alias"
+      }
+    ],
+    "GuestRoomData": [
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "OwnerName"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "LayoutId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "string",
+        "Value": "\"Description\""
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "1"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "1"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "1"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "10"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "10"
+      }
+    ],
+    "GuestRoomSearchData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "OwnerName"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "string",
+        "Value": "\"open\""
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "UserCount"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "10"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "string",
+        "Value": "\"Description\""
+      }
+    ],
+    "PostItInventoryData": [
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Count"
+      }
+    ],
+    "PostItRoomData": [
+      {
+        "Mapping": "Combine",
+        "Type": "string",
+        "Fields": [
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Color"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Text"
+          }
+        ]
+      }
+    ],
+    "PublicRoomObjectData": [
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "SpriteId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "X"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Y"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Z"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Direction"
+      }
+    ],
+    "RoomUser": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "IdentifierId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Motto"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Figure"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "RoomUnitId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "X"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Y"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Z"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Direction"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Type"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Gender"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "AchievementScore"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "GroupId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "GroupStatus"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "SwimSuit"
+      }
+    ],
+    "UserUpdate": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "RoomUnitId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "X"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Y"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Z"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "BodyDirection"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "HeadDirection"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Data"
+      }
+    ]
+  },
+  "Interfaces": {
+    "IItemData": {
+      "Skylight.Protocol.Packets.Data.Room.Object.Data.EmptyItemData": "EmptyItemData",
+      "Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItInventoryData": "PostItInventoryData",
+      "Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItRoomData": "PostItRoomData"
+    }
+  }
+}

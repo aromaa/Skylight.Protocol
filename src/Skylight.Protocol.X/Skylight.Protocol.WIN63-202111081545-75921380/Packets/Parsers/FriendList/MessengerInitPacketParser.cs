@@ -1,0 +1,22 @@
+﻿using System.Buffers;
+using Skylight.Protocol.Extensions;
+using Skylight.Protocol.Packets.Incoming.FriendList;
+using Net.Buffers;
+using Net.Communication.Attributes;
+using Net.Communication.Incoming.Parser;
+
+namespace Skylight.Protocol.WIN63_202111081545_75921380.Packets.Parsers.FriendList;
+
+[PacketParserId(2253u)]
+[PacketManagerRegister(typeof(GamePacketManager))]
+internal sealed class MessengerInitPacketParser : IIncomingPacketParser<MessengerInitPacketParser.MessengerInitIncomingPacket>
+{
+	public MessengerInitIncomingPacket Parse(ref PacketReader reader)
+	{
+		return new MessengerInitIncomingPacket();
+	}
+
+	internal readonly struct MessengerInitIncomingPacket : IMessengerInitIncomingPacket
+	{
+	}
+}

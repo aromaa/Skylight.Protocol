@@ -1,0 +1,3 @@
+[submodule "src/submodules/Net"]
+	path = src/submodules/Net
+	url = https://github.com/aromaa/Net.git
