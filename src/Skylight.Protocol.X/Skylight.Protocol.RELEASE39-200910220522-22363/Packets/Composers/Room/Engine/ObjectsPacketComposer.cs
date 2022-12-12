@@ -13,6 +13,18 @@ internal sealed class ObjectsPacketComposer : IOutgoingPacketComposer<ObjectsOut
 {
 	public void Compose(ref PacketWriter writer, in ObjectsOutgoingPacket packet)
 	{
-		writer.WriteVL64Int32(0);
+		writer.WriteVL64Int32(packet.Objects.Count);
+		foreach (var objects in packet.Objects)
+		{
+			writer.WriteVL64Int32(objects.Id);
+			writer.WriteVL64Int32(objects.FurnitureId);
+			writer.WriteVL64Int32(objects.X);
+			writer.WriteVL64Int32(objects.Y);
+			writer.WriteVL64Int32(objects.Direction);
+			writer.WriteDelimiter2BrokenString(objects.Z.ToString(CultureInfo.InvariantCulture));
+			writer.WriteVL64Int32(objects.Extra);
+			writer.WriteDelimiter2BrokenString("");
+			writer.WriteVL64Int32(-1);
+		}
 	}
 }

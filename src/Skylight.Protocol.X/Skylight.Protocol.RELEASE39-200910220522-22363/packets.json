@@ -163,6 +163,94 @@
           "Name": "RoomId"
         }
       ]
+    },
+    "Sound.DeleteSong": {
+      "Id": 248,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "SongId"
+        }
+      ]
+    },
+    "Sound.EditSong": {
+      "Id": 241,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "SongId"
+        }
+      ]
+    },
+    "Sound.EjectSoundPackage": {
+      "Id": 220,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Slot"
+        }
+      ]
+    },
+    "Sound.GetSongList": {
+      "Id": 244,
+      "Structure": []
+    },
+    "Sound.InsertSoundPackage": {
+      "Id": 219,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "SoundSetId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Slot"
+        }
+      ]
+    },
+    "Sound.NewSong": {
+      "Id": 239,
+      "Structure": []
+    },
+    "Sound.SaveSongEdit": {
+      "Id": 242,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "SongId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Name"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "SongData"
+        }
+      ]
+    },
+    "Sound.SaveSongNew": {
+      "Id": 240,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Name"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "SongData"
+        }
+      ]
     }
   },
   "Outgoing": {
@@ -464,9 +552,9 @@
       "Id": 32,
       "Structure": [
         {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "0"
+          "Mapping": "Field",
+          "Type": "List<ObjectData>",
+          "Name": "Objects"
         }
       ]
     },
@@ -528,6 +616,80 @@
           "Mapping": "Field",
           "Type": "int",
           "Name": "RoomId"
+        }
+      ]
+    },
+    "Sound.NewSong": {
+      "Id": 331,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Id"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Name"
+        }
+      ]
+    },
+    "Sound.SongInfo": {
+      "Id": 300,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Id"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Name"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Data"
+        }
+      ]
+    },
+    "Sound.SongList": {
+      "Id": 322,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<SongData>",
+          "Name": "Songs"
+        }
+      ]
+    },
+    "Sound.SongSaved": {
+      "Id": 339,
+      "Structure": []
+    },
+    "Sound.TraxSoundPackages": {
+      "Id": 301,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "SlotCount"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<TraxSoundPackage>",
+          "Name": "FilledSlots"
+        }
+      ]
+    },
+    "Sound.UserSoundPackages": {
+      "Id": 302,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<int>",
+          "Name": "SoundSets"
         }
       ]
     }
@@ -726,6 +888,53 @@
         "Value": "\"Description\""
       }
     ],
+    "ObjectData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "FurnitureId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "X"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Y"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Direction"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Z"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Extra"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "string",
+        "Value": "\"\""
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "-1"
+      }
+    ],
     "PostItInventoryData": [
       {
         "Mapping": "Field",
@@ -868,6 +1077,45 @@
         "Mapping": "Field",
         "Type": "string",
         "Name": "SwimSuit"
+      }
+    ],
+    "SongData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Length"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Locked"
+      }
+    ],
+    "TraxSoundPackage": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Slot"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "SoundSetId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "List<int>",
+        "Name": "Samples"
       }
     ],
     "UserUpdate": [
