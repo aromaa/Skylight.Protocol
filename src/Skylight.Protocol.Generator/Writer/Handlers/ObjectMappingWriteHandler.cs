@@ -34,9 +34,19 @@ internal sealed class ObjectMappingWriteHandler : MappingWriterHandler
 				writer.WriteLine($"{{");
 				writer.Indent++;
 
-				using (context.PushScope(name, true))
+				if (!interfaceType.IsEnum)
 				{
-					context.Write(protocol, writer, new ObjectMappingSyntax(mappingTarget), typeof(IItemData).Assembly.GetType(objectData)!);
+					using (context.PushScope(name, true))
+					{
+						context.Write(protocol, writer, new ObjectMappingSyntax(mappingTarget), typeof(IItemData).Assembly.GetType(objectData)!);
+					}
+				}
+				else
+				{
+					using (context.PushScope(context.Name[..context.Name.LastIndexOf('.')], true))
+					{
+						context.Write(protocol, writer, new ObjectMappingSyntax(mappingTarget), type.DeclaringType!);
+					}
 				}
 
 				writer.Indent--;
@@ -116,7 +126,7 @@ internal sealed class ObjectMappingWriteHandler : MappingWriterHandler
 						PropertyInfo? property = typeType.GetProperty(fieldName);
 						if (property is not null)
 						{
-							context.Write(protocol, writer, syntax, property.PropertyType);
+							context.Write(protocol, writer, syntax, property);
 
 							continue;
 						}

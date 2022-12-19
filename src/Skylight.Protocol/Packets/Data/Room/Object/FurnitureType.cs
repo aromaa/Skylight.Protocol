@@ -3,5 +3,6 @@
 public enum FurnitureType
 {
 	Floor = 1,
-	Wall = 2
+	Wall = 2,
+	Badge = 3
 }

@@ -39,22 +39,31 @@ internal sealed class CatalogPagePacketComposer : IOutgoingPacketComposer<Catalo
 			writer.WriteInt32(offers.Products.Count);
 			foreach (var products in offers.Products)
 			{
-				if (products.Type is Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Floor)
+				if (products.Type is Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Badge)
+				{
+					writer.WriteFixedUInt16String("b");
+					writer.WriteFixedUInt16String(products.ExtraData);
+				}
+				else if (products.Type is Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Floor)
 				{
 					writer.WriteFixedUInt16String("s");
+					writer.WriteInt32(products.FurnitureId);
+					writer.WriteFixedUInt16String(products.ExtraData);
+					writer.WriteInt32(products.ProductCount);
+					writer.WriteBool(false);
 				}
 				else if (products.Type is Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Wall)
 				{
 					writer.WriteFixedUInt16String("i");
+					writer.WriteInt32(products.FurnitureId);
+					writer.WriteFixedUInt16String(products.ExtraData);
+					writer.WriteInt32(products.ProductCount);
+					writer.WriteBool(false);
 				}
 				else
 				{
 					throw new NotSupportedException();
 				}
-				writer.WriteInt32(products.FurnitureId);
-				writer.WriteFixedUInt16String(products.ExtraData);
-				writer.WriteInt32(products.ProductCount);
-				writer.WriteBool(false);
 			}
 			writer.WriteInt32(offers.ClubLevel);
 			writer.WriteBool(offers.BundlePurchaseAllowed);

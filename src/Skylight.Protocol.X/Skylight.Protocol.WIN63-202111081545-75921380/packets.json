@@ -2387,6 +2387,25 @@
         "Mapping": "Field",
         "Type": "IProductType",
         "Name": "Type"
+      }
+    ],
+    "ProductTypeBadge": [
+      {
+        "Mapping": "Constant",
+        "Type": "string",
+        "Value": "\"b\""
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "ExtraData"
+      }
+    ],
+    "ProductTypeFloor": [
+      {
+        "Mapping": "Constant",
+        "Type": "string",
+        "Value": "\"s\""
       },
       {
         "Mapping": "Field",
@@ -2409,18 +2428,31 @@
         "Value": "false"
       }
     ],
-    "ProductTypeFloor": [
-      {
-        "Mapping": "Constant",
-        "Type": "string",
-        "Value": "\"s\""
-      }
-    ],
     "ProductTypeWall": [
       {
         "Mapping": "Constant",
         "Type": "string",
         "Value": "\"i\""
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "FurnitureId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "ExtraData"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "ProductCount"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "bool",
+        "Value": "false"
       }
     ],
     "RoomChatSettings": [
@@ -2812,6 +2844,7 @@
       "Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItRoomData": "PostItRoomData"
     },
     "IProductType": {
+      "Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Badge": "ProductTypeBadge",
       "Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Floor": "ProductTypeFloor",
       "Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Wall": "ProductTypeWall"
     }

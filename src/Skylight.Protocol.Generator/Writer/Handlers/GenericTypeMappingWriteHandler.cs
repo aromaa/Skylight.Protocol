@@ -78,7 +78,7 @@ internal sealed class GenericTypeMappingWriteHandler : MappingWriterHandler
 			{
 				writer.WriteLine($"Write(ref writer, {context.Name});");
 				writer.WriteLineNoTabs(string.Empty);
-				writer.WriteLine($"static void Write(ref PacketWriter writer, {type.ToString()!.Replace(']', '>').Replace('[', '<').Replace("`1", string.Empty)} {name}s)");
+				writer.WriteLine($"static void Write(ref PacketWriter writer, {(type is PropertyInfo propertyInfo ? propertyInfo.PropertyType.ToString() : type.ToString())!.Replace(']', '>').Replace('[', '<').Replace("`1", string.Empty)} {name}s)");
 				writer.WriteLine($"{{");
 				writer.Indent++;
 			}
