@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Communication", "..\sub
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skylight.Protocol.Generator", "..\Skylight.Protocol.Generator\Skylight.Protocol.Generator.csproj", "{3A0EC974-5943-4DFF-996A-4512EF16C2E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skylight.Protocol.Editor", "..\Skylight.Protocol.Editor\Skylight.Protocol.Editor.csproj", "{94F1CCF4-EDC5-4C9B-A161-107030732B63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{3A0EC974-5943-4DFF-996A-4512EF16C2E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A0EC974-5943-4DFF-996A-4512EF16C2E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A0EC974-5943-4DFF-996A-4512EF16C2E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94F1CCF4-EDC5-4C9B-A161-107030732B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94F1CCF4-EDC5-4C9B-A161-107030732B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94F1CCF4-EDC5-4C9B-A161-107030732B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94F1CCF4-EDC5-4C9B-A161-107030732B63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +81,7 @@ Global
 		{346CF2B5-92CC-49B8-969B-B68682F8D2A9} = {85C7C4C5-A606-4BC6-B486-D4EB9AF72976}
 		{1DA5954A-7BAA-49D4-979B-E6C23D24A818} = {85C7C4C5-A606-4BC6-B486-D4EB9AF72976}
 		{3A0EC974-5943-4DFF-996A-4512EF16C2E0} = {E82EC71B-7D50-426A-BC8E-51F2F32AF0DE}
+		{94F1CCF4-EDC5-4C9B-A161-107030732B63} = {E82EC71B-7D50-426A-BC8E-51F2F32AF0DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2612C2E2-D6D6-4994-A17C-72F631E6AC0C}

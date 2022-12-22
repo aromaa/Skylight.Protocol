@@ -1,8 +1,8 @@
 ﻿namespace Skylight.Protocol.Generator.Schema.Mapping;
 
-internal sealed class ConditionalMappingSchema : AbstractMappingSchema
+public sealed class ConditionalMappingSchema : AbstractMappingSchema
 {
-	public required string Condition { get; init; }
+	public required string Condition { get; set; }
 
-	public required AbstractMappingSchema WhenTrue { get; init; }
+	public required AbstractMappingSchema WhenTrue { get; set; }
 }
