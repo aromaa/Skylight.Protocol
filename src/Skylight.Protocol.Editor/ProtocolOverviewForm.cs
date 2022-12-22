@@ -1,4 +1,6 @@
-﻿using System.Text.Encodings.Web;
+﻿using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using Skylight.Protocol.Generator;
 using Skylight.Protocol.Generator.Schema;
@@ -650,7 +652,11 @@ internal partial class ProtocolOverviewForm : Form
 
 			File.Move(packetsTempPath, Path.Combine(this.protocol, "packets.json"), true);
 
-			ProtocolGenerator.Run(this.protocol, this.schema);
+			using MetadataLoadContext metadataLoadContext = new(new PathAssemblyResolver(Directory.GetFiles(RuntimeEnvironment.GetRuntimeDirectory(), "*.dll")));
+
+			Assembly protocolAssembly = metadataLoadContext.LoadFromAssemblyPath("Skylight.Protocol.dll");
+
+			ProtocolGenerator.Run(this.protocol, this.schema, protocolAssembly);
 		}
 		catch (Exception exception)
 		{

@@ -8,12 +8,12 @@ internal static class Program
 		{
 			foreach (string subDirectory in Directory.EnumerateDirectories(directory, "*", new EnumerationOptions()))
 			{
-				await ProtocolGenerator.Run(subDirectory).ConfigureAwait(false);
+				await ProtocolGenerator.Run(subDirectory, typeof(IGameProtocol).Assembly).ConfigureAwait(false);
 			}
 		}
 		else
 		{
-			await ProtocolGenerator.Run(Path.GetFullPath(Environment.CurrentDirectory)).ConfigureAwait(false);
+			await ProtocolGenerator.Run(Path.GetFullPath(Environment.CurrentDirectory), typeof(IGameProtocol).Assembly).ConfigureAwait(false);
 		}
 	}
 }

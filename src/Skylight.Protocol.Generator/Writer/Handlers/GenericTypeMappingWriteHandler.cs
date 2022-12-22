@@ -1,6 +1,7 @@
 ﻿using System.CodeDom.Compiler;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using Skylight.Protocol.Generator.Extensions;
 using Skylight.Protocol.Generator.Parser.Mapping;
 using Skylight.Protocol.Generator.Structure;
 
@@ -15,7 +16,7 @@ internal sealed class GenericTypeMappingWriteHandler : MappingWriterHandler
 			throw new NotSupportedException();
 		}
 
-		if (genericMapping.Type == typeof(List<>))
+		if (genericMapping.Type == typeof(List<>).FromAssembly(genericMapping.Type))
 		{
 			int variableIndex = context.Name.LastIndexOf('.');
 
@@ -32,7 +33,7 @@ internal sealed class GenericTypeMappingWriteHandler : MappingWriterHandler
 			throw new NotSupportedException();
 		}
 
-		if (genericMapping.Type == typeof(List<>))
+		if (genericMapping.Type == typeof(List<>).FromAssembly(genericMapping.Type))
 		{
 			int variableIndex = context.Name.LastIndexOf('.');
 
@@ -67,7 +68,7 @@ internal sealed class GenericTypeMappingWriteHandler : MappingWriterHandler
 			throw new NotSupportedException();
 		}
 
-		if (genericMapping.Type == typeof(List<>) || genericMapping.Type == typeof(IAsyncEnumerator<>))
+		if (genericMapping.Type == typeof(List<>).FromAssembly(genericMapping.Type) || genericMapping.Type == typeof(IAsyncEnumerator<>).FromAssembly(genericMapping.Type))
 		{
 			int variableIndex = context.Name.LastIndexOf('.');
 
@@ -83,7 +84,7 @@ internal sealed class GenericTypeMappingWriteHandler : MappingWriterHandler
 				writer.Indent++;
 			}
 
-			if (genericMapping.Type == typeof(List<>))
+			if (genericMapping.Type == typeof(List<>).FromAssembly(genericMapping.Type))
 			{
 				using (context.PushScope($"{(recursive ? $"{name}s" : context.Name)}.Count", true))
 				{
@@ -99,7 +100,7 @@ internal sealed class GenericTypeMappingWriteHandler : MappingWriterHandler
 			{
 				if (type is PropertyInfo propertyInfo)
 				{
-					if (propertyInfo.GetCustomAttribute<TupleElementNamesAttribute>() is not null)
+					if (propertyInfo.GetCustomAttributesData().Any(a => a.AttributeType == typeof(TupleElementNamesAttribute).FromAssembly(type)))
 					{
 						context.Write(protocol, writer, genericMapping.GenericArgument, type);
 					}

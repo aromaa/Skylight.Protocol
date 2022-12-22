@@ -1,6 +1,8 @@
 ﻿using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using Skylight.Protocol.Attributes;
+using Skylight.Protocol.Generator.Extensions;
 using Skylight.Protocol.Generator.Parser.Mapping;
 using Skylight.Protocol.Generator.Schema;
 using Skylight.Protocol.Generator.Schema.Mapping;
@@ -13,7 +15,7 @@ namespace Skylight.Protocol.Generator.Parser;
 
 internal static class ProtocolParser
 {
-	internal static ProtocolStructure Parse(ProtocolSchema protocol)
+	internal static ProtocolStructure Parse(ProtocolSchema protocol, Assembly protocolAssembly)
 	{
 		Context context = new();
 
@@ -27,7 +29,7 @@ internal static class ProtocolParser
 
 			foreach (AbstractMappingSchema mapping in structure)
 			{
-				AbstractMappingSyntax syntax = MappingParser.Parse(mapping);
+				AbstractMappingSyntax syntax = MappingParser.Parse(mapping, protocolAssembly.GetType("Skylight.Protocol.Attributes.GameProtocolAttribute")!.BaseType!.Assembly);
 
 				if (mapping is FieldMappingSchema fieldMapping)
 				{
@@ -61,7 +63,7 @@ internal static class ProtocolParser
 		Dictionary<string, PacketStructure> incoming = new();
 		foreach ((string name, PacketSchema packet) in protocol.Incoming)
 		{
-			PacketStructure structure = Parse(ref context, packet, typeof(IGameIncomingPacket), name);
+			PacketStructure structure = Parse(ref context, packet, protocolAssembly.GetType("Skylight.Protocol.Packets.Incoming.IGameIncomingPacket")!, name);
 
 			incoming.Add(structure.Name, structure);
 		}
@@ -69,7 +71,7 @@ internal static class ProtocolParser
 		Dictionary<string, PacketStructure> outgoing = new();
 		foreach ((string name, PacketSchema packet) in protocol.Outgoing)
 		{
-			PacketStructure structure = Parse(ref context, packet, typeof(IGameOutgoingPacket), name);
+			PacketStructure structure = Parse(ref context, packet, protocolAssembly.GetType("Skylight.Protocol.Packets.Outgoing.IGameOutgoingPacket")!, name);
 
 			outgoing.Add(structure.Name, structure);
 		}
@@ -85,11 +87,11 @@ internal static class ProtocolParser
 		string packetName = name.Substring(groupIdentifier + 1);
 
 		Type? packetInterface;
-		if (interfaceType == typeof(IGameIncomingPacket))
+		if (interfaceType == interfaceType.Assembly.GetType("Skylight.Protocol.Packets.Incoming.IGameIncomingPacket"))
 		{
 			packetInterface = interfaceType.Assembly.GetType($"{interfaceType.Namespace}.{packetGroup}.I{packetName}IncomingPacket");
 		}
-		else if (interfaceType == typeof(IGameOutgoingPacket))
+		else if (interfaceType == interfaceType.Assembly.GetType("Skylight.Protocol.Packets.Outgoing.IGameOutgoingPacket"))
 		{
 			packetInterface = interfaceType.Assembly.GetType($"{interfaceType.Namespace}.{packetGroup}.{packetName}OutgoingPacket");
 		}
@@ -114,7 +116,7 @@ internal static class ProtocolParser
 
 		foreach (AbstractMappingSchema mapping in packet.Structure)
 		{
-			AbstractMappingSyntax syntax = MappingParser.Parse(mapping);
+			AbstractMappingSyntax syntax = MappingParser.Parse(mapping, packetType.Assembly.GetType("Skylight.Protocol.Attributes.GameProtocolAttribute")!.BaseType!.Assembly);
 
 			if (mapping is FieldMappingSchema fieldMapping)
 			{

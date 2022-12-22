@@ -2,6 +2,7 @@
 using System.CodeDom.Compiler;
 using System.Reflection;
 using System.Text;
+using Skylight.Protocol.Generator.Extensions;
 using Skylight.Protocol.Generator.Parser.Mapping;
 using Skylight.Protocol.Generator.Structure;
 using Skylight.Protocol.Generator.Structure.Mapping;
@@ -130,23 +131,23 @@ internal static class PacketParserWriter
 
 	private static string GetTypeName(Type type)
 	{
-		if (type == typeof(uint))
+		if (type == typeof(uint).FromAssembly(type))
 		{
 			return "uint";
 		}
-		else if (type == typeof(int))
+		else if (type == typeof(int).FromAssembly(type))
 		{
 			return "int";
 		}
-		else if (type == typeof(bool))
+		else if (type == typeof(bool).FromAssembly(type))
 		{
 			return "bool";
 		}
-		else if (type == typeof(ReadOnlySequence<byte>))
+		else if (type == typeof(ReadOnlySequence<byte>).FromAssembly(type))
 		{
 			return "ReadOnlySequence<byte>";
 		}
-		else if (type == typeof(IList<int>))
+		else if (type == typeof(IList<int>).FromAssembly(type))
 		{
 			return "IList<int>";
 		}

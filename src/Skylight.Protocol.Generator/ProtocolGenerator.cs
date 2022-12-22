@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿using System.Reflection;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -11,7 +11,7 @@ namespace Skylight.Protocol.Generator;
 
 public static class ProtocolGenerator
 {
-	public static async Task Run(string directory)
+	public static async Task Run(string directory, Assembly protocolAssembly)
 	{
 		Console.WriteLine($"Working on: {directory}");
 
@@ -36,10 +36,10 @@ public static class ProtocolGenerator
 
 		File.Move(packetsTempPath, packetsPath, true);
 
-		ProtocolGenerator.Run(directory, schema);
+		ProtocolGenerator.Run(directory, schema, protocolAssembly);
 	}
 
-	public static void Run(string directory, ProtocolSchema schema)
+	public static void Run(string directory, ProtocolSchema schema, Assembly protocolAssembly)
 	{
 		string packetsDir = Path.Join(directory, "Packets");
 		if (Directory.Exists(packetsDir))
@@ -49,7 +49,7 @@ public static class ProtocolGenerator
 
 		Directory.CreateDirectory(packetsDir);
 
-		ProtocolStructure protocol = ProtocolParser.Parse(schema);
+		ProtocolStructure protocol = ProtocolParser.Parse(schema, protocolAssembly);
 
 		{
 			StringWriter writer = new();

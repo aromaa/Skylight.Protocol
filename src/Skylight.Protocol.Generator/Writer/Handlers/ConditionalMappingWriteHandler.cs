@@ -1,6 +1,7 @@
 ﻿using System.Buffers;
 using System.CodeDom.Compiler;
 using System.Reflection;
+using Skylight.Protocol.Generator.Extensions;
 using Skylight.Protocol.Generator.Parser.Mapping;
 using Skylight.Protocol.Generator.Structure;
 
@@ -26,7 +27,7 @@ internal sealed class ConditionalMappingWriteHandler : MappingWriterHandler
 				type = propertyInfo.PropertyType;
 			}
 
-			if (type == typeof(ReadOnlySequence<byte>))
+			if (type == typeof(ReadOnlySequence<byte>).FromAssembly(type))
 			{
 				writer.Write($" : ReadOnlySequence<byte>.Empty");
 			}

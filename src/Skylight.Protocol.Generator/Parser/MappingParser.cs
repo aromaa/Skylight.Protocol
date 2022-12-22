@@ -1,53 +1,55 @@
-﻿using Skylight.Protocol.Generator.Parser.Mapping;
+﻿using System.Reflection;
+using Skylight.Protocol.Generator.Extensions;
+using Skylight.Protocol.Generator.Parser.Mapping;
 using Skylight.Protocol.Generator.Schema.Mapping;
 
 namespace Skylight.Protocol.Generator.Parser;
 
 internal static class MappingParser
 {
-	internal static AbstractMappingSyntax Parse(AbstractMappingSchema mapping)
+	internal static AbstractMappingSyntax Parse(AbstractMappingSchema mapping, Assembly assembly)
 	{
 		if (mapping is FieldMappingSchema fieldMapping)
 		{
-			return ParseType(fieldMapping.Type, fieldMapping.Name);
+			return MappingParser.ParseType(fieldMapping.Type, assembly, fieldMapping.Name);
 		}
 		else if (mapping is ConstantMappingSchema constantMapping)
 		{
-			if (ParseType(constantMapping.Type) is TypeMappingSyntax typeMapping)
+			if (MappingParser.ParseType(constantMapping.Type, assembly) is TypeMappingSyntax typeMapping)
 			{
-				return new ConstantMappingSyntax(Convert.ChangeType(constantMapping.Value, typeMapping.Type), typeMapping);
+				return new ConstantMappingSyntax(Convert.ChangeType(constantMapping.Value, typeMapping.Type.FromAssembly(typeof(object))), typeMapping);
 			}
 		}
 		else if (mapping is ConditionalMappingSchema conditionalMapping)
 		{
-			return new ConditionalMappingSyntax(conditionalMapping.Condition, Parse(conditionalMapping.WhenTrue));
+			return new ConditionalMappingSyntax(conditionalMapping.Condition, MappingParser.Parse(conditionalMapping.WhenTrue, assembly));
 		}
 		else if (mapping is CombineMappingSchema combineMapping)
 		{
-			return new CombineMappingSyntax(ParseType(combineMapping.Type), combineMapping.Fields.Select(Parse).ToList());
+			return new CombineMappingSyntax(MappingParser.ParseType(combineMapping.Type, assembly), combineMapping.Fields.Select(f => MappingParser.Parse(f, assembly)).ToList());
 		}
 
 		throw new NotSupportedException();
 	}
 
-	private static AbstractMappingSyntax ParseType(string type, string? name = default)
+	private static AbstractMappingSyntax ParseType(string type, Assembly assembly, string? name = default)
 	{
 		switch (type)
 		{
 			case "string":
-				return new TypeMappingSyntax(typeof(string), name);
+				return new TypeMappingSyntax(typeof(string).FromAssembly(assembly), name);
 			case "text":
-				return new TypeMappingSyntax(typeof(byte[]), name);
+				return new TypeMappingSyntax(typeof(byte[]).FromAssembly(assembly), name);
 			case "int":
-				return new TypeMappingSyntax(typeof(int), name);
+				return new TypeMappingSyntax(typeof(int).FromAssembly(assembly), name);
 			case "short":
-				return new TypeMappingSyntax(typeof(short), name);
+				return new TypeMappingSyntax(typeof(short).FromAssembly(assembly), name);
 			case "bool":
-				return new TypeMappingSyntax(typeof(bool), name);
+				return new TypeMappingSyntax(typeof(bool).FromAssembly(assembly), name);
 			case "List":
-				return new TypeMappingSyntax(typeof(List<>), name);
+				return new TypeMappingSyntax(typeof(List<>).FromAssembly(assembly), name);
 			case "BufferedList":
-				return new TypeMappingSyntax(typeof(IAsyncEnumerator<>), name);
+				return new TypeMappingSyntax(typeof(IAsyncEnumerator<>).FromAssembly(assembly), name);
 		}
 
 		int genericArgumentIndex = type.IndexOf('<');
@@ -56,9 +58,9 @@ internal static class MappingParser
 			string genericType = type.Substring(0, genericArgumentIndex);
 			string genericArgument = type.Substring(genericArgumentIndex + 1, type.LastIndexOf('>') - genericArgumentIndex - 1);
 
-			if (ParseType(genericType) is TypeMappingSyntax typeMapping)
+			if (MappingParser.ParseType(genericType, assembly) is TypeMappingSyntax typeMapping)
 			{
-				return new GenericTypeMappingSyntax(typeMapping.Type, ParseType(genericArgument));
+				return new GenericTypeMappingSyntax(typeMapping.Type, MappingParser.ParseType(genericArgument, assembly));
 			}
 		}
 

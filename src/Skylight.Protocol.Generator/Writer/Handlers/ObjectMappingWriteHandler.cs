@@ -1,9 +1,9 @@
 ﻿using System.CodeDom.Compiler;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using Skylight.Protocol.Generator.Extensions;
 using Skylight.Protocol.Generator.Parser.Mapping;
 using Skylight.Protocol.Generator.Structure;
-using Skylight.Protocol.Packets.Data.Room.Object.Data;
 
 namespace Skylight.Protocol.Generator.Writer.Handlers;
 
@@ -38,7 +38,7 @@ internal sealed class ObjectMappingWriteHandler : MappingWriterHandler
 				{
 					using (context.PushScope(name, true))
 					{
-						context.Write(protocol, writer, new ObjectMappingSyntax(mappingTarget), typeof(IItemData).Assembly.GetType(objectData)!);
+						context.Write(protocol, writer, new ObjectMappingSyntax(mappingTarget), interfaceType.Assembly.GetType(objectData)!);
 					}
 				}
 				else
@@ -73,12 +73,22 @@ internal sealed class ObjectMappingWriteHandler : MappingWriterHandler
 		TupleElementNamesAttribute? names;
 		if (type is PropertyInfo propertyInfo)
 		{
-			names = propertyInfo.GetCustomAttribute<TupleElementNamesAttribute>();
+			if (propertyInfo.GetCustomAttributesData().FirstOrDefault(a => a.AttributeType == typeof(TupleElementNamesAttribute).FromAssembly(type)) is { } attributeData)
+			{
+				IReadOnlyCollection<CustomAttributeTypedArgument> namesData = (IReadOnlyCollection<CustomAttributeTypedArgument>)attributeData.ConstructorArguments[0].Value!;
+
+				names = new TupleElementNamesAttribute(namesData.Select(d => (string)d.Value!).ToArray());
+			}
+			else
+			{
+				names = null;
+			}
+
 			type = propertyInfo.PropertyType;
 
 			if (names is not null)
 			{
-				if (!((Type)type).IsAssignableTo(typeof(ITuple)))
+				if (!((Type)type).IsAssignableTo(typeof(ITuple).FromAssembly(type)))
 				{
 					type = ((Type)type).GetGenericArguments()[0];
 				}

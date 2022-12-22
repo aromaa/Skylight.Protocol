@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Reflection;
 using System.Text;
+using Skylight.Protocol.Generator.Extensions;
 using Skylight.Protocol.Generator.Parser.Mapping;
 using Skylight.Protocol.Generator.Structure;
 
@@ -23,7 +24,7 @@ internal sealed class CombineMappingWriteHandler : MappingWriterHandler
 
 		if (combineMapping.Type is TypeMappingSyntax typeMapping)
 		{
-			if (typeMapping.Type == typeof(string))
+			if (typeMapping.Type == typeof(string).FromAssembly(typeMapping.Type))
 			{
 				StringBuilder stringBuilder = new(@$"$""");
 
@@ -36,7 +37,7 @@ internal sealed class CombineMappingWriteHandler : MappingWriterHandler
 					else if (field is TypeMappingSyntax fieldTypeMapping)
 					{
 						PropertyInfo property = ((Type)type).GetProperty(fieldTypeMapping.Name!)!;
-						if (property.PropertyType == typeof(Color))
+						if (property.PropertyType == typeof(Color).FromAssembly(property.PropertyType))
 						{
 							stringBuilder.Append($"{{{context.Name}.{fieldTypeMapping.Name}.ToArgb():X6}}");
 						}

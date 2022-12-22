@@ -1,5 +1,6 @@
 ﻿using System.CodeDom.Compiler;
 using System.Reflection;
+using Skylight.Protocol.Generator.Extensions;
 using Skylight.Protocol.Generator.Parser.Mapping;
 using Skylight.Protocol.Generator.Structure;
 
@@ -19,15 +20,15 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 			type = propertyInfo.PropertyType;
 		}
 
-		if (typeMapping.Type == typeof(string))
+		if (typeMapping.Type == typeof(string).FromAssembly(typeMapping.Type))
 		{
 			writer.Write(protocol.Protocol is "Modern"
 				? $"reader.ReadBytes(reader.ReadInt16())"
 				: $"reader.ReadBytes(reader.ReadBase64UInt32(2))");
 		}
-		else if (typeMapping.Type == typeof(int))
+		else if (typeMapping.Type == typeof(int).FromAssembly(typeMapping.Type))
 		{
-			if (type == typeof(bool))
+			if (type == typeof(bool).FromAssembly(type))
 			{
 				writer.Write($"reader.ReadInt32() != 0");
 			}
@@ -38,7 +39,7 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 					: "(int)reader.ReadVL64UInt32()");
 			}
 		}
-		else if (typeMapping.Type == typeof(bool))
+		else if (typeMapping.Type == typeof(bool).FromAssembly(typeMapping.Type))
 		{
 			writer.Write($"reader.ReadBool()");
 		}
@@ -60,17 +61,17 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 			type = propertyInfo.PropertyType;
 		}
 
-		if (typeMapping.Type == typeof(bool))
+		if (typeMapping.Type == typeof(bool).FromAssembly(typeMapping.Type))
 		{
 			writer.WriteLine($"writer.WriteBool({context.Name});");
 		}
-		else if (typeMapping.Type == typeof(short))
+		else if (typeMapping.Type == typeof(short).FromAssembly(typeMapping.Type))
 		{
 			writer.WriteLine($"writer.WriteInt16({context.Name});");
 		}
-		else if (typeMapping.Type == typeof(int))
+		else if (typeMapping.Type == typeof(int).FromAssembly(typeMapping.Type))
 		{
-			if (type == typeof(bool))
+			if (type == typeof(bool).FromAssembly(type))
 			{
 				writer.WriteLine(protocol.Protocol is "Modern"
 					? $"writer.WriteInt32({context.Name} ? 1 : 0);"
@@ -89,19 +90,19 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 					: $"writer.WriteVL64Int32({context.Name});");
 			}
 		}
-		else if (typeMapping.Type == typeof(string))
+		else if (typeMapping.Type == typeof(string).FromAssembly(typeMapping.Type))
 		{
-			if (type == typeof(ICollection<short>))
+			if (type == typeof(ICollection<short>).FromAssembly(type))
 			{
 				writer.WriteLine($"writer.WriteFixedUInt16String(string.Join('\\r', {context.Name}.Select(i => (byte)('0' + i)).Chunk((int)packet.Width).Select(c => System.Text.Encoding.UTF8.GetString(c))));");
 			}
-			else if (type == typeof(double))
+			else if (type == typeof(double).FromAssembly(type))
 			{
 				writer.WriteLine(protocol.Protocol is "Modern"
 					? $"writer.WriteFixedUInt16String({context.Name}.ToString(CultureInfo.InvariantCulture));"
 					: $"writer.WriteDelimiter2BrokenString({context.Name}.ToString(CultureInfo.InvariantCulture));");
 			}
-			else if (type != typeof(string))
+			else if (type != typeof(string).FromAssembly(type))
 			{
 				writer.WriteLine(protocol.Protocol is "Modern"
 					? $"writer.WriteFixedUInt16String({context.Name}.ToString());"
@@ -114,9 +115,9 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 					: $"writer.WriteDelimiter2BrokenString({context.Name});");
 			}
 		}
-		else if (typeMapping.Type == typeof(byte[]))
+		else if (typeMapping.Type == typeof(byte[]).FromAssembly(typeMapping.Type))
 		{
-			if (type == typeof(ICollection<short>))
+			if (type == typeof(ICollection<short>).FromAssembly(type))
 			{
 				writer.WriteLine($"writer.WriteText(string.Join('\\r', {context.Name}.Select(i => (byte)('0' + i)).Chunk((int)packet.Width).Select(c => System.Text.Encoding.UTF8.GetString(c))));");
 			}
