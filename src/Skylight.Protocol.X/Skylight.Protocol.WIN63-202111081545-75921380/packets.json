@@ -201,6 +201,10 @@
       "Id": 1680,
       "Structure": []
     },
+    "Marketplace.GetMarketplaceConfiguration": {
+      "Id": 116,
+      "Structure": []
+    },
     "Navigator.CreateFlat": {
       "Id": 879,
       "Structure": [
@@ -1044,6 +1048,66 @@
           "Mapping": "Field",
           "Type": "int",
           "Name": "SecondUserCanTrade"
+        }
+      ]
+    },
+    "Marketplace.MarketplaceConfiguration": {
+      "Id": 3958,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "Enabled"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Commission"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TokenOfferPrice"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TokenOfferAmount"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "OfferMinPrice"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "OfferMaxPrice"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "OfferExpirationHours"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ItemPricePeriod"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "SellingFeePercentage"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RevenueLimit"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "HalfTaxLimit"
         }
       ]
     },
