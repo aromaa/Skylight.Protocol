@@ -14,6 +14,8 @@ internal partial class ProtocolOverviewForm : Form
 
 	private readonly ProtocolSchema schema;
 
+	private readonly List<Action> unregisterListeners;
+
 	internal ProtocolOverviewForm(string protocol)
 	{
 		this.InitializeComponent();
@@ -24,6 +26,8 @@ internal partial class ProtocolOverviewForm : Form
 		{
 			this.schema = JsonSerializer.Deserialize<ProtocolSchema>(stream)!;
 		}
+
+		this.unregisterListeners = new List<Action>();
 	}
 
 	private void ProtocolOverviewFormLoad(object sender, EventArgs e)
@@ -164,9 +168,19 @@ internal partial class ProtocolOverviewForm : Form
 
 	private void DisplayPacket(string name, PacketSchema packet, Type interfaceType)
 	{
-		this.packetId.Value = packet.Id;
+		foreach (Action unregisterListener in this.unregisterListeners)
+		{
+			unregisterListener();
+		}
 
-		this.packetId.ValueChanged += (_, _) => packet.Id = (uint)this.packetId.Value;
+		this.unregisterListeners.Clear();
+
+		EventHandler eventHandler = (_, _) => packet.Id = (uint)this.packetId.Value;
+
+		this.unregisterListeners.Add(() => this.packetId.ValueChanged -= eventHandler);
+
+		this.packetId.Value = packet.Id;
+		this.packetId.ValueChanged += eventHandler;
 
 		int groupIdentifier = name.LastIndexOf('.');
 
@@ -621,19 +635,142 @@ internal partial class ProtocolOverviewForm : Form
 
 	private void Save(object sender, EventArgs e)
 	{
-		string packetsTempPath = Path.Combine(this.protocol, "packets.json.temp");
-
-		using (Stream stream = File.OpenWrite(packetsTempPath))
+		try
 		{
-			JsonSerializer.Serialize(stream, this.schema, new JsonSerializerOptions
+			string packetsTempPath = Path.Combine(this.protocol, "packets.json.temp");
+
+			using (Stream stream = File.OpenWrite(packetsTempPath))
 			{
-				Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-				WriteIndented = true
+				JsonSerializer.Serialize(stream, this.schema, new JsonSerializerOptions
+				{
+					Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+					WriteIndented = true
+				});
+			}
+
+			File.Move(packetsTempPath, Path.Combine(this.protocol, "packets.json"), true);
+
+			ProtocolGenerator.Run(this.protocol, this.schema);
+		}
+		catch (Exception exception)
+		{
+			MessageBox.Show(exception.ToString());
+		}
+	}
+
+	private void AddNew(object sender, EventArgs e)
+	{
+		string text = this.addNewTextBox.Text;
+
+		if (this.structuresTab.SelectedTab == this.incomingPacketsTab)
+		{
+			if (!text.Contains('.'))
+			{
+				MessageBox.Show("Packets require group");
+
+				return;
+			}
+
+			bool result = this.schema.Incoming.TryAdd(text, new PacketSchema
+			{
+				Structure = new List<AbstractMappingSchema>()
 			});
+
+			if (!result)
+			{
+				MessageBox.Show("Item already exists");
+
+				return;
+			}
+
+			this.incomingPacketList.Items.Add(text, text, string.Empty);
+		}
+		else if (this.structuresTab.SelectedTab == this.outgoingPacketsTab)
+		{
+			if (!text.Contains('.'))
+			{
+				MessageBox.Show("Packets require group");
+
+				return;
+			}
+
+			bool result = this.schema.Outgoing.TryAdd(text, new PacketSchema
+			{
+				Structure = new List<AbstractMappingSchema>()
+			});
+
+			if (!result)
+			{
+				MessageBox.Show("Item already exists");
+
+				return;
+			}
+
+			this.outgoingPacketsList.Items.Add(text, text, string.Empty);
+		}
+		else if (this.structuresTab.SelectedTab == this.selectStructureTab)
+		{
+			if (!this.schema.Structures.TryAdd(text, new List<AbstractMappingSchema>()))
+			{
+				MessageBox.Show("Item already exists");
+
+				return;
+			}
+
+			this.structuresList.Items.Add(text, text, string.Empty);
+		}
+		else if (this.structuresTab.SelectedTab == this.interfacesTab)
+		{
+			if (!this.schema.Interfaces.TryAdd(text, new SortedDictionary<string, string>()))
+			{
+				MessageBox.Show("Item already exists");
+
+				return;
+			}
+
+			this.interfacesList.Items.Add(text, text, string.Empty);
 		}
 
-		File.Move(packetsTempPath, Path.Combine(this.protocol, "packets.json"), true);
+		this.addNewTextBox.Text = string.Empty;
+	}
 
-		ProtocolGenerator.Run(this.protocol, this.schema);
+	private void KeyDownIncomingPackets(object sender, KeyEventArgs e)
+	{
+		if (e.KeyCode == Keys.Delete && this.incomingPacketList.SelectedItems.Count == 1)
+		{
+			this.schema.Incoming.Remove(this.incomingPacketList.SelectedItems[0].Text);
+
+			this.incomingPacketList.Items.Remove(this.incomingPacketList.SelectedItems[0]);
+		}
+	}
+
+	private void KeyDownOutgoingPacket(object sender, KeyEventArgs e)
+	{
+		if (e.KeyCode == Keys.Delete && this.outgoingPacketsList.SelectedItems.Count == 1)
+		{
+			this.schema.Outgoing.Remove(this.outgoingPacketsList.SelectedItems[0].Text);
+
+			this.outgoingPacketsList.Items.Remove(this.outgoingPacketsList.SelectedItems[0]);
+		}
+	}
+
+	private void KeyDownStructures(object sender, KeyEventArgs e)
+	{
+		if (e.KeyCode == Keys.Delete && this.structuresList.SelectedItems.Count == 1)
+		{
+			this.schema.Structures.Remove(this.structuresList.SelectedItems[0].Text);
+
+			this.structuresList.Items.Remove(this.structuresList.SelectedItems[0]);
+		}
+	}
+
+	private void KeyDownInterfaces(object sender, KeyEventArgs e)
+	{
+		if (e.KeyCode == Keys.Delete && this.interfacesList.SelectedItems.Count == 1)
+		{
+			this.schema.Interfaces.Remove(this.interfacesList.SelectedItems[0].Text);
+
+			this.interfacesList.Items.Remove(this.interfacesList.SelectedItems[0]);
+		}
 	}
 }
