@@ -1,15 +1,11 @@
 ﻿using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using Skylight.Protocol.Attributes;
-using Skylight.Protocol.Generator.Extensions;
 using Skylight.Protocol.Generator.Parser.Mapping;
 using Skylight.Protocol.Generator.Schema;
 using Skylight.Protocol.Generator.Schema.Mapping;
 using Skylight.Protocol.Generator.Structure;
 using Skylight.Protocol.Generator.Structure.Mapping;
-using Skylight.Protocol.Packets.Incoming;
-using Skylight.Protocol.Packets.Outgoing;
 
 namespace Skylight.Protocol.Generator.Parser;
 
