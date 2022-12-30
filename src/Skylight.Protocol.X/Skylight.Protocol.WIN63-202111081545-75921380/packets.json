@@ -197,6 +197,10 @@
         }
       ]
     },
+    "Inventory.Badges.GetBadges": {
+      "Id": 786,
+      "Structure": []
+    },
     "Inventory.Furni.RequestFurniInventory": {
       "Id": 1680,
       "Structure": []
@@ -919,6 +923,41 @@
           "Mapping": "Field",
           "Type": "bool",
           "Name": "Ambassador"
+        }
+      ]
+    },
+    "Inventory.Badges.BadgeReceived": {
+      "Id": 2628,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "BadgeId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "BadgeCode"
+        }
+      ]
+    },
+    "Inventory.Badges.Badges": {
+      "Id": 3563,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TotalFragments"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "FragmentId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<BadgeData>",
+          "Name": "Fragment"
         }
       ]
     },
@@ -1842,6 +1881,18 @@
     }
   },
   "Structures": {
+    "BadgeData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "BadgeId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "BadgeCode"
+      }
+    ],
     "CallForHelpCategory": [
       {
         "Mapping": "Field",
