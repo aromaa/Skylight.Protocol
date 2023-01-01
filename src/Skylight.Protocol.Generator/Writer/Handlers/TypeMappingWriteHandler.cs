@@ -67,7 +67,14 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 		}
 		else if (typeMapping.Type == typeof(short).FromAssembly(typeMapping.Type))
 		{
-			writer.WriteLine($"writer.WriteInt16({context.Name});");
+			if (type == typeof(short).FromAssembly(type))
+			{
+				writer.WriteLine($"writer.WriteInt16({context.Name});");
+			}
+			else
+			{
+				writer.WriteLine($"writer.WriteInt16((short){context.Name});");
+			}
 		}
 		else if (typeMapping.Type == typeof(int).FromAssembly(typeMapping.Type))
 		{

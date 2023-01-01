@@ -5,8 +5,6 @@ using System.Text.Json;
 using Skylight.Protocol.Generator;
 using Skylight.Protocol.Generator.Schema;
 using Skylight.Protocol.Generator.Schema.Mapping;
-using Skylight.Protocol.Packets.Incoming;
-using Skylight.Protocol.Packets.Outgoing;
 
 namespace Skylight.Protocol.Editor;
 
@@ -74,7 +72,11 @@ internal partial class ProtocolOverviewForm : Form
 
 		string name = this.incomingPacketList.SelectedItems[0].Text;
 
-		this.DisplayPacket(name, this.schema.Incoming[name], typeof(IGameIncomingPacket));
+		using MetadataLoadContext metadataLoadContext = new(new PathAssemblyResolver(Directory.GetFiles(RuntimeEnvironment.GetRuntimeDirectory(), "*.dll")));
+
+		Assembly protocolAssembly = metadataLoadContext.LoadFromAssemblyPath("Skylight.Protocol.dll");
+
+		this.DisplayPacket(name, this.schema.Incoming[name], protocolAssembly.GetType("Skylight.Protocol.Packets.Incoming.IGameIncomingPacket")!);
 	}
 
 	private void SelectOutgoingPacket(object sender, EventArgs e)
@@ -88,7 +90,11 @@ internal partial class ProtocolOverviewForm : Form
 
 		string name = this.outgoingPacketsList.SelectedItems[0].Text;
 
-		this.DisplayPacket(name, this.schema.Outgoing[name], typeof(IGameOutgoingPacket));
+		using MetadataLoadContext metadataLoadContext = new(new PathAssemblyResolver(Directory.GetFiles(RuntimeEnvironment.GetRuntimeDirectory(), "*.dll")));
+
+		Assembly protocolAssembly = metadataLoadContext.LoadFromAssemblyPath("Skylight.Protocol.dll");
+
+		this.DisplayPacket(name, this.schema.Outgoing[name], protocolAssembly.GetType("Skylight.Protocol.Packets.Outgoing.IGameOutgoingPacket")!);
 	}
 
 	private void SelectStructure(object sender, EventArgs e)
@@ -190,11 +196,11 @@ internal partial class ProtocolOverviewForm : Form
 		string packetName = name.Substring(groupIdentifier + 1);
 
 		Type? packetInterface;
-		if (interfaceType == typeof(IGameIncomingPacket))
+		if (interfaceType == interfaceType.Assembly.GetType("Skylight.Protocol.Packets.Incoming.IGameIncomingPacket"))
 		{
 			packetInterface = interfaceType.Assembly.GetType($"{interfaceType.Namespace}.{packetGroup}.I{packetName}IncomingPacket");
 		}
-		else if (interfaceType == typeof(IGameOutgoingPacket))
+		else if (interfaceType == interfaceType.Assembly.GetType("Skylight.Protocol.Packets.Outgoing.IGameOutgoingPacket"))
 		{
 			packetInterface = interfaceType.Assembly.GetType($"{interfaceType.Namespace}.{packetGroup}.{packetName}OutgoingPacket");
 		}
