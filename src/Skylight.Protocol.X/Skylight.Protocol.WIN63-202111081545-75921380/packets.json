@@ -197,6 +197,10 @@
         }
       ]
     },
+    "Inventory.Achievements.GetAchievements": {
+      "Id": 1292,
+      "Structure": []
+    },
     "Inventory.Badges.GetBadges": {
       "Id": 786,
       "Structure": []
@@ -923,6 +927,31 @@
           "Mapping": "Field",
           "Type": "bool",
           "Name": "Ambassador"
+        }
+      ]
+    },
+    "Inventory.Achievements.Achievements": {
+      "Id": 790,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<AchievementData>",
+          "Name": "Achievements"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "DefaultCategory"
+        }
+      ]
+    },
+    "Inventory.Badges.BadgePointLimits": {
+      "Id": 9,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<BadgePointLimitData>",
+          "Name": "BadgePointLimits"
         }
       ]
     },
@@ -1881,6 +1910,78 @@
     }
   },
   "Structures": {
+    "AchievementData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "NextLevel"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "NextLevelBadgeCode"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "PreviousProgressRequirement"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "CurrentProgressRequirement"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "NextLevelRewardPoints"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "NextLevelRewardPointsType"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "CurrentProgress"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "Completed"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Category"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "string",
+        "Value": "\"\""
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "MaximumLevel"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "DisplayMode"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "short",
+        "Name": "State"
+      }
+    ],
     "BadgeData": [
       {
         "Mapping": "Field",
@@ -1891,6 +1992,30 @@
         "Mapping": "Field",
         "Type": "string",
         "Name": "BadgeCode"
+      }
+    ],
+    "BadgeLevelPointLimitData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Level"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Limit"
+      }
+    ],
+    "BadgePointLimitData": [
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "BadgeCode"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "List<BadgeLevelPointLimitData>",
+        "Name": "Limits"
       }
     ],
     "CallForHelpCategory": [
