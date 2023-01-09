@@ -6,7 +6,7 @@ public sealed class UserTypingOutgoingPacket : IGameOutgoingPacket
 {
 	public required int UserId { get; init; }
 
-	public required int Typing { get; init; }
+	public required bool Typing { get; init; }
 
 	public UserTypingOutgoingPacket()
 	{
@@ -17,6 +17,6 @@ public sealed class UserTypingOutgoingPacket : IGameOutgoingPacket
 	{
 		this.UserId = userId;
 
-		this.Typing = typing ? 1 : 0;
+		this.Typing = typing;
 	}
 }

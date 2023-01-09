@@ -14,6 +14,6 @@ internal sealed class UserTypingPacketComposer : IOutgoingPacketComposer<UserTyp
 	public void Compose(ref PacketWriter writer, in UserTypingOutgoingPacket packet)
 	{
 		writer.WriteInt32(packet.UserId);
-		writer.WriteInt32(packet.Typing);
+		writer.WriteInt32(packet.Typing ? 1 : 0);
 	}
 }
