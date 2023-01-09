@@ -334,6 +334,10 @@
       "Id": 1958,
       "Structure": []
     },
+    "Room.Chat.CancelTyping": {
+      "Id": 1067,
+      "Structure": []
+    },
     "Room.Chat.Chat": {
       "Id": 3544,
       "Structure": [
@@ -353,6 +357,25 @@
           "Name": "TrackingId"
         }
       ]
+    },
+    "Room.Chat.Shout": {
+      "Id": 2765,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Text"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "StyleId"
+        }
+      ]
+    },
+    "Room.Chat.StartTyping": {
+      "Id": 494,
+      "Structure": []
     },
     "Room.Engine.GetFurnitureAliases": {
       "Id": 1411,
@@ -1501,6 +1524,56 @@
           "Mapping": "Field",
           "Type": "int",
           "Name": "TrackingId"
+        }
+      ]
+    },
+    "Room.Chat.Shout": {
+      "Id": 3869,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "UserId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Text"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Gesture"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "StyleId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<Link>",
+          "Name": "Links"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TrackingId"
+        }
+      ]
+    },
+    "Room.Chat.UserTyping": {
+      "Id": 640,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "UserId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Typing"
         }
       ]
     },
