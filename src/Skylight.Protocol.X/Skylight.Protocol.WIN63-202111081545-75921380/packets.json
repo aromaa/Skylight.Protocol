@@ -1552,13 +1552,13 @@
         },
         {
           "Mapping": "Field",
-          "Type": "List<Link>",
-          "Name": "Links"
+          "Type": "int",
+          "Name": "TrackingId"
         },
         {
           "Mapping": "Field",
-          "Type": "int",
-          "Name": "TrackingId"
+          "Type": "List<Link>",
+          "Name": "Links"
         }
       ]
     },

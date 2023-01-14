@@ -2,6 +2,10 @@
   "Revision": "RELEASE63-201211141113-913728051",
   "Protocol": "Modern",
   "Incoming": {
+    "Advertisement.GetInterstitial": {
+      "Id": 2346,
+      "Structure": []
+    },
     "Catalog.GetCatalogIndex": {
       "Id": 3038,
       "Structure": []
@@ -107,6 +111,10 @@
         }
       ]
     },
+    "Inventory.Badges.GetBadges": {
+      "Id": 3313,
+      "Structure": []
+    },
     "Inventory.Furni.RequestFurniInventory": {
       "Id": 1973,
       "Structure": []
@@ -161,6 +169,34 @@
         }
       ]
     },
+    "Room.Chat.CancelTyping": {
+      "Id": 3916,
+      "Structure": []
+    },
+    "Room.Chat.Chat": {
+      "Id": 1548,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Text"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "StyleId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TrackingId"
+        }
+      ]
+    },
+    "Room.Chat.StartTyping": {
+      "Id": 1123,
+      "Structure": []
+    },
     "Room.Engine.GetFurnitureAliases": {
       "Id": 2373,
       "Structure": []
@@ -168,6 +204,21 @@
     "Room.Engine.GetRoomEntryData": {
       "Id": 1188,
       "Structure": []
+    },
+    "Room.Engine.MoveAvatar": {
+      "Id": 703,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "X"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Y"
+        }
+      ]
     },
     "Room.Engine.PickupObject": {
       "Id": 2805,
@@ -695,6 +746,56 @@
         }
       ]
     },
+    "Room.Chat.Chat": {
+      "Id": 2119,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "UserId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Text"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Gesture"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "StyleId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<Link>",
+          "Name": "Links"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TrackingId"
+        }
+      ]
+    },
+    "Room.Chat.UserTyping": {
+      "Id": 851,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "UserId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Typing"
+        }
+      ]
+    },
     "Room.Engine.FloorHeightMap": {
       "Id": 2483,
       "Structure": [
@@ -817,6 +918,16 @@
           "Mapping": "Field",
           "Type": "List<RoomUser>",
           "Name": "Users"
+        }
+      ]
+    },
+    "Room.Engine.UserUpdate": {
+      "Id": 493,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<UserUpdate>",
+          "Name": "Updates"
         }
       ]
     },
@@ -954,6 +1065,30 @@
     }
   },
   "Structures": {
+    "BadgeLevelPointLimitData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Level"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Limit"
+      }
+    ],
+    "BadgePointLimitData": [
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "BadgeCode"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "List<BadgeLevelPointLimitData>",
+        "Name": "Limits"
+      }
+    ],
     "EmptyItemData": [
       {
         "Mapping": "Constant",
@@ -1285,6 +1420,23 @@
         "Mapping": "Constant",
         "Type": "int",
         "Value": "1"
+      }
+    ],
+    "Link": [
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Location"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Text"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "Trusted"
       }
     ],
     "NodeData": [
@@ -1659,6 +1811,43 @@
         "Mapping": "Field",
         "Type": "int",
         "Name": "AchievementScore"
+      }
+    ],
+    "UserUpdate": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "RoomUnitId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "X"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Y"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Z"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "BodyDirection"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "HeadDirection"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Data"
       }
     ],
     "WallPosition": [
