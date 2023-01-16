@@ -7,16 +7,16 @@ using Net.Communication.Incoming.Parser;
 
 namespace Skylight.Protocol.RELEASE63_201211141113_913728051.Packets.Parsers.Advertisement;
 
-[PacketParserId(3080u)]
+[PacketParserId(2346u)]
 [PacketManagerRegister(typeof(GamePacketManager))]
-internal sealed class GetInterstitialPacketParser : IIncomingPacketParser<GetInterstitialPacketParser.GetInterstitialIncomingPacket>
+internal sealed class GetRoomAdPacketParser : IIncomingPacketParser<GetRoomAdPacketParser.GetRoomAdIncomingPacket>
 {
-	public GetInterstitialIncomingPacket Parse(ref PacketReader reader)
+	public GetRoomAdIncomingPacket Parse(ref PacketReader reader)
 	{
-		return new GetInterstitialIncomingPacket();
+		return new GetRoomAdIncomingPacket();
 	}
 
-	internal readonly struct GetInterstitialIncomingPacket : IGetInterstitialIncomingPacket
+	internal readonly struct GetRoomAdIncomingPacket : IGetRoomAdIncomingPacket
 	{
 	}
 }

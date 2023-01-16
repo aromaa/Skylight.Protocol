@@ -17,7 +17,6 @@ internal sealed class ShoutPacketComposer : IOutgoingPacketComposer<ShoutOutgoin
 		writer.WriteFixedUInt16String(packet.Text);
 		writer.WriteInt32(packet.Gesture);
 		writer.WriteInt32(packet.StyleId);
-		writer.WriteInt32(packet.TrackingId);
 		writer.WriteInt32(packet.Links.Count);
 		foreach (var links in packet.Links)
 		{
@@ -25,5 +24,6 @@ internal sealed class ShoutPacketComposer : IOutgoingPacketComposer<ShoutOutgoin
 			writer.WriteFixedUInt16String(links.Text);
 			writer.WriteBool(links.Trusted);
 		}
+		writer.WriteInt32(packet.TrackingId);
 	}
 }
