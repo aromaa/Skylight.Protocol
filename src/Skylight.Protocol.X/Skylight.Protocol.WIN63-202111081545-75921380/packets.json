@@ -334,6 +334,16 @@
       "Id": 1958,
       "Structure": []
     },
+    "Room.Avatar.ChangeMotto": {
+      "Id": 2994,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Motto"
+        }
+      ]
+    },
     "Room.Chat.CancelTyping": {
       "Id": 1067,
       "Structure": []
@@ -1794,6 +1804,36 @@
           "Mapping": "Field",
           "Type": "int",
           "Name": "FloorThicknessMultiplier"
+        }
+      ]
+    },
+    "Room.Engine.UserChange": {
+      "Id": 2711,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Id"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Figure"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Sex"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "CustomInfo"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "AchievementScore"
         }
       ]
     },
