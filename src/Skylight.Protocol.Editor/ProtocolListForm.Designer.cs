@@ -58,8 +58,6 @@ partial class ProtocolListForm
             // 
             this.protocolDirectoryWatcher.EnableRaisingEvents = true;
             this.protocolDirectoryWatcher.NotifyFilter = System.IO.NotifyFilters.DirectoryName;
-            this.protocolDirectoryWatcher.Path = "D:\\Users\\Joni\\Desktop\\VisualStudio\\Skylight\\src\\submodules\\Skylight.Protocol\\src\\" +
-    "Skylight.Protocol.X";
             this.protocolDirectoryWatcher.SynchronizingObject = this;
             this.protocolDirectoryWatcher.Created += new System.IO.FileSystemEventHandler(this.ProtocolDirectoryCreated);
             this.protocolDirectoryWatcher.Deleted += new System.IO.FileSystemEventHandler(this.ProtocolDirectoryDeleted);
