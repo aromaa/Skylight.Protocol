@@ -1,10 +1,6 @@
 name: .NET
 
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -23,3 +19,7 @@ jobs:
       run: dotnet build --no-restore /p:EnforceCodeStyleInBuild=true /p:EnableWindowsTargeting=true
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Run generator
+      run: dotnet run --project src/Skylight.Protocol.Generator/Skylight.Protocol.Generator.csproj src/Skylight.Protocol.X
+    - name: Check no diffs
+      run: git diff --exit-code

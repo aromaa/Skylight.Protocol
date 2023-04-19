@@ -13,10 +13,10 @@ internal sealed class UserChangePacketComposer : IOutgoingPacketComposer<UserCha
 {
 	public void Compose(ref PacketWriter writer, in UserChangeOutgoingPacket packet)
 	{
-		writer.WriteInt32(packet.Id);
+		writer.WriteInt32(packet.RoomUnitId);
 		writer.WriteFixedUInt16String(packet.Figure);
-		writer.WriteFixedUInt16String(packet.Sex);
-		writer.WriteFixedUInt16String(packet.CustomInfo);
+		writer.WriteFixedUInt16String(packet.Gender);
+		writer.WriteFixedUInt16String(packet.Motto);
 		writer.WriteInt32(packet.AchievementScore);
 	}
 }
