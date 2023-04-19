@@ -276,6 +276,16 @@
       "Id": 2130,
       "Structure": []
     },
+    "Navigator.UpdateHomeRoom": {
+      "Id": 2116,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "FlatId"
+        }
+      ]
+    },
     "NewNavigator.NewNavigatorInit": {
       "Id": 2283,
       "Structure": []
