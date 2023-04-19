@@ -1,13 +1,13 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Skylight.Protocol.Packets.Outgoing.Room.Engine;
 
 public sealed class UserChangeOutgoingPacket : IGameOutgoingPacket
 {
-	public required int Id { get; init; }
+	public required int RoomUnitId { get; init; }
 	public required string Figure { get; init; }
-	public required string Sex { get; init; }
-	public required string CustomInfo { get; init; }
+	public required string Gender { get; init; }
+	public required string Motto { get; init; }
 	public required int AchievementScore { get; init; }
 
 	public UserChangeOutgoingPacket()
@@ -15,12 +15,12 @@ public sealed class UserChangeOutgoingPacket : IGameOutgoingPacket
 	}
 
 	[SetsRequiredMembers]
-	public UserChangeOutgoingPacket(int id, string figure, string sex, string custominfo, int achievementScore)
+	public UserChangeOutgoingPacket(int roomUnitId, string figure, string gender, string motto, int achievementScore)
 	{
-		this.Id = id;
+		this.RoomUnitId = roomUnitId;
 		this.Figure = figure;
-		this.Sex = sex;
-		this.CustomInfo = custominfo;
+		this.Gender = gender;
+		this.Motto = motto;
 		this.AchievementScore = achievementScore;
 	}
 }
