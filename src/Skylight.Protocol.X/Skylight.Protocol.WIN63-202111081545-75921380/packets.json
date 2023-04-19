@@ -1813,7 +1813,7 @@
         {
           "Mapping": "Field",
           "Type": "int",
-          "Name": "Id"
+          "Name": "RoomUnitId"
         },
         {
           "Mapping": "Field",
@@ -1823,12 +1823,12 @@
         {
           "Mapping": "Field",
           "Type": "string",
-          "Name": "Sex"
+          "Name": "Gender"
         },
         {
           "Mapping": "Field",
           "Type": "string",
-          "Name": "CustomInfo"
+          "Name": "Motto"
         },
         {
           "Mapping": "Field",
