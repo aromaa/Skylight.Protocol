@@ -344,6 +344,21 @@
         }
       ]
     },
+    "Room.Avatar.LookTo": {
+      "Id": 3605,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "X"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Y"
+        }
+      ]
+    },
     "Room.Chat.CancelTyping": {
       "Id": 1067,
       "Structure": []
