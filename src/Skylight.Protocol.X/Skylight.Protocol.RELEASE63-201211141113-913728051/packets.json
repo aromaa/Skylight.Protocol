@@ -171,16 +171,16 @@
       "Id": 886,
       "Structure": []
     },
-		"Recycler.RecycleItems": {
-			"Id": 3781,
-			"Structure": [
-				{
-					"Mapping": "Field",
-					"Type": "List<int>",
-					"Name": "StripIds"
-				}
-			]
-		},
+    "Recycler.RecycleItems": {
+      "Id": 3781,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<int>",
+          "Name": "StripIds"
+        }
+      ]
+    },
     "Room.Chat.CancelTyping": {
       "Id": 3916,
       "Structure": []
