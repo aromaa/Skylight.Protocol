@@ -171,16 +171,31 @@
       "Id": 886,
       "Structure": []
     },
-    "Recycler.RecycleItems": {
-      "Id": 3781,
-      "Structure": [
-        {
-          "Mapping": "Field",
-          "Type": "List<int>",
-          "Name": "StripIds"
-        }
-      ]
-    },
+		"Recycler.RecycleItems": {
+			"Id": 3781,
+			"Structure": [
+				{
+					"Mapping": "Field",
+					"Type": "List<int>",
+					"Name": "StripIds"
+				}
+			]
+		},
+		"Room.Avatar.LookTo": {
+			"Id": 3605,
+			"Structure": [
+				{
+					"Mapping": "Field",
+					"Type": "int",
+					"Name": "X"
+				},
+				{
+					"Mapping": "Field",
+					"Type": "int",
+					"Name": "Y"
+				}
+			]
+		},
     "Room.Chat.CancelTyping": {
       "Id": 3916,
       "Structure": []
