@@ -151,7 +151,11 @@ internal static class PacketParserWriter
 		{
 			return "IList<int>";
 		}
+		else if (type.IsGenericType)
+		{
+			throw new NotSupportedException(type.ToString());
+		}
 
-		throw new NotSupportedException(type.ToString());
+		return $"{type.Namespace}.{type.Name}";
 	}
 }
