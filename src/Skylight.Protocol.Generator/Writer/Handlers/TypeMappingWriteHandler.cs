@@ -32,6 +32,14 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 			{
 				writer.Write($"reader.ReadInt32() != 0");
 			}
+			else if (((Type)type).IsEnum)
+			{
+				Type enumType = (Type)type;
+
+				writer.Write(protocol.Protocol is "Modern"
+					? $"({enumType.Namespace}.{enumType.Name})reader.ReadInt32()"
+					: $"({enumType.Namespace}.{enumType.Name})reader.ReadVL64UInt32()");
+			}
 			else
 			{
 				writer.Write(protocol.Protocol is "Modern"
