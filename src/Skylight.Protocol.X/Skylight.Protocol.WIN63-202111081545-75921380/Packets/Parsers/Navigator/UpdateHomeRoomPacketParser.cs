@@ -15,12 +15,12 @@ internal sealed class UpdateHomeRoomPacketParser : IIncomingPacketParser<UpdateH
 	{
 		return new UpdateHomeRoomIncomingPacket
 		{
-			FlatId = reader.ReadInt32()
+			RoomId = reader.ReadInt32()
 		};
 	}
 
 	internal readonly struct UpdateHomeRoomIncomingPacket : IUpdateHomeRoomIncomingPacket
 	{
-		public int FlatId { get; init; }
+		public int RoomId { get; init; }
 	}
 }
