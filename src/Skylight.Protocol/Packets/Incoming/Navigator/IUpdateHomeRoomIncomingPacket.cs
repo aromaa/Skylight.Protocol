@@ -2,5 +2,5 @@
 
 public interface IUpdateHomeRoomIncomingPacket : IGameIncomingPacket
 {
-	public int FlatId { get; }
+	public int RoomId { get; }
 }
