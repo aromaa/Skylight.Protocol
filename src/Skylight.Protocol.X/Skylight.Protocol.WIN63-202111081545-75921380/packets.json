@@ -282,7 +282,7 @@
         {
           "Mapping": "Field",
           "Type": "int",
-          "Name": "FlatId"
+          "Name": "RoomId"
         }
       ]
     },
