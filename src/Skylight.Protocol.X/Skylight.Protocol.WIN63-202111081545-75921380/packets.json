@@ -634,6 +634,21 @@
         }
       ]
     },
+    "Users.GetExtendedProfile": {
+      "Id": 792,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "UserId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "Open"
+        }
+      ]
+    },
     "Users.GetIgnoredUsers": {
       "Id": 3346,
       "Structure": [
@@ -1976,6 +1991,16 @@
         }
       ]
     },
+    "Users.ExtendedProfile": {
+      "Id": 2854,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "ExtendedProfileData",
+          "Name": "Profile"
+        }
+      ]
+    },
     "Users.IgnoredUsers": {
       "Id": 2698,
       "Structure": [
@@ -2207,6 +2232,103 @@
         "Mapping": "Field",
         "Type": "bool",
         "Name": "Visible"
+      }
+    ],
+    "ExtendedProfileData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "UserId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Username"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Figure"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Motto"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "CreationDate"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "AchievementScore"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "FriendCount"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "IsFriend"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "IsFriendRequestSent"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "IsOnline"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "List<string>",
+        "Name": "Groups"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "LastAccessSinceInSeconds"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "OpenProfile"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "SafeStr_1848"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "AccountLevel"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "SafeStr_1849"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "StarGemCount"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "SafeStr_1850"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "bool",
+        "Name": "SafeStr_1851"
       }
     ],
     "FlatCategory": [
