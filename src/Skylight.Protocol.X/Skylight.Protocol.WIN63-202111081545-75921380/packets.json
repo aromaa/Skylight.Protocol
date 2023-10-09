@@ -2273,17 +2273,17 @@
       {
         "Mapping": "Field",
         "Type": "bool",
-        "Name": "IsFriend"
+        "Name": "Friends"
       },
       {
         "Mapping": "Field",
         "Type": "bool",
-        "Name": "IsFriendRequestSent"
+        "Name": "FriendRequestSent"
       },
       {
         "Mapping": "Field",
         "Type": "bool",
-        "Name": "IsOnline"
+        "Name": "Online"
       },
       {
         "Mapping": "Field",
@@ -2303,7 +2303,7 @@
       {
         "Mapping": "Field",
         "Type": "bool",
-        "Name": "SafeStr_1848"
+        "Name": "PublicProfile"
       },
       {
         "Mapping": "Field",
@@ -2313,7 +2313,7 @@
       {
         "Mapping": "Field",
         "Type": "int",
-        "Name": "SafeStr_1849"
+        "Name": "TotalAccountLevel"
       },
       {
         "Mapping": "Field",
@@ -2323,12 +2323,12 @@
       {
         "Mapping": "Field",
         "Type": "bool",
-        "Name": "SafeStr_1850"
+        "Name": "FriendRequestsEnabled"
       },
       {
         "Mapping": "Field",
         "Type": "bool",
-        "Name": "SafeStr_1851"
+        "Name": "CloseOthers"
       }
     ],
     "FlatCategory": [

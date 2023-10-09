@@ -20,9 +20,9 @@ internal sealed class ExtendedProfilePacketComposer : IOutgoingPacketComposer<Ex
 		writer.WriteFixedUInt16String(packet.Profile.CreationDate);
 		writer.WriteInt32(packet.Profile.AchievementScore);
 		writer.WriteInt32(packet.Profile.FriendCount);
-		writer.WriteBool(packet.Profile.IsFriend);
-		writer.WriteBool(packet.Profile.IsFriendRequestSent);
-		writer.WriteBool(packet.Profile.IsOnline);
+		writer.WriteBool(packet.Profile.Friends);
+		writer.WriteBool(packet.Profile.FriendRequestSent);
+		writer.WriteBool(packet.Profile.Online);
 		writer.WriteInt32(packet.Profile.Groups.Count);
 		foreach (var groups in packet.Profile.Groups)
 		{
@@ -30,11 +30,11 @@ internal sealed class ExtendedProfilePacketComposer : IOutgoingPacketComposer<Ex
 		}
 		writer.WriteInt32(packet.Profile.LastAccessSinceInSeconds);
 		writer.WriteBool(packet.Profile.OpenProfile);
-		writer.WriteBool(packet.Profile.SafeStr_1848);
+		writer.WriteBool(packet.Profile.PublicProfile);
 		writer.WriteInt32(packet.Profile.AccountLevel);
-		writer.WriteInt32(packet.Profile.SafeStr_1849);
+		writer.WriteInt32(packet.Profile.TotalAccountLevel);
 		writer.WriteInt32(packet.Profile.StarGemCount);
-		writer.WriteBool(packet.Profile.SafeStr_1850);
-		writer.WriteBool(packet.Profile.SafeStr_1851);
+		writer.WriteBool(packet.Profile.FriendRequestsEnabled);
+		writer.WriteBool(packet.Profile.CloseOthers);
 	}
 }
