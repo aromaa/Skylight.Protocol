@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using Microsoft.Build.Evaluation;
+using Microsoft.Build.Framework;
 using Microsoft.Build.Locator;
 using Skylight.Protocol.Generator;
 using Skylight.Protocol.Generator.Schema;
@@ -662,27 +663,39 @@ internal partial class ProtocolOverviewForm : Form
 
 			File.Move(packetsTempPath, Path.Combine(this.protocol, "packets.json"), true);
 
-			using MetadataLoadContext metadataLoadContext = new(new PathAssemblyResolver(Directory.GetFiles(RuntimeEnvironment.GetRuntimeDirectory(), "*.dll")));
-
-			Assembly protocolAssembly = metadataLoadContext.LoadFromAssemblyPath("Skylight.Protocol.dll");
-
 			try
 			{
+				using MetadataLoadContext metadataLoadContext = new(new PathAssemblyResolver(Directory.GetFiles(RuntimeEnvironment.GetRuntimeDirectory(), "*.dll")));
+
+				Assembly protocolAssembly = metadataLoadContext.LoadFromAssemblyPath("Skylight.Protocol.dll");
+
 				ProtocolGenerator.Run(this.protocol, this.schema, protocolAssembly);
 			}
-			catch
+			catch (Exception exception)
 			{
-				if (this.BuildProtocolLibrary() is { } builtAssembly)
+				try
 				{
-					using MetadataLoadContext metadataLoadContext2 = new(new PathAssemblyResolver(Directory.GetFiles(RuntimeEnvironment.GetRuntimeDirectory(), "*.dll")));
+					if (this.BuildProtocolLibrary() is { } builtAssembly)
+					{
+						using MetadataLoadContext metadataLoadContext = new(new PathAssemblyResolver(Directory.GetFiles(RuntimeEnvironment.GetRuntimeDirectory(), "*.dll")));
 
-					Assembly protocolAssembly2 = metadataLoadContext2.LoadFromAssemblyPath(builtAssembly);
+						Assembly protocolAssembly = metadataLoadContext.LoadFromAssemblyPath(builtAssembly);
 
-					ProtocolGenerator.Run(this.protocol, this.schema, protocolAssembly2);
+						ProtocolGenerator.Run(this.protocol, this.schema, protocolAssembly);
+					}
+					else
+					{
+						throw;
+					}
 				}
-				else
+				catch (Exception exception2)
 				{
-					throw;
+					if (exception == exception2)
+					{
+						throw;
+					}
+
+					throw new AggregateException(exception, exception2);
 				}
 			}
 
@@ -731,7 +744,7 @@ internal partial class ProtocolOverviewForm : Form
 
 	private void PrepareProjectCompile(Project project, string text)
 	{
-		Task<bool> compileTask = Task.Run(() => this.CompileProject(project));
+		Task compileTask = Task.Run(() => this.CompileProject(project));
 
 		TaskDialogButton closeButton = TaskDialogButton.Close;
 		closeButton.Enabled = false;
@@ -755,14 +768,7 @@ internal partial class ProtocolOverviewForm : Form
 				closeButton.Enabled = true;
 				closeButton.PerformClick();
 
-				if (task.IsCompletedSuccessfully)
-				{
-					if (!task.Result)
-					{
-						MessageBox.Show("Build failed");
-					}
-				}
-				else if (task.IsFaulted)
+				if (task.IsFaulted)
 				{
 					MessageBox.Show("Build failed: " + task.Exception);
 				}
@@ -772,16 +778,21 @@ internal partial class ProtocolOverviewForm : Form
 		TaskDialog.ShowDialog(taskDialogPage);
 	}
 
-	private bool CompileProject(Project project)
+	private void CompileProject(Project project)
 	{
+		CompilerOutputLogger logger = new();
+
 		bool restore = project.Build(targets: new[]
 		{
 			"Restore",
+		}, loggers: new Microsoft.Build.Framework.ILogger[]
+		{
+			logger
 		});
 
 		if (!restore)
 		{
-			return false;
+			throw new Exception(string.Join(Environment.NewLine, logger.CompileErrors));
 		}
 
 		//Required for to be able to detect changes made by the Restore target!
@@ -791,9 +802,15 @@ internal partial class ProtocolOverviewForm : Form
 		bool build = project.Build(targets: new[]
 		{
 			"Build"
+		}, loggers: new Microsoft.Build.Framework.ILogger[]
+		{
+			logger
 		});
 
-		return build;
+		if (!build)
+		{
+			throw new Exception(string.Join(Environment.NewLine, logger.CompileErrors));
+		}
 	}
 
 	private void AddNew(object sender, EventArgs e)
@@ -909,6 +926,39 @@ internal partial class ProtocolOverviewForm : Form
 			this.schema.Interfaces.Remove(this.interfacesList.SelectedItems[0].Text);
 
 			this.interfacesList.Items.Remove(this.interfacesList.SelectedItems[0]);
+		}
+	}
+
+	private sealed class CompilerOutputLogger : Microsoft.Build.Framework.ILogger
+	{
+		private readonly List<string> compileErrors = new();
+
+		public void Initialize(IEventSource eventSource)
+		{
+			eventSource.ErrorRaised += (_, args) => this.AddCompileError(args);
+		}
+
+		public void Shutdown()
+		{
+		}
+
+		private void AddCompileError(BuildErrorEventArgs args)
+		{
+			this.compileErrors.Add($"Error {args.Code} - {args.Message} in file {args.File} on line {args.LineNumber}.");
+		}
+
+		internal IReadOnlyList<string> CompileErrors => this.compileErrors;
+
+		string Microsoft.Build.Framework.ILogger.Parameters
+		{
+			get => string.Empty;
+			set { } //Don't allow set
+		}
+
+		LoggerVerbosity Microsoft.Build.Framework.ILogger.Verbosity
+		{
+			get => LoggerVerbosity.Diagnostic;
+			set { } //Don't allow set
 		}
 	}
 }
