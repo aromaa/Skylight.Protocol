@@ -1,1 +1,20 @@
-<Project />
+<Project>
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<DisableTransitiveProjectReferences>true</DisableTransitiveProjectReferences>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(HotSwap)' == 'true'">
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="$(MSBuildThisFileDirectory)\..\Skylight.Protocol\Skylight.Protocol.csproj" Private="false" IncludeAssets="compile" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)\..\submodules\Net\Net.Buffers\Net.Buffers.csproj" Private="false" IncludeAssets="compile" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)\..\submodules\Net\Net.Communication\Net.Communication.csproj" Private="false" IncludeAssets="compile" />
+	</ItemGroup>
+
+</Project>

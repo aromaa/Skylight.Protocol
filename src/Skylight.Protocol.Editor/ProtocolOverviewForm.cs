@@ -2,6 +2,8 @@
 using System.Runtime.InteropServices;
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using Microsoft.Build.Evaluation;
+using Microsoft.Build.Locator;
 using Skylight.Protocol.Generator;
 using Skylight.Protocol.Generator.Schema;
 using Skylight.Protocol.Generator.Schema.Mapping;
@@ -643,6 +645,8 @@ internal partial class ProtocolOverviewForm : Form
 
 	private void Save(object sender, EventArgs e)
 	{
+		this.save.Enabled = false;
+
 		try
 		{
 			string packetsTempPath = Path.Combine(this.protocol, "packets.json.temp");
@@ -662,12 +666,134 @@ internal partial class ProtocolOverviewForm : Form
 
 			Assembly protocolAssembly = metadataLoadContext.LoadFromAssemblyPath("Skylight.Protocol.dll");
 
-			ProtocolGenerator.Run(this.protocol, this.schema, protocolAssembly);
+			try
+			{
+				ProtocolGenerator.Run(this.protocol, this.schema, protocolAssembly);
+			}
+			catch
+			{
+				if (this.BuildProtocolLibrary() is { } builtAssembly)
+				{
+					using MetadataLoadContext metadataLoadContext2 = new(new PathAssemblyResolver(Directory.GetFiles(RuntimeEnvironment.GetRuntimeDirectory(), "*.dll")));
+
+					Assembly protocolAssembly2 = metadataLoadContext2.LoadFromAssemblyPath(builtAssembly);
+
+					ProtocolGenerator.Run(this.protocol, this.schema, protocolAssembly2);
+				}
+				else
+				{
+					throw;
+				}
+			}
+
+			this.BuildProtocol();
 		}
 		catch (Exception exception)
 		{
 			MessageBox.Show(exception.ToString());
 		}
+		finally
+		{
+			this.save.Enabled = true;
+		}
+	}
+
+	private string? BuildProtocolLibrary()
+	{
+		if (!MSBuildLocator.IsRegistered)
+		{
+			return null;
+		}
+
+		ProjectCollection projectCollection = new();
+
+		Project project = projectCollection.LoadProject(Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(this.protocol))!, "Skylight.Protocol", "Skylight.Protocol.csproj"));
+
+		this.PrepareProjectCompile(project, "Building the protocol library...");
+
+		return project.GetPropertyValue("TargetPath");
+	}
+
+	private void BuildProtocol()
+	{
+		if (!MSBuildLocator.IsRegistered)
+		{
+			return;
+		}
+
+		ProjectCollection projectCollection = new();
+
+		Project project = projectCollection.LoadProject(Path.Combine(this.protocol, $"{Path.GetFileName(this.protocol)}.csproj"));
+		project.SetGlobalProperty("HotSwap", "true");
+
+		this.PrepareProjectCompile(project, "Building the protocol...");
+	}
+
+	private void PrepareProjectCompile(Project project, string text)
+	{
+		Task<bool> compileTask = Task.Run(() => this.CompileProject(project));
+
+		TaskDialogButton closeButton = TaskDialogButton.Close;
+		closeButton.Enabled = false;
+
+		TaskDialogPage taskDialogPage = new()
+		{
+			Heading = "Building...",
+			Text = text,
+			Icon = TaskDialogIcon.Information,
+			ProgressBar = new TaskDialogProgressBar(TaskDialogProgressBarState.Marquee),
+			Buttons =
+			{
+				closeButton
+			}
+		};
+
+		compileTask.ContinueWith(task =>
+		{
+			this.BeginInvoke(() =>
+			{
+				closeButton.Enabled = true;
+				closeButton.PerformClick();
+
+				if (task.IsCompletedSuccessfully)
+				{
+					if (!task.Result)
+					{
+						MessageBox.Show("Build failed");
+					}
+				}
+				else if (task.IsFaulted)
+				{
+					MessageBox.Show("Build failed: " + task.Exception);
+				}
+			});
+		});
+
+		TaskDialog.ShowDialog(taskDialogPage);
+	}
+
+	private bool CompileProject(Project project)
+	{
+		bool restore = project.Build(targets: new[]
+		{
+			"Restore",
+		});
+
+		if (!restore)
+		{
+			return false;
+		}
+
+		//Required for to be able to detect changes made by the Restore target!
+		project.MarkDirty();
+		project.ReevaluateIfNecessary();
+
+		bool build = project.Build(targets: new[]
+		{
+			"Build"
+		});
+
+		return build;
 	}
 
 	private void AddNew(object sender, EventArgs e)
