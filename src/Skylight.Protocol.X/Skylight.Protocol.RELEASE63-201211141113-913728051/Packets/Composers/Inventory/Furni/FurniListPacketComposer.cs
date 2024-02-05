@@ -39,14 +39,15 @@ internal sealed class FurniListPacketComposer : IOutgoingPacketComposer<FurniLis
 			{
 				writer.WriteInt32(4);
 			}
+			else if (fragment.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.LegacyItemData legacyItemData)
+			{
+				writer.WriteInt32(0);
+				writer.WriteFixedUInt16String(legacyItemData.Data);
+			}
 			else if (fragment.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItInventoryData postItInventoryData)
 			{
 				writer.WriteInt32(0);
 				writer.WriteFixedUInt16String(postItInventoryData.Count.ToString());
-			}
-			else if (fragment.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItRoomData postItRoomData)
-			{
-				writer.WriteFixedUInt16String($"{postItRoomData.Color.ToArgb():X6}{" "}{postItRoomData.Text}".ToString());
 			}
 			else
 			{

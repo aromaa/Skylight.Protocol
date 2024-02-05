@@ -1526,6 +1526,18 @@
         "Value": "1"
       }
     ],
+    "LegacyItemData": [
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Data"
+      }
+    ],
     "Link": [
       {
         "Mapping": "Field",
@@ -2015,8 +2027,8 @@
     },
     "IItemData": {
       "Skylight.Protocol.Packets.Data.Room.Object.Data.EmptyItemData": "EmptyItemData",
-      "Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItInventoryData": "PostItInventoryData",
-      "Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItRoomData": "PostItRoomData"
+      "Skylight.Protocol.Packets.Data.Room.Object.Data.LegacyItemData": "LegacyItemData",
+      "Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItInventoryData": "PostItInventoryData"
     },
     "IProductType": {
       "Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Floor": "ProductTypeFloor",

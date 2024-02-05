@@ -28,6 +28,11 @@ internal sealed class TradingItemListPacketComposer : IOutgoingPacketComposer<Tr
 			{
 				writer.WriteInt32(4);
 			}
+			else if (firstUserItems.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.LegacyItemData legacyItemData)
+			{
+				writer.WriteInt32(0);
+				writer.WriteFixedUInt16String(legacyItemData.Data);
+			}
 			else if (firstUserItems.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItInventoryData postItInventoryData)
 			{
 				writer.WriteInt32(0);
@@ -65,6 +70,11 @@ internal sealed class TradingItemListPacketComposer : IOutgoingPacketComposer<Tr
 			if (secondUserItems.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.EmptyItemData emptyItemData)
 			{
 				writer.WriteInt32(4);
+			}
+			else if (secondUserItems.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.LegacyItemData legacyItemData)
+			{
+				writer.WriteInt32(0);
+				writer.WriteFixedUInt16String(legacyItemData.Data);
 			}
 			else if (secondUserItems.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItInventoryData postItInventoryData)
 			{

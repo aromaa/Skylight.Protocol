@@ -21,7 +21,7 @@ public sealed class UserObjectOutgoingPacket : IGameOutgoingPacket
 	public required int RespectLeft { get; init; }
 	public required int PerRespectLeft { get; init; }
 
-	public required DateTimeOffset LastAccessDate { get; init; }
+	public required DateTime LastAccessDate { get; init; }
 
 	public required bool DirectMail { get; init; }
 	public required bool StreamPublishingAllowed { get; init; }
@@ -33,7 +33,7 @@ public sealed class UserObjectOutgoingPacket : IGameOutgoingPacket
 	}
 
 	[SetsRequiredMembers]
-	public UserObjectOutgoingPacket(int userId, string username, string realName, string figure, string gender, string swimSuit, string customData, int tickets, int film, int respectTotal, int respectLeft, int perRespectLeft, DateTimeOffset lastAccessDate, bool directMail, bool streamPublishingAllowed, bool nameChangeAllowed, bool accountSafetyLocked)
+	public UserObjectOutgoingPacket(int userId, string username, string realName, string figure, string gender, string swimSuit, string customData, int tickets, int film, int respectTotal, int respectLeft, int perRespectLeft, DateTime lastAccessDate, bool directMail, bool streamPublishingAllowed, bool nameChangeAllowed, bool accountSafetyLocked)
 	{
 		this.UserId = userId;
 

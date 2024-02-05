@@ -2618,6 +2618,18 @@
         "Value": "1"
       }
     ],
+    "LegacyItemData": [
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Data"
+      }
+    ],
     "LiftedRoomData": [
       {
         "Mapping": "Field",
@@ -3340,6 +3352,7 @@
     },
     "IItemData": {
       "Skylight.Protocol.Packets.Data.Room.Object.Data.EmptyItemData": "EmptyItemData",
+      "Skylight.Protocol.Packets.Data.Room.Object.Data.LegacyItemData": "LegacyItemData",
       "Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItInventoryData": "PostItInventoryData",
       "Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItRoomData": "PostItRoomData"
     },

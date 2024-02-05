@@ -34,6 +34,11 @@ internal sealed class ObjectsPacketComposer : IOutgoingPacketComposer<ObjectsOut
 			{
 				writer.WriteInt32(4);
 			}
+			else if (objects.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.LegacyItemData legacyItemData)
+			{
+				writer.WriteInt32(0);
+				writer.WriteFixedUInt16String(legacyItemData.Data);
+			}
 			else if (objects.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItInventoryData postItInventoryData)
 			{
 				writer.WriteInt32(0);

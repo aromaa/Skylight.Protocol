@@ -20,6 +20,11 @@ internal sealed class ItemAddPacketComposer : IOutgoingPacketComposer<ItemAddOut
 		{
 			writer.WriteInt32(4);
 		}
+		else if (packet.Item.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.LegacyItemData legacyItemData)
+		{
+			writer.WriteInt32(0);
+			writer.WriteFixedUInt16String(legacyItemData.Data);
+		}
 		else if (packet.Item.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItInventoryData postItInventoryData)
 		{
 			writer.WriteInt32(0);
