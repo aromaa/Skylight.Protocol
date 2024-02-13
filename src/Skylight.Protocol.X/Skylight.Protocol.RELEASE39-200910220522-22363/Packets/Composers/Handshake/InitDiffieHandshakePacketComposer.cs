@@ -14,6 +14,6 @@ internal sealed class InitDiffieHandshakePacketComposer : IOutgoingPacketCompose
 	public void Compose(ref PacketWriter writer, in InitDiffieHandshakeOutgoingPacket packet)
 	{
 		writer.WriteDelimiter2BrokenString(packet.EncryptedPrime);
-		writer.WriteVL64Int32(0);
+		writer.WriteVL64Int32(packet.ServerClientEncryption ? 1 : 0);
 	}
 }

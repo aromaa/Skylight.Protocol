@@ -116,6 +116,16 @@
       "Id": 16,
       "Structure": []
     },
+    "Room.Chat.Chat": {
+      "Id": 52,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Text"
+        }
+      ]
+    },
     "Room.Engine.GetFurnitureAliases": {
       "Id": 215,
       "Structure": []
@@ -297,9 +307,9 @@
           "Name": "EncryptedPrime"
         },
         {
-          "Mapping": "Constant",
+          "Mapping": "Field",
           "Type": "int",
-          "Value": "0"
+          "Name": "ServerClientEncryption"
         }
       ]
     },
@@ -505,6 +515,26 @@
           "Mapping": "Constant",
           "Type": "int",
           "Value": "1"
+        }
+      ]
+    },
+    "Room.Chat.Chat": {
+      "Id": 24,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "UserId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Text"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Gesture"
         }
       ]
     },
