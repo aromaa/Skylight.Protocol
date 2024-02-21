@@ -11,6 +11,12 @@ namespace Skylight.Protocol.Generator;
 
 public static class ProtocolGenerator
 {
+	public static JsonSerializerOptions JsonSerializerOptions { get; set; } = new()
+	{
+		Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+		WriteIndented = true
+	};
+
 	public static async Task Run(string directory, Assembly protocolAssembly)
 	{
 		Console.WriteLine($"Working on: {directory}");
@@ -27,11 +33,7 @@ public static class ProtocolGenerator
 
 		await using (Stream stream = File.OpenWrite(packetsTempPath))
 		{
-			await JsonSerializer.SerializeAsync(stream, schema, new JsonSerializerOptions
-			{
-				Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-				WriteIndented = true
-			}).ConfigureAwait(false);
+			await JsonSerializer.SerializeAsync(stream, schema, ProtocolGenerator.JsonSerializerOptions).ConfigureAwait(false);
 		}
 
 		File.Move(packetsTempPath, packetsPath, true);

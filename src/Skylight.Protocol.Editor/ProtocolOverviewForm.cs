@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text.Encodings.Web;
 using System.Text.Json;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Framework;
@@ -30,7 +29,7 @@ internal partial class ProtocolOverviewForm : Form
 			this.schema = JsonSerializer.Deserialize<ProtocolSchema>(stream)!;
 		}
 
-		this.unregisterListeners = new List<Action>();
+		this.unregisterListeners = [];
 	}
 
 	private void ProtocolOverviewFormLoad(object sender, EventArgs e)
@@ -222,12 +221,9 @@ internal partial class ProtocolOverviewForm : Form
 			panel.Controls.Clear();
 		}
 
-		if (listHook is null)
-		{
-			listHook = structures;
-		}
+		listHook ??= structures;
 
-		string[] packetProperties = packetInterface?.GetProperties().Select(p => p.Name).ToArray() ?? Array.Empty<string>();
+		string[] packetProperties = packetInterface?.GetProperties().Select(p => p.Name).ToArray() ?? [];
 
 		foreach (AbstractMappingSchema structure in structures)
 		{
@@ -338,10 +334,10 @@ internal partial class ProtocolOverviewForm : Form
 					}
 				};
 
-				this.VisualizePacketData(conditionalLayout, new List<AbstractMappingSchema>
-				{
+				this.VisualizePacketData(conditionalLayout,
+				[
 					conditionalMapping.WhenTrue
-				}, null, false, false);
+				], null, false, false);
 
 				control = new GroupBox
 				{
@@ -487,10 +483,10 @@ internal partial class ProtocolOverviewForm : Form
 
 		listHook.Add(mapping);
 
-		this.VisualizePacketData(this.packetData, new List<AbstractMappingSchema>
-		{
+		this.VisualizePacketData(this.packetData,
+		[
 			mapping
-		}, null, false, listHook: listHook);
+		], null, false, listHook: listHook);
 	}
 
 	private void AddPacketConstant(object sender, EventArgs e)
@@ -507,10 +503,10 @@ internal partial class ProtocolOverviewForm : Form
 
 		listHook.Add(mapping);
 
-		this.VisualizePacketData(this.packetData, new List<AbstractMappingSchema>
-		{
+		this.VisualizePacketData(this.packetData,
+		[
 			mapping
-		}, null, false, listHook: listHook);
+		], null, false, listHook: listHook);
 	}
 
 	private void AddPacketConditional(object sender, EventArgs e)
@@ -532,10 +528,10 @@ internal partial class ProtocolOverviewForm : Form
 
 		listHook.Add(mapping);
 
-		this.VisualizePacketData(this.packetData, new List<AbstractMappingSchema>
-		{
+		this.VisualizePacketData(this.packetData,
+		[
 			mapping
-		}, null, false, listHook: listHook);
+		], null, false, listHook: listHook);
 	}
 
 	private void AddStructureField(object sender, EventArgs e)
@@ -546,10 +542,10 @@ internal partial class ProtocolOverviewForm : Form
 			Type = "string"
 		};
 
-		this.VisualizePacketData(this.structureData, new List<AbstractMappingSchema>
-		{
+		this.VisualizePacketData(this.structureData,
+		[
 			mapping
-		}, null, false, listHook: this.schema.Structures[this.structuresList.SelectedItems[0].Text]);
+		], null, false, listHook: this.schema.Structures[this.structuresList.SelectedItems[0].Text]);
 
 		this.schema.Structures[this.structuresList.SelectedItems[0].Text].Add(mapping);
 	}
@@ -562,10 +558,10 @@ internal partial class ProtocolOverviewForm : Form
 			Value = "New Constant"
 		};
 
-		this.VisualizePacketData(this.structureData, new List<AbstractMappingSchema>
-		{
+		this.VisualizePacketData(this.structureData,
+		[
 			mapping
-		}, null, false, listHook: this.schema.Structures[this.structuresList.SelectedItems[0].Text]);
+		], null, false, listHook: this.schema.Structures[this.structuresList.SelectedItems[0].Text]);
 
 		this.schema.Structures[this.structuresList.SelectedItems[0].Text].Add(mapping);
 	}
@@ -583,10 +579,10 @@ internal partial class ProtocolOverviewForm : Form
 			}
 		};
 
-		this.VisualizePacketData(this.structureData, new List<AbstractMappingSchema>
-		{
+		this.VisualizePacketData(this.structureData,
+		[
 			mapping
-		}, null, false, listHook: this.schema.Structures[this.structuresList.SelectedItems[0].Text]);
+		], null, false, listHook: this.schema.Structures[this.structuresList.SelectedItems[0].Text]);
 
 		this.schema.Structures[this.structuresList.SelectedItems[0].Text].Add(mapping);
 	}
@@ -654,11 +650,7 @@ internal partial class ProtocolOverviewForm : Form
 
 			using (Stream stream = File.OpenWrite(packetsTempPath))
 			{
-				JsonSerializer.Serialize(stream, this.schema, new JsonSerializerOptions
-				{
-					Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-					WriteIndented = true
-				});
+				JsonSerializer.Serialize(stream, this.schema, ProtocolGenerator.JsonSerializerOptions);
 			}
 
 			File.Move(packetsTempPath, Path.Combine(this.protocol, "packets.json"), true);
@@ -782,13 +774,13 @@ internal partial class ProtocolOverviewForm : Form
 	{
 		CompilerOutputLogger logger = new();
 
-		bool restore = project.Build(targets: new[]
-		{
+		bool restore = project.Build(targets:
+		[
 			"Restore",
-		}, loggers: new Microsoft.Build.Framework.ILogger[]
-		{
+		], loggers:
+		[
 			logger
-		});
+		]);
 
 		if (!restore)
 		{
@@ -799,13 +791,13 @@ internal partial class ProtocolOverviewForm : Form
 		project.MarkDirty();
 		project.ReevaluateIfNecessary();
 
-		bool build = project.Build(targets: new[]
-		{
+		bool build = project.Build(targets:
+		[
 			"Build"
-		}, loggers: new Microsoft.Build.Framework.ILogger[]
-		{
+		], loggers:
+		[
 			logger
-		});
+		]);
 
 		if (!build)
 		{
@@ -828,7 +820,7 @@ internal partial class ProtocolOverviewForm : Form
 
 			bool result = this.schema.Incoming.TryAdd(text, new PacketSchema
 			{
-				Structure = new List<AbstractMappingSchema>()
+				Structure = []
 			});
 
 			if (!result)
@@ -851,7 +843,7 @@ internal partial class ProtocolOverviewForm : Form
 
 			bool result = this.schema.Outgoing.TryAdd(text, new PacketSchema
 			{
-				Structure = new List<AbstractMappingSchema>()
+				Structure = []
 			});
 
 			if (!result)
@@ -865,7 +857,7 @@ internal partial class ProtocolOverviewForm : Form
 		}
 		else if (this.structuresTab.SelectedTab == this.selectStructureTab)
 		{
-			if (!this.schema.Structures.TryAdd(text, new List<AbstractMappingSchema>()))
+			if (!this.schema.Structures.TryAdd(text, []))
 			{
 				MessageBox.Show("Item already exists");
 
@@ -876,7 +868,7 @@ internal partial class ProtocolOverviewForm : Form
 		}
 		else if (this.structuresTab.SelectedTab == this.interfacesTab)
 		{
-			if (!this.schema.Interfaces.TryAdd(text, new SortedDictionary<string, string>()))
+			if (!this.schema.Interfaces.TryAdd(text, []))
 			{
 				MessageBox.Show("Item already exists");
 
@@ -929,9 +921,9 @@ internal partial class ProtocolOverviewForm : Form
 		}
 	}
 
-	private sealed class CompilerOutputLogger : Microsoft.Build.Framework.ILogger
+	private sealed class CompilerOutputLogger : ILogger
 	{
-		private readonly List<string> compileErrors = new();
+		private readonly List<string> compileErrors = [];
 
 		public void Initialize(IEventSource eventSource)
 		{
@@ -949,13 +941,13 @@ internal partial class ProtocolOverviewForm : Form
 
 		internal IReadOnlyList<string> CompileErrors => this.compileErrors;
 
-		string Microsoft.Build.Framework.ILogger.Parameters
+		string ILogger.Parameters
 		{
 			get => string.Empty;
 			set { } //Don't allow set
 		}
 
-		LoggerVerbosity Microsoft.Build.Framework.ILogger.Verbosity
+		LoggerVerbosity ILogger.Verbosity
 		{
 			get => LoggerVerbosity.Diagnostic;
 			set { } //Don't allow set

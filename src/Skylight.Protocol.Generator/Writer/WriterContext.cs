@@ -8,18 +8,11 @@ using Skylight.Protocol.Generator.Writer.Handlers;
 
 namespace Skylight.Protocol.Generator.Writer;
 
-internal struct WriterContext
+internal struct WriterContext(Dictionary<Type, MappingWriterHandler> handlers)
 {
-	private readonly Dictionary<Type, MappingWriterHandler> handlers;
+	private readonly Dictionary<Type, MappingWriterHandler> handlers = handlers;
 
-	public string Name { get; private set; }
-
-	public WriterContext(Dictionary<Type, MappingWriterHandler> handlers)
-	{
-		this.handlers = handlers;
-
-		this.Name = string.Empty;
-	}
+	public string Name { get; private set; } = string.Empty;
 
 	public void Read(ProtocolStructure protocol, IndentedTextWriter writer, AbstractMappingSyntax mapping, MemberInfo type)
 	{

@@ -1,13 +1,7 @@
 ﻿namespace Skylight.Protocol.Generator.Parser.Mapping;
 
-internal sealed class ConstantMappingSyntax : AbstractMappingSyntax
+internal sealed class ConstantMappingSyntax(object value, AbstractMappingSyntax type) : AbstractMappingSyntax
 {
-	public object Value { get; }
-	public AbstractMappingSyntax Type { get; }
-
-	public ConstantMappingSyntax(object value, AbstractMappingSyntax type)
-	{
-		this.Value = value;
-		this.Type = type;
-	}
+	public object Value { get; } = value;
+	public AbstractMappingSyntax Type { get; } = type;
 }

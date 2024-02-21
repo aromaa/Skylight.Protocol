@@ -1,12 +1,7 @@
 ﻿namespace Skylight.Protocol.Attributes;
 
 [AttributeUsage(AttributeTargets.Assembly)]
-public sealed class GameProtocolAttribute : Attribute
+public sealed class GameProtocolAttribute(string revision) : Attribute
 {
-	public string Revision { get; }
-
-	public GameProtocolAttribute(string revision)
-	{
-		this.Revision = revision;
-	}
+	public string Revision { get; } = revision;
 }

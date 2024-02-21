@@ -23,7 +23,7 @@ public static class PacketWriterExtensions
 	{
 		for (int shift = (bytes - 1) * 6; shift >= 0; shift -= 6)
 		{
-			writer.WriteByte((byte)(0x40 + (value >> shift & 0x3F)));
+			writer.WriteByte((byte)(0x40 + ((value >> shift) & 0x3F)));
 		}
 	}
 

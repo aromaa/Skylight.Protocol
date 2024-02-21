@@ -19,7 +19,7 @@ internal static class ProtocolParser
 		{
 			ImmutableArray<(string? FieldName, AbstractMappingSyntax Mapping)>.Builder mappings = ImmutableArray.CreateBuilder<(string?, AbstractMappingSyntax)>(structure.Count);
 
-			Dictionary<string, AbstractMappingSyntax> fields = new();
+			Dictionary<string, AbstractMappingSyntax> fields = [];
 
 			bool recursive = false;
 
@@ -56,7 +56,7 @@ internal static class ProtocolParser
 			context.AddStructure(new ObjectStructure(name, recursive, mappings.MoveToImmutable(), fields));
 		}
 
-		Dictionary<string, PacketStructure> incoming = new();
+		Dictionary<string, PacketStructure> incoming = [];
 		foreach ((string name, PacketSchema packet) in protocol.Incoming)
 		{
 			PacketStructure structure = Parse(ref context, packet, protocolAssembly.GetType("Skylight.Protocol.Packets.Incoming.IGameIncomingPacket")!, name);
@@ -64,7 +64,7 @@ internal static class ProtocolParser
 			incoming.Add(structure.Name, structure);
 		}
 
-		Dictionary<string, PacketStructure> outgoing = new();
+		Dictionary<string, PacketStructure> outgoing = [];
 		foreach ((string name, PacketSchema packet) in protocol.Outgoing)
 		{
 			PacketStructure structure = Parse(ref context, packet, protocolAssembly.GetType("Skylight.Protocol.Packets.Outgoing.IGameOutgoingPacket")!, name);
@@ -108,7 +108,7 @@ internal static class ProtocolParser
 	{
 		ImmutableArray<MappingStructure>.Builder mappings = ImmutableArray.CreateBuilder<MappingStructure>(packet.Structure.Count);
 
-		Dictionary<string, MappingStructure> fields = new();
+		Dictionary<string, MappingStructure> fields = [];
 
 		foreach (AbstractMappingSchema mapping in packet.Structure)
 		{
@@ -116,11 +116,7 @@ internal static class ProtocolParser
 
 			if (mapping is FieldMappingSchema fieldMapping)
 			{
-				PropertyInfo? property = packetType.GetProperty(fieldMapping.Name);
-				if (property is null)
-				{
-					throw new Exception($"No definition for field {fieldMapping.Name} in type {packetType}");
-				}
+				PropertyInfo property = packetType.GetProperty(fieldMapping.Name) ?? throw new Exception($"No definition for field {fieldMapping.Name} in type {packetType}");
 
 				MappingStructure mappingStructure = new(fieldMapping.Name, syntax, property);
 
@@ -137,11 +133,7 @@ internal static class ProtocolParser
 				{
 					string fieldName = ((FieldMappingSchema)((ConditionalMappingSchema)mapping).WhenTrue).Name;
 
-					PropertyInfo? property = packetType.GetProperty(fieldName);
-					if (property is null)
-					{
-						throw new Exception($"No definition for field {fieldName} in type {packetType}");
-					}
+					PropertyInfo property = packetType.GetProperty(fieldName) ?? throw new Exception($"No definition for field {fieldName} in type {packetType}");
 
 					MappingStructure mappingStructure = new(null, syntax, property);
 
@@ -158,14 +150,9 @@ internal static class ProtocolParser
 		return new PacketStructure(name, packet.Id, packetType, mappings.MoveToImmutable(), fields);
 	}
 
-	private readonly ref struct Context
+	private readonly ref struct Context()
 	{
-		public Context()
-		{
-			this.Structures = new Dictionary<string, ObjectStructure>();
-		}
-
-		internal Dictionary<string, ObjectStructure> Structures { get; }
+		internal Dictionary<string, ObjectStructure> Structures { get; } = [];
 
 		internal void AddStructure(ObjectStructure structure)
 		{
