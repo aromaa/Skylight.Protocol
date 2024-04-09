@@ -634,6 +634,71 @@
         }
       ]
     },
+    "UserDefinedRoomEvents.UpdateAction": {
+      "Id": 3643,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ItemId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<int>",
+          "Name": "IntegerParameters"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "StringParameter"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<int>",
+          "Name": "SelectedItems"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ActionDelay"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ItemSelectionType"
+        }
+      ]
+    },
+    "UserDefinedRoomEvents.UpdateTrigger": {
+      "Id": 701,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ItemId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<int>",
+          "Name": "IntegerParameters"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "StringParameter"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<int>",
+          "Name": "SelectedItems"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ItemSelectionType"
+        }
+      ]
+    },
     "Users.GetExtendedProfile": {
       "Id": 792,
       "Structure": [
@@ -1627,6 +1692,41 @@
         }
       ]
     },
+    "Room.Chat.Whisper": {
+      "Id": 3117,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "UserId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Text"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Gesture"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "StyleId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<Link>",
+          "Name": "Links"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TrackingId"
+        }
+      ]
+    },
     "Room.Engine.FloorHeightMap": {
       "Id": 1945,
       "Structure": [
@@ -1990,6 +2090,125 @@
           "Name": "RequestId"
         }
       ]
+    },
+    "UserDefinedRoomEvents.WiredFurniAction": {
+      "Id": 1688,
+      "Structure": [
+        {
+          "Mapping": "Constant",
+          "Type": "bool",
+          "Value": "true"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ItemId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ExtraData"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "7"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        }
+      ]
+    },
+    "UserDefinedRoomEvents.WiredFurniTrigger": {
+      "Id": 3319,
+      "Structure": [
+        {
+          "Mapping": "Constant",
+          "Type": "bool",
+          "Value": "true"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ItemId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ExtraData"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        }
+      ]
+    },
+    "UserDefinedRoomEvents.WiredSaveSuccess": {
+      "Id": 2442,
+      "Structure": []
     },
     "Users.ExtendedProfile": {
       "Id": 2854,
