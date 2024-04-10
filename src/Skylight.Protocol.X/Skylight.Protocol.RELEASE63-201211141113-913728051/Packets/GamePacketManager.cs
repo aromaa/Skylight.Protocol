@@ -1,4 +1,6 @@
-﻿using Skylight.Protocol.Attributes;
+﻿using Net.Communication.Attributes;
+using Net.Communication.Manager;
+using Skylight.Protocol.Attributes;
 using Skylight.Protocol.Packets.Manager;
 using Skylight.Protocol.RELEASE63_201211141113_913728051.Packets;
 
@@ -7,13 +9,13 @@ using Skylight.Protocol.RELEASE63_201211141113_913728051.Packets;
 
 namespace Skylight.Protocol.RELEASE63_201211141113_913728051.Packets;
 
-public class GamePacketManager : AbstractGamePacketManager, IGameProtocol
+public sealed partial class GamePacketManager(IServiceProvider serviceProvider, PacketManagerData<uint> baseData)
+	: AbstractGamePacketManager(serviceProvider, baseData, GamePacketManager.GetProtocolData()), IGameProtocol
 {
 	public override bool Modern => true;
 
-	public GamePacketManager(IServiceProvider serviceProvider) : base(serviceProvider)
-	{
-	}
+	public static AbstractGamePacketManager CreatePacketManager(IServiceProvider serviceProvider, PacketManagerData<uint> packetManagerData) => new GamePacketManager(serviceProvider, packetManagerData);
 
-	public static AbstractGamePacketManager CreatePacketManager(IServiceProvider serviceProvider) => new GamePacketManager(serviceProvider);
+	[PacketManagerGenerator(typeof(GamePacketManager))]
+	private static partial PacketManagerData<uint> GetProtocolData();
 }

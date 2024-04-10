@@ -1,4 +1,5 @@
-﻿using Skylight.Protocol.Packets.Manager;
+﻿using Net.Communication.Manager;
+using Skylight.Protocol.Packets.Manager;
 
 namespace Skylight.Protocol.Attributes;
 
@@ -9,5 +10,5 @@ public abstract class GameProtocolManagerAttribute : Attribute
 	{
 	}
 
-	public abstract AbstractGamePacketManager CreatePacketManager(IServiceProvider serviceProvider);
+	public abstract AbstractGamePacketManager CreatePacketManager(IServiceProvider serviceProvider, PacketManagerData<uint> packetManagerData);
 }

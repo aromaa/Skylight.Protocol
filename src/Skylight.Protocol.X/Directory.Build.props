@@ -16,6 +16,7 @@
 		<ProjectReference Include="$(MSBuildThisFileDirectory)\..\Skylight.Protocol\Skylight.Protocol.csproj" Private="false" IncludeAssets="compile" />
 		<ProjectReference Include="$(MSBuildThisFileDirectory)\..\submodules\Net\Net.Buffers\Net.Buffers.csproj" Private="false" IncludeAssets="compile" />
 		<ProjectReference Include="$(MSBuildThisFileDirectory)\..\submodules\Net\Net.Communication\Net.Communication.csproj" Private="false" IncludeAssets="compile" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)\..\submodules\Net\Net.Communication.SourceGenerator\Net.Communication.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 
 </Project>
