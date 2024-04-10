@@ -1,5 +1,8 @@
 is_global = true
 
+# CA1822: Mark members as static
+dotnet_diagnostic.CA1822.severity = none
+
 # SA1005: Single line comment should begin with a space
 dotnet_diagnostic.SA1005.severity = none
 

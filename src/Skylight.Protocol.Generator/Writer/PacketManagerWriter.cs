@@ -19,6 +19,8 @@ internal static class PacketManagerWriter
 
 		string revision = protocol.Revision.Replace('-', '_');
 
+		writer.WriteLine($"using Net.Communication.Attributes;");
+		writer.WriteLine($"using Net.Communication.Manager;");
 		writer.WriteLine($"using Skylight.Protocol.Attributes;");
 		writer.WriteLine($"using Skylight.Protocol.Packets.Manager;");
 		writer.WriteLine($"using Skylight.Protocol.{revision}.Packets;");
@@ -28,16 +30,16 @@ internal static class PacketManagerWriter
 		writer.WriteLine();
 		writer.WriteLine($"namespace Skylight.Protocol.{revision}.Packets;");
 		writer.WriteLine();
-		writer.WriteLine($"public class GamePacketManager : AbstractGamePacketManager, IGameProtocol");
+		writer.WriteLine($"public sealed partial class GamePacketManager(IServiceProvider serviceProvider, PacketManagerData<uint> baseData)");
+		writer.WriteLine($"\t: AbstractGamePacketManager(serviceProvider, baseData, GamePacketManager.GetProtocolData()), IGameProtocol");
 		writer.WriteLine($"{{");
 		writer.Indent++;
 		writer.WriteLine($"public override bool Modern => {(protocol.Protocol is "Modern" ? "true" : "false")};");
 		writer.WriteLineNoTabs(string.Empty);
-		writer.WriteLine($"public GamePacketManager(IServiceProvider serviceProvider) : base(serviceProvider)");
-		writer.WriteLine($"{{");
-		writer.WriteLine($"}}");
+		writer.WriteLine($"public static AbstractGamePacketManager CreatePacketManager(IServiceProvider serviceProvider, PacketManagerData<uint> packetManagerData) => new GamePacketManager(serviceProvider, packetManagerData);");
 		writer.WriteLineNoTabs(string.Empty);
-		writer.WriteLine($"public static AbstractGamePacketManager CreatePacketManager(IServiceProvider serviceProvider) => new GamePacketManager(serviceProvider);");
+		writer.WriteLine($"[PacketManagerGenerator(typeof(GamePacketManager))]");
+		writer.WriteLine($"private static partial PacketManagerData<uint> GetProtocolData();");
 		writer.Indent--;
 		writer.WriteLine($"}}");
 	}
