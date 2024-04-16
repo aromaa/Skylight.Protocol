@@ -669,6 +669,36 @@
         }
       ]
     },
+    "UserDefinedRoomEvents.UpdateCondition": {
+      "Id": 1801,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ItemId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<int>",
+          "Name": "IntegerParameters"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "StringParameter"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<int>",
+          "Name": "SelectedItems"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ItemSelectionType"
+        }
+      ]
+    },
     "UserDefinedRoomEvents.UpdateTrigger": {
       "Id": 701,
       "Structure": [
@@ -2097,22 +2127,22 @@
         {
           "Mapping": "Constant",
           "Type": "bool",
-          "Value": "true"
+          "Value": "false"
         },
         {
-          "Mapping": "Constant",
+          "Mapping": "Field",
           "Type": "int",
-          "Value": "0"
+          "Name": "MaxSelectedItems"
         },
         {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "0"
+          "Mapping": "Field",
+          "Type": "List<int>",
+          "Name": "SelectedItems"
         },
         {
-          "Mapping": "Constant",
+          "Mapping": "Field",
           "Type": "int",
-          "Value": "0"
+          "Name": "FurnitureId"
         },
         {
           "Mapping": "Field",
@@ -2122,7 +2152,12 @@
         {
           "Mapping": "Field",
           "Type": "string",
-          "Name": "ExtraData"
+          "Name": "StringParameter"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<int>",
+          "Name": "IntegerParameters"
         },
         {
           "Mapping": "Constant",
@@ -2130,24 +2165,69 @@
           "Value": "0"
         },
         {
-          "Mapping": "Constant",
+          "Mapping": "Field",
           "Type": "int",
-          "Value": "0"
+          "Name": "Type"
         },
         {
-          "Mapping": "Constant",
+          "Mapping": "Field",
           "Type": "int",
-          "Value": "7"
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "0"
+          "Name": "Delay"
         },
         {
           "Mapping": "Constant",
           "Type": "int",
           "Value": "0"
+        }
+      ]
+    },
+    "UserDefinedRoomEvents.WiredFurniCondition": {
+      "Id": 2797,
+      "Structure": [
+        {
+          "Mapping": "Constant",
+          "Type": "bool",
+          "Value": "false"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "MaxSelectedItems"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<int>",
+          "Name": "SelectedItems"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "FurnitureId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ItemId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "StringParameter"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<int>",
+          "Name": "IntegerParameters"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Type"
         }
       ]
     },
@@ -2157,22 +2237,22 @@
         {
           "Mapping": "Constant",
           "Type": "bool",
-          "Value": "true"
+          "Value": "false"
         },
         {
-          "Mapping": "Constant",
+          "Mapping": "Field",
           "Type": "int",
-          "Value": "0"
+          "Name": "MaxSelectedItems"
         },
         {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "0"
+          "Mapping": "Field",
+          "Type": "List<int>",
+          "Name": "SelectedItems"
         },
         {
-          "Mapping": "Constant",
+          "Mapping": "Field",
           "Type": "int",
-          "Value": "0"
+          "Name": "FurnitureId"
         },
         {
           "Mapping": "Field",
@@ -2182,7 +2262,12 @@
         {
           "Mapping": "Field",
           "Type": "string",
-          "Name": "ExtraData"
+          "Name": "StringParameter"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<int>",
+          "Name": "IntegerParameters"
         },
         {
           "Mapping": "Constant",
@@ -2190,14 +2275,9 @@
           "Value": "0"
         },
         {
-          "Mapping": "Constant",
+          "Mapping": "Field",
           "Type": "int",
-          "Value": "0"
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "0"
+          "Name": "Type"
         },
         {
           "Mapping": "Constant",

@@ -7,11 +7,11 @@ using Net.Communication.Outgoing;
 
 namespace Skylight.Protocol.WIN63_202111081545_75921380.Packets.Composers.UserDefinedRoomEvents;
 
-[PacketComposerId(3319u)]
+[PacketComposerId(2797u)]
 [PacketManagerRegister(typeof(GamePacketManager))]
-internal sealed class WiredFurniTriggerPacketComposer : IOutgoingPacketComposer<WiredFurniTriggerOutgoingPacket>
+internal sealed class WiredFurniConditionPacketComposer : IOutgoingPacketComposer<WiredFurniConditionOutgoingPacket>
 {
-	public void Compose(ref PacketWriter writer, in WiredFurniTriggerOutgoingPacket packet)
+	public void Compose(ref PacketWriter writer, in WiredFurniConditionOutgoingPacket packet)
 	{
 		writer.WriteBool(false);
 		writer.WriteInt32(packet.MaxSelectedItems);
@@ -30,6 +30,5 @@ internal sealed class WiredFurniTriggerPacketComposer : IOutgoingPacketComposer<
 		}
 		writer.WriteInt32(0);
 		writer.WriteInt32((int)packet.Type);
-		writer.WriteInt32(0);
 	}
 }
