@@ -1,0 +1,86 @@
+{
+  "Revision": "RELEASE9",
+  "Protocol": "Legacy",
+  "Incoming": {
+    "Handshake.GenerateKey": {
+      "Id": 202,
+      "Structure": []
+    },
+    "Handshake.VersionCheck": {
+      "Id": 5,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "VersionId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ClientUrl"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ExternalVariablesUrl"
+        }
+      ]
+    },
+    "Registration.GetAvailableSets": {
+      "Id": 9,
+      "Structure": []
+    },
+    "Registration.GetServerDate": {
+      "Id": 49,
+      "Structure": []
+    }
+  },
+  "Outgoing": {
+    "Handshake.CompleteDiffieHandshake": {
+      "Id": 1,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "text",
+          "Name": "EncryptedPublicKey"
+        }
+      ]
+    },
+    "Handshake.ServerHello": {
+      "Id": 0,
+      "Structure": []
+    },
+    "Handshake.SessionParameters": {
+      "Id": 257,
+      "Structure": [
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0"
+        }
+      ]
+    },
+    "Registration.AvailableSets": {
+      "Id": 8,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "text",
+          "Name": "Sets"
+        }
+      ]
+    },
+    "Registration.ServerDate": {
+      "Id": 163,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "text",
+          "Name": "Time"
+        }
+      ]
+    }
+  },
+  "Structures": {},
+  "Interfaces": {}
+}

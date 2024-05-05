@@ -136,6 +136,14 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 			{
 				writer.WriteLine($"writer.WriteText(string.Join('\\r', {context.Name}.Select(i => (byte)('0' + i)).Chunk((int)packet.Width).Select(c => System.Text.Encoding.UTF8.GetString(c))));");
 			}
+			else if (type == typeof(DateTime).FromAssembly(type))
+			{
+				writer.WriteLine($"writer.WriteText({context.Name}.ToString(\"d-M-yyyy\"));");
+			}
+			else if (type == typeof(ICollection<int>).FromAssembly(type))
+			{
+				writer.WriteLine($"writer.WriteText('[' + string.Join(',', {context.Name}) + ']');");
+			}
 			else
 			{
 				writer.WriteLine($"writer.WriteText({context.Name});");
