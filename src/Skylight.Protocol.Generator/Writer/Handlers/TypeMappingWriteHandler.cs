@@ -132,21 +132,36 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 		}
 		else if (typeMapping.Type == typeof(byte[]).FromAssembly(typeMapping.Type))
 		{
-			if (type == typeof(ICollection<short>).FromAssembly(type))
+			if (typeMapping.ExtraData is not null)
 			{
-				writer.WriteLine($"writer.WriteText(string.Join('\\r', {context.Name}.Select(i => (byte)('0' + i)).Chunk((int)packet.Width).Select(c => System.Text.Encoding.UTF8.GetString(c))));");
-			}
-			else if (type == typeof(DateTime).FromAssembly(type))
-			{
-				writer.WriteLine($"writer.WriteText({context.Name}.ToString(\"d-M-yyyy\"));");
-			}
-			else if (type == typeof(ICollection<int>).FromAssembly(type))
-			{
-				writer.WriteLine($"writer.WriteText('[' + string.Join(',', {context.Name}) + ']');");
+				writer.WriteLine($"writer.WriteText(\"{typeMapping.ExtraData}\");");
+				writer.WriteLine($"writer.WriteText(\"=\");");
+				WriteText(ref context, protocol, writer, mapping, type);
+				writer.WriteLine($"writer.WriteByte(13);");
 			}
 			else
 			{
-				writer.WriteLine($"writer.WriteText({context.Name});");
+				WriteText(ref context, protocol, writer, mapping, type);
+			}
+
+			static void WriteText(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, AbstractMappingSyntax mapping, MemberInfo type)
+			{
+				if (type == typeof(ICollection<short>).FromAssembly(type))
+				{
+					writer.WriteLine($"writer.WriteText(string.Join('\\r', {context.Name}.Select(i => (byte)('0' + i)).Chunk((int)packet.Width).Select(c => System.Text.Encoding.UTF8.GetString(c))));");
+				}
+				else if (type == typeof(DateTime).FromAssembly(type))
+				{
+					writer.WriteLine($"writer.WriteText({context.Name}.ToString(\"d-M-yyyy\"));");
+				}
+				else if (type == typeof(ICollection<int>).FromAssembly(type))
+				{
+					writer.WriteLine($"writer.WriteText('[' + string.Join(',', {context.Name}) + ']');");
+				}
+				else
+				{
+					writer.WriteLine($"writer.WriteText({context.Name}.ToString());");
+				}
 			}
 		}
 		else

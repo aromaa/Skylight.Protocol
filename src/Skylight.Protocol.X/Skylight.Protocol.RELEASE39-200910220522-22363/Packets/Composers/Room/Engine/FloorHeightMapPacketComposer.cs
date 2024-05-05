@@ -13,6 +13,6 @@ internal sealed class FloorHeightMapPacketComposer : IOutgoingPacketComposer<Flo
 {
 	public void Compose(ref PacketWriter writer, in FloorHeightMapOutgoingPacket packet)
 	{
-		writer.WriteText(packet.HeightMap);
+		writer.WriteText(packet.HeightMap.ToString());
 	}
 }

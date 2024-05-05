@@ -34,12 +34,16 @@ internal static class MappingParser
 
 	private static AbstractMappingSyntax ParseType(string type, Assembly assembly, string? name = default)
 	{
-		switch (type)
+		Span<Range> ranges = stackalloc Range[2];
+
+		int splitCount = type.AsSpan().Split(ranges, ':', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+		switch (type.AsSpan()[ranges[0]])
 		{
 			case "string":
 				return new TypeMappingSyntax(typeof(string).FromAssembly(assembly), name);
 			case "text":
-				return new TypeMappingSyntax(typeof(byte[]).FromAssembly(assembly), name);
+				return new TypeMappingSyntax(typeof(byte[]).FromAssembly(assembly), name, splitCount == 2 ? type[ranges[1]] : null);
 			case "int":
 				return new TypeMappingSyntax(typeof(int).FromAssembly(assembly), name);
 			case "short":

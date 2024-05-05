@@ -6,6 +6,39 @@
       "Id": 202,
       "Structure": []
     },
+    "Handshake.GetSessionParameters": {
+      "Id": 181,
+      "Structure": []
+    },
+    "Handshake.InfoRetrieve": {
+      "Id": 7,
+      "Structure": []
+    },
+    "Handshake.TryLogin": {
+      "Id": 4,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Username"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Password"
+        }
+      ]
+    },
+    "Handshake.UniqueID": {
+      "Id": 6,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "MachineId"
+        }
+      ]
+    },
     "Handshake.VersionCheck": {
       "Id": 5,
       "Structure": [
@@ -26,6 +59,50 @@
         }
       ]
     },
+    "Purse.GetCreditsInfo": {
+      "Id": 8,
+      "Structure": []
+    },
+    "Registration.ApproveEmail": {
+      "Id": 197,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Email"
+        }
+      ]
+    },
+    "Registration.ApproveName": {
+      "Id": 42,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Name"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Type"
+        }
+      ]
+    },
+    "Registration.ApprovePassword": {
+      "Id": 203,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Username"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Password"
+        }
+      ]
+    },
     "Registration.GetAvailableSets": {
       "Id": 9,
       "Structure": []
@@ -36,6 +113,10 @@
     }
   },
   "Outgoing": {
+    "Handshake.AuthenticationOK": {
+      "Id": 3,
+      "Structure": []
+    },
     "Handshake.CompleteDiffieHandshake": {
       "Id": 1,
       "Structure": [
@@ -57,6 +138,75 @@
           "Mapping": "Constant",
           "Type": "int",
           "Value": "0"
+        }
+      ]
+    },
+    "Handshake.UserObject": {
+      "Id": 5,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "text:name",
+          "Name": "Username"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:figure",
+          "Name": "Figure"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:sex",
+          "Name": "Gender"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:customData",
+          "Name": "CustomData"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:ph_tickets",
+          "Name": "Tickets"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:photo_film",
+          "Name": "Film"
+        }
+      ]
+    },
+    "Purse.CreditBalance": {
+      "Id": 6,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Balance"
+        }
+      ]
+    },
+    "Registration.ApproveEmailAccepted": {
+      "Id": 271,
+      "Structure": []
+    },
+    "Registration.ApproveNameReply": {
+      "Id": 36,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Result"
+        }
+      ]
+    },
+    "Registration.ApprovePasswordReply": {
+      "Id": 282,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Result"
         }
       ]
     },

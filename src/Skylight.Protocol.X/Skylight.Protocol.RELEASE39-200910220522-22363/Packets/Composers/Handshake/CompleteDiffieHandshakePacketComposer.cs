@@ -13,6 +13,6 @@ internal sealed class CompleteDiffieHandshakePacketComposer : IOutgoingPacketCom
 {
 	public void Compose(ref PacketWriter writer, in CompleteDiffieHandshakeOutgoingPacket packet)
 	{
-		writer.WriteText(packet.EncryptedPublicKey);
+		writer.WriteText(packet.EncryptedPublicKey.ToString());
 	}
 }

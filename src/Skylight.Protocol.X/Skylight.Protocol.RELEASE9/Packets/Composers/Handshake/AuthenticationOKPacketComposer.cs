@@ -7,12 +7,11 @@ using Net.Communication.Outgoing;
 
 namespace Skylight.Protocol.RELEASE9.Packets.Composers.Handshake;
 
-[PacketComposerId(1u)]
+[PacketComposerId(3u)]
 [PacketManagerRegister(typeof(GamePacketManager))]
-internal sealed class CompleteDiffieHandshakePacketComposer : IOutgoingPacketComposer<CompleteDiffieHandshakeOutgoingPacket>
+internal sealed class AuthenticationOKPacketComposer : IOutgoingPacketComposer<AuthenticationOKOutgoingPacket>
 {
-	public void Compose(ref PacketWriter writer, in CompleteDiffieHandshakeOutgoingPacket packet)
+	public void Compose(ref PacketWriter writer, in AuthenticationOKOutgoingPacket packet)
 	{
-		writer.WriteText(packet.EncryptedPublicKey.ToString());
 	}
 }
