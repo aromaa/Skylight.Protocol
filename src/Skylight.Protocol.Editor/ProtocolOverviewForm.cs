@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text.Json;
+using Accessibility;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Locator;
@@ -108,7 +109,7 @@ internal partial class ProtocolOverviewForm : Form
 			return;
 		}
 
-		this.VisualizePacketData(this.structureData, this.schema.Structures[this.structuresList.SelectedItems[0].Text], null);
+		this.VisualizePacketDataRoot(this.structureData, this.schema.Structures[this.structuresList.SelectedItems[0].Text], null);
 	}
 
 	private void SelectInterface(object sender, EventArgs e)
@@ -211,7 +212,16 @@ internal partial class ProtocolOverviewForm : Form
 			throw new Exception($"Unknown interface type {interfaceType}");
 		}
 
-		this.VisualizePacketData(this.packetData, packet.Structure, packetInterface!);
+		this.VisualizePacketDataRoot(this.packetData, packet.Structure, packetInterface!);
+	}
+
+	private void VisualizePacketDataRoot(FlowLayoutPanel panel, List<AbstractMappingSchema> structures, Type? packetInterface, bool clear = true, bool canRemove = true, List<AbstractMappingSchema>? listHook = null)
+	{
+		panel.SuspendLayout();
+
+		this.VisualizePacketData(panel, structures, packetInterface, clear, canRemove, listHook);
+
+		panel.ResumeLayout();
 	}
 
 	private void VisualizePacketData(FlowLayoutPanel panel, List<AbstractMappingSchema> structures, Type? packetInterface, bool clear = true, bool canRemove = true, List<AbstractMappingSchema>? listHook = null)
@@ -225,6 +235,7 @@ internal partial class ProtocolOverviewForm : Form
 
 		string[] packetProperties = packetInterface?.GetProperties().Select(p => p.Name).ToArray() ?? [];
 
+		List<Control> controls = [];
 		foreach (AbstractMappingSchema structure in structures)
 		{
 			Control control;
@@ -236,56 +247,54 @@ internal partial class ProtocolOverviewForm : Form
 					SelectedText = fieldMapping.Name
 				};
 
-				nameMapping.TextChanged += (_, _) => fieldMapping.Name = nameMapping.Text;
-
-				foreach (string packetProperty in packetProperties)
+				nameMapping.DropDown += (_, _) =>
 				{
-					nameMapping.Items.Add(packetProperty);
-				}
+					if (nameMapping.Items.Count == 0)
+					{
+						// ReSharper disable once CoVariantArrayConversion
+						nameMapping.Items.AddRange(packetProperties);
+					}
+				};
+				nameMapping.TextChanged += (_, _) => fieldMapping.Name = nameMapping.Text;
 
 				ComboBox typeMapping = new()
 				{
 					Width = 200,
-					Items =
-					{
-						"string",
-						"text",
-						"int",
-						"short",
-						"bool"
-					},
 					SelectedText = fieldMapping.Type
 				};
 
+				typeMapping.DropDown += (_, _) =>
+				{
+					if (typeMapping.Items.Count == 0)
+					{
+						typeMapping.Items.AddRange(["string", "text", "int", "short", "bool"]);
+					}
+				};
 				typeMapping.TextChanged += (_, _) => fieldMapping.Type = typeMapping.Text;
 
 				control = new FlowLayoutPanel
 				{
 					Width = panel.Width - 10,
-					Height = 40,
-					Controls =
-					{
-						nameMapping,
-						typeMapping
-					}
+					Height = 40
 				};
+
+				control.Controls.AddRange([nameMapping, typeMapping]);
 			}
 			else if (structure is ConstantMappingSchema constantMapping)
 			{
 				ComboBox typeMapping = new()
 				{
 					Width = 200,
-					Items =
-					{
-						"string",
-						"text",
-						"int",
-						"short",
-						"bool"
-					},
 					SelectedText = constantMapping.Type
 				};
 
+				typeMapping.DropDown += (_, _) =>
+				{
+					if (typeMapping.Items.Count == 0)
+					{
+						typeMapping.Items.AddRange(["string", "text", "int", "short", "bool"]);
+					}
+				};
 				typeMapping.TextChanged += (_, _) => constantMapping.Type = typeMapping.Text;
 
 				TextBox valueMapping = new()
@@ -299,13 +308,10 @@ internal partial class ProtocolOverviewForm : Form
 				control = new FlowLayoutPanel
 				{
 					Width = panel.Width - 10,
-					Height = 40,
-					Controls =
-					{
-						typeMapping,
-						valueMapping
-					}
+					Height = 40
 				};
+
+				control.Controls.AddRange([typeMapping, valueMapping]);
 			}
 			else if (structure is ConditionalMappingSchema conditionalMapping)
 			{
@@ -326,18 +332,18 @@ internal partial class ProtocolOverviewForm : Form
 				FlowLayoutPanel conditionalLayout = new()
 				{
 					Location = new Point(0, 20),
-					Width = panel.Width - 10,
-					Controls =
-					{
-						conditionalLabel,
-						conditionalTextBox,
-					}
+					Width = panel.Width - 10
 				};
+
+				conditionalLayout.SuspendLayout();
+				conditionalLayout.Controls.AddRange([conditionalLabel, conditionalTextBox]);
 
 				this.VisualizePacketData(conditionalLayout,
 				[
 					conditionalMapping.WhenTrue
 				], null, false, false);
+
+				conditionalLayout.ResumeLayout();
 
 				control = new GroupBox
 				{
@@ -359,32 +365,31 @@ internal partial class ProtocolOverviewForm : Form
 				ComboBox typeMapping = new()
 				{
 					Width = 200,
-					Items =
-					{
-						"string",
-						"text",
-						"int",
-						"short",
-						"bool"
-					},
 					SelectedText = combineMapping.Type
 				};
 
+				typeMapping.DropDown += (_, _) =>
+				{
+					if (typeMapping.Items.Count == 0)
+					{
+						typeMapping.Items.AddRange(["string", "text", "int", "short", "bool"]);
+					}
+				};
 				typeMapping.TextChanged += (_, _) => combineMapping.Type = typeMapping.Text;
 
 				FlowLayoutPanel conditionalLayout = new()
 				{
 					Location = new Point(0, 20),
 					Width = panel.Width - 10,
-					Height = 50 * combineMapping.Fields.Count,
-					Controls =
-					{
-						combineLabel,
-						typeMapping
-					}
+					Height = 50 * combineMapping.Fields.Count
 				};
 
+				conditionalLayout.SuspendLayout();
+				conditionalLayout.Controls.AddRange([combineLabel, typeMapping]);
+
 				this.VisualizePacketData(conditionalLayout, combineMapping.Fields, null, false);
+
+				conditionalLayout.ResumeLayout();
 
 				control = new GroupBox
 				{
@@ -453,20 +458,20 @@ internal partial class ProtocolOverviewForm : Form
 					panel.Controls.Remove(control);
 				};
 
-				control.Controls.Add(new FlowLayoutPanel
+				FlowLayoutPanel buttonsHolder = new()
 				{
-					Width = 300,
-					Controls =
-					{
-						upButton,
-						downButton,
-						removeButton
-					}
-				});
+					Width = 300
+				};
+
+				buttonsHolder.Controls.AddRange([upButton, downButton, removeButton]);
+
+				control.Controls.Add(buttonsHolder);
 			}
 
-			panel.Controls.Add(control);
+			controls.Add(control);
 		}
+
+		panel.Controls.AddRange(controls.ToArray());
 	}
 
 	private void AddPacketField(object sender, EventArgs e)
@@ -483,7 +488,7 @@ internal partial class ProtocolOverviewForm : Form
 
 		listHook.Add(mapping);
 
-		this.VisualizePacketData(this.packetData,
+		this.VisualizePacketDataRoot(this.packetData,
 		[
 			mapping
 		], null, false, listHook: listHook);
@@ -503,7 +508,7 @@ internal partial class ProtocolOverviewForm : Form
 
 		listHook.Add(mapping);
 
-		this.VisualizePacketData(this.packetData,
+		this.VisualizePacketDataRoot(this.packetData,
 		[
 			mapping
 		], null, false, listHook: listHook);
@@ -528,7 +533,7 @@ internal partial class ProtocolOverviewForm : Form
 
 		listHook.Add(mapping);
 
-		this.VisualizePacketData(this.packetData,
+		this.VisualizePacketDataRoot(this.packetData,
 		[
 			mapping
 		], null, false, listHook: listHook);
@@ -542,7 +547,7 @@ internal partial class ProtocolOverviewForm : Form
 			Type = "string"
 		};
 
-		this.VisualizePacketData(this.structureData,
+		this.VisualizePacketDataRoot(this.structureData,
 		[
 			mapping
 		], null, false, listHook: this.schema.Structures[this.structuresList.SelectedItems[0].Text]);
@@ -558,7 +563,7 @@ internal partial class ProtocolOverviewForm : Form
 			Value = "New Constant"
 		};
 
-		this.VisualizePacketData(this.structureData,
+		this.VisualizePacketDataRoot(this.structureData,
 		[
 			mapping
 		], null, false, listHook: this.schema.Structures[this.structuresList.SelectedItems[0].Text]);
@@ -579,7 +584,7 @@ internal partial class ProtocolOverviewForm : Form
 			}
 		};
 
-		this.VisualizePacketData(this.structureData,
+		this.VisualizePacketDataRoot(this.structureData,
 		[
 			mapping
 		], null, false, listHook: this.schema.Structures[this.structuresList.SelectedItems[0].Text]);
