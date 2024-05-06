@@ -238,6 +238,35 @@ internal partial class ProtocolOverviewForm : Form
 		List<Control> controls = [];
 		foreach (AbstractMappingSchema structure in structures)
 		{
+			static ComboBox CreateTypeMapping(string type, Action<string> updateCallback)
+			{
+				ComboBox typeMapping = new()
+				{
+					Width = 200,
+					SelectedText = type
+				};
+
+				typeMapping.DropDown += (_, _) =>
+				{
+					if (typeMapping.Items.Count == 0)
+					{
+						typeMapping.Items.AddRange(["string", "text", "int", "short", "bool"]);
+					}
+				};
+				typeMapping.GotFocus += (_, _) =>
+				{
+					if (typeMapping.AutoCompleteSource != AutoCompleteSource.CustomSource)
+					{
+						typeMapping.AutoCompleteCustomSource = ["string", "text", "int", "short", "bool"];
+						typeMapping.AutoCompleteSource = AutoCompleteSource.CustomSource;
+						typeMapping.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+					}
+				};
+				typeMapping.TextChanged += (_, _) => updateCallback(typeMapping.Text);
+
+				return typeMapping;
+			}
+
 			Control control;
 			if (structure is FieldMappingSchema fieldMapping)
 			{
@@ -255,22 +284,16 @@ internal partial class ProtocolOverviewForm : Form
 						nameMapping.Items.AddRange(packetProperties);
 					}
 				};
-				nameMapping.TextChanged += (_, _) => fieldMapping.Name = nameMapping.Text;
-
-				ComboBox typeMapping = new()
+				nameMapping.GotFocus += (_, _) =>
 				{
-					Width = 200,
-					SelectedText = fieldMapping.Type
-				};
-
-				typeMapping.DropDown += (_, _) =>
-				{
-					if (typeMapping.Items.Count == 0)
+					if (nameMapping.AutoCompleteSource != AutoCompleteSource.CustomSource)
 					{
-						typeMapping.Items.AddRange(["string", "text", "int", "short", "bool"]);
+						nameMapping.AutoCompleteCustomSource = [..packetProperties];
+						nameMapping.AutoCompleteSource = AutoCompleteSource.CustomSource;
+						nameMapping.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 					}
 				};
-				typeMapping.TextChanged += (_, _) => fieldMapping.Type = typeMapping.Text;
+				nameMapping.TextChanged += (_, _) => fieldMapping.Name = nameMapping.Text;
 
 				control = new FlowLayoutPanel
 				{
@@ -278,25 +301,10 @@ internal partial class ProtocolOverviewForm : Form
 					Height = 40
 				};
 
-				control.Controls.AddRange([nameMapping, typeMapping]);
+				control.Controls.AddRange([nameMapping, CreateTypeMapping(fieldMapping.Type, text => fieldMapping.Type = text)]);
 			}
 			else if (structure is ConstantMappingSchema constantMapping)
 			{
-				ComboBox typeMapping = new()
-				{
-					Width = 200,
-					SelectedText = constantMapping.Type
-				};
-
-				typeMapping.DropDown += (_, _) =>
-				{
-					if (typeMapping.Items.Count == 0)
-					{
-						typeMapping.Items.AddRange(["string", "text", "int", "short", "bool"]);
-					}
-				};
-				typeMapping.TextChanged += (_, _) => constantMapping.Type = typeMapping.Text;
-
 				TextBox valueMapping = new()
 				{
 					Width = 200,
@@ -311,7 +319,7 @@ internal partial class ProtocolOverviewForm : Form
 					Height = 40
 				};
 
-				control.Controls.AddRange([typeMapping, valueMapping]);
+				control.Controls.AddRange([CreateTypeMapping(constantMapping.Type, text => constantMapping.Type = text), valueMapping]);
 			}
 			else if (structure is ConditionalMappingSchema conditionalMapping)
 			{
@@ -362,21 +370,6 @@ internal partial class ProtocolOverviewForm : Form
 					Width = 100
 				};
 
-				ComboBox typeMapping = new()
-				{
-					Width = 200,
-					SelectedText = combineMapping.Type
-				};
-
-				typeMapping.DropDown += (_, _) =>
-				{
-					if (typeMapping.Items.Count == 0)
-					{
-						typeMapping.Items.AddRange(["string", "text", "int", "short", "bool"]);
-					}
-				};
-				typeMapping.TextChanged += (_, _) => combineMapping.Type = typeMapping.Text;
-
 				FlowLayoutPanel conditionalLayout = new()
 				{
 					Location = new Point(0, 20),
@@ -385,7 +378,7 @@ internal partial class ProtocolOverviewForm : Form
 				};
 
 				conditionalLayout.SuspendLayout();
-				conditionalLayout.Controls.AddRange([combineLabel, typeMapping]);
+				conditionalLayout.Controls.AddRange([combineLabel, CreateTypeMapping(combineMapping.Type, text => combineMapping.Type = text)]);
 
 				this.VisualizePacketData(conditionalLayout, combineMapping.Fields, null, false);
 
