@@ -815,6 +815,28 @@ internal partial class ProtocolOverviewForm : Form
 				return;
 			}
 
+			bool trimInterfaceSpecifier = false;
+			if (text.EndsWith("IncomingPacket"))
+			{
+				trimInterfaceSpecifier = true;
+				text = text[..^"IncomingPacket".Length];
+			}
+
+			int nameSeparatorIndex = text.LastIndexOf('.');
+			if (nameSeparatorIndex == text.Length - 1)
+			{
+				MessageBox.Show("Missing name");
+
+				return;
+			}
+			else if (trimInterfaceSpecifier && text.Length >= nameSeparatorIndex + 3)
+			{
+				if (text[nameSeparatorIndex + 1] == 'I' && char.IsUpper(text[nameSeparatorIndex + 2]))
+				{
+					text = text.Remove(nameSeparatorIndex + 1, 1);
+				}
+			}
+
 			bool result = this.schema.Incoming.TryAdd(text, new PacketSchema
 			{
 				Structure = []
@@ -834,6 +856,19 @@ internal partial class ProtocolOverviewForm : Form
 			if (!text.Contains('.'))
 			{
 				MessageBox.Show("Packets require group");
+
+				return;
+			}
+
+			if (text.EndsWith("OutgoingPacket"))
+			{
+				text = text[..^"OutgoingPacket".Length];
+			}
+
+			int nameSeparatorIndex = text.LastIndexOf('.');
+			if (nameSeparatorIndex == text.Length - 1)
+			{
+				MessageBox.Show("Missing name");
 
 				return;
 			}
