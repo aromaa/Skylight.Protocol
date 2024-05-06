@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text.Json;
-using Accessibility;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Locator;
@@ -288,7 +287,7 @@ internal partial class ProtocolOverviewForm : Form
 				{
 					if (nameMapping.AutoCompleteSource != AutoCompleteSource.CustomSource)
 					{
-						nameMapping.AutoCompleteCustomSource = [..packetProperties];
+						nameMapping.AutoCompleteCustomSource = [.. packetProperties];
 						nameMapping.AutoCompleteSource = AutoCompleteSource.CustomSource;
 						nameMapping.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 					}
