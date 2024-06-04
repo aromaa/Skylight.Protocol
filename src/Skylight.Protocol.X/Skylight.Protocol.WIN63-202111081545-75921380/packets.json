@@ -209,6 +209,10 @@
       "Id": 1680,
       "Structure": []
     },
+    "LandingView.GetPromoArticles": {
+      "Id": 275,
+      "Structure": []
+    },
     "Marketplace.GetMarketplaceConfiguration": {
       "Id": 116,
       "Structure": []
@@ -719,6 +723,31 @@
         }
       ]
     },
+    "Catalog.BonusRareInfo": {
+      "Id": 2851,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ProductType"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ProductClassId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TotalCoinsForBonus"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "CoinsStillRequiredToBuy"
+        }
+      ]
+    },
     "Catalog.CatalogIndex": {
       "Id": 2349,
       "Structure": [
@@ -1189,6 +1218,16 @@
           "Mapping": "Field",
           "Type": "int",
           "Name": "SecondUserCanTrade"
+        }
+      ]
+    },
+    "LandingView.PromoArticles": {
+      "Id": 2333,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<PromoArticleData>",
+          "Name": "Articles"
         }
       ]
     },
@@ -2953,6 +2992,43 @@
         "Mapping": "Constant",
         "Type": "bool",
         "Value": "false"
+      }
+    ],
+    "PromoArticleData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Title"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "BodyText"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "ButtonText"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "LinkType"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "LinkContent"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "ImageUrl"
       }
     ],
     "RoomChatSettings": [
