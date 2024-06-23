@@ -26,7 +26,7 @@ internal partial class ProtocolOverviewForm : Form
 
 		using (Stream stream = File.OpenRead(Path.Combine(this.protocol, "packets.json")))
 		{
-			this.schema = JsonSerializer.Deserialize<ProtocolSchema>(stream)!;
+			this.schema = JsonSerializer.Deserialize<ProtocolSchema>(stream, ProtocolGenerator.JsonSerializerOptions)!;
 		}
 
 		this.unregisterListeners = [];
@@ -195,7 +195,7 @@ internal partial class ProtocolOverviewForm : Form
 
 		this.unregisterListeners.Add(() => this.packetId.ValueChanged -= eventHandler);
 
-		this.packetId.Value = packet.Id;
+		this.packetId.Value = packet.Id!.Value;
 		this.packetId.ValueChanged += eventHandler;
 
 		this.packetIdImportedFrom.Text = packet.ImportMetadata?.Id ?? string.Empty;
@@ -217,6 +217,11 @@ internal partial class ProtocolOverviewForm : Form
 		else
 		{
 			throw new Exception($"Unknown interface type {interfaceType}");
+		}
+
+		if (packet.Structure is null)
+		{
+			return;
 		}
 
 		this.VisualizePacketDataRoot(this.packetData, packet.Structure, packetInterface!);
@@ -482,9 +487,14 @@ internal partial class ProtocolOverviewForm : Form
 			Type = "string"
 		};
 
-		List<AbstractMappingSchema> listHook = this.structuresTab.SelectedTab == this.incomingPacketsTab
+		List<AbstractMappingSchema>? listHook = this.structuresTab.SelectedTab == this.incomingPacketsTab
 			? this.schema.Incoming[this.incomingPacketList.SelectedItems[0].Text].Structure
 			: this.schema.Outgoing[this.outgoingPacketsList.SelectedItems[0].Text].Structure;
+
+		if (listHook is null)
+		{
+			return;
+		}
 
 		listHook.Add(mapping);
 
@@ -502,9 +512,14 @@ internal partial class ProtocolOverviewForm : Form
 			Value = "New Constant"
 		};
 
-		List<AbstractMappingSchema> listHook = this.structuresTab.SelectedTab == this.incomingPacketsTab
+		List<AbstractMappingSchema>? listHook = this.structuresTab.SelectedTab == this.incomingPacketsTab
 			? this.schema.Incoming[this.incomingPacketList.SelectedItems[0].Text].Structure
 			: this.schema.Outgoing[this.outgoingPacketsList.SelectedItems[0].Text].Structure;
+
+		if (listHook is null)
+		{
+			return;
+		}
 
 		listHook.Add(mapping);
 
@@ -527,9 +542,14 @@ internal partial class ProtocolOverviewForm : Form
 			}
 		};
 
-		List<AbstractMappingSchema> listHook = this.structuresTab.SelectedTab == this.incomingPacketsTab
+		List<AbstractMappingSchema>? listHook = this.structuresTab.SelectedTab == this.incomingPacketsTab
 			? this.schema.Incoming[this.incomingPacketList.SelectedItems[0].Text].Structure
 			: this.schema.Outgoing[this.outgoingPacketsList.SelectedItems[0].Text].Structure;
+
+		if (listHook is null)
+		{
+			return;
+		}
 
 		listHook.Add(mapping);
 
@@ -645,7 +665,7 @@ internal partial class ProtocolOverviewForm : Form
 		});
 	}
 
-	private void Save(object sender, EventArgs e)
+	private async void Save(object sender, EventArgs e)
 	{
 		this.save.Enabled = false;
 
@@ -653,12 +673,15 @@ internal partial class ProtocolOverviewForm : Form
 		{
 			string packetsTempPath = Path.Combine(this.protocol, "packets.json.temp");
 
-			using (Stream stream = File.OpenWrite(packetsTempPath))
+			await using (Stream stream = File.OpenWrite(packetsTempPath))
 			{
-				JsonSerializer.Serialize(stream, this.schema, ProtocolGenerator.JsonSerializerOptions);
+				await JsonSerializer.SerializeAsync(stream, this.schema, ProtocolGenerator.JsonSerializerOptions).ConfigureAwait(true);
 			}
 
 			File.Move(packetsTempPath, Path.Combine(this.protocol, "packets.json"), true);
+
+			ProtocolSchemaResolver resolver = new(reformat: true);
+			await resolver.LoadAllAsync(Path.GetDirectoryName(this.protocol)!).ConfigureAwait(true);
 
 			try
 			{
@@ -666,7 +689,7 @@ internal partial class ProtocolOverviewForm : Form
 
 				Assembly protocolAssembly = metadataLoadContext.LoadFromAssemblyPath("Skylight.Protocol.dll");
 
-				ProtocolGenerator.Run(this.protocol, this.schema, protocolAssembly);
+				ProtocolGenerator.Run(this.protocol, resolver.GetSchema(Path.GetFileName(this.protocol)["Skylight.Protocol.".Length..]), protocolAssembly);
 			}
 			catch (Exception exception)
 			{
@@ -678,7 +701,7 @@ internal partial class ProtocolOverviewForm : Form
 
 						Assembly protocolAssembly = metadataLoadContext.LoadFromAssemblyPath(builtAssembly);
 
-						ProtocolGenerator.Run(this.protocol, this.schema, protocolAssembly);
+						ProtocolGenerator.Run(this.protocol, resolver.GetSchema(Path.GetFileName(this.protocol)["Skylight.Protocol.".Length..]), protocolAssembly);
 					}
 					else
 					{

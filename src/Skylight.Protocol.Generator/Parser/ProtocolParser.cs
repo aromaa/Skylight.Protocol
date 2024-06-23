@@ -106,7 +106,7 @@ internal static class ProtocolParser
 
 	private static PacketStructure Parse(ref Context context, string name, PacketSchema packet, Type packetType)
 	{
-		ImmutableArray<MappingStructure>.Builder mappings = ImmutableArray.CreateBuilder<MappingStructure>(packet.Structure.Count);
+		ImmutableArray<MappingStructure>.Builder mappings = ImmutableArray.CreateBuilder<MappingStructure>(packet.Structure!.Count);
 
 		Dictionary<string, MappingStructure> fields = [];
 
@@ -147,7 +147,7 @@ internal static class ProtocolParser
 			}
 		}
 
-		return new PacketStructure(name, packet.Id, packetType, mappings.MoveToImmutable(), fields);
+		return new PacketStructure(name, packet.Id!.Value, packetType, mappings.MoveToImmutable(), fields);
 	}
 
 	private readonly ref struct Context()

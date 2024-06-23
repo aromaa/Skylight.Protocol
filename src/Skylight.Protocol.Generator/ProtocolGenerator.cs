@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Skylight.Protocol.Generator.Parser;
 using Skylight.Protocol.Generator.Schema;
 using Skylight.Protocol.Generator.Structure;
@@ -14,32 +15,9 @@ public static class ProtocolGenerator
 	public static JsonSerializerOptions JsonSerializerOptions { get; set; } = new()
 	{
 		Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-		WriteIndented = true
+		WriteIndented = true,
+		DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
 	};
-
-	public static async Task Run(string directory, Assembly protocolAssembly)
-	{
-		Console.WriteLine($"Working on: {directory}");
-
-		string packetsPath = Path.Combine(directory, "packets.json");
-
-		ProtocolSchema schema;
-		await using (Stream stream = File.OpenRead(packetsPath))
-		{
-			schema = await JsonSerializer.DeserializeAsync<ProtocolSchema>(stream).ConfigureAwait(false) ?? throw new FileNotFoundException(packetsPath);
-		}
-
-		string packetsTempPath = Path.Combine(directory, "packets.json.temp");
-
-		await using (Stream stream = File.OpenWrite(packetsTempPath))
-		{
-			await JsonSerializer.SerializeAsync(stream, schema, ProtocolGenerator.JsonSerializerOptions).ConfigureAwait(false);
-		}
-
-		File.Move(packetsTempPath, packetsPath, true);
-
-		ProtocolGenerator.Run(directory, schema, protocolAssembly);
-	}
 
 	public static void Run(string directory, ProtocolSchema schema, Assembly protocolAssembly)
 	{

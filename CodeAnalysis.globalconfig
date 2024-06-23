@@ -123,6 +123,9 @@ dotnet_diagnostic.VSTHRD002.severity = none
 # VSTHRD011: Call async methods when in an async method
 dotnet_diagnostic.VSTHRD011.severity = none
 
+# VSTHRD100: Avoid "async void" methods, because any exceptions not handled by the method will crash the process
+dotnet_diagnostic.VSTHRD100.severity = none
+
 # VSTHRD103: Use AsyncLazy<T>
 dotnet_diagnostic.VSTHRD103.severity = none
 

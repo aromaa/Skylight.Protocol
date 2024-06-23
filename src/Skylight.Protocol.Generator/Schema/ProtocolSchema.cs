@@ -6,6 +6,7 @@ public sealed class ProtocolSchema
 {
 	public required string Revision { get; set; }
 
+	public string? Inherit { get; set; }
 	public required string Protocol { get; set; }
 
 	public required SortedDictionary<string, PacketSchema> Incoming { get; set; }

@@ -5,11 +5,13 @@ namespace Skylight.Protocol.Generator.Schema;
 
 public sealed class PacketSchema
 {
-	public uint Id { get; set; }
+	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+	public bool Removed { get; set; }
 
-	public required List<AbstractMappingSchema> Structure { get; set; }
+	public uint? Id { get; set; }
 
-	[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+	public List<AbstractMappingSchema>? Structure { get; set; }
+
 	public ImportMetadataSchema? ImportMetadata { get; set; }
 
 	public sealed class ImportMetadataSchema
