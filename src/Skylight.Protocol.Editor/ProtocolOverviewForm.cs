@@ -185,12 +185,20 @@ internal partial class ProtocolOverviewForm : Form
 
 		this.unregisterListeners.Clear();
 
-		EventHandler eventHandler = (_, _) => packet.Id = (uint)this.packetId.Value;
+		EventHandler eventHandler = (_, _) =>
+		{
+			packet.Id = (uint)this.packetId.Value;
+			packet.ImportMetadata = null;
+
+			this.packetIdImportedFrom.Text = string.Empty;
+		};
 
 		this.unregisterListeners.Add(() => this.packetId.ValueChanged -= eventHandler);
 
 		this.packetId.Value = packet.Id;
 		this.packetId.ValueChanged += eventHandler;
+
+		this.packetIdImportedFrom.Text = packet.ImportMetadata?.Id ?? string.Empty;
 
 		int groupIdentifier = name.LastIndexOf('.');
 
@@ -950,6 +958,67 @@ internal partial class ProtocolOverviewForm : Form
 			this.schema.Interfaces.Remove(this.interfacesList.SelectedItems[0].Text);
 
 			this.interfacesList.Items.Remove(this.interfacesList.SelectedItems[0]);
+		}
+	}
+
+	private void SulekDevImport(object sender, EventArgs e)
+	{
+		DialogResult result = this.openSulekData.ShowDialog();
+		if (result == DialogResult.OK)
+		{
+			using FileStream fileStream = File.OpenRead(this.openSulekData.FileName);
+
+			SulekData data = JsonSerializer.Deserialize<SulekData>(fileStream)!;
+
+			Dictionary<string, SulekData.PacketData> incoming = [];
+			foreach (SulekData.PacketData incomingPacket in data.Messages.Incoming)
+			{
+				incoming.Add(incomingPacket.Name, incomingPacket);
+			}
+
+			Dictionary<string, SulekData.PacketData> outgoing = [];
+			foreach (SulekData.PacketData outgoingPacket in data.Messages.Outgoing)
+			{
+				outgoing.Add(outgoingPacket.Name, outgoingPacket);
+			}
+
+			using MetadataLoadContext metadataLoadContext = new(new PathAssemblyResolver(Directory.GetFiles(RuntimeEnvironment.GetRuntimeDirectory(), "*.dll").Concat(Directory.GetFiles(Environment.CurrentDirectory, "*.dll"))));
+
+			Assembly protocolAssembly = metadataLoadContext.LoadFromAssemblyPath("Skylight.Protocol.dll");
+
+			foreach (Type type in protocolAssembly.GetTypes())
+			{
+				if (type.GetInterface("Skylight.Protocol.Packets.Incoming.IGameIncomingPacket") is not null)
+				{
+					string name = type.Name[1..^"IncomingPacket".Length];
+					if (outgoing.TryGetValue($"{name}MessageComposer", out SulekData.PacketData? outgoingPacket))
+					{
+						string group = type.Namespace!["Skylight.Protocol.Packets.Incoming.".Length..];
+
+						if (this.schema.Incoming.TryGetValue($"{group}.{name}", out PacketSchema? schema))
+						{
+							schema.Id = outgoingPacket.Id;
+							schema.ImportMetadata ??= new PacketSchema.ImportMetadataSchema();
+							schema.ImportMetadata.Id = "https://sulek.dev";
+						}
+					}
+				}
+				else if (type.GetInterface("Skylight.Protocol.Packets.Outgoing.IGameOutgoingPacket") is not null)
+				{
+					string name = type.Name[..^"OutgoingPacket".Length];
+					if (incoming.TryGetValue($"{name}MessageEvent", out SulekData.PacketData? incomingPacket))
+					{
+						string group = type.Namespace!["Skylight.Protocol.Packets.Outgoing.".Length..];
+
+						if (this.schema.Outgoing.TryGetValue($"{group}.{name}", out PacketSchema? schema))
+						{
+							schema.Id = incomingPacket.Id;
+							schema.ImportMetadata ??= new PacketSchema.ImportMetadataSchema();
+							schema.ImportMetadata.Id = "https://sulek.dev";
+						}
+					}
+				}
+			}
 		}
 	}
 
