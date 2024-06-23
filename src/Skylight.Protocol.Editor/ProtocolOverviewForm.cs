@@ -1014,31 +1014,83 @@ internal partial class ProtocolOverviewForm : Form
 				if (type.GetInterface("Skylight.Protocol.Packets.Incoming.IGameIncomingPacket") is not null)
 				{
 					string name = type.Name[1..^"IncomingPacket".Length];
-					if (outgoing.TryGetValue($"{name}MessageComposer", out SulekData.PacketData? outgoingPacket))
+					if (Check(name))
 					{
-						string group = type.Namespace!["Skylight.Protocol.Packets.Incoming.".Length..];
+						continue;
+					}
 
-						if (this.schema.Incoming.TryGetValue($"{group}.{name}", out PacketSchema? schema))
+					foreach (CustomAttributeData attribute in type.CustomAttributes)
+					{
+						if (attribute.AttributeType.Name != "AliasesAttribute")
 						{
-							schema.Id = outgoingPacket.Id;
-							schema.ImportMetadata ??= new PacketSchema.ImportMetadataSchema();
-							schema.ImportMetadata.Id = "https://sulek.dev";
+							continue;
 						}
+
+						string alternativeName = (string)attribute.ConstructorArguments[0].Value!;
+						if (Check(alternativeName))
+						{
+							break;
+						}
+					}
+
+					bool Check(string packetName)
+					{
+						if (outgoing.TryGetValue($"{packetName}MessageComposer", out SulekData.PacketData? outgoingPacket) || outgoing.TryGetValue($"{packetName}Composer", out outgoingPacket))
+						{
+							string group = type.Namespace!["Skylight.Protocol.Packets.Incoming.".Length..];
+
+							if (this.schema.Incoming.TryGetValue($"{group}.{name}", out PacketSchema? schema))
+							{
+								schema.Id = outgoingPacket.Id;
+								schema.ImportMetadata ??= new PacketSchema.ImportMetadataSchema();
+								schema.ImportMetadata.Id = "https://sulek.dev";
+
+								return true;
+							}
+						}
+
+						return false;
 					}
 				}
 				else if (type.GetInterface("Skylight.Protocol.Packets.Outgoing.IGameOutgoingPacket") is not null)
 				{
 					string name = type.Name[..^"OutgoingPacket".Length];
-					if (incoming.TryGetValue($"{name}MessageEvent", out SulekData.PacketData? incomingPacket))
+					if (Check(name))
 					{
-						string group = type.Namespace!["Skylight.Protocol.Packets.Outgoing.".Length..];
+						continue;
+					}
 
-						if (this.schema.Outgoing.TryGetValue($"{group}.{name}", out PacketSchema? schema))
+					foreach (CustomAttributeData attribute in type.CustomAttributes)
+					{
+						if (attribute.AttributeType.Name != "AliasesAttribute")
 						{
-							schema.Id = incomingPacket.Id;
-							schema.ImportMetadata ??= new PacketSchema.ImportMetadataSchema();
-							schema.ImportMetadata.Id = "https://sulek.dev";
+							continue;
 						}
+
+						string alternativeName = (string)attribute.ConstructorArguments[0].Value!;
+						if (Check(alternativeName))
+						{
+							break;
+						}
+					}
+
+					bool Check(string packetName)
+					{
+						if (incoming.TryGetValue($"{packetName}MessageEvent", out SulekData.PacketData? incomingPacket) || incoming.TryGetValue($"{packetName}Event", out incomingPacket))
+						{
+							string group = type.Namespace!["Skylight.Protocol.Packets.Outgoing.".Length..];
+
+							if (this.schema.Outgoing.TryGetValue($"{group}.{name}", out PacketSchema? schema))
+							{
+								schema.Id = incomingPacket.Id;
+								schema.ImportMetadata ??= new PacketSchema.ImportMetadataSchema();
+								schema.ImportMetadata.Id = "https://sulek.dev";
+
+								return true;
+							}
+						}
+
+						return false;
 					}
 				}
 			}

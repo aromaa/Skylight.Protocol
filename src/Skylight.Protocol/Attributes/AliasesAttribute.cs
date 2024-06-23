@@ -4,9 +4,9 @@
 internal sealed class AliasesAttribute : Attribute
 {
 	internal string Alias { get; }
-	internal string Revision { get; }
+	internal string? Revision { get; }
 
-	internal AliasesAttribute(string alias, string revision)
+	internal AliasesAttribute(string alias, string? revision = null)
 	{
 		this.Alias = alias;
 		this.Revision = revision;
