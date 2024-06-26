@@ -605,7 +605,8 @@
         {
           "Mapping": "Field",
           "Type": "int",
-          "Name": "Unused"
+          "Name": "Unused",
+          "Comment": "Always sent as -1 in the Flash client. This is most likely leftover from the transition to the Flash client. Teleporters worked differently in the Shockwave client where entering a room trough teleports used a special packet GOVIADOOR which carried over the teleported id."
         }
       ]
     },
