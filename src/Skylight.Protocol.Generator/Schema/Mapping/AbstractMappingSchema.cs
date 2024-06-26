@@ -9,4 +9,5 @@ namespace Skylight.Protocol.Generator.Schema.Mapping;
 [JsonDerivedType(typeof(CombineMappingSchema), "Combine")]
 public abstract class AbstractMappingSchema
 {
+	public string? Comment { get; set; }
 }

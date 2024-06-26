@@ -279,6 +279,20 @@ internal partial class ProtocolOverviewForm : Form
 				return typeMapping;
 			}
 
+			static TextBox CommentInput(AbstractMappingSchema mapping)
+			{
+				TextBox commentTextBox = new()
+				{
+					Width = 200,
+					Text = mapping.Comment,
+					PlaceholderText = "Add comment.."
+				};
+
+				commentTextBox.TextChanged += (_, _) => mapping.Comment = string.IsNullOrWhiteSpace(commentTextBox.Text) ? null : commentTextBox.Text;
+
+				return commentTextBox;
+			}
+
 			Control control;
 			if (structure is FieldMappingSchema fieldMapping)
 			{
@@ -313,7 +327,7 @@ internal partial class ProtocolOverviewForm : Form
 					Height = 40
 				};
 
-				control.Controls.AddRange([nameMapping, CreateTypeMapping(fieldMapping.Type, text => fieldMapping.Type = text)]);
+				control.Controls.AddRange([nameMapping, CreateTypeMapping(fieldMapping.Type, text => fieldMapping.Type = text), CommentInput(fieldMapping)]);
 			}
 			else if (structure is ConstantMappingSchema constantMapping)
 			{
@@ -331,7 +345,7 @@ internal partial class ProtocolOverviewForm : Form
 					Height = 40
 				};
 
-				control.Controls.AddRange([CreateTypeMapping(constantMapping.Type, text => constantMapping.Type = text), valueMapping]);
+				control.Controls.AddRange([CreateTypeMapping(constantMapping.Type, text => constantMapping.Type = text), valueMapping, CommentInput(constantMapping)]);
 			}
 			else if (structure is ConditionalMappingSchema conditionalMapping)
 			{
@@ -356,7 +370,7 @@ internal partial class ProtocolOverviewForm : Form
 				};
 
 				conditionalLayout.SuspendLayout();
-				conditionalLayout.Controls.AddRange([conditionalLabel, conditionalTextBox]);
+				conditionalLayout.Controls.AddRange([conditionalLabel, conditionalTextBox, CommentInput(conditionalMapping)]);
 
 				this.VisualizePacketData(conditionalLayout,
 				[
@@ -390,7 +404,7 @@ internal partial class ProtocolOverviewForm : Form
 				};
 
 				conditionalLayout.SuspendLayout();
-				conditionalLayout.Controls.AddRange([combineLabel, CreateTypeMapping(combineMapping.Type, text => combineMapping.Type = text)]);
+				conditionalLayout.Controls.AddRange([combineLabel, CreateTypeMapping(combineMapping.Type, text => combineMapping.Type = text), CommentInput(combineMapping)]);
 
 				this.VisualizePacketData(conditionalLayout, combineMapping.Fields, null, false);
 
