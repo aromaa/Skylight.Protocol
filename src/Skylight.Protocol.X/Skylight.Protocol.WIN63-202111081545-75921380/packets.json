@@ -6,6 +6,30 @@
       "Id": 349,
       "Structure": []
     },
+    "Avatar.GetWardrobe": {
+      "Id": 1098,
+      "Structure": []
+    },
+    "Avatar.SaveWardrobeOutfit": {
+      "Id": 3198,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "SlotId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Figure"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Gender"
+        }
+      ]
+    },
     "Badges.GetBadgePointLimits": {
       "Id": 2261,
       "Structure": []
@@ -343,6 +367,21 @@
     "Purse.GetCreditsInfo": {
       "Id": 1958,
       "Structure": []
+    },
+    "Register.UpdateFigureData": {
+      "Id": 3225,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Gender"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Figure"
+        }
+      ]
     },
     "Room.Avatar.ChangeMotto": {
       "Id": 2994,
@@ -801,6 +840,22 @@
           "Mapping": "Field",
           "Type": "bool",
           "Name": "IsAuthentic"
+        }
+      ]
+    },
+    "Avatar.Wardrobe": {
+      "Id": 5,
+      "Structure": [
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0",
+          "Comment": "Client calls this 'State', unused since the introduction of wardrobe. Maybe related to whatever to auto open the side menu?"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<WardrobeSlot>",
+          "Name": "Wardrobe"
         }
       ]
     },
@@ -3641,6 +3696,23 @@
             "Value": "\" l\""
           }
         ]
+      }
+    ],
+    "WardrobeSlot": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "SlotId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Figure"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Gender"
       }
     ]
   },
