@@ -152,6 +152,10 @@
       "Id": 1207,
       "Structure": []
     },
+    "Handshake.Pong": {
+      "Id": 182,
+      "Structure": []
+    },
     "Handshake.SSOTicket": {
       "Id": 2616,
       "Structure": [
@@ -1048,6 +1052,10 @@
           "Name": "NoobnessLevel"
         }
       ]
+    },
+    "Handshake.Ping": {
+      "Id": 2841,
+      "Structure": []
     },
     "Handshake.UniqueMachineID": {
       "Id": 1601,
