@@ -384,6 +384,7 @@ partial class ProtocolOverviewForm
 		// 
 		this.packetId.Location = new Point(71, 6);
 		this.packetId.Maximum = new decimal(new int[] { 65535, 0, 0, 0 });
+		this.packetId.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
 		this.packetId.Name = "packetId";
 		this.packetId.Size = new Size(120, 23);
 		this.packetId.TabIndex = 0;

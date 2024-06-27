@@ -187,7 +187,7 @@ internal partial class ProtocolOverviewForm : Form
 
 		EventHandler eventHandler = (_, _) =>
 		{
-			packet.Id = (uint)this.packetId.Value;
+			packet.Id = this.packetId.Value <= 0 ? null : (uint)this.packetId.Value;
 			packet.ImportMetadata = null;
 
 			this.packetIdImportedFrom.Text = string.Empty;
@@ -195,7 +195,7 @@ internal partial class ProtocolOverviewForm : Form
 
 		this.unregisterListeners.Add(() => this.packetId.ValueChanged -= eventHandler);
 
-		this.packetId.Value = packet.Id!.Value;
+		this.packetId.Value = packet.Id.HasValue ? (int)packet.Id : -1;
 		this.packetId.ValueChanged += eventHandler;
 
 		this.packetIdImportedFrom.Text = packet.ImportMetadata?.Id ?? string.Empty;
