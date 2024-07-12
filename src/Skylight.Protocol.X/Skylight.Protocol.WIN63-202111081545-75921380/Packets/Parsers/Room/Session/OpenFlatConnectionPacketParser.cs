@@ -23,7 +23,6 @@ internal sealed class OpenFlatConnectionPacketParser : IIncomingPacketParser<Ope
 
 	internal readonly struct OpenFlatConnectionIncomingPacket : IOpenFlatConnectionIncomingPacket
 	{
-		public bool IsPublicRoom => default;
 		public int RoomId { get; init; }
 		public ReadOnlySequence<byte> Password { get; init; }
 		public int Unused { get; init; }
