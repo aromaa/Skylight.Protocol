@@ -159,18 +159,23 @@
         }
       ]
     },
-    "Room.Session.OpenFlatConnection": {
+    "Room.Session.OpenConnection": {
       "Id": 2,
       "Structure": [
         {
           "Mapping": "Field",
-          "Type": "bool",
-          "Name": "IsPublicRoom"
+          "Type": "int",
+          "Name": "InstanceType"
         },
         {
           "Mapping": "Field",
           "Type": "int",
-          "Name": "RoomId"
+          "Name": "InstanceId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WorldId"
         }
       ]
     },
@@ -427,94 +432,9 @@
           "Name": "NodeMask"
         },
         {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "3"
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "0"
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "string",
-          "Value": "\"Publics\""
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "0"
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "1000"
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "0"
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "4"
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "1"
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "string",
-          "Value": "\"Test Name\""
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "0"
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "10"
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "3"
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "string",
-          "Value": "\"Desc\""
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "4"
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "0"
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "string",
-          "Value": "\"hh_room_terrace,hh_paalu,hh_people_pool,hh_people_paalu\""
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "0"
-        },
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "1"
+          "Mapping": "Field",
+          "Type": "BufferedList<INavigatorNode>",
+          "Name": "Nodes"
         }
       ]
     },
@@ -918,6 +838,104 @@
         "Value": "\"Description\""
       }
     ],
+    "NavigatorCategoryNodeData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0",
+        "Comment": "Node type"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Caption"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "UserCount"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "UsersMax"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "ParentId"
+      }
+    ],
+    "NavigatorPublicRoomNode": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "1",
+        "Comment": "Node type"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Caption"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "UserCount"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "UsersMax"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "ParentId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "InstanceId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "WorldId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Casts"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0",
+        "Comment": "Users in queue"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0",
+        "Comment": "Visible"
+      }
+    ],
     "ObjectData": [
       {
         "Mapping": "Field",
@@ -1191,6 +1209,10 @@
       "Skylight.Protocol.Packets.Data.Room.Object.Data.EmptyItemData": "EmptyItemData",
       "Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItInventoryData": "PostItInventoryData",
       "Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItRoomData": "PostItRoomData"
+    },
+    "INavigatorNode": {
+      "Skylight.Protocol.Packets.Data.Navigator.NavigatorCategoryNodeData": "NavigatorCategoryNodeData",
+      "Skylight.Protocol.Packets.Data.Navigator.NavigatorPublicRoomNode": "NavigatorPublicRoomNode"
     }
   }
 }

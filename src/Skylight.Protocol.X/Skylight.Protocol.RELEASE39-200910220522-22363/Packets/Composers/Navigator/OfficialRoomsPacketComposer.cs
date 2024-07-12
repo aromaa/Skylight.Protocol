@@ -14,23 +14,36 @@ internal sealed class OfficialRoomsPacketComposer : IOutgoingPacketComposer<Offi
 	public void Compose(ref PacketWriter writer, in OfficialRoomsOutgoingPacket packet)
 	{
 		writer.WriteVL64Int32(packet.NodeMask);
-		writer.WriteVL64Int32(3);
-		writer.WriteVL64Int32(0);
-		writer.WriteDelimiter2BrokenString("Publics");
-		writer.WriteVL64Int32(0);
-		writer.WriteVL64Int32(1000);
-		writer.WriteVL64Int32(0);
-		writer.WriteVL64Int32(4);
-		writer.WriteVL64Int32(1);
-		writer.WriteDelimiter2BrokenString("Test Name");
-		writer.WriteVL64Int32(0);
-		writer.WriteVL64Int32(10);
-		writer.WriteVL64Int32(3);
-		writer.WriteDelimiter2BrokenString("Desc");
-		writer.WriteVL64Int32(4);
-		writer.WriteVL64Int32(0);
-		writer.WriteDelimiter2BrokenString("hh_room_terrace,hh_paalu,hh_people_pool,hh_people_paalu");
-		writer.WriteVL64Int32(0);
-		writer.WriteVL64Int32(1);
+		foreach (var nodes in packet.Nodes)
+		{
+			if (nodes is Skylight.Protocol.Packets.Data.Navigator.NavigatorCategoryNodeData navigatorCategoryNodeData)
+			{
+				writer.WriteVL64Int32(navigatorCategoryNodeData.Id);
+				writer.WriteVL64Int32(0);
+				writer.WriteDelimiter2BrokenString(navigatorCategoryNodeData.Caption);
+				writer.WriteVL64Int32(navigatorCategoryNodeData.UserCount);
+				writer.WriteVL64Int32(navigatorCategoryNodeData.UsersMax);
+				writer.WriteVL64Int32(navigatorCategoryNodeData.ParentId);
+			}
+			else if (nodes is Skylight.Protocol.Packets.Data.Navigator.NavigatorPublicRoomNode navigatorPublicRoomNode)
+			{
+				writer.WriteVL64Int32(navigatorPublicRoomNode.Id);
+				writer.WriteVL64Int32(1);
+				writer.WriteDelimiter2BrokenString(navigatorPublicRoomNode.Caption);
+				writer.WriteVL64Int32(navigatorPublicRoomNode.UserCount);
+				writer.WriteVL64Int32(navigatorPublicRoomNode.UsersMax);
+				writer.WriteVL64Int32(navigatorPublicRoomNode.ParentId);
+				writer.WriteDelimiter2BrokenString(navigatorPublicRoomNode.Name);
+				writer.WriteVL64Int32(navigatorPublicRoomNode.InstanceId);
+				writer.WriteVL64Int32(navigatorPublicRoomNode.WorldId);
+				writer.WriteDelimiter2BrokenString(navigatorPublicRoomNode.Casts);
+				writer.WriteVL64Int32(0);
+				writer.WriteVL64Int32(0);
+			}
+			else
+			{
+				throw new NotSupportedException();
+			}
+		}
 	}
 }

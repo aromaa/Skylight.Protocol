@@ -74,7 +74,7 @@ internal sealed class GenericTypeMappingWriteHandler : MappingWriterHandler
 
 			string name = $"{char.ToLowerInvariant(context.Name[variableIndex + 1])}{context.Name.Substring(variableIndex + 2)}";
 
-			bool recursive = genericMapping.GenericArgument is ObjectMappingSyntax objectMapping && protocol.Structures[objectMapping.Name].Recursive;
+			bool recursive = genericMapping.GenericArgument is ObjectMappingSyntax objectMapping && protocol.Structures.TryGetValue(objectMapping.Name, out ObjectStructure? structure) && structure.Recursive;
 			if (recursive)
 			{
 				writer.WriteLine($"Write(ref writer, {context.Name});");
