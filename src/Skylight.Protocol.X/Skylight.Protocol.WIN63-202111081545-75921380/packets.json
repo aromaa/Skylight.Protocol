@@ -72,6 +72,16 @@
       "Id": 3050,
       "Structure": []
     },
+    "Catalog.GetProductOffer": {
+      "Id": 268,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "OfferId"
+        }
+      ]
+    },
     "Catalog.PurchaseFromCatalog": {
       "Id": 2245,
       "Structure": [
@@ -941,6 +951,16 @@
           "Mapping": "Field",
           "Type": "List<FrontPageItem>",
           "Name": "FrontPageItems"
+        }
+      ]
+    },
+    "Catalog.ProductOffer": {
+      "Id": 2783,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "OfferData",
+          "Name": "Offer"
         }
       ]
     },
