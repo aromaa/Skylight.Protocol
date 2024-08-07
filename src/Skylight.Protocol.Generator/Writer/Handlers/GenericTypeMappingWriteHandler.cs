@@ -88,7 +88,18 @@ internal sealed class GenericTypeMappingWriteHandler : MappingWriterHandler
 			{
 				using (context.PushScope($"{(recursive ? $"{name}s" : context.Name)}.Count", true))
 				{
-					context.Write(protocol, writer, new TypeMappingSyntax(typeof(int)), typeof(int));
+					if (genericMapping.ExtraData is null or "int")
+					{
+						context.Write(protocol, writer, new TypeMappingSyntax(typeof(int)), typeof(int));
+					}
+					else if (genericMapping.ExtraData is "byte")
+					{
+						context.Write(protocol, writer, new TypeMappingSyntax(typeof(byte)), typeof(int));
+					}
+					else
+					{
+						throw new NotSupportedException();
+					}
 				}
 			}
 

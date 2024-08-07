@@ -48,6 +48,8 @@ internal static class MappingParser
 				return new TypeMappingSyntax(typeof(int).FromAssembly(assembly), name);
 			case "short":
 				return new TypeMappingSyntax(typeof(short).FromAssembly(assembly), name);
+			case "byte":
+				return new TypeMappingSyntax(typeof(byte).FromAssembly(assembly), name);
 			case "bool":
 				return new TypeMappingSyntax(typeof(bool).FromAssembly(assembly), name);
 			case "List":
@@ -64,7 +66,7 @@ internal static class MappingParser
 
 			if (MappingParser.ParseType(genericType, assembly) is TypeMappingSyntax typeMapping)
 			{
-				return new GenericTypeMappingSyntax(typeMapping.Type, MappingParser.ParseType(genericArgument, assembly));
+				return new GenericTypeMappingSyntax(typeMapping.Type, MappingParser.ParseType(genericArgument, assembly), splitCount == 2 ? type[ranges[1]] : null);
 			}
 		}
 

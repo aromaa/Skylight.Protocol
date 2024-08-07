@@ -13,6 +13,6 @@ internal sealed class HeightMapPacketComposer : IOutgoingPacketComposer<HeightMa
 {
 	public void Compose(ref PacketWriter writer, in HeightMapOutgoingPacket packet)
 	{
-		writer.WriteFixedUInt16String(string.Join('\r', packet.HeightMap.Select(i => (byte)('0' + i)).Chunk((int)packet.Width).Select(c => System.Text.Encoding.UTF8.GetString(c))));
+		writer.WriteFixedUInt16String(packet.HeightMap.ToString());
 	}
 }

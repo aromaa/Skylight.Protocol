@@ -105,6 +105,25 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 					: $"writer.WriteVL64Int32({context.Name});");
 			}
 		}
+		else if (typeMapping.Type == typeof(byte).FromAssembly(typeMapping.Type))
+		{
+			if (type == typeof(byte).FromAssembly(type))
+			{
+				writer.WriteLine(protocol.Protocol is "Modern"
+					? $"writer.WriteByte({context.Name});"
+					: throw new NotSupportedException());
+			}
+			else if (type == typeof(int).FromAssembly(type))
+			{
+				writer.WriteLine(protocol.Protocol is "Modern"
+					? $"writer.WriteByte((byte){context.Name});"
+					: throw new NotSupportedException());
+			}
+			else
+			{
+				throw new NotSupportedException();
+			}
+		}
 		else if (typeMapping.Type == typeof(string).FromAssembly(typeMapping.Type))
 		{
 			if (type == typeof(ICollection<short>).FromAssembly(type))

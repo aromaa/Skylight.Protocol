@@ -4,8 +4,8 @@ internal sealed class GenericTypeMappingSyntax : TypeMappingSyntax
 {
 	internal AbstractMappingSyntax GenericArgument { get; }
 
-	internal GenericTypeMappingSyntax(Type type, AbstractMappingSyntax genericArgument)
-		: base(type)
+	internal GenericTypeMappingSyntax(Type type, AbstractMappingSyntax genericArgument, string? extraData = null)
+		: base(type, extraData: extraData)
 	{
 		this.GenericArgument = genericArgument;
 	}

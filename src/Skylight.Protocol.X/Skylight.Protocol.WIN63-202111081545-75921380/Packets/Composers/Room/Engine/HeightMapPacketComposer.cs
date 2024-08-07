@@ -17,7 +17,7 @@ internal sealed class HeightMapPacketComposer : IOutgoingPacketComposer<HeightMa
 		writer.WriteInt32(packet.HeightMap.Count);
 		foreach (var heightMap in packet.HeightMap)
 		{
-			writer.WriteInt16(heightMap);
+			writer.WriteInt16((short)heightMap.ModernFormat);
 		}
 	}
 }

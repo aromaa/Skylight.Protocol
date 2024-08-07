@@ -1861,8 +1861,18 @@
         },
         {
           "Mapping": "Field",
-          "Type": "List<short>",
+          "Type": "List<TileHeightMap>",
           "Name": "HeightMap"
+        }
+      ]
+    },
+    "Room.Engine.HeightMapUpdate": {
+      "Id": 2337,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<HeightMapUpdate>:byte",
+          "Name": "Updates"
         }
       ]
     },
@@ -2944,6 +2954,23 @@
         "Value": "8"
       }
     ],
+    "HeightMapUpdate": [
+      {
+        "Mapping": "Field",
+        "Type": "byte",
+        "Name": "X"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "byte",
+        "Name": "Y"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "TileHeightMap",
+        "Name": "Data"
+      }
+    ],
     "ItemData": [
       {
         "Mapping": "Field",
@@ -3525,6 +3552,13 @@
         "Mapping": "Field",
         "Type": "string",
         "Name": "ExtraData"
+      }
+    ],
+    "TileHeightMap": [
+      {
+        "Mapping": "Field",
+        "Type": "short",
+        "Name": "ModernFormat"
       }
     ],
     "TopLevelContext": [
