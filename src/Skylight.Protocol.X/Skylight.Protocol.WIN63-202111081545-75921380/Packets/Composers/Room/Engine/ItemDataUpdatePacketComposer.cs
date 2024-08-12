@@ -14,19 +14,13 @@ internal sealed class ItemDataUpdatePacketComposer : IOutgoingPacketComposer<Ite
 	public void Compose(ref PacketWriter writer, in ItemDataUpdateOutgoingPacket packet)
 	{
 		writer.WriteFixedUInt16String(packet.ItemId.ToString());
-		if (packet.ItemData is Skylight.Protocol.Packets.Data.Room.Object.Data.EmptyItemData emptyItemData)
+		if (packet.ItemData is Skylight.Protocol.Packets.Data.Room.Object.Data.EmptyItemData emptyWallItemData)
 		{
-			writer.WriteInt32(4);
+			writer.WriteFixedUInt16String("");
 		}
-		else if (packet.ItemData is Skylight.Protocol.Packets.Data.Room.Object.Data.LegacyItemData legacyItemData)
+		else if (packet.ItemData is Skylight.Protocol.Packets.Data.Room.Object.Data.LegacyItemData legacyWallItemData)
 		{
-			writer.WriteInt32(0);
-			writer.WriteFixedUInt16String(legacyItemData.Data);
-		}
-		else if (packet.ItemData is Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItInventoryData postItInventoryData)
-		{
-			writer.WriteInt32(0);
-			writer.WriteFixedUInt16String(postItInventoryData.Count.ToString());
+			writer.WriteFixedUInt16String(legacyWallItemData.Data);
 		}
 		else if (packet.ItemData is Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItRoomData postItRoomData)
 		{

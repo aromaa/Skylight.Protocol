@@ -45,10 +45,6 @@ internal sealed class FurniListAddOrUpdatePacketComposer : IOutgoingPacketCompos
 				writer.WriteInt32(0);
 				writer.WriteFixedUInt16String(postItInventoryData.Count.ToString());
 			}
-			else if (furni.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItRoomData postItRoomData)
-			{
-				writer.WriteFixedUInt16String($"{postItRoomData.Color.ToArgb():X6}{" "}{postItRoomData.Text}".ToString());
-			}
 			else
 			{
 				throw new NotSupportedException();

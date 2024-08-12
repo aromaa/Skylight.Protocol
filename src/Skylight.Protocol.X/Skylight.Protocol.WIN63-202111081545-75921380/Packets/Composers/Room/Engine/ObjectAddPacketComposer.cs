@@ -30,15 +30,6 @@ internal sealed class ObjectAddPacketComposer : IOutgoingPacketComposer<ObjectAd
 			writer.WriteInt32(0);
 			writer.WriteFixedUInt16String(legacyItemData.Data);
 		}
-		else if (packet.Object.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItInventoryData postItInventoryData)
-		{
-			writer.WriteInt32(0);
-			writer.WriteFixedUInt16String(postItInventoryData.Count.ToString());
-		}
-		else if (packet.Object.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItRoomData postItRoomData)
-		{
-			writer.WriteFixedUInt16String($"{postItRoomData.Color.ToArgb():X6}{" "}{postItRoomData.Text}".ToString());
-		}
 		else
 		{
 			throw new NotSupportedException();

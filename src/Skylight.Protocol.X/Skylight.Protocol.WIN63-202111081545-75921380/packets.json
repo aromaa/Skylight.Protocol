@@ -1921,7 +1921,7 @@
         },
         {
           "Mapping": "Field",
-          "Type": "IItemData",
+          "Type": "IWallItemData",
           "Name": "ItemData"
         }
       ]
@@ -1981,7 +1981,7 @@
         },
         {
           "Mapping": "Field",
-          "Type": "IItemData",
+          "Type": "IFloorItemData",
           "Name": "Data"
         }
       ]
@@ -2607,7 +2607,16 @@
       {
         "Mapping": "Constant",
         "Type": "int",
-        "Value": "4"
+        "Value": "4",
+        "Comment": "Type id"
+      }
+    ],
+    "EmptyWallItemData": [
+      {
+        "Mapping": "Constant",
+        "Type": "string",
+        "Value": "\"\"",
+        "Comment": "Empty string"
       }
     ],
     "EventCategory": [
@@ -2819,7 +2828,7 @@
       },
       {
         "Mapping": "Field",
-        "Type": "IItemData",
+        "Type": "IInventoryItemData",
         "Name": "ExtraData"
       },
       {
@@ -3009,7 +3018,7 @@
       },
       {
         "Mapping": "Field",
-        "Type": "IItemData",
+        "Type": "IWallItemData",
         "Name": "ExtraData"
       },
       {
@@ -3032,8 +3041,16 @@
       {
         "Mapping": "Constant",
         "Type": "int",
-        "Value": "0"
+        "Value": "0",
+        "Comment": "Type id"
       },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Data"
+      }
+    ],
+    "LegacyWallItemData": [
       {
         "Mapping": "Field",
         "Type": "string",
@@ -3159,7 +3176,7 @@
       },
       {
         "Mapping": "Field",
-        "Type": "IItemData",
+        "Type": "IFloorItemData",
         "Name": "ExtraData"
       },
       {
@@ -3273,7 +3290,8 @@
       {
         "Mapping": "Constant",
         "Type": "int",
-        "Value": "0"
+        "Value": "0",
+        "Comment": "Type id"
       },
       {
         "Mapping": "Field",
@@ -3562,18 +3580,6 @@
         "Name": "Rooms"
       }
     ],
-    "StuffData": [
-      {
-        "Mapping": "Constant",
-        "Type": "int",
-        "Value": "0"
-      },
-      {
-        "Mapping": "Field",
-        "Type": "string",
-        "Name": "ExtraData"
-      }
-    ],
     "TileHeightMap": [
       {
         "Mapping": "Field",
@@ -3631,7 +3637,7 @@
       },
       {
         "Mapping": "Field",
-        "Type": "IItemData",
+        "Type": "IInventoryItemData",
         "Name": "ExtraData"
       },
       {
@@ -3780,20 +3786,28 @@
     ]
   },
   "Interfaces": {
+    "IFloorItemData": {
+      "Skylight.Protocol.Packets.Data.Room.Object.Data.EmptyItemData": "EmptyItemData",
+      "Skylight.Protocol.Packets.Data.Room.Object.Data.LegacyItemData": "LegacyItemData"
+    },
     "IFurnitureType": {
       "Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Floor": "FurnitureTypeFloor",
       "Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Wall": "FurnitureTypeWall"
     },
-    "IItemData": {
+    "IInventoryItemData": {
       "Skylight.Protocol.Packets.Data.Room.Object.Data.EmptyItemData": "EmptyItemData",
       "Skylight.Protocol.Packets.Data.Room.Object.Data.LegacyItemData": "LegacyItemData",
-      "Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItInventoryData": "PostItInventoryData",
-      "Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItRoomData": "PostItRoomData"
+      "Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItInventoryData": "PostItInventoryData"
     },
     "IProductType": {
       "Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Badge": "ProductTypeBadge",
       "Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Floor": "ProductTypeFloor",
       "Skylight.Protocol.Packets.Data.Room.Object.FurnitureType.Wall": "ProductTypeWall"
+    },
+    "IWallItemData": {
+      "Skylight.Protocol.Packets.Data.Room.Object.Data.EmptyItemData": "EmptyWallItemData",
+      "Skylight.Protocol.Packets.Data.Room.Object.Data.LegacyItemData": "LegacyWallItemData",
+      "Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItRoomData": "PostItRoomData"
     }
   }
 }

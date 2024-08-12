@@ -16,19 +16,13 @@ internal sealed class ItemAddPacketComposer : IOutgoingPacketComposer<ItemAddOut
 		writer.WriteFixedUInt16String(packet.Item.Id.ToString());
 		writer.WriteInt32(packet.Item.FurnitureId);
 		writer.WriteFixedUInt16String($"{":w="}{packet.Item.Position.LocationX}{","}{packet.Item.Position.LocationY}{" l="}{packet.Item.Position.PositionX}{","}{packet.Item.Position.PositionY}{" l"}".ToString());
-		if (packet.Item.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.EmptyItemData emptyItemData)
+		if (packet.Item.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.EmptyItemData emptyWallItemData)
 		{
-			writer.WriteInt32(4);
+			writer.WriteFixedUInt16String("");
 		}
-		else if (packet.Item.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.LegacyItemData legacyItemData)
+		else if (packet.Item.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.LegacyItemData legacyWallItemData)
 		{
-			writer.WriteInt32(0);
-			writer.WriteFixedUInt16String(legacyItemData.Data);
-		}
-		else if (packet.Item.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItInventoryData postItInventoryData)
-		{
-			writer.WriteInt32(0);
-			writer.WriteFixedUInt16String(postItInventoryData.Count.ToString());
+			writer.WriteFixedUInt16String(legacyWallItemData.Data);
 		}
 		else if (packet.Item.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.Wall.PostItRoomData postItRoomData)
 		{
