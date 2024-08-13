@@ -129,7 +129,7 @@ internal static class PacketParserWriter
 		writer.WriteLine($"}}");
 	}
 
-	private static string GetTypeName(Type type)
+	internal static string GetTypeName(Type type)
 	{
 		if (type == typeof(uint).FromAssembly(type))
 		{
@@ -150,6 +150,10 @@ internal static class PacketParserWriter
 		else if (type == typeof(IList<int>).FromAssembly(type))
 		{
 			return "IList<int>";
+		}
+		else if (type == typeof(IList<ReadOnlySequence<byte>>).FromAssembly(type))
+		{
+			return "IList<ReadOnlySequence<byte>>";
 		}
 		else if (type.IsGenericType)
 		{

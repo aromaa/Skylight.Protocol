@@ -6,19 +6,19 @@ public sealed class RoomVisualizationSettingsOutgoingPacket : IGameOutgoingPacke
 {
 	public required bool WallsHidden { get; init; }
 
-	public required int WallThicknessMultiplier { get; init; }
 	public required int FloorThicknessMultiplier { get; init; }
+	public required int WallThicknessMultiplier { get; init; }
 
 	public RoomVisualizationSettingsOutgoingPacket()
 	{
 	}
 
 	[SetsRequiredMembers]
-	public RoomVisualizationSettingsOutgoingPacket(bool wallsHidden, int wallThicknessMultiplier, int floorThicknessMultiplier)
+	public RoomVisualizationSettingsOutgoingPacket(bool wallsHidden, int floorThicknessMultiplier, int wallThicknessMultiplier)
 	{
 		this.WallsHidden = wallsHidden;
 
-		this.WallThicknessMultiplier = wallThicknessMultiplier;
 		this.FloorThicknessMultiplier = floorThicknessMultiplier;
+		this.WallThicknessMultiplier = wallThicknessMultiplier;
 	}
 }

@@ -624,6 +624,141 @@
         }
       ]
     },
+    "RoomSettings.GetRoomSettings": {
+      "Id": 2467,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        }
+      ]
+    },
+    "RoomSettings.SaveRoomSettings": {
+      "Id": 3595,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Name"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Description"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "EntryMode"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Password"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "UsersMax"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "CategoryId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<string>",
+          "Name": "Tags"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TradeMode"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "AllowPets"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "AllowPetsToEat"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "WalkThrough"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "HideWalls"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WallThickness"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "FloorThickness"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WhoCanMute"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WhoCanKick"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WhoCanBan"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ChatMode"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ChatBubbleSize"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ChatScrollSpeed"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ChatHearRange"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ChatFloodSensitivity"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "AllowNavigatorListing"
+        }
+      ]
+    },
     "Sound.GetSoundSettings": {
       "Id": 1713,
       "Structure": []
@@ -1511,6 +1646,16 @@
         }
       ]
     },
+    "Navigator.RoomInfoUpdated": {
+      "Id": 1724,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        }
+      ]
+    },
     "Navigator.UserEventCats": {
       "Id": 2083,
       "Structure": [
@@ -2197,6 +2342,111 @@
     },
     "RoomSettings.NoSuchFlat": {
       "Id": 1363,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        }
+      ]
+    },
+    "RoomSettings.RoomSettingsData": {
+      "Id": 586,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Name"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Description"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "EntryMode"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "CategoryId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "UsersMax"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "UsersMaxLimit"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "List<string>",
+          "Name": "Tags"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TradeMode"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "AllowPets"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "AllowPetsToEat"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WalkThrough"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "HideWalls"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WallThickness"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "FloorThickness"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "RoomChatSettings",
+          "Name": "RoomChatSettings"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "bool",
+          "Name": "AllowNavigatorListing"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "RoomModerationSettings",
+          "Name": "RoomModerationSettings"
+        }
+      ]
+    },
+    "RoomSettings.RoomSettingsSaved": {
+      "Id": 3638,
       "Structure": [
         {
           "Mapping": "Field",
@@ -2923,9 +3173,9 @@
         "Name": "Name"
       },
       {
-        "Mapping": "Constant",
+        "Mapping": "Field",
         "Type": "int",
-        "Value": "1"
+        "Name": "OwnerId"
       },
       {
         "Mapping": "Field",
@@ -2933,9 +3183,9 @@
         "Name": "OwnerName"
       },
       {
-        "Mapping": "Constant",
+        "Mapping": "Field",
         "Type": "int",
-        "Value": "0"
+        "Name": "EntryMode"
       },
       {
         "Mapping": "Field",
@@ -2943,44 +3193,45 @@
         "Name": "UserCount"
       },
       {
-        "Mapping": "Constant",
+        "Mapping": "Field",
         "Type": "int",
-        "Value": "10"
+        "Name": "UsersMax"
       },
       {
-        "Mapping": "Constant",
+        "Mapping": "Field",
         "Type": "string",
-        "Value": "\"Description\""
+        "Name": "Description"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "TradeMode"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Score"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Ranking"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "CategoryId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "List<string>",
+        "Name": "Tags"
       },
       {
         "Mapping": "Constant",
         "Type": "int",
-        "Value": "0"
-      },
-      {
-        "Mapping": "Constant",
-        "Type": "int",
-        "Value": "13"
-      },
-      {
-        "Mapping": "Constant",
-        "Type": "int",
-        "Value": "2"
-      },
-      {
-        "Mapping": "Constant",
-        "Type": "int",
-        "Value": "1"
-      },
-      {
-        "Mapping": "Constant",
-        "Type": "int",
-        "Value": "0"
-      },
-      {
-        "Mapping": "Constant",
-        "Type": "int",
-        "Value": "8"
+        "Value": "0",
+        "Comment": "Flags"
       }
     ],
     "HeightMapUpdate": [
@@ -3414,7 +3665,7 @@
       {
         "Mapping": "Field",
         "Type": "int",
-        "Name": "FullHearRange"
+        "Name": "HearRange"
       },
       {
         "Mapping": "Field",

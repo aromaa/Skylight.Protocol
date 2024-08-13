@@ -40,10 +40,10 @@ internal sealed class GenericTypeMappingWriteHandler : MappingWriterHandler
 			string name = $"{context.Name.Substring(variableIndex + 1)}";
 
 			writer.WriteLineNoTabs(string.Empty);
-			writer.WriteLine($"static List<{((TypeMappingSyntax)genericMapping.GenericArgument).Type}> Read{name}(ref PacketReader reader)");
+			writer.WriteLine($"static {PacketParserWriter.GetTypeName(((PropertyInfo)type).PropertyType)} Read{name}(ref PacketReader reader)");
 			writer.WriteLine($"{{");
 			writer.Indent++;
-			writer.WriteLine($"List<{((TypeMappingSyntax)genericMapping.GenericArgument).Type}> list = new();");
+			writer.WriteLine($"List<{PacketParserWriter.GetTypeName(((PropertyInfo)type).PropertyType.GetGenericArguments()[0])}> list = new();");
 			writer.WriteLine($"int count = reader.ReadInt32();");
 			writer.WriteLine($"for (int i = 0; i < count; i++)");
 			writer.WriteLine($"{{");

@@ -23,9 +23,9 @@ internal sealed class UpdateActionPacketParser : IIncomingPacketParser<UpdateAct
 			ItemSelectionType = reader.ReadInt32()
 		};
 
-		static List<System.Int32> ReadIntegerParameters(ref PacketReader reader)
+		static IList<int> ReadIntegerParameters(ref PacketReader reader)
 		{
-			List<System.Int32> list = new();
+			List<int> list = new();
 			int count = reader.ReadInt32();
 			for (int i = 0; i < count; i++)
 			{
@@ -34,9 +34,9 @@ internal sealed class UpdateActionPacketParser : IIncomingPacketParser<UpdateAct
 			return list;
 		};
 
-		static List<System.Int32> ReadSelectedItems(ref PacketReader reader)
+		static IList<int> ReadSelectedItems(ref PacketReader reader)
 		{
-			List<System.Int32> list = new();
+			List<int> list = new();
 			int count = reader.ReadInt32();
 			for (int i = 0; i < count; i++)
 			{

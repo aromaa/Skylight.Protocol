@@ -28,18 +28,22 @@ internal sealed class NavigatorSearchResultBlocksPacketComposer : IOutgoingPacke
 			{
 				writer.WriteInt32(rooms.Id);
 				writer.WriteFixedUInt16String(rooms.Name);
-				writer.WriteInt32(1);
+				writer.WriteInt32(rooms.OwnerId);
 				writer.WriteFixedUInt16String(rooms.OwnerName);
-				writer.WriteInt32(0);
+				writer.WriteInt32((int)rooms.EntryMode);
 				writer.WriteInt32(rooms.UserCount);
-				writer.WriteInt32(10);
-				writer.WriteFixedUInt16String("Description");
+				writer.WriteInt32(rooms.UsersMax);
+				writer.WriteFixedUInt16String(rooms.Description);
+				writer.WriteInt32((int)rooms.TradeMode);
+				writer.WriteInt32(rooms.Score);
+				writer.WriteInt32(rooms.Ranking);
+				writer.WriteInt32(rooms.CategoryId);
+				writer.WriteInt32(rooms.Tags.Count);
+				foreach (var tags in rooms.Tags)
+				{
+					writer.WriteFixedUInt16String(tags);
+				}
 				writer.WriteInt32(0);
-				writer.WriteInt32(13);
-				writer.WriteInt32(2);
-				writer.WriteInt32(1);
-				writer.WriteInt32(0);
-				writer.WriteInt32(8);
 			}
 		}
 	}
