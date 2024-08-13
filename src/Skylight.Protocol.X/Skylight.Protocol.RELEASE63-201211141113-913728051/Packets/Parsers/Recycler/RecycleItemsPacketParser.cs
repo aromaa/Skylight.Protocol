@@ -18,9 +18,9 @@ internal sealed class RecycleItemsPacketParser : IIncomingPacketParser<RecycleIt
 			StripIds = ReadStripIds(ref reader)
 		};
 
-		static List<System.Int32> ReadStripIds(ref PacketReader reader)
+		static IList<int> ReadStripIds(ref PacketReader reader)
 		{
-			List<System.Int32> list = new();
+			List<int> list = new();
 			int count = reader.ReadInt32();
 			for (int i = 0; i < count; i++)
 			{
