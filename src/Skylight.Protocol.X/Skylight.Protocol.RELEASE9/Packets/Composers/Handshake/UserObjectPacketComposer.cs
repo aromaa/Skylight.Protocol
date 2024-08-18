@@ -13,28 +13,22 @@ internal sealed class UserObjectPacketComposer : IOutgoingPacketComposer<UserObj
 {
 	public void Compose(ref PacketWriter writer, in UserObjectOutgoingPacket packet)
 	{
-		writer.WriteText("name");
-		writer.WriteText("=");
+		writer.WriteBytes("name="u8);
 		writer.WriteText(packet.Username.ToString());
 		writer.WriteByte(13);
-		writer.WriteText("figure");
-		writer.WriteText("=");
+		writer.WriteBytes("figure="u8);
 		writer.WriteText(packet.Figure.ToString());
 		writer.WriteByte(13);
-		writer.WriteText("sex");
-		writer.WriteText("=");
+		writer.WriteBytes("sex="u8);
 		writer.WriteText(packet.Gender.ToString());
 		writer.WriteByte(13);
-		writer.WriteText("customData");
-		writer.WriteText("=");
+		writer.WriteBytes("customData="u8);
 		writer.WriteText(packet.CustomData.ToString());
 		writer.WriteByte(13);
-		writer.WriteText("ph_tickets");
-		writer.WriteText("=");
+		writer.WriteBytes("ph_tickets="u8);
 		writer.WriteText(packet.Tickets.ToString());
 		writer.WriteByte(13);
-		writer.WriteText("photo_film");
-		writer.WriteText("=");
+		writer.WriteBytes("photo_film="u8);
 		writer.WriteText(packet.Film.ToString());
 		writer.WriteByte(13);
 	}
