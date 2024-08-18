@@ -153,8 +153,7 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 		{
 			if (typeMapping.ExtraData is not null)
 			{
-				writer.WriteLine($"writer.WriteText(\"{typeMapping.ExtraData}\");");
-				writer.WriteLine($"writer.WriteText(\"=\");");
+				writer.WriteLine($"writer.WriteBytes(\"{typeMapping.ExtraData}=\"u8);");
 				WriteText(ref context, protocol, writer, mapping, type);
 				writer.WriteLine($"writer.WriteByte(13);");
 			}
