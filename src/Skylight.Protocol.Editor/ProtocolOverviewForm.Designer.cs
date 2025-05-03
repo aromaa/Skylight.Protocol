@@ -57,7 +57,6 @@ partial class ProtocolOverviewForm
 		this.addPacketField = new Button();
 		this.packetData = new FlowLayoutPanel();
 		this.label2 = new Label();
-		this.packetId = new NumericUpDown();
 		this.structureTab = new TabPage();
 		this.addStructureConditional = new Button();
 		this.addStructureConstant = new Button();
@@ -80,7 +79,6 @@ partial class ProtocolOverviewForm
 		this.optionsTab.SuspendLayout();
 		this.packetTabControl.SuspendLayout();
 		this.packetTab.SuspendLayout();
-		((System.ComponentModel.ISupportInitialize)this.packetId).BeginInit();
 		this.structureTab.SuspendLayout();
 		this.interfaceTab.SuspendLayout();
 		this.SuspendLayout();
@@ -314,7 +312,6 @@ partial class ProtocolOverviewForm
 		this.packetTab.Controls.Add(this.addPacketField);
 		this.packetTab.Controls.Add(this.packetData);
 		this.packetTab.Controls.Add(this.label2);
-		this.packetTab.Controls.Add(this.packetId);
 		this.packetTab.Location = new Point(4, 24);
 		this.packetTab.Name = "packetTab";
 		this.packetTab.Padding = new Padding(3);
@@ -379,15 +376,6 @@ partial class ProtocolOverviewForm
 		this.label2.Size = new Size(59, 15);
 		this.label2.TabIndex = 1;
 		this.label2.Text = "Packet ID:";
-		// 
-		// packetId
-		// 
-		this.packetId.Location = new Point(71, 6);
-		this.packetId.Maximum = new decimal(new int[] { 65535, 0, 0, 0 });
-		this.packetId.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
-		this.packetId.Name = "packetId";
-		this.packetId.Size = new Size(120, 23);
-		this.packetId.TabIndex = 0;
 		// 
 		// structureTab
 		// 
@@ -516,7 +504,6 @@ partial class ProtocolOverviewForm
 		this.packetTabControl.ResumeLayout(false);
 		this.packetTab.ResumeLayout(false);
 		this.packetTab.PerformLayout();
-		((System.ComponentModel.ISupportInitialize)this.packetId).EndInit();
 		this.structureTab.ResumeLayout(false);
 		this.interfaceTab.ResumeLayout(false);
 		this.ResumeLayout(false);
@@ -547,7 +534,6 @@ partial class ProtocolOverviewForm
 	private TabPage packetTab;
 	private TabPage structureTab;
 	private TabPage interfaceTab;
-	private NumericUpDown packetId;
 	private Label label2;
 	private FlowLayoutPanel packetData;
 	private FlowLayoutPanel structureData;

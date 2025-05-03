@@ -10,5 +10,5 @@ public abstract class GameProtocolManagerAttribute : Attribute
 	{
 	}
 
-	public abstract AbstractGamePacketManager CreatePacketManager(IServiceProvider serviceProvider, PacketManagerData<uint> packetManagerData);
+	public abstract IGamePacketManager CreatePacketManager(IServiceProvider serviceProvider, PacketManagerData packetManagerData);
 }

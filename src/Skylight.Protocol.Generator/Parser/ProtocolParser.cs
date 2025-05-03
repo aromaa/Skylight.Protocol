@@ -116,9 +116,11 @@ internal static class ProtocolParser
 
 			if (mapping is FieldMappingSchema fieldMapping)
 			{
-				PropertyInfo property = packetType.GetProperty(fieldMapping.Name) ?? throw new Exception($"No definition for field {fieldMapping.Name} in type {packetType}");
+				MemberInfo target = fieldMapping.Name == "this" ?
+					packetType :
+					packetType.GetProperty(fieldMapping.Name) ?? throw new Exception($"No definition for field {fieldMapping.Name} in type {packetType}");
 
-				MappingStructure mappingStructure = new(fieldMapping.Name, syntax, property);
+				MappingStructure mappingStructure = new(fieldMapping.Name, syntax, target);
 
 				mappings.Add(mappingStructure);
 				fields.Add(fieldMapping.Name, mappingStructure);
@@ -147,7 +149,7 @@ internal static class ProtocolParser
 			}
 		}
 
-		return new PacketStructure(name, packet.Id!.Value, packetType, mappings.MoveToImmutable(), fields);
+		return new PacketStructure(name, packet.Id!, packetType, mappings.MoveToImmutable(), fields);
 	}
 
 	private readonly ref struct Context()

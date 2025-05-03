@@ -40,15 +40,33 @@ internal static class PacketParserWriter
 		string packetName = name.Substring(groupIdentifier + 1);
 
 		writer.WriteLine($"using System.Buffers;");
+		if (protocol.Protocol is "Fuse")
+		{
+			writer.WriteLine($"using System.Buffers.Text;");
+		}
+
 		writer.WriteLine($"using Skylight.Protocol.Extensions;");
 		writer.WriteLine($"using Skylight.Protocol.Packets.Incoming.{packetGroup};");
 		writer.WriteLine($"using Net.Buffers;");
+		if (protocol.Protocol is "Fuse")
+		{
+			writer.WriteLine($"using Net.Buffers.Extensions;");
+		}
+
 		writer.WriteLine($"using Net.Communication.Attributes;");
 		writer.WriteLine($"using Net.Communication.Incoming.Parser;");
 		writer.WriteLine();
 		writer.WriteLine($"namespace Skylight.Protocol.{revision}.Packets.Parsers.{packetGroup};");
 		writer.WriteLine();
-		writer.WriteLine($"[PacketParserId({packet.Id}u)]");
+		if (packet.Id is int packetId)
+		{
+			writer.WriteLine($"[PacketParserId({packet.Id}u)]");
+		}
+		else
+		{
+			writer.WriteLine($"[PacketParserId(\"{packet.Id}\")]");
+		}
+
 		writer.WriteLine($"[PacketManagerRegister(typeof(GamePacketManager))]");
 		writer.WriteLine($"internal sealed class {packetName}PacketParser : IIncomingPacketParser<{packetName}PacketParser.{packetName}IncomingPacket>");
 		writer.WriteLine($"{{");

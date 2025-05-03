@@ -50,7 +50,15 @@ internal static class PacketConsumerWriter
 		writer.WriteLine();
 		writer.WriteLine($"namespace Skylight.Protocol.{revision}.Packets.Composers.{packetGroup};");
 		writer.WriteLine();
-		writer.WriteLine($"[PacketComposerId({packet.Id}u)]");
+		if (packet.Id is int packetId)
+		{
+			writer.WriteLine($"[PacketComposerId({packetId}u)]");
+		}
+		else
+		{
+			writer.WriteLine($"[PacketComposerId(\"{packet.Id}\")]");
+		}
+
 		writer.WriteLine($"[PacketManagerRegister(typeof(GamePacketManager))]");
 		writer.WriteLine($"internal sealed class {packetName}PacketComposer : IOutgoingPacketComposer<{packetName}OutgoingPacket>");
 		writer.WriteLine($"{{");
@@ -65,6 +73,13 @@ internal static class PacketConsumerWriter
 		{
 			foreach (MappingStructure mapping in packet.Mapping)
 			{
+				if (mapping.Name == "this")
+				{
+					context.Write(protocol, writer, mapping.Syntax, mapping.Type);
+
+					continue;
+				}
+
 				using (context.PushScope(mapping.Name))
 				{
 					context.Write(protocol, writer, mapping.Syntax, mapping.Type);

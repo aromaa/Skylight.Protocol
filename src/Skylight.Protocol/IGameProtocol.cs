@@ -5,5 +5,5 @@ namespace Skylight.Protocol;
 
 public interface IGameProtocol
 {
-	public static abstract AbstractGamePacketManager CreatePacketManager(IServiceProvider serviceProvider, PacketManagerData<uint> packetManagerData);
+	public static abstract IGamePacketManager CreatePacketManager(IServiceProvider serviceProvider, PacketManagerData packetManagerData);
 }

@@ -185,18 +185,48 @@ internal partial class ProtocolOverviewForm : Form
 
 		this.unregisterListeners.Clear();
 
-		EventHandler eventHandler = (_, _) =>
+		Control packetId;
+		if (this.schema.Protocol is not "Fuse")
 		{
-			packet.Id = this.packetId.Value <= 0 ? null : (uint)this.packetId.Value;
+			NumericUpDown numericPacketId = new()
+			{
+				Maximum = 65535,
+				Minimum = -1,
+				Value = packet.Id is not null ? (int)packet.Id : -1
+			};
+
+			numericPacketId.ValueChanged += (_, _) => PacketIdUpdated(numericPacketId.Value < 0 ? null : (int)numericPacketId.Value);
+
+			packetId = numericPacketId;
+		}
+		else
+		{
+			TextBox stringPacketId = new()
+			{
+				Text = packet.Id?.ToString()
+			};
+
+			stringPacketId.TextChanged += (_, _) => PacketIdUpdated(string.IsNullOrWhiteSpace(stringPacketId.Text) ? null : stringPacketId.Text);
+
+			packetId = stringPacketId;
+		}
+
+		packetId.Location = new Point(71, 6);
+		packetId.Name = "packetId";
+		packetId.Size = new Size(120, 23);
+		packetId.TabIndex = 0;
+
+		void PacketIdUpdated(object? value)
+		{
+			packet.Id = value;
 			packet.ImportMetadata = null;
 
 			this.packetIdImportedFrom.Text = string.Empty;
-		};
+		}
 
-		this.unregisterListeners.Add(() => this.packetId.ValueChanged -= eventHandler);
+		this.packetTab.Controls.Add(packetId);
 
-		this.packetId.Value = packet.Id.HasValue ? (int)packet.Id : -1;
-		this.packetId.ValueChanged += eventHandler;
+		this.unregisterListeners.Add(() => this.packetTab.Controls.Remove(packetId));
 
 		this.packetIdImportedFrom.Text = packet.ImportMetadata?.Id ?? string.Empty;
 

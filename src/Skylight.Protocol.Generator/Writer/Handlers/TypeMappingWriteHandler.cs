@@ -22,13 +22,24 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 
 		if (typeMapping.Type == typeof(string).FromAssembly(typeMapping.Type))
 		{
-			writer.Write(protocol.Protocol is "Modern"
-				? $"reader.ReadBytes(reader.ReadInt16())"
-				: $"reader.ReadBytes(reader.ReadBase64UInt32(2))");
+			string variableName = context.Name.Replace('.', '_').ToLowerInvariant();
+
+			writer.Write(protocol.Protocol switch
+			{
+				"Fuse" => $"reader.GetReaderRef().TryReadTo(out ReadOnlySequence<byte> {variableName}, (byte)' ') ? {variableName} : reader.ReadBytes(reader.Remaining)",
+				"Modern" => $"reader.ReadBytes(reader.ReadInt16())",
+				_ => $"reader.ReadBytes(reader.ReadBase64UInt32(2))"
+			});
 		}
 		else if (typeMapping.Type == typeof(int).FromAssembly(typeMapping.Type))
 		{
-			if (type == typeof(bool).FromAssembly(type))
+			if (protocol.Protocol is "Fuse")
+			{
+				string variableName = context.Name.Replace('.', '_').ToLowerInvariant();
+
+				writer.Write($"Utf8Parser.TryParse(reader.GetReaderRef().TryReadTo(out ReadOnlySequence<byte> _{variableName}, (byte)' ') ? _{variableName}.ToArray() : reader.ReadBytes(reader.Remaining).ToArray(), out int {variableName}, out _) ? {variableName} : default");
+			}
+			else if (type == typeof(bool).FromAssembly(type))
 			{
 				writer.Write($"reader.ReadInt32() != 0");
 			}
@@ -50,6 +61,10 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 		else if (typeMapping.Type == typeof(bool).FromAssembly(typeMapping.Type))
 		{
 			writer.Write($"reader.ReadBool()");
+		}
+		else if (typeMapping.Type == typeof(byte[]).FromAssembly(typeMapping.Type))
+		{
+			writer.Write($"reader.ReadBytes(reader.Remaining)");
 		}
 		else
 		{

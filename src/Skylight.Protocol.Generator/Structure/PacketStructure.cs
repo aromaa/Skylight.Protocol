@@ -7,7 +7,7 @@ namespace Skylight.Protocol.Generator.Structure;
 internal sealed class PacketStructure
 {
 	internal string Name { get; }
-	internal uint Id { get; }
+	internal object Id { get; }
 
 	internal Type Type { get; }
 
@@ -15,7 +15,7 @@ internal sealed class PacketStructure
 
 	internal Dictionary<string, MappingStructure> Fields { get; }
 
-	internal PacketStructure(string name, uint id, Type type, ImmutableArray<MappingStructure> mapping, Dictionary<string, MappingStructure> fields)
+	internal PacketStructure(string name, object id, Type type, ImmutableArray<MappingStructure> mapping, Dictionary<string, MappingStructure> fields)
 	{
 		this.Name = name;
 		this.Id = id;

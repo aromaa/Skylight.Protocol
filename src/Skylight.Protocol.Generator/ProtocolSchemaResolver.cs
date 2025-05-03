@@ -60,11 +60,17 @@ public sealed class ProtocolSchemaResolver(bool reformat = false)
 			schema = await JsonSerializer.DeserializeAsync<ProtocolSchema>(stream, ProtocolGenerator.JsonSerializerOptions, cancellationToken).ConfigureAwait(false) ?? throw new FileNotFoundException(packetsPath);
 		}
 
-		this.revisions[schema.Revision] = schema;
+		lock (this.revisions)
+		{
+			this.revisions[schema.Revision] = schema;
+		}
 
 		if (schema.Inherit is null)
 		{
-			this.roots.Add(schema);
+			lock (this.roots)
+			{
+				this.roots.Add(schema);
+			}
 		}
 		else
 		{
