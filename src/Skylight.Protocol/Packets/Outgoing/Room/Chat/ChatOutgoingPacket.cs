@@ -5,6 +5,7 @@ namespace Skylight.Protocol.Packets.Outgoing.Room.Chat;
 public sealed class ChatOutgoingPacket : IGameOutgoingPacket
 {
 	public required int UserId { get; init; }
+	public required string Username { get; init; }
 
 	public required string Text { get; init; }
 
@@ -19,9 +20,10 @@ public sealed class ChatOutgoingPacket : IGameOutgoingPacket
 	}
 
 	[SetsRequiredMembers]
-	public ChatOutgoingPacket(int userId, string text, int gesture, int styleId, int trackingId, ICollection<(string Location, string Text, bool Trusted)> links)
+	public ChatOutgoingPacket(int userId, string username, string text, int gesture, int styleId, int trackingId, ICollection<(string Location, string Text, bool Trusted)> links)
 	{
 		this.UserId = userId;
+		this.Username = username;
 
 		this.Text = text;
 

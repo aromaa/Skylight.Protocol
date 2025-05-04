@@ -5,6 +5,7 @@ namespace Skylight.Protocol.Packets.Data.Room.Engine;
 public sealed class RoomUnitUpdateData
 {
 	public required int RoomUnitId { get; init; }
+	public required string Username { get; init; }
 
 	public required int X { get; init; }
 	public required int Y { get; init; }
@@ -20,9 +21,10 @@ public sealed class RoomUnitUpdateData
 	}
 
 	[SetsRequiredMembers]
-	public RoomUnitUpdateData(int roomUnitId, int x, int y, double z, int bodyDirection, int headDirection, string data)
+	public RoomUnitUpdateData(int roomUnitId, string username, int x, int y, double z, int bodyDirection, int headDirection, string data)
 	{
 		this.RoomUnitId = roomUnitId;
+		this.Username = username;
 
 		this.X = x;
 		this.Y = y;

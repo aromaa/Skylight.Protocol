@@ -18,5 +18,7 @@ internal sealed class InfoRetrievePacketParser : IIncomingPacketParser<InfoRetri
 
 	internal readonly struct InfoRetrieveIncomingPacket : IInfoRetrieveIncomingPacket
 	{
+		public ReadOnlySequence<byte> Username => default;
+		public ReadOnlySequence<byte> Password => default;
 	}
 }
