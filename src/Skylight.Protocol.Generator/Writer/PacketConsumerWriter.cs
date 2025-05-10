@@ -91,6 +91,7 @@ internal static partial class PacketConsumerWriter
 			writer.WriteLine($"}}");
 			writer.WriteLine();
 		}
+
 		writer.WriteLine($"public void Compose(ref PacketWriter writer, in {packetName}OutgoingPacket packet)");
 		writer.WriteLine($"{{");
 		writer.Indent++;
