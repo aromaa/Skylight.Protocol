@@ -5,6 +5,7 @@ namespace Skylight.Protocol.Packets.Outgoing.Room.Engine;
 
 public sealed class PublicRoomObjectsOutgoingPacket : IGameOutgoingPacket
 {
+	public required string LayoutId { get; init; }
 	public required ICollection<PublicRoomObjectData> Objects { get; init; }
 
 	public PublicRoomObjectsOutgoingPacket()
@@ -12,8 +13,9 @@ public sealed class PublicRoomObjectsOutgoingPacket : IGameOutgoingPacket
 	}
 
 	[SetsRequiredMembers]
-	public PublicRoomObjectsOutgoingPacket(ICollection<PublicRoomObjectData> objects)
+	public PublicRoomObjectsOutgoingPacket(string layoutId, ICollection<PublicRoomObjectData> objects)
 	{
+		this.LayoutId = layoutId;
 		this.Objects = objects;
 	}
 }

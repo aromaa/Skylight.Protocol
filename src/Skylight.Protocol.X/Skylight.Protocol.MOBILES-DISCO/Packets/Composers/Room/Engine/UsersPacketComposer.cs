@@ -13,10 +13,9 @@ internal sealed class UsersPacketComposer : IOutgoingPacketComposer<UsersOutgoin
 {
 	public void Compose(ref PacketWriter writer, in UsersOutgoingPacket packet)
 	{
-		writer.WriteVL64Int32(packet.Users.Count);
 		foreach (var users in packet.Users)
 		{
-			writer.WriteDelimiter2BrokenString($"{users.Name}{" "}{users.Figure}{" "}{users.X}{" "}{users.Y}{" "}{users.Z}{" "}{users.Motto}".ToString());
+			writer.WriteDelimiterBrokenString($"{users.Name}{" "}{users.Figure}{" "}{users.X}{" "}{users.Y}{" "}{users.Z}{" "}{users.Motto}".ToString(), (byte)'\r');
 		}
 	}
 }

@@ -13,6 +13,6 @@ internal sealed class ShoutPacketComposer : IOutgoingPacketComposer<ShoutOutgoin
 {
 	public void Compose(ref PacketWriter writer, in ShoutOutgoingPacket packet)
 	{
-		writer.WriteDelimiter2BrokenString($"{packet.Username}{" "}{packet.Text}".ToString());
+		writer.WriteDelimiterBrokenString($"{packet.Username}{" "}{packet.Text}".ToString(), (byte)'\r');
 	}
 }

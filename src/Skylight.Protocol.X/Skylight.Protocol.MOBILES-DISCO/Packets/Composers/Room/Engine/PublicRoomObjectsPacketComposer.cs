@@ -13,10 +13,9 @@ internal sealed class PublicRoomObjectsPacketComposer : IOutgoingPacketComposer<
 {
 	public void Compose(ref PacketWriter writer, in PublicRoomObjectsOutgoingPacket packet)
 	{
-		writer.WriteVL64Int32(packet.Objects.Count);
 		foreach (var objects in packet.Objects)
 		{
-			writer.WriteDelimiter2BrokenString($"{objects.Id}{" "}{objects.SpriteId}{" "}{objects.X}{" "}{objects.Y}{" "}{objects.Z}{" "}{objects.Direction}".ToString());
+			writer.WriteDelimiterBrokenString($"{objects.Id}{" "}{objects.SpriteId}{" "}{objects.X}{" "}{objects.Y}{" "}{objects.Z}{" "}{objects.Direction}".ToString(), (byte)'\r');
 		}
 	}
 }

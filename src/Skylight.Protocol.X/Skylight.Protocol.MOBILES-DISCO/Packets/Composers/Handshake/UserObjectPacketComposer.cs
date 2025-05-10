@@ -13,6 +13,6 @@ internal sealed class UserObjectPacketComposer : IOutgoingPacketComposer<UserObj
 {
 	public void Compose(ref PacketWriter writer, in UserObjectOutgoingPacket packet)
 	{
-		writer.WriteDelimiter2BrokenString($"{packet.Username}{" "}{"-"}{" "}{"email@example.com"}{" "}{packet.Figure}{" "}{"fixed"}{" "}{"?"}{" "}{packet.Gender}{" "}{packet.DirectMail}{" "}{"69"}{" "}{packet.CustomData}".ToString());
+		writer.WriteDelimiterBrokenString($"{packet.Username}{" "}{"-"}{" "}{"email@example.com"}{" "}{packet.Figure}{" "}{"fixed"}{" "}{"?"}{" "}{packet.Gender}{" "}{packet.DirectMail}{" "}{"69"}{" "}{packet.CustomData}".ToString(), (byte)'\r');
 	}
 }

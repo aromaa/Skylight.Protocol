@@ -41,11 +41,11 @@ internal static class MappingParser
 		switch (type.AsSpan()[ranges[0]])
 		{
 			case "string":
-				return new TypeMappingSyntax(typeof(string).FromAssembly(assembly), name);
+				return new TypeMappingSyntax(typeof(string).FromAssembly(assembly), name, splitCount == 2 ? type[ranges[1]] : null);
 			case "text":
 				return new TypeMappingSyntax(typeof(byte[]).FromAssembly(assembly), name, splitCount == 2 ? type[ranges[1]] : null);
 			case "int":
-				return new TypeMappingSyntax(typeof(int).FromAssembly(assembly), name);
+				return new TypeMappingSyntax(typeof(int).FromAssembly(assembly), name, splitCount == 2 ? type[ranges[1]] : null);
 			case "short":
 				return new TypeMappingSyntax(typeof(short).FromAssembly(assembly), name);
 			case "byte":

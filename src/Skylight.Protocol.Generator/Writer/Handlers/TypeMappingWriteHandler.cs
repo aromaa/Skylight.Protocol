@@ -1,4 +1,5 @@
-﻿using System.CodeDom.Compiler;
+﻿using System.Buffers;
+using System.CodeDom.Compiler;
 using System.Reflection;
 using Skylight.Protocol.Generator.Extensions;
 using Skylight.Protocol.Generator.Parser.Mapping;
@@ -37,7 +38,14 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 			{
 				string variableName = context.Name.Replace('.', '_').ToLowerInvariant();
 
-				writer.Write($"Utf8Parser.TryParse(reader.GetReaderRef().TryReadTo(out ReadOnlySequence<byte> _{variableName}, (byte)' ') ? _{variableName}.ToArray() : reader.ReadBytes(reader.Remaining).ToArray(), out int {variableName}, out _) ? {variableName} : default");
+				if (typeMapping.ExtraData is not { } prefix)
+				{
+					writer.Write($"Utf8Parser.TryParse(reader.GetReaderRef().TryReadTo(out ReadOnlySequence<byte> _{variableName}, (byte)' ') ? _{variableName}.ToArray() : reader.ReadBytes(reader.Remaining).ToArray(), out int {variableName}, out _) ? {variableName} : default");
+				}
+				else
+				{
+					writer.Write($"Utf8Parser.TryParse(reader.GetReaderRef().IsNext((byte)'{prefix}', advancePast: true) && reader.GetReaderRef().TryReadTo(out ReadOnlySequence<byte> _{variableName}, (byte)'{prefix}') ? _{variableName}.ToArray() : reader.ReadBytes(reader.Remaining).ToArray(), out int {variableName}, out _) ? {variableName} : default");
+				}
 			}
 			else if (type == typeof(bool).FromAssembly(type))
 			{
@@ -50,6 +58,13 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 				writer.Write(protocol.Protocol is "Modern"
 					? $"({enumType.Namespace}.{enumType.Name})reader.ReadInt32()"
 					: $"({enumType.Namespace}.{enumType.Name})reader.ReadVL64UInt32()");
+			}
+			else if (type == typeof(ReadOnlySequence<byte>).FromAssembly(type))
+			{
+				//TODO: Fix
+				writer.Write(protocol.Protocol is "Modern"
+					? $"reader.ReadBytes(4)"
+					: "reader.ReadBytes(((reader.ReadByte() >> 3) & 0x7) - 1)");
 			}
 			else
 			{
@@ -153,15 +168,21 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 			}
 			else if (type != typeof(string).FromAssembly(type))
 			{
-				writer.WriteLine(protocol.Protocol is "Modern"
-					? $"writer.WriteFixedUInt16String({context.Name}.ToString());"
-					: $"writer.WriteDelimiter2BrokenString({context.Name}.ToString());");
+				writer.WriteLine(protocol.Protocol switch
+				{
+					"Modern" => $"writer.WriteFixedUInt16String({context.Name}.ToString());",
+					"Fuse" => $"writer.WriteDelimiterBrokenString({context.Name}.ToString(), (byte)'\\r');",
+					_ => $"writer.WriteDelimiter2BrokenString({context.Name}.ToString());"
+				});
 			}
 			else
 			{
-				writer.WriteLine(protocol.Protocol is "Modern"
-					? $"writer.WriteFixedUInt16String({context.Name});"
-					: $"writer.WriteDelimiter2BrokenString({context.Name});");
+				writer.WriteLine(protocol.Protocol switch
+				{
+					"Modern" => $"writer.WriteFixedUInt16String({context.Name});",
+					"Fuse" => $"writer.WriteDelimiterBrokenString({context.Name}, (byte)'\\r');",
+					_ => $"writer.WriteDelimiter2BrokenString({context.Name});"
+				});
 			}
 		}
 		else if (typeMapping.Type == typeof(byte[]).FromAssembly(typeMapping.Type))

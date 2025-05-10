@@ -15,7 +15,7 @@ internal sealed class VersionCheckPacketParser : IIncomingPacketParser<VersionCh
 	{
 		return new VersionCheckIncomingPacket
 		{
-			VersionId = reader.ReadInt32(),
+			VersionId = reader.ReadBytes(4),
 			ClientUrl = reader.ReadBytes(reader.ReadInt16()),
 			ExternalVariablesUrl = reader.ReadBytes(reader.ReadInt16())
 		};
@@ -23,7 +23,7 @@ internal sealed class VersionCheckPacketParser : IIncomingPacketParser<VersionCh
 
 	internal readonly struct VersionCheckIncomingPacket : IVersionCheckIncomingPacket
 	{
-		public int VersionId { get; init; }
+		public ReadOnlySequence<byte> VersionId { get; init; }
 		public ReadOnlySequence<byte> ClientUrl { get; init; }
 		public ReadOnlySequence<byte> ExternalVariablesUrl { get; init; }
 	}

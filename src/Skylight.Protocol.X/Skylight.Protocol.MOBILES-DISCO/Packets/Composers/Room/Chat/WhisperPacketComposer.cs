@@ -13,6 +13,6 @@ internal sealed class WhisperPacketComposer : IOutgoingPacketComposer<WhisperOut
 {
 	public void Compose(ref PacketWriter writer, in WhisperOutgoingPacket packet)
 	{
-		writer.WriteDelimiter2BrokenString($"{packet.Username}{" "}{packet.Text}".ToString());
+		writer.WriteDelimiterBrokenString($"{packet.Username}{" "}{packet.Text}".ToString(), (byte)'\r');
 	}
 }

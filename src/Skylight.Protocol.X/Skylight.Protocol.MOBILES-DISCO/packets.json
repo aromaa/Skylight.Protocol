@@ -143,7 +143,7 @@
       "Structure": [
         {
           "Mapping": "Field",
-          "Type": "List<PublicRoomObjectData>",
+          "Type": "BufferedList<PublicRoomObjectData>",
           "Name": "Objects"
         }
       ]
@@ -163,7 +163,7 @@
       "Structure": [
         {
           "Mapping": "Field",
-          "Type": "List<RoomUser>",
+          "Type": "BufferedList<RoomUser>",
           "Name": "Users"
         }
       ]
@@ -173,7 +173,7 @@
       "Structure": [
         {
           "Mapping": "Field",
-          "Type": "List<UserUpdate>",
+          "Type": "BufferedList<UserUpdate>",
           "Name": "Updates"
         }
       ]

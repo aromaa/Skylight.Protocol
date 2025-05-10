@@ -13,6 +13,6 @@ internal sealed class UserRemovePacketComposer : IOutgoingPacketComposer<UserRem
 {
 	public void Compose(ref PacketWriter writer, in UserRemoveOutgoingPacket packet)
 	{
-		writer.WriteDelimiter2BrokenString(packet.Username);
+		writer.WriteDelimiterBrokenString(packet.Username, (byte)'\r');
 	}
 }

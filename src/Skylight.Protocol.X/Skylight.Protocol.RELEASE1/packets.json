@@ -1,0 +1,334 @@
+{
+  "Revision": "RELEASE1",
+  "Inherit": "MOBILES-DISCO",
+  "Protocol": "Fuse",
+  "Incoming": {
+    "Handshake.VersionCheck": {
+      "Id": "VERSIONCHECK",
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "VersionId"
+        }
+      ]
+    },
+    "Navigator.ListenOfficialRooms": {
+      "Id": "INITUNITLISTENER",
+      "Structure": []
+    },
+    "Navigator.MyRoomsSearch": {
+      "Id": "SEARCHFLATFORUSER",
+      "Structure": []
+    },
+    "Purse.GetCreditsInfo": {
+      "Id": "GETCREDITS",
+      "Structure": []
+    },
+    "Room.Engine.GetRoomEntryData": {
+      "Id": "GOTOFLAT",
+      "Structure": []
+    },
+    "Room.Session.OpenFlatConnection": {
+      "Id": "TRYFLAT",
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int:/",
+          "Name": "RoomId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string:/",
+          "Name": "Password"
+        }
+      ]
+    }
+  },
+  "Outgoing": {
+    "Handshake.CompleteDiffieHandshake": {
+      "Id": "SECRET_KEY",
+      "Structure": []
+    },
+    "Handshake.ServerHello": {
+      "Id": "HELLO",
+      "Structure": []
+    },
+    "Handshake.UserObject": {
+      "Id": "USEROBJECT",
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "text:name",
+          "Name": "Username"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:figure",
+          "Name": "Figure"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:sex",
+          "Name": "Gender"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:customData",
+          "Name": "CustomData"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:ph_tickets",
+          "Name": "Tickets"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:photo_film",
+          "Name": "Film"
+        }
+      ]
+    },
+    "Navigator.GuestRoomSearchResult": {
+      "Id": "FLAT_RESULTS",
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "BufferedList<GuestRoomSearchData>",
+          "Name": "Rooms"
+        }
+      ]
+    },
+    "Navigator.OfficialRooms": {
+      "Id": "ALLUNITS",
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "BufferedList<INavigatorNode>",
+          "Name": "Nodes"
+        }
+      ]
+    },
+    "Purse.CreditBalance": {
+      "Id": "WALLETBALANCE",
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Balance"
+        }
+      ]
+    },
+    "Room.Engine.PublicRoomObjects": {
+      "Id": " OBJECTS {LayoutId}",
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "BufferedList<PublicRoomObjectData>",
+          "Name": "Objects"
+        }
+      ]
+    },
+    "Room.Session.RoomReady": {
+      "Id": "FLAT_LETIN",
+      "Structure": []
+    }
+  },
+  "Structures": {
+    "GuestRoomSearchData": [
+      {
+        "Mapping": "Combine",
+        "Type": "string",
+        "Fields": [
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Id"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"/\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Name"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"/\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "OwnerName"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"/\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"open\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"/\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"-\"",
+            "Comment": "Unused"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"/\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"-\"",
+            "Comment": "Unused"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"/\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"-\"",
+            "Comment": "Unused"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"/\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Host"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"/\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Port"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"/\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "UserCount"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"/\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"0\"",
+            "Comment": "No filter"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"/\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Description"
+          }
+        ]
+      }
+    ],
+    "NavigatorPublicRoomNode": [
+      {
+        "Mapping": "Combine",
+        "Type": "string",
+        "Fields": [
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Caption"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\",\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "UserCount"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\",\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "UsersMax"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\",\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Host"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\",\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Port"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\",\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Name"
+          }
+        ]
+      }
+    ]
+  },
+  "Interfaces": {
+    "INavigatorNode": {
+      "Skylight.Protocol.Packets.Data.Navigator.NavigatorPublicRoomNode": "NavigatorPublicRoomNode"
+    }
+  }
+}

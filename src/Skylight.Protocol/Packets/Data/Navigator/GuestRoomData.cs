@@ -7,6 +7,9 @@ public sealed class GuestRoomData
 {
 	public required int Id { get; init; }
 
+	public required string Host { get; init; }
+	public required int Port { get; init; }
+
 	public required int OwnerId { get; init; }
 	public required string OwnerName { get; init; }
 
@@ -32,9 +35,11 @@ public sealed class GuestRoomData
 	}
 
 	[SetsRequiredMembers]
-	public GuestRoomData(int id, int ownerId, string ownerName, string layoutId, string name, string description, int categoryId, ICollection<string> tags, RoomEntryType entryMode, int userCount, int usersMax, RoomTradeType tradeMde, int score, int ranking)
+	public GuestRoomData(int id, string host, int port, int ownerId, string ownerName, string layoutId, string name, string description, int categoryId, ICollection<string> tags, RoomEntryType entryMode, int userCount, int usersMax, RoomTradeType tradeMde, int score, int ranking)
 	{
 		this.Id = id;
+		this.Host = host;
+		this.Port = port;
 		this.OwnerId = ownerId;
 		this.OwnerName = ownerName;
 		this.LayoutId = layoutId;

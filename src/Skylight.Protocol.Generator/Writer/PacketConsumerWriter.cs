@@ -1,5 +1,6 @@
 ﻿using System.CodeDom.Compiler;
 using System.Text;
+using System.Text.RegularExpressions;
 using Skylight.Protocol.Generator.Parser.Mapping;
 using Skylight.Protocol.Generator.Structure;
 using Skylight.Protocol.Generator.Structure.Mapping;
@@ -7,7 +8,7 @@ using Skylight.Protocol.Generator.Writer.Handlers;
 
 namespace Skylight.Protocol.Generator.Writer;
 
-internal static class PacketConsumerWriter
+internal static partial class PacketConsumerWriter
 {
 	internal static void Write(Stream stream, ProtocolStructure protocol, PacketStructure packet)
 	{
@@ -50,19 +51,46 @@ internal static class PacketConsumerWriter
 		writer.WriteLine();
 		writer.WriteLine($"namespace Skylight.Protocol.{revision}.Packets.Composers.{packetGroup};");
 		writer.WriteLine();
+
+		string? appendHeader = null;
 		if (packet.Id is int packetId)
 		{
 			writer.WriteLine($"[PacketComposerId({packetId}u)]");
 		}
-		else
+		else if (packet.Id is string stringPacketId)
 		{
-			writer.WriteLine($"[PacketComposerId(\"{packet.Id}\")]");
+			Regex.ValueMatchEnumerator enumerator = PacketConsumerWriter.ParseDynamicVariablePlaceholder().EnumerateMatches(stringPacketId);
+			if (!enumerator.MoveNext())
+			{
+				writer.WriteLine($"[PacketComposerId(\"{stringPacketId}\")]");
+			}
+			else
+			{
+				writer.WriteLine($"[PacketComposerId(\"{stringPacketId.AsSpan(0, enumerator.Current.Index)}\")]");
+
+				ValueMatch match = enumerator.Current;
+
+				//Matching the whole string, remove the brackets
+				appendHeader = stringPacketId.AsSpan(match.Index + 1, match.Length - 2).ToString();
+			}
 		}
 
 		writer.WriteLine($"[PacketManagerRegister(typeof(GamePacketManager))]");
-		writer.WriteLine($"internal sealed class {packetName}PacketComposer : IOutgoingPacketComposer<{packetName}OutgoingPacket>");
+		writer.WriteLine($"internal sealed class {packetName}PacketComposer : {(appendHeader is not null
+			? $"Skylight.Protocol.Packets.Outgoing.IGameOutgoingPacketComposer<{packetName}OutgoingPacket>"
+			: $"IOutgoingPacketComposer<{packetName}OutgoingPacket>")}");
 		writer.WriteLine($"{{");
 		writer.Indent++;
+		if (appendHeader is not null)
+		{
+			writer.WriteLine($"public void AppendHeader(ref PacketWriter writer, in {packetName}OutgoingPacket packet)");
+			writer.WriteLine($"{{");
+			writer.Indent++;
+			writer.WriteLine($"writer.WriteBytes(System.Text.Encoding.ASCII.GetBytes(packet.{appendHeader}.ToString()));");
+			writer.Indent--;
+			writer.WriteLine($"}}");
+			writer.WriteLine();
+		}
 		writer.WriteLine($"public void Compose(ref PacketWriter writer, in {packetName}OutgoingPacket packet)");
 		writer.WriteLine($"{{");
 		writer.Indent++;
@@ -92,4 +120,7 @@ internal static class PacketConsumerWriter
 		writer.Indent--;
 		writer.WriteLine($"}}");
 	}
+
+	[GeneratedRegex("{[^}]+}", RegexOptions.CultureInvariant)]
+	private static partial Regex ParseDynamicVariablePlaceholder();
 }

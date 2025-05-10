@@ -13,6 +13,6 @@ internal sealed class ChatPacketComposer : IOutgoingPacketComposer<ChatOutgoingP
 {
 	public void Compose(ref PacketWriter writer, in ChatOutgoingPacket packet)
 	{
-		writer.WriteDelimiter2BrokenString($"{packet.Username}{" "}{packet.Text}".ToString());
+		writer.WriteDelimiterBrokenString($"{packet.Username}{" "}{packet.Text}".ToString(), (byte)'\r');
 	}
 }

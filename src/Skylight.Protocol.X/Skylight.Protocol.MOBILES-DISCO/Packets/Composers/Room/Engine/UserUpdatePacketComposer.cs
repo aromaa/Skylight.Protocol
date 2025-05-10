@@ -13,10 +13,9 @@ internal sealed class UserUpdatePacketComposer : IOutgoingPacketComposer<UserUpd
 {
 	public void Compose(ref PacketWriter writer, in UserUpdateOutgoingPacket packet)
 	{
-		writer.WriteVL64Int32(packet.Updates.Count);
 		foreach (var updates in packet.Updates)
 		{
-			writer.WriteDelimiter2BrokenString($"{updates.Username}{" "}{updates.X}{","}{updates.Y}{","}{updates.Z}{","}{updates.HeadDirection}{","}{updates.BodyDirection}{"/"}{updates.Data}".ToString());
+			writer.WriteDelimiterBrokenString($"{updates.Username}{" "}{updates.X}{","}{updates.Y}{","}{updates.Z}{","}{updates.HeadDirection}{","}{updates.BodyDirection}{"/"}{updates.Data}".ToString(), (byte)'\r');
 		}
 	}
 }
