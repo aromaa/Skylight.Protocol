@@ -32,6 +32,18 @@ public static class PacketReaderExtensions
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static uint ReadBase128UInt32(ref this PacketReader reader, int bytes)
+	{
+		uint result = 0;
+		for (int shift = (bytes - 1) * 7; shift >= 0; shift -= 7)
+		{
+			result |= (reader.ReadByte() - 0x80u) << shift;
+		}
+
+		return result;
+	}
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static uint ReadVL64UInt32(ref this PacketReader reader)
 	{
 		return (uint)reader.ReadVL64Int32();

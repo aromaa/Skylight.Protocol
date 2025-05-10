@@ -1,0 +1,21 @@
+﻿using System.Globalization;
+using Skylight.Protocol.Extensions;
+using Skylight.Protocol.Packets.Outgoing.Room.Engine;
+using Net.Buffers;
+using Net.Communication.Attributes;
+using Net.Communication.Outgoing;
+
+namespace Skylight.Protocol.RELEASE5.Packets.Composers.Room.Engine;
+
+[PacketComposerId("STATUS")]
+[PacketManagerRegister(typeof(GamePacketManager))]
+internal sealed class UserUpdatePacketComposer : IOutgoingPacketComposer<UserUpdateOutgoingPacket>
+{
+	public void Compose(ref PacketWriter writer, in UserUpdateOutgoingPacket packet)
+	{
+		foreach (var updates in packet.Updates)
+		{
+			writer.WriteDelimiterBrokenString($"{updates.Username}{" "}{updates.X}{","}{updates.Y}{","}{updates.Z}{","}{updates.HeadDirection}{","}{updates.BodyDirection}{"/"}{updates.Data}".ToString(), (byte)'\r');
+		}
+	}
+}

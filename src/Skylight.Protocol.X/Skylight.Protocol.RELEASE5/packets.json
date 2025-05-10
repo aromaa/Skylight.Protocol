@@ -1,0 +1,14 @@
+{
+  "Revision": "RELEASE5",
+  "Inherit": "RELEASE1",
+  "Protocol": "Fuse",
+  "Incoming": {},
+  "Outgoing": {
+    "Handshake.AuthenticationOK": {
+      "Id": "OK",
+      "Structure": []
+    }
+  },
+  "Structures": {},
+  "Interfaces": {}
+}
