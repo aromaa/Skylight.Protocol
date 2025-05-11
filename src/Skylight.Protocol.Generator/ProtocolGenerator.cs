@@ -41,6 +41,21 @@ public static class ProtocolGenerator
 
 		foreach (PacketStructure packet in protocol.Incoming.Values)
 		{
+			if (protocol.Protocol is "Fuse")
+			{
+				if (packet.Id is not string)
+				{
+					continue;
+				}
+			}
+			else
+			{
+				if (packet.Id is not int)
+				{
+					continue;
+				}
+			}
+
 			int groupIdentifier = packet.Name.LastIndexOf('.');
 
 			string packetGroup = packet.Name.Substring(0, groupIdentifier);
@@ -61,6 +76,21 @@ public static class ProtocolGenerator
 
 		foreach (PacketStructure packet in protocol.Outgoing.Values)
 		{
+			if (protocol.Protocol is "Fuse")
+			{
+				if (packet.Id is not string)
+				{
+					continue;
+				}
+			}
+			else
+			{
+				if (packet.Id is not int)
+				{
+					continue;
+				}
+			}
+
 			int groupIdentifier = packet.Name.LastIndexOf('.');
 
 			string packetGroup = packet.Name.Substring(0, groupIdentifier);

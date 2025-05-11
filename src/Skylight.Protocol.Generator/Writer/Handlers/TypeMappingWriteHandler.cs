@@ -81,6 +81,20 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 		{
 			writer.Write($"reader.ReadBytes(reader.Remaining)");
 		}
+		else if (typeMapping.Type == typeof(short).FromAssembly(typeMapping.Type))
+		{
+			if (type == typeof(ReadOnlySequence<byte>).FromAssembly(type))
+			{
+				//TODO: Fix
+				writer.Write("reader.ReadBytes(2)");
+			}
+			else
+			{
+				writer.Write(protocol.Protocol is "Modern"
+					? "reader.ReadInt16()"
+					: "(int)reader.ReadBase64UInt32(2)");
+			}
+		}
 		else
 		{
 			throw new NotSupportedException();

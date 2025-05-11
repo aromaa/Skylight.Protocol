@@ -28,12 +28,18 @@ public sealed class ProtocolSchemaResolver(bool reformat = false)
 
 					foreach ((string key, PacketSchema packet) in dependencySchema.Incoming)
 					{
-						schema.Incoming.TryAdd(key, packet);
+						if (!schema.Incoming.TryAdd(key, packet))
+						{
+							schema.Incoming[key].Structure ??= packet.Structure;
+						}
 					}
 
 					foreach ((string key, PacketSchema packet) in dependencySchema.Outgoing)
 					{
-						schema.Outgoing.TryAdd(key, packet);
+						if (!schema.Outgoing.TryAdd(key, packet))
+						{
+							schema.Outgoing[key].Structure ??= packet.Structure;
+						}
 					}
 
 					foreach ((string key, List<AbstractMappingSchema> structure) in dependencySchema.Structures)

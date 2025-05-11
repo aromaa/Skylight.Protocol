@@ -1,0 +1,62 @@
+{
+  "Revision": "RELEASE6",
+  "Inherit": "RELEASE5",
+  "Protocol": "Legacy",
+  "Incoming": {
+    "Handshake.InfoRetrieve": {
+      "Id": 7,
+      "Structure": []
+    },
+    "Handshake.TryLogin": {
+      "Id": 4
+    },
+    "Handshake.VersionCheck": {
+      "Id": 5,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "short",
+          "Name": "VersionId"
+        }
+      ]
+    },
+    "Purse.GetCreditsInfo": {
+      "Id": 8,
+      "Structure": []
+    }
+  },
+  "Outgoing": {
+    "Handshake.AuthenticationOK": {
+      "Id": 3
+    },
+    "Handshake.CompleteDiffieHandshake": {
+      "Id": 1,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "text",
+          "Name": "EncryptedPublicKey"
+        }
+      ]
+    },
+    "Handshake.ServerHello": {
+      "Id": 0,
+      "Structure": [
+        {
+          "Mapping": "Constant",
+          "Type": "int",
+          "Value": "0",
+          "Comment": "Session params"
+        }
+      ]
+    },
+    "Handshake.UserObject": {
+      "Id": 5
+    },
+    "Purse.CreditBalance": {
+      "Id": 6
+    }
+  },
+  "Structures": {},
+  "Interfaces": {}
+}

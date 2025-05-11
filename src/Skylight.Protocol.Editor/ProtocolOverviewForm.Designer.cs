@@ -51,6 +51,7 @@ partial class ProtocolOverviewForm
 		this.packetTabControl = new TabControl();
 		this.emptyTab = new TabPage();
 		this.packetTab = new TabPage();
+		this.inheritPacketStructure = new Button();
 		this.packetIdImportedFrom = new Label();
 		this.addPacketConditional = new Button();
 		this.addPacketConstant = new Button();
@@ -306,6 +307,7 @@ partial class ProtocolOverviewForm
 		// 
 		// packetTab
 		// 
+		this.packetTab.Controls.Add(this.inheritPacketStructure);
 		this.packetTab.Controls.Add(this.packetIdImportedFrom);
 		this.packetTab.Controls.Add(this.addPacketConditional);
 		this.packetTab.Controls.Add(this.addPacketConstant);
@@ -319,6 +321,16 @@ partial class ProtocolOverviewForm
 		this.packetTab.TabIndex = 0;
 		this.packetTab.Text = "Packet";
 		this.packetTab.UseVisualStyleBackColor = true;
+		// 
+		// inheritPacketStructure
+		// 
+		this.inheritPacketStructure.Location = new Point(907, 532);
+		this.inheritPacketStructure.Name = "inheritPacketStructure";
+		this.inheritPacketStructure.Size = new Size(75, 23);
+		this.inheritPacketStructure.TabIndex = 7;
+		this.inheritPacketStructure.Text = "Inherit";
+		this.inheritPacketStructure.UseVisualStyleBackColor = true;
+		this.inheritPacketStructure.Click += this.SetInherit;
 		// 
 		// packetIdImportedFrom
 		// 
@@ -551,4 +563,5 @@ partial class ProtocolOverviewForm
 	private Button sulekDevImport;
 	private OpenFileDialog openSulekData;
 	private Label packetIdImportedFrom;
+	private Button inheritPacketStructure;
 }

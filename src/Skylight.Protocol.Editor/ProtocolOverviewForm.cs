@@ -251,6 +251,12 @@ internal partial class ProtocolOverviewForm : Form
 
 		if (packet.Structure is null)
 		{
+			this.packetData.Controls.Clear();
+			this.packetData.Controls.Add(new Label
+			{
+				Text = "Inherit"
+			});
+
 			return;
 		}
 
@@ -535,9 +541,20 @@ internal partial class ProtocolOverviewForm : Form
 			? this.schema.Incoming[this.incomingPacketList.SelectedItems[0].Text].Structure
 			: this.schema.Outgoing[this.outgoingPacketsList.SelectedItems[0].Text].Structure;
 
+		bool clear = false;
+
 		if (listHook is null)
 		{
-			return;
+			if (this.structuresTab.SelectedTab == this.incomingPacketsTab)
+			{
+				listHook = this.schema.Incoming[this.incomingPacketList.SelectedItems[0].Text].Structure = [];
+			}
+			else
+			{
+				listHook = this.schema.Outgoing[this.outgoingPacketsList.SelectedItems[0].Text].Structure = [];
+			}
+
+			clear = true;
 		}
 
 		listHook.Add(mapping);
@@ -545,7 +562,7 @@ internal partial class ProtocolOverviewForm : Form
 		this.VisualizePacketDataRoot(this.packetData,
 		[
 			mapping
-		], null, false, listHook: listHook);
+		], null, clear, listHook: listHook);
 	}
 
 	private void AddPacketConstant(object sender, EventArgs e)
@@ -560,9 +577,20 @@ internal partial class ProtocolOverviewForm : Form
 			? this.schema.Incoming[this.incomingPacketList.SelectedItems[0].Text].Structure
 			: this.schema.Outgoing[this.outgoingPacketsList.SelectedItems[0].Text].Structure;
 
+		bool clear = false;
+
 		if (listHook is null)
 		{
-			return;
+			if (this.structuresTab.SelectedTab == this.incomingPacketsTab)
+			{
+				listHook = this.schema.Incoming[this.incomingPacketList.SelectedItems[0].Text].Structure = [];
+			}
+			else
+			{
+				listHook = this.schema.Outgoing[this.outgoingPacketsList.SelectedItems[0].Text].Structure = [];
+			}
+
+			clear = true;
 		}
 
 		listHook.Add(mapping);
@@ -570,7 +598,7 @@ internal partial class ProtocolOverviewForm : Form
 		this.VisualizePacketDataRoot(this.packetData,
 		[
 			mapping
-		], null, false, listHook: listHook);
+		], null, clear, listHook: listHook);
 	}
 
 	private void AddPacketConditional(object sender, EventArgs e)
@@ -590,9 +618,20 @@ internal partial class ProtocolOverviewForm : Form
 			? this.schema.Incoming[this.incomingPacketList.SelectedItems[0].Text].Structure
 			: this.schema.Outgoing[this.outgoingPacketsList.SelectedItems[0].Text].Structure;
 
+		bool clear = false;
+
 		if (listHook is null)
 		{
-			return;
+			if (this.structuresTab.SelectedTab == this.incomingPacketsTab)
+			{
+				listHook = this.schema.Incoming[this.incomingPacketList.SelectedItems[0].Text].Structure = [];
+			}
+			else
+			{
+				listHook = this.schema.Outgoing[this.outgoingPacketsList.SelectedItems[0].Text].Structure = [];
+			}
+
+			clear = true;
 		}
 
 		listHook.Add(mapping);
@@ -600,7 +639,7 @@ internal partial class ProtocolOverviewForm : Form
 		this.VisualizePacketDataRoot(this.packetData,
 		[
 			mapping
-		], null, false, listHook: listHook);
+		], null, clear, listHook: listHook);
 	}
 
 	private void AddStructureField(object sender, EventArgs e)
@@ -1139,6 +1178,24 @@ internal partial class ProtocolOverviewForm : Form
 				}
 			}
 		}
+	}
+
+	private void SetInherit(object sender, EventArgs e)
+	{
+		if (this.structuresTab.SelectedTab == this.incomingPacketsTab)
+		{
+			this.schema.Incoming[this.incomingPacketList.SelectedItems[0].Text].Structure = null;
+		}
+		else
+		{
+			this.schema.Outgoing[this.outgoingPacketsList.SelectedItems[0].Text].Structure = null;
+		}
+
+		this.packetData.Controls.Clear();
+		this.packetData.Controls.Add(new Label
+		{
+			Text = "Inherit"
+		});
 	}
 
 	private sealed class CompilerOutputLogger : ILogger
