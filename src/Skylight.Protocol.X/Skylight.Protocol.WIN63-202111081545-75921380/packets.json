@@ -378,6 +378,26 @@
         }
       ]
     },
+    "Preferences.SetSoundSettings": {
+      "Id": 1450,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "UiVolume"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "FurniVolume"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "TraxVolume"
+        }
+      ]
+    },
     "Purse.GetCreditsInfo": {
       "Id": 1958,
       "Structure": []
