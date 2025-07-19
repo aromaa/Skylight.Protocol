@@ -1771,6 +1771,36 @@
         }
       ]
     },
+    "Notifications.ActivityPointNotification": {
+      "Id": 3414,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Balance"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Change"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Type"
+        }
+      ]
+    },
+    "Notifications.ActivityPoints": {
+      "Id": 3222,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<ActivityPoint>",
+          "Name": "ActivityPoints"
+        }
+      ]
+    },
     "Notifications.InfoFeedEnable": {
       "Id": 3134,
       "Structure": [
@@ -2786,6 +2816,18 @@
         "Mapping": "Field",
         "Type": "short",
         "Name": "State"
+      }
+    ],
+    "ActivityPoint": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Type"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Balance"
       }
     ],
     "BadgeData": [
