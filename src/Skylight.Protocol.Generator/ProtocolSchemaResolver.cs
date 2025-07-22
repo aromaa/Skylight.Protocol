@@ -31,6 +31,7 @@ public sealed class ProtocolSchemaResolver(bool reformat = false)
 						if (!schema.Incoming.TryAdd(key, packet))
 						{
 							schema.Incoming[key].Structure ??= packet.Structure;
+							schema.Incoming[key].Converters ??= packet.Converters;
 						}
 					}
 
@@ -39,6 +40,7 @@ public sealed class ProtocolSchemaResolver(bool reformat = false)
 						if (!schema.Outgoing.TryAdd(key, packet))
 						{
 							schema.Outgoing[key].Structure ??= packet.Structure;
+							schema.Outgoing[key].Converters ??= packet.Converters;
 						}
 					}
 

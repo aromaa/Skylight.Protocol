@@ -12,6 +12,7 @@ public sealed class PacketSchema
 	[JsonConverter(typeof(Converter))]
 	public object? Id { get; set; }
 
+	public Dictionary<string, string>? Converters { get; set; }
 	public List<AbstractMappingSchema>? Structure { get; set; }
 
 	public ImportMetadataSchema? ImportMetadata { get; set; }

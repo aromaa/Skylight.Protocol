@@ -8,9 +8,11 @@ using Skylight.Protocol.Generator.Writer.Handlers;
 
 namespace Skylight.Protocol.Generator.Writer;
 
-internal struct WriterContext(Dictionary<Type, MappingWriterHandler> handlers)
+internal struct WriterContext(PacketStructure packet, Dictionary<Type, MappingWriterHandler> handlers)
 {
 	private readonly Dictionary<Type, MappingWriterHandler> handlers = handlers;
+
+	public PacketStructure Packet { get; } = packet;
 
 	public string Name { get; private set; } = string.Empty;
 
