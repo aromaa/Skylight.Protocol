@@ -2,9 +2,9 @@
 
 namespace Skylight.Protocol.Packets.Outgoing.Room.Engine;
 
-public sealed class ItemRemoveOutgoingPacket : IGameOutgoingPacket
+public sealed class ItemRemoveOutgoingPacket<TRoomItemId> : IGameOutgoingPacket
 {
-	public required int ItemId { get; init; }
+	public required TRoomItemId ItemId { get; init; }
 	public required int PickerId { get; init; }
 
 	public ItemRemoveOutgoingPacket()
@@ -12,7 +12,7 @@ public sealed class ItemRemoveOutgoingPacket : IGameOutgoingPacket
 	}
 
 	[SetsRequiredMembers]
-	public ItemRemoveOutgoingPacket(int itemId, int pickerId)
+	public ItemRemoveOutgoingPacket(TRoomItemId itemId, int pickerId)
 	{
 		this.ItemId = itemId;
 		this.PickerId = pickerId;

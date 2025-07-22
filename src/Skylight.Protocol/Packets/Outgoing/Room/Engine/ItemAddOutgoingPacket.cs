@@ -3,9 +3,9 @@ using Skylight.Protocol.Packets.Data.Room.Engine;
 
 namespace Skylight.Protocol.Packets.Outgoing.Room.Engine;
 
-public sealed class ItemAddOutgoingPacket : IGameOutgoingPacket
+public sealed class ItemAddOutgoingPacket<TRoomItemId> : IGameOutgoingPacket
 {
-	public required ItemData Item { get; init; }
+	public required ItemData<TRoomItemId> Item { get; init; }
 
 	public required string OwnerName { get; init; }
 
@@ -14,7 +14,7 @@ public sealed class ItemAddOutgoingPacket : IGameOutgoingPacket
 	}
 
 	[SetsRequiredMembers]
-	public ItemAddOutgoingPacket(ItemData item, string ownerName)
+	public ItemAddOutgoingPacket(ItemData<TRoomItemId> item, string ownerName)
 	{
 		this.Item = item;
 

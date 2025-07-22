@@ -9,9 +9,10 @@ namespace Skylight.Protocol.RELEASE39_200910220522_22363.Packets.Composers.Room.
 
 [PacketComposerId(45u)]
 [PacketManagerRegister(typeof(GamePacketManager))]
-internal sealed class ItemsPacketComposer : IOutgoingPacketComposer<ItemsOutgoingPacket>
+internal sealed class ItemsPacketComposer<TRoomItemId, TRoomItemIdConverter> : IOutgoingPacketComposer<ItemsOutgoingPacket<TRoomItemId>>
+	where TRoomItemIdConverter : Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>
 {
-	public void Compose(ref PacketWriter writer, in ItemsOutgoingPacket packet)
+	public void Compose(ref PacketWriter writer, in ItemsOutgoingPacket<TRoomItemId> packet)
 	{
 		writer.WriteVL64Int32(0);
 	}

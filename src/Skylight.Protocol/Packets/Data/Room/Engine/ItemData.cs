@@ -4,9 +4,9 @@ using Skylight.Protocol.Packets.Data.Room.Object.Data.Wall;
 
 namespace Skylight.Protocol.Packets.Data.Room.Engine;
 
-public sealed class ItemData
+public sealed class ItemData<TRoomItemId>
 {
-	public required int Id { get; init; }
+	public required TRoomItemId Id { get; init; }
 	public required int FurnitureId { get; init; }
 
 	public required WallPosition Position { get; init; }
@@ -18,7 +18,7 @@ public sealed class ItemData
 	}
 
 	[SetsRequiredMembers]
-	public ItemData(int id, int furnitureId, WallPosition position, IItemData extraData)
+	public ItemData(TRoomItemId id, int furnitureId, WallPosition position, IItemData extraData)
 	{
 		this.Id = id;
 		this.FurnitureId = furnitureId;

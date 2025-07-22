@@ -2073,6 +2073,9 @@
     },
     "Room.Engine.ItemAdd": {
       "Id": 2866,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -2103,6 +2106,9 @@
     },
     "Room.Engine.ItemRemove": {
       "Id": 1133,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -2118,6 +2124,9 @@
     },
     "Room.Engine.Items": {
       "Id": 3683,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -2133,6 +2142,9 @@
     },
     "Room.Engine.ObjectAdd": {
       "Id": 2792,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -2148,6 +2160,9 @@
     },
     "Room.Engine.ObjectDataUpdate": {
       "Id": 3458,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -2163,6 +2178,9 @@
     },
     "Room.Engine.ObjectRemove": {
       "Id": 2181,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -2188,6 +2206,9 @@
     },
     "Room.Engine.Objects": {
       "Id": 171,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -2203,6 +2224,9 @@
     },
     "Room.Engine.ObjectUpdate": {
       "Id": 1217,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -2497,6 +2521,9 @@
     },
     "UserDefinedRoomEvents.WiredFurniAction": {
       "Id": 1688,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Constant",
@@ -2557,6 +2584,9 @@
     },
     "UserDefinedRoomEvents.WiredFurniCondition": {
       "Id": 2797,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Constant",
@@ -2607,6 +2637,9 @@
     },
     "UserDefinedRoomEvents.WiredFurniTrigger": {
       "Id": 3319,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Constant",

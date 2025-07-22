@@ -9,9 +9,10 @@ namespace Skylight.Protocol.RELEASE63_201211141113_913728051.Packets.Composers.R
 
 [PacketComposerId(3096u)]
 [PacketManagerRegister(typeof(GamePacketManager))]
-internal sealed class ItemsPacketComposer : IOutgoingPacketComposer<ItemsOutgoingPacket>
+internal sealed class ItemsPacketComposer<TRoomItemId, TRoomItemIdConverter> : IOutgoingPacketComposer<ItemsOutgoingPacket<TRoomItemId>>
+	where TRoomItemIdConverter : Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>
 {
-	public void Compose(ref PacketWriter writer, in ItemsOutgoingPacket packet)
+	public void Compose(ref PacketWriter writer, in ItemsOutgoingPacket<TRoomItemId> packet)
 	{
 		writer.WriteInt32(packet.OwnerNames.Count);
 		foreach (var ownerNames in packet.OwnerNames)
@@ -22,7 +23,7 @@ internal sealed class ItemsPacketComposer : IOutgoingPacketComposer<ItemsOutgoin
 		writer.WriteInt32(packet.Items.Count);
 		foreach (var items in packet.Items)
 		{
-			writer.WriteFixedUInt16String(items.Id.ToString());
+			writer.WriteFixedUInt16String(TRoomItemIdConverter.Convert(items.Id).ToString());
 			writer.WriteInt32(items.FurnitureId);
 			writer.WriteFixedUInt16String($"{":w="}{items.Position.LocationX}{","}{items.Position.LocationY}{" l="}{items.Position.PositionX}{","}{items.Position.PositionY}{" l"}".ToString());
 			if (items.ExtraData is Skylight.Protocol.Packets.Data.Room.Object.Data.EmptyItemData emptyItemData)

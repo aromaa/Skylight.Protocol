@@ -9,11 +9,12 @@ namespace Skylight.Protocol.WIN63_202111081545_75921380.Packets.Composers.Room.E
 
 [PacketComposerId(2181u)]
 [PacketManagerRegister(typeof(GamePacketManager))]
-internal sealed class ObjectRemovePacketComposer : IOutgoingPacketComposer<ObjectRemoveOutgoingPacket>
+internal sealed class ObjectRemovePacketComposer<TRoomItemId, TRoomItemIdConverter> : IOutgoingPacketComposer<ObjectRemoveOutgoingPacket<TRoomItemId>>
+	where TRoomItemIdConverter : Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>
 {
-	public void Compose(ref PacketWriter writer, in ObjectRemoveOutgoingPacket packet)
+	public void Compose(ref PacketWriter writer, in ObjectRemoveOutgoingPacket<TRoomItemId> packet)
 	{
-		writer.WriteFixedUInt16String(packet.ItemId.ToString());
+		writer.WriteFixedUInt16String(TRoomItemIdConverter.Convert(packet.ItemId).ToString());
 		writer.WriteBool(packet.Expired);
 		writer.WriteInt32(packet.PickerId);
 		writer.WriteInt32(packet.Delay);

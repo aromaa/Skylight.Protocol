@@ -9,14 +9,15 @@ namespace Skylight.Protocol.RELEASE39_200910220522_22363.Packets.Composers.Room.
 
 [PacketComposerId(32u)]
 [PacketManagerRegister(typeof(GamePacketManager))]
-internal sealed class ObjectsPacketComposer : IOutgoingPacketComposer<ObjectsOutgoingPacket>
+internal sealed class ObjectsPacketComposer<TRoomItemId, TRoomItemIdConverter> : IOutgoingPacketComposer<ObjectsOutgoingPacket<TRoomItemId>>
+	where TRoomItemIdConverter : Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>
 {
-	public void Compose(ref PacketWriter writer, in ObjectsOutgoingPacket packet)
+	public void Compose(ref PacketWriter writer, in ObjectsOutgoingPacket<TRoomItemId> packet)
 	{
 		writer.WriteVL64Int32(packet.Objects.Count);
 		foreach (var objects in packet.Objects)
 		{
-			writer.WriteVL64Int32(objects.Id);
+			writer.WriteVL64Int32(TRoomItemIdConverter.Convert(objects.Id));
 			writer.WriteVL64Int32(objects.FurnitureId);
 			writer.WriteVL64Int32(objects.X);
 			writer.WriteVL64Int32(objects.Y);

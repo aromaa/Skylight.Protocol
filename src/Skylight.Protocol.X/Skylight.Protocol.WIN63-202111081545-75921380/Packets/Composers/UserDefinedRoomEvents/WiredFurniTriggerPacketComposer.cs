@@ -9,19 +9,20 @@ namespace Skylight.Protocol.WIN63_202111081545_75921380.Packets.Composers.UserDe
 
 [PacketComposerId(3319u)]
 [PacketManagerRegister(typeof(GamePacketManager))]
-internal sealed class WiredFurniTriggerPacketComposer : IOutgoingPacketComposer<WiredFurniTriggerOutgoingPacket>
+internal sealed class WiredFurniTriggerPacketComposer<TRoomItemId, TRoomItemIdConverter> : IOutgoingPacketComposer<WiredFurniTriggerOutgoingPacket<TRoomItemId>>
+	where TRoomItemIdConverter : Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>
 {
-	public void Compose(ref PacketWriter writer, in WiredFurniTriggerOutgoingPacket packet)
+	public void Compose(ref PacketWriter writer, in WiredFurniTriggerOutgoingPacket<TRoomItemId> packet)
 	{
 		writer.WriteBool(false);
 		writer.WriteInt32(packet.MaxSelectedItems);
 		writer.WriteInt32(packet.SelectedItems.Count);
 		foreach (var selectedItems in packet.SelectedItems)
 		{
-			writer.WriteInt32(selectedItems);
+			writer.WriteInt32(TRoomItemIdConverter.Convert(selectedItems));
 		}
 		writer.WriteInt32(packet.FurnitureId);
-		writer.WriteInt32(packet.ItemId);
+		writer.WriteInt32(TRoomItemIdConverter.Convert(packet.ItemId));
 		writer.WriteFixedUInt16String(packet.StringParameter);
 		writer.WriteInt32(packet.IntegerParameters.Count);
 		foreach (var integerParameters in packet.IntegerParameters)
