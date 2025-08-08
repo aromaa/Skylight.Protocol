@@ -1,4 +1,5 @@
 ﻿namespace Skylight.Protocol.Packets.Incoming.Preferences;
+
 public interface ISetSoundSettingsIncomingPacket : IGameIncomingPacket
 {
 	public int UiVolume { get; }
