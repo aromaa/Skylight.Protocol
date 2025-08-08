@@ -11,6 +11,6 @@ public abstract class AbstractGamePacketManager<T>(IServiceProvider serviceProvi
 
 	private static PacketManagerData<T> Combine(PacketManagerData baseData, PacketManagerData<T> protocolData)
 	{
-		return new PacketManagerData<T>(protocolData.Parsers, baseData.Handlers, protocolData.Composers);
+		return new PacketManagerData<T>(protocolData.Parsers, baseData.Handlers, protocolData.Composers, baseData.ComposerHandlerCandidates);
 	}
 }

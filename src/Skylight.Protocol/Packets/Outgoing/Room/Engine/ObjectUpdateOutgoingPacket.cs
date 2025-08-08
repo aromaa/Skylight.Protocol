@@ -3,16 +3,16 @@ using Skylight.Protocol.Packets.Data.Room.Engine;
 
 namespace Skylight.Protocol.Packets.Outgoing.Room.Engine;
 
-public sealed class ObjectUpdateOutgoingPacket : IGameOutgoingPacket
+public sealed class ObjectUpdateOutgoingPacket<TRoomItemId> : IGameOutgoingPacket
 {
-	public required ObjectData Object { get; init; }
+	public required ObjectData<TRoomItemId> Object { get; init; }
 
 	public ObjectUpdateOutgoingPacket()
 	{
 	}
 
 	[SetsRequiredMembers]
-	public ObjectUpdateOutgoingPacket(ObjectData objectData)
+	public ObjectUpdateOutgoingPacket(ObjectData<TRoomItemId> objectData)
 	{
 		this.Object = objectData;
 	}

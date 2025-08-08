@@ -75,7 +75,7 @@ internal static class PacketParserWriter
 		writer.WriteLine($"{{");
 		writer.Indent++;
 
-		WriterContext context = new(handlers);
+		WriterContext context = new(packet, handlers);
 
 		if (packet.Mapping.Length > 0)
 		{

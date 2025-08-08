@@ -490,6 +490,9 @@
     },
     "Room.Engine.Items": {
       "Id": 45,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Constant",
@@ -500,6 +503,9 @@
     },
     "Room.Engine.Objects": {
       "Id": 32,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Field",

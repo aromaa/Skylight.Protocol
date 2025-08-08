@@ -113,19 +113,25 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 			type = propertyInfo.PropertyType;
 		}
 
+		string target = context.Name;
+		if (type is Type { IsGenericType: true } genericType && context.Packet.Type.GetGenericArguments().Any(a => a == genericType))
+		{
+			target = $"{genericType.GetGenericArguments()[0].Name}Converter.Convert({target})";
+		}
+
 		if (typeMapping.Type == typeof(bool).FromAssembly(typeMapping.Type))
 		{
-			writer.WriteLine($"writer.WriteBool({context.Name});");
+			writer.WriteLine($"writer.WriteBool({target});");
 		}
 		else if (typeMapping.Type == typeof(short).FromAssembly(typeMapping.Type))
 		{
 			if (type == typeof(short).FromAssembly(type))
 			{
-				writer.WriteLine($"writer.WriteInt16({context.Name});");
+				writer.WriteLine($"writer.WriteInt16({target});");
 			}
 			else
 			{
-				writer.WriteLine($"writer.WriteInt16((short){context.Name});");
+				writer.WriteLine($"writer.WriteInt16((short){target});");
 			}
 		}
 		else if (typeMapping.Type == typeof(int).FromAssembly(typeMapping.Type))
@@ -133,20 +139,20 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 			if (type == typeof(bool).FromAssembly(type))
 			{
 				writer.WriteLine(protocol.Protocol is "Modern"
-					? $"writer.WriteInt32({context.Name} ? 1 : 0);"
-					: $"writer.WriteVL64Int32({context.Name} ? 1 : 0);");
+					? $"writer.WriteInt32({target} ? 1 : 0);"
+					: $"writer.WriteVL64Int32({target} ? 1 : 0);");
 			}
 			else if (((Type)type).IsEnum)
 			{
 				writer.WriteLine(protocol.Protocol is "Modern"
-					? $"writer.WriteInt32((int){context.Name});"
-					: $"writer.WriteVL64Int32((int){context.Name});");
+					? $"writer.WriteInt32((int){target});"
+					: $"writer.WriteVL64Int32((int){target});");
 			}
 			else
 			{
 				writer.WriteLine(protocol.Protocol is "Modern"
-					? $"writer.WriteInt32({context.Name});"
-					: $"writer.WriteVL64Int32({context.Name});");
+					? $"writer.WriteInt32({target});"
+					: $"writer.WriteVL64Int32({target});");
 			}
 		}
 		else if (typeMapping.Type == typeof(byte).FromAssembly(typeMapping.Type))
@@ -154,13 +160,13 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 			if (type == typeof(byte).FromAssembly(type))
 			{
 				writer.WriteLine(protocol.Protocol is "Modern"
-					? $"writer.WriteByte({context.Name});"
+					? $"writer.WriteByte({target});"
 					: throw new NotSupportedException());
 			}
 			else if (type == typeof(int).FromAssembly(type))
 			{
 				writer.WriteLine(protocol.Protocol is "Modern"
-					? $"writer.WriteByte((byte){context.Name});"
+					? $"writer.WriteByte((byte){target});"
 					: throw new NotSupportedException());
 			}
 			else
@@ -172,30 +178,30 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 		{
 			if (type == typeof(ICollection<short>).FromAssembly(type))
 			{
-				writer.WriteLine($"writer.WriteFixedUInt16String(string.Join('\\r', {context.Name}.Select(i => (byte)('0' + i)).Chunk((int)packet.Width).Select(c => System.Text.Encoding.UTF8.GetString(c))));");
+				writer.WriteLine($"writer.WriteFixedUInt16String(string.Join('\\r', {target}.Select(i => (byte)('0' + i)).Chunk((int)packet.Width).Select(c => System.Text.Encoding.UTF8.GetString(c))));");
 			}
 			else if (type == typeof(double).FromAssembly(type))
 			{
 				writer.WriteLine(protocol.Protocol is "Modern"
-					? $"writer.WriteFixedUInt16String({context.Name}.ToString(CultureInfo.InvariantCulture));"
-					: $"writer.WriteDelimiter2BrokenString({context.Name}.ToString(CultureInfo.InvariantCulture));");
+					? $"writer.WriteFixedUInt16String({target}.ToString(CultureInfo.InvariantCulture));"
+					: $"writer.WriteDelimiter2BrokenString({target}.ToString(CultureInfo.InvariantCulture));");
 			}
 			else if (type != typeof(string).FromAssembly(type))
 			{
 				writer.WriteLine(protocol.Protocol switch
 				{
-					"Modern" => $"writer.WriteFixedUInt16String({context.Name}.ToString());",
-					"Fuse" => $"writer.WriteDelimiterBrokenString({context.Name}.ToString(), (byte)'\\r');",
-					_ => $"writer.WriteDelimiter2BrokenString({context.Name}.ToString());"
+					"Modern" => $"writer.WriteFixedUInt16String({target}.ToString());",
+					"Fuse" => $"writer.WriteDelimiterBrokenString({target}.ToString(), (byte)'\\r');",
+					_ => $"writer.WriteDelimiter2BrokenString({target}.ToString());"
 				});
 			}
 			else
 			{
 				writer.WriteLine(protocol.Protocol switch
 				{
-					"Modern" => $"writer.WriteFixedUInt16String({context.Name});",
-					"Fuse" => $"writer.WriteDelimiterBrokenString({context.Name}, (byte)'\\r');",
-					_ => $"writer.WriteDelimiter2BrokenString({context.Name});"
+					"Modern" => $"writer.WriteFixedUInt16String({target});",
+					"Fuse" => $"writer.WriteDelimiterBrokenString({target}, (byte)'\\r');",
+					_ => $"writer.WriteDelimiter2BrokenString({target});"
 				});
 			}
 		}
@@ -204,31 +210,31 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 			if (typeMapping.ExtraData is not null)
 			{
 				writer.WriteLine($"writer.WriteBytes(\"{typeMapping.ExtraData}=\"u8);");
-				WriteText(ref context, protocol, writer, mapping, type);
+				WriteText(ref context, protocol, writer, mapping, type, target);
 				writer.WriteLine($"writer.WriteByte(13);");
 			}
 			else
 			{
-				WriteText(ref context, protocol, writer, mapping, type);
+				WriteText(ref context, protocol, writer, mapping, type, target);
 			}
 
-			static void WriteText(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, AbstractMappingSyntax mapping, MemberInfo type)
+			static void WriteText(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, AbstractMappingSyntax mapping, MemberInfo type, string target)
 			{
 				if (type == typeof(ICollection<short>).FromAssembly(type))
 				{
-					writer.WriteLine($"writer.WriteText(string.Join('\\r', {context.Name}.Select(i => (byte)('0' + i)).Chunk((int)packet.Width).Select(c => System.Text.Encoding.UTF8.GetString(c))));");
+					writer.WriteLine($"writer.WriteText(string.Join('\\r', {target}.Select(i => (byte)('0' + i)).Chunk((int)packet.Width).Select(c => System.Text.Encoding.UTF8.GetString(c))));");
 				}
 				else if (type == typeof(DateTime).FromAssembly(type))
 				{
-					writer.WriteLine($"writer.WriteText({context.Name}.ToString(\"d-M-yyyy\"));");
+					writer.WriteLine($"writer.WriteText({target}.ToString(\"d-M-yyyy\"));");
 				}
 				else if (type == typeof(ICollection<int>).FromAssembly(type))
 				{
-					writer.WriteLine($"writer.WriteText('[' + string.Join(',', {context.Name}) + ']');");
+					writer.WriteLine($"writer.WriteText('[' + string.Join(',', {target}) + ']');");
 				}
 				else
 				{
-					writer.WriteLine($"writer.WriteText({context.Name}.ToString());");
+					writer.WriteLine($"writer.WriteText({target}.ToString());");
 				}
 			}
 		}

@@ -75,15 +75,84 @@ internal static partial class PacketConsumerWriter
 			}
 		}
 
+		StringBuilder composerGenerics = new();
+		StringBuilder packetGenerics = new();
+		List<string> genericConstraints = [];
+		if (packet.Type.IsGenericType)
+		{
+			composerGenerics.Append('<');
+			packetGenerics.Append('<');
+
+			Type[] originalGenericArguments = packet.Type.GetGenericTypeDefinition().GetGenericArguments();
+			for (int i = 0; i < originalGenericArguments.Length; i++)
+			{
+				if (i > 0)
+				{
+					composerGenerics.Append(", ");
+					packetGenerics.Append(", ");
+				}
+
+				Type genericArgument = originalGenericArguments[i];
+
+				composerGenerics.Append(genericArgument.Name);
+				composerGenerics.Append(", ");
+				composerGenerics.Append($"{genericArgument.Name}Converter");
+
+				packetGenerics.Append(genericArgument.Name);
+			}
+
+			composerGenerics.Append('>');
+			packetGenerics.Append('>');
+
+			Type[] genericArguments = packet.Type.GetGenericArguments();
+			for (int i = 0; i < genericArguments.Length; i++)
+			{
+				Type genericArgument = genericArguments[i];
+
+				string genericArgumentName = genericArgument.ToString();
+				StringBuilder constraintGenericArguments = new();
+				if (genericArgument.IsGenericType)
+				{
+					constraintGenericArguments.Append('<');
+
+					Type[] constraintGenericArgumentTypes = genericArgument.GetGenericArguments();
+					for (int j = 0; j < constraintGenericArgumentTypes.Length; j++)
+					{
+						if (j > 0)
+						{
+							constraintGenericArguments.Append(", ");
+						}
+
+						constraintGenericArguments.Append(constraintGenericArgumentTypes[j].Name);
+					}
+
+					constraintGenericArguments.Append('>');
+
+					genericArgumentName = genericArgumentName[..genericArgumentName.IndexOf('`')];
+				}
+
+				genericConstraints.Add($"{originalGenericArguments[i]}Converter : {genericArgumentName}{constraintGenericArguments}");
+			}
+		}
+
 		writer.WriteLine($"[PacketManagerRegister(typeof(GamePacketManager))]");
-		writer.WriteLine($"internal sealed class {packetName}PacketComposer : {(appendHeader is not null
-			? $"Skylight.Protocol.Packets.Outgoing.IGameOutgoingPacketComposer<{packetName}OutgoingPacket>"
-			: $"IOutgoingPacketComposer<{packetName}OutgoingPacket>")}");
+		writer.WriteLine($"internal sealed class {packetName}PacketComposer{composerGenerics} : {(appendHeader is not null
+			? $"Skylight.Protocol.Packets.Outgoing.IGameOutgoingPacketComposer<{packetName}OutgoingPacket{packetGenerics}>"
+			: $"IOutgoingPacketComposer<{packetName}OutgoingPacket{packetGenerics}>")}");
+
+		writer.Indent++;
+		foreach (string genericConstraint in genericConstraints)
+		{
+			writer.WriteLine($"where {genericConstraint}");
+		}
+
+		writer.Indent--;
+
 		writer.WriteLine($"{{");
 		writer.Indent++;
 		if (appendHeader is not null)
 		{
-			writer.WriteLine($"public void AppendHeader(ref PacketWriter writer, in {packetName}OutgoingPacket packet)");
+			writer.WriteLine($"public void AppendHeader(ref PacketWriter writer, in {packetName}OutgoingPacket{packetGenerics} packet)");
 			writer.WriteLine($"{{");
 			writer.Indent++;
 			writer.WriteLine($"writer.WriteBytes(System.Text.Encoding.ASCII.GetBytes(packet.{appendHeader}.ToString()));");
@@ -92,11 +161,11 @@ internal static partial class PacketConsumerWriter
 			writer.WriteLine();
 		}
 
-		writer.WriteLine($"public void Compose(ref PacketWriter writer, in {packetName}OutgoingPacket packet)");
+		writer.WriteLine($"public void Compose(ref PacketWriter writer, in {packetName}OutgoingPacket{packetGenerics} packet)");
 		writer.WriteLine($"{{");
 		writer.Indent++;
 
-		WriterContext context = new(handlers);
+		WriterContext context = new(packet, handlers);
 
 		using (context.PushScope("packet"))
 		{

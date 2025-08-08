@@ -90,6 +90,17 @@ internal static class ProtocolParser
 		else if (interfaceType == interfaceType.Assembly.GetType("Skylight.Protocol.Packets.Outgoing.IGameOutgoingPacket"))
 		{
 			packetInterface = interfaceType.Assembly.GetType($"{interfaceType.Namespace}.{packetGroup}.{packetName}OutgoingPacket");
+			if (packetInterface is null)
+			{
+				for (int i = 1; i < 10; i++)
+				{
+					packetInterface = interfaceType.Assembly.GetType($"{interfaceType.Namespace}.{packetGroup}.{packetName}OutgoingPacket`{i}");
+					if (packetInterface is not null)
+					{
+						break;
+					}
+				}
+			}
 		}
 		else
 		{
@@ -108,8 +119,45 @@ internal static class ProtocolParser
 	{
 		ImmutableArray<MappingStructure>.Builder mappings = ImmutableArray.CreateBuilder<MappingStructure>(packet.Structure!.Count);
 
-		Dictionary<string, MappingStructure> fields = [];
+		if (packetType.IsGenericType)
+		{
+			if (packet.Converters is null)
+			{
+				throw new Exception($"Packet {name} does not have converters defined, but the type {packetType} is generic.");
+			}
 
+			Type[] genericArguments = packetType.GetGenericArguments();
+			for (int i = 0; i < genericArguments.Length; i++)
+			{
+				if (!packet.Converters.TryGetValue(genericArguments[i].Name, out string? target))
+				{
+					throw new Exception($"Packet {name} does not have mapping for generic parameter {genericArguments[i].Name}!");
+				}
+
+				int genericIndexOf = target.IndexOf('<');
+				if (genericIndexOf > -1)
+				{
+					if (packetType.Assembly.GetType($"{target.AsSpan(0, genericIndexOf)}`{target.Count(c => c == ',') + 1}") is not { } targetType)
+					{
+						throw new Exception($"Packet {name} does not have definition for {target}!");
+					}
+
+					genericArguments[i] = targetType.GetGenericTypeDefinition().MakeGenericType(genericArguments[i]);
+				}
+				else if (packetType.Assembly.GetType(target) is not { } targetType)
+				{
+					throw new Exception($"Packet {name} does not have definition for {target}!");
+				}
+				else
+				{
+					genericArguments[i] = targetType;
+				}
+			}
+
+			packetType = packetType.MakeGenericType(genericArguments);
+		}
+
+		Dictionary<string, MappingStructure> fields = [];
 		foreach (AbstractMappingSchema mapping in packet.Structure)
 		{
 			AbstractMappingSyntax syntax = MappingParser.Parse(mapping, packetType.Assembly.GetType("Skylight.Protocol.Attributes.GameProtocolAttribute")!.BaseType!.Assembly);

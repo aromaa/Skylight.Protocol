@@ -12,7 +12,7 @@ internal static class Program
 		{
 			await resolver.LoadAllAsync(directory).ConfigureAwait(false);
 
-			foreach (string subDirectory in Directory.EnumerateDirectories(directory, "*", new EnumerationOptions()))
+			foreach (string subDirectory in Directory.EnumerateDirectories(directory, "Skylight.Protocol.*", new EnumerationOptions()))
 			{
 				ProtocolSchema schema = resolver.GetSchema(Path.GetFileName(subDirectory)["Skylight.Protocol.".Length..]);
 

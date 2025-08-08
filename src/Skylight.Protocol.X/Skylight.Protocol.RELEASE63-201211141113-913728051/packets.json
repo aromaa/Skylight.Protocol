@@ -865,6 +865,9 @@
     },
     "Room.Engine.Items": {
       "Id": 3096,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -880,6 +883,9 @@
     },
     "Room.Engine.ObjectAdd": {
       "Id": 1243,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -895,6 +901,9 @@
     },
     "Room.Engine.ObjectRemove": {
       "Id": 2113,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -915,6 +924,9 @@
     },
     "Room.Engine.Objects": {
       "Id": 3580,
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
