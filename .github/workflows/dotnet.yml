@@ -12,13 +12,13 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 10.0.x
     - name: Restore dependencies
       run: dotnet restore /p:EnableWindowsTargeting=true
-    - name: Build
-      run: dotnet build --no-restore /p:EnforceCodeStyleInBuild=true /p:EnableWindowsTargeting=true
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: Build editor
+      run: dotnet build Skylight.Protocol.Editor.slnf --no-restore /p:EnforceCodeStyleInBuild=true /p:EnableWindowsTargeting=true
+    - name: Test editor
+      run: dotnet test Skylight.Protocol.Editor.slnf --no-build --verbosity normal
     - name: Run generator
       run: dotnet run --project src/Skylight.Protocol.Generator/Skylight.Protocol.Generator.csproj src/Skylight.Protocol.X
     - name: Check no diffs

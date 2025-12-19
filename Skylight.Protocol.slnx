@@ -1,0 +1,23 @@
+<Solution>
+  <Folder Name="/Protocols/">
+    <Project Path="src/Skylight.Protocol.X/Skylight.Protocol.MOBILES-DISCO/Skylight.Protocol.MOBILES-DISCO.csproj" />
+    <Project Path="src/Skylight.Protocol.X/Skylight.Protocol.RELEASE1/Skylight.Protocol.RELEASE1.csproj" />
+    <Project Path="src/Skylight.Protocol.X/Skylight.Protocol.RELEASE39-200910220522-22363/Skylight.Protocol.RELEASE39-200910220522-22363.csproj" />
+    <Project Path="src/Skylight.Protocol.X/Skylight.Protocol.RELEASE5/Skylight.Protocol.RELEASE5.csproj" />
+    <Project Path="src/Skylight.Protocol.X/Skylight.Protocol.RELEASE6/Skylight.Protocol.RELEASE6.csproj" />
+    <Project Path="src/Skylight.Protocol.X/Skylight.Protocol.RELEASE63-201211141113-913728051/Skylight.Protocol.RELEASE63-201211141113-913728051.csproj" />
+    <Project Path="src/Skylight.Protocol.X/Skylight.Protocol.RELEASE9/Skylight.Protocol.RELEASE9.csproj" />
+    <Project Path="src/Skylight.Protocol.X/Skylight.Protocol.WIN63-202111081545-75921380/Skylight.Protocol.WIN63-202111081545-75921380.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Skylight.Protocol.Editor/Skylight.Protocol.Editor.csproj" />
+    <Project Path="src/Skylight.Protocol.Generator/Skylight.Protocol.Generator.csproj" />
+    <Project Path="src/Skylight.Protocol/Skylight.Protocol.csproj" />
+  </Folder>
+  <Folder Name="/Submodules/" />
+  <Folder Name="/Submodules/Net/">
+    <Project Path="src/submodules/Net/Net.Buffers/Net.Buffers.csproj" />
+    <Project Path="src/submodules/Net/Net.Communication/Net.Communication.csproj" />
+    <Project Path="src/submodules/Net/Net/Net.csproj" />
+  </Folder>
+</Solution>

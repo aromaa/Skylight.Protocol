@@ -1218,7 +1218,7 @@ internal partial class ProtocolOverviewForm : Form
 
 		internal IReadOnlyList<string> CompileErrors => this.compileErrors;
 
-		string ILogger.Parameters
+		string? ILogger.Parameters
 		{
 			get => string.Empty;
 			set { } //Don't allow set

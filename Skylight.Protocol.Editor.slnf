@@ -1,0 +1,13 @@
+{
+  "solution": {
+    "path": "Skylight.Protocol.slnx",
+    "projects": [
+      "src\\Skylight.Protocol.Editor\\Skylight.Protocol.Editor.csproj",
+      "src\\Skylight.Protocol.Generator\\Skylight.Protocol.Generator.csproj",
+      "src\\Skylight.Protocol\\Skylight.Protocol.csproj",
+      "src\\submodules\\Net\\Net.Buffers\\Net.Buffers.csproj",
+      "src\\submodules\\Net\\Net.Communication\\Net.Communication.csproj",
+      "src\\submodules\\Net\\Net\\Net.csproj"
+    ]
+  }
+}
