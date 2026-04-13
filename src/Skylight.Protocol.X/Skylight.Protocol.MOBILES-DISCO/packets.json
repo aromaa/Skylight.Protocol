@@ -1,6 +1,7 @@
 {
   "Revision": "MOBILES-DISCO",
   "Protocol": "Fuse",
+  "Capabilities": {},
   "Incoming": {
     "Handshake.InfoRetrieve": {
       "Id": "INFORETRIEVE",

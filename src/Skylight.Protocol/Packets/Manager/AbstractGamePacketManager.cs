@@ -1,4 +1,5 @@
-﻿using Net.Communication.Manager;
+﻿using System.Collections.Frozen;
+using Net.Communication.Manager;
 
 namespace Skylight.Protocol.Packets.Manager;
 
@@ -8,6 +9,8 @@ public abstract class AbstractGamePacketManager<T>(IServiceProvider serviceProvi
 {
 	public abstract bool Modern { get; }
 	public abstract bool Fuse { get; }
+
+	public abstract FrozenSet<string> Capabilities { get; }
 
 	private static PacketManagerData<T> Combine(PacketManagerData baseData, PacketManagerData<T> protocolData)
 	{

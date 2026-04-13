@@ -26,6 +26,11 @@ public sealed class ProtocolSchemaResolver(bool reformat = false)
 				{
 					schemasToProcess.Enqueue(schema);
 
+					foreach ((string key, bool value) in dependencySchema.Capabilities)
+					{
+						schema.Capabilities.TryAdd(key, value);
+					}
+
 					foreach ((string key, PacketSchema packet) in dependencySchema.Incoming)
 					{
 						if (!schema.Incoming.TryAdd(key, packet))

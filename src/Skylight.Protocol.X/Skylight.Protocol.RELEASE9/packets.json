@@ -1,6 +1,7 @@
 {
   "Revision": "RELEASE9",
   "Protocol": "Legacy",
+  "Capabilities": {},
   "Incoming": {
     "Handshake.GenerateKey": {
       "Id": 202,

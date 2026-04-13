@@ -2,6 +2,7 @@
   "Revision": "RELEASE5",
   "Inherit": "RELEASE1",
   "Protocol": "Fuse",
+  "Capabilities": {},
   "Incoming": {},
   "Outgoing": {
     "Handshake.AuthenticationOK": {

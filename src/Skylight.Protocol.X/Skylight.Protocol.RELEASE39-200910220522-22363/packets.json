@@ -1,6 +1,7 @@
 {
   "Revision": "RELEASE39-200910220522-22363",
   "Protocol": "Legacy",
+  "Capabilities": {},
   "Incoming": {
     "Advertisement.GetInterstitial": {
       "Id": 182,

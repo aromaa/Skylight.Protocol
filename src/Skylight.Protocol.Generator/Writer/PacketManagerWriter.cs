@@ -24,6 +24,7 @@ internal static class PacketManagerWriter
 		writer.WriteLine($"using Skylight.Protocol.Attributes;");
 		writer.WriteLine($"using Skylight.Protocol.Packets.Manager;");
 		writer.WriteLine($"using Skylight.Protocol.{revision}.Packets;");
+		writer.WriteLine($"using System.Collections.Frozen;");
 		writer.WriteLine();
 		writer.WriteLine($"[assembly: GameProtocol(\"{protocol.Revision}\")]");
 		writer.WriteLine($"[assembly: GameProtocolManager<GamePacketManager>]");
@@ -36,6 +37,8 @@ internal static class PacketManagerWriter
 		writer.Indent++;
 		writer.WriteLine($"public override bool Modern => {(protocol.Protocol is "Modern" ? "true" : "false")};");
 		writer.WriteLine($"public override bool Fuse => {(protocol.Protocol is "Fuse" ? "true" : "false")};");
+		writer.WriteLineNoTabs(string.Empty);
+		writer.WriteLine($"public override FrozenSet<string> Capabilities {{ get; }} = FrozenSet.Create<string>({string.Join(", ", protocol.Capabilities.Select(c => $"\"{c}\""))});");
 		writer.WriteLineNoTabs(string.Empty);
 		writer.WriteLine($"public static IGamePacketManager CreatePacketManager(IServiceProvider serviceProvider, PacketManagerData packetManagerData) => new GamePacketManager(serviceProvider, packetManagerData);");
 		writer.WriteLineNoTabs(string.Empty);

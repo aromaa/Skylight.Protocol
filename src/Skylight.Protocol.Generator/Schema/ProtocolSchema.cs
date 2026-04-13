@@ -9,6 +9,8 @@ public sealed class ProtocolSchema
 	public string? Inherit { get; set; }
 	public required string Protocol { get; set; }
 
+	public required SortedDictionary<string, bool> Capabilities { get; set; }
+
 	public required SortedDictionary<string, PacketSchema> Incoming { get; set; }
 	public required SortedDictionary<string, PacketSchema> Outgoing { get; set; }
 

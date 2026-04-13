@@ -2,6 +2,7 @@
   "Revision": "RELEASE6",
   "Inherit": "RELEASE5",
   "Protocol": "Legacy",
+  "Capabilities": {},
   "Incoming": {
     "Handshake.InfoRetrieve": {
       "Id": 7,

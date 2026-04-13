@@ -1,6 +1,7 @@
 {
   "Revision": "RELEASE63-201211141113-913728051",
   "Protocol": "Modern",
+  "Capabilities": {},
   "Incoming": {
     "Advertisement.GetInterstitial": {
       "Id": 3080,

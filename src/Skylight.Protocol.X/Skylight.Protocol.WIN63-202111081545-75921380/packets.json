@@ -1,6 +1,7 @@
 {
   "Revision": "WIN63-202111081545-75921380",
   "Protocol": "Modern",
+  "Capabilities": {},
   "Incoming": {
     "Advertisement.GetInterstitial": {
       "Id": 349,
