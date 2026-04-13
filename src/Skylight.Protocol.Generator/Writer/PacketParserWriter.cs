@@ -40,7 +40,7 @@ internal static class PacketParserWriter
 		string packetName = name.Substring(groupIdentifier + 1);
 
 		writer.WriteLine($"using System.Buffers;");
-		if (protocol.Protocol is "Fuse")
+		if (protocol.Capabilities.Contains("INCOMING_STRING_SPACE_DELIMITED"))
 		{
 			writer.WriteLine($"using System.Buffers.Text;");
 		}
@@ -48,7 +48,7 @@ internal static class PacketParserWriter
 		writer.WriteLine($"using Skylight.Protocol.Extensions;");
 		writer.WriteLine($"using Skylight.Protocol.Packets.Incoming.{packetGroup};");
 		writer.WriteLine($"using Net.Buffers;");
-		if (protocol.Protocol is "Fuse")
+		if (protocol.Capabilities.Contains("INCOMING_STRING_SPACE_DELIMITED"))
 		{
 			writer.WriteLine($"using Net.Buffers.Extensions;");
 		}

@@ -1,7 +1,11 @@
 {
   "Revision": "MOBILES-DISCO",
-  "Protocol": "Fuse",
-  "Capabilities": {},
+  "Capabilities": {
+    "INCOMING_STRING_SPACE_DELIMITED": true,
+    "OUTGOING_STRING_CR_DELIMITED": true,
+    "PACKET_LENGTH_STRING_PREFIXED": true,
+    "STRING_PACKET_ID": true
+  },
   "Incoming": {
     "Handshake.InfoRetrieve": {
       "Id": "INFORETRIEVE",

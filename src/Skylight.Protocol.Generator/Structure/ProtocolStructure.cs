@@ -5,7 +5,6 @@ namespace Skylight.Protocol.Generator.Structure;
 internal sealed class ProtocolStructure
 {
 	internal string Revision { get; }
-	internal string Protocol { get; }
 
 	internal FrozenSet<string> Capabilities { get; }
 
@@ -15,10 +14,9 @@ internal sealed class ProtocolStructure
 	internal Dictionary<string, ObjectStructure> Structures { get; }
 	internal Dictionary<string, Dictionary<string, string>> Interfaces { get; }
 
-	internal ProtocolStructure(string revision, string protocol, FrozenSet<string> capabilities, Dictionary<string, PacketStructure> incoming, Dictionary<string, PacketStructure> outgoing, Dictionary<string, ObjectStructure> structures, Dictionary<string, Dictionary<string, string>> interfaces)
+	internal ProtocolStructure(string revision, FrozenSet<string> capabilities, Dictionary<string, PacketStructure> incoming, Dictionary<string, PacketStructure> outgoing, Dictionary<string, ObjectStructure> structures, Dictionary<string, Dictionary<string, string>> interfaces)
 	{
 		this.Revision = revision;
-		this.Protocol = protocol;
 
 		this.Capabilities = capabilities;
 

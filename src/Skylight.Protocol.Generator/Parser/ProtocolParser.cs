@@ -83,7 +83,7 @@ internal static class ProtocolParser
 			outgoing.Add(structure.Name, structure);
 		}
 
-		return new ProtocolStructure(protocol.Revision, protocol.Protocol, protocol.Capabilities.Where(c => c.Value).Select(c => c.Key).ToFrozenSet(), incoming, outgoing, context.Structures, protocol.Interfaces.ToDictionary(i => i.Key, i => i.Value.ToDictionary(o => o.Key, o => o.Value)));
+		return new ProtocolStructure(protocol.Revision, protocol.Capabilities.Where(c => c.Value).Select(c => c.Key).ToFrozenSet(), incoming, outgoing, context.Structures, protocol.Interfaces.ToDictionary(i => i.Key, i => i.Value.ToDictionary(o => o.Key, o => o.Value)));
 	}
 
 	private static PacketStructure Parse(ref Context context, PacketSchema packet, Type interfaceType, string name)

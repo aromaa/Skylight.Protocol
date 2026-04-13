@@ -1,7 +1,6 @@
 {
   "Revision": "RELEASE1",
   "Inherit": "MOBILES-DISCO",
-  "Protocol": "Fuse",
   "Capabilities": {},
   "Incoming": {
     "Handshake.VersionCheck": {

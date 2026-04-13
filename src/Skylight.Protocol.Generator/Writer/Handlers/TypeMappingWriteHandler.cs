@@ -25,16 +25,22 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 		{
 			string variableName = context.Name.Replace('.', '_').ToLowerInvariant();
 
-			writer.Write(protocol.Protocol switch
+			if (protocol.Capabilities.Contains("INCOMING_STRING_SPACE_DELIMITED"))
 			{
-				"Fuse" => $"reader.GetReaderRef().TryReadTo(out ReadOnlySequence<byte> {variableName}, (byte)' ') ? {variableName} : reader.ReadBytes(reader.Remaining)",
-				"Modern" => $"reader.ReadBytes(reader.ReadInt16())",
-				_ => $"reader.ReadBytes(reader.ReadBase64UInt32(2))"
-			});
+				writer.Write($"reader.GetReaderRef().TryReadTo(out ReadOnlySequence<byte> {variableName}, (byte)' ') ? {variableName} : reader.ReadBytes(reader.Remaining)");
+			}
+			else if (protocol.Capabilities.Contains("INCOMING_STRING_SHORT_LENGTH_PREFIXED"))
+			{
+				writer.Write($"reader.ReadBytes(reader.ReadInt16())");
+			}
+			else if (protocol.Capabilities.Contains("INCOMING_STRING_BASE64_LENGTH_PREFIXED"))
+			{
+				writer.Write($"reader.ReadBytes(reader.ReadBase64UInt32(2))");
+			}
 		}
 		else if (typeMapping.Type == typeof(int).FromAssembly(typeMapping.Type))
 		{
-			if (protocol.Protocol is "Fuse")
+			if (protocol.Capabilities.Contains("INCOMING_STRING_SPACE_DELIMITED"))
 			{
 				string variableName = context.Name.Replace('.', '_').ToLowerInvariant();
 
@@ -55,20 +61,20 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 			{
 				Type enumType = (Type)type;
 
-				writer.Write(protocol.Protocol is "Modern"
+				writer.Write(!protocol.Capabilities.Contains("VL64")
 					? $"({enumType.Namespace}.{enumType.Name})reader.ReadInt32()"
 					: $"({enumType.Namespace}.{enumType.Name})reader.ReadVL64UInt32()");
 			}
 			else if (type == typeof(ReadOnlySequence<byte>).FromAssembly(type))
 			{
 				//TODO: Fix
-				writer.Write(protocol.Protocol is "Modern"
+				writer.Write(!protocol.Capabilities.Contains("VL64")
 					? $"reader.ReadBytes(4)"
 					: "reader.ReadBytes(((reader.ReadByte() >> 3) & 0x7) - 1)");
 			}
 			else
 			{
-				writer.Write(protocol.Protocol is "Modern"
+				writer.Write(!protocol.Capabilities.Contains("VL64")
 					? $"reader.ReadInt32()"
 					: "(int)reader.ReadVL64UInt32()");
 			}
@@ -90,7 +96,7 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 			}
 			else
 			{
-				writer.Write(protocol.Protocol is "Modern"
+				writer.Write(!protocol.Capabilities.Contains("VL64")
 					? "reader.ReadInt16()"
 					: "(int)reader.ReadBase64UInt32(2)");
 			}
@@ -149,19 +155,19 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 		{
 			if (type == typeof(bool).FromAssembly(type))
 			{
-				writer.WriteLine(protocol.Protocol is "Modern"
+				writer.WriteLine(!protocol.Capabilities.Contains("VL64")
 					? $"writer.WriteInt32({target} ? 1 : 0);"
 					: $"writer.WriteVL64Int32({target} ? 1 : 0);");
 			}
 			else if (((Type)type).IsEnum)
 			{
-				writer.WriteLine(protocol.Protocol is "Modern"
+				writer.WriteLine(!protocol.Capabilities.Contains("VL64")
 					? $"writer.WriteInt32((int){target});"
 					: $"writer.WriteVL64Int32((int){target});");
 			}
 			else
 			{
-				writer.WriteLine(protocol.Protocol is "Modern"
+				writer.WriteLine(!protocol.Capabilities.Contains("VL64")
 					? $"writer.WriteInt32({target});"
 					: $"writer.WriteVL64Int32({target});");
 			}
@@ -170,13 +176,13 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 		{
 			if (type == typeof(byte).FromAssembly(type))
 			{
-				writer.WriteLine(protocol.Protocol is "Modern"
+				writer.WriteLine(!protocol.Capabilities.Contains("VL64")
 					? $"writer.WriteByte({target});"
 					: throw new NotSupportedException());
 			}
 			else if (type == typeof(int).FromAssembly(type))
 			{
-				writer.WriteLine(protocol.Protocol is "Modern"
+				writer.WriteLine(!protocol.Capabilities.Contains("VL64")
 					? $"writer.WriteByte((byte){target});"
 					: throw new NotSupportedException());
 			}
@@ -193,27 +199,39 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 			}
 			else if (type == typeof(double).FromAssembly(type))
 			{
-				writer.WriteLine(protocol.Protocol is "Modern"
+				writer.WriteLine(protocol.Capabilities.Contains("OUTGOING_STRING_SHORT_LENGTH_PREFIXED")
 					? $"writer.WriteFixedUInt16String({target}.ToString(CultureInfo.InvariantCulture));"
 					: $"writer.WriteDelimiter2BrokenString({target}.ToString(CultureInfo.InvariantCulture));");
 			}
 			else if (type != typeof(string).FromAssembly(type))
 			{
-				writer.WriteLine(protocol.Protocol switch
+				if (protocol.Capabilities.Contains("OUTGOING_STRING_SHORT_LENGTH_PREFIXED"))
 				{
-					"Modern" => $"writer.WriteFixedUInt16String({target}.ToString());",
-					"Fuse" => $"writer.WriteDelimiterBrokenString({target}.ToString(), (byte)'\\r');",
-					_ => $"writer.WriteDelimiter2BrokenString({target}.ToString());"
-				});
+					writer.WriteLine($"writer.WriteFixedUInt16String({target}.ToString());");
+				}
+				else if (protocol.Capabilities.Contains("OUTGOING_STRING_CR_DELIMITED"))
+				{
+					writer.WriteLine($"writer.WriteDelimiterBrokenString({target}.ToString(), (byte)'\\r');");
+				}
+				else if (protocol.Capabilities.Contains("OUTGOING_STRING_STX_DELIMITED"))
+				{
+					writer.WriteLine($"writer.WriteDelimiter2BrokenString({target}.ToString());");
+				}
 			}
 			else
 			{
-				writer.WriteLine(protocol.Protocol switch
+				if (protocol.Capabilities.Contains("OUTGOING_STRING_SHORT_LENGTH_PREFIXED"))
 				{
-					"Modern" => $"writer.WriteFixedUInt16String({target});",
-					"Fuse" => $"writer.WriteDelimiterBrokenString({target}, (byte)'\\r');",
-					_ => $"writer.WriteDelimiter2BrokenString({target});"
-				});
+					writer.WriteLine($"writer.WriteFixedUInt16String({target});");
+				}
+				else if (protocol.Capabilities.Contains("OUTGOING_STRING_CR_DELIMITED"))
+				{
+					writer.WriteLine($"writer.WriteDelimiterBrokenString({target}, (byte)'\\r');");
+				}
+				else if (protocol.Capabilities.Contains("OUTGOING_STRING_STX_DELIMITED"))
+				{
+					writer.WriteLine($"writer.WriteDelimiter2BrokenString({target});");
+				}
 			}
 		}
 		else if (typeMapping.Type == typeof(byte[]).FromAssembly(typeMapping.Type))

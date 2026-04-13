@@ -15,6 +15,7 @@ internal partial class ProtocolOverviewForm : Form
 	private readonly string protocol;
 
 	private readonly ProtocolSchema schema;
+	private readonly ProtocolSchema? parentSchema;
 
 	private readonly List<Action> unregisterListeners;
 
@@ -27,6 +28,13 @@ internal partial class ProtocolOverviewForm : Form
 		using (Stream stream = File.OpenRead(Path.Combine(this.protocol, "packets.json")))
 		{
 			this.schema = JsonSerializer.Deserialize<ProtocolSchema>(stream, ProtocolGenerator.JsonSerializerOptions)!;
+		}
+
+		if (this.schema.Inherit is not null)
+		{
+			ProtocolSchemaResolver resolver = new(reformat: false);
+			resolver.LoadAllAsync(Path.GetDirectoryName(this.protocol)!).GetAwaiter().GetResult();
+			this.parentSchema = resolver.GetSchema(this.schema.Inherit);
 		}
 
 		this.unregisterListeners = [];
@@ -186,7 +194,8 @@ internal partial class ProtocolOverviewForm : Form
 		this.unregisterListeners.Clear();
 
 		Control packetId;
-		if (this.schema.Protocol is not "Fuse")
+		if ((this.schema.Capabilities.TryGetValue("NUMERIC_PACKET_ID", out bool value) && value)
+			|| (this.parentSchema?.Capabilities.TryGetValue("NUMERIC_PACKET_ID", out value) ?? false && value))
 		{
 			NumericUpDown numericPacketId = new()
 			{

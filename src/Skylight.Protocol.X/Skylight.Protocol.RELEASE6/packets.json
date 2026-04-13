@@ -1,8 +1,16 @@
 {
   "Revision": "RELEASE6",
   "Inherit": "RELEASE5",
-  "Protocol": "Legacy",
-  "Capabilities": {},
+  "Capabilities": {
+    "INCOMING_STRING_BASE64_LENGTH_PREFIXED": true,
+    "INCOMING_STRING_SPACE_DELIMITED": false,
+    "NUMERIC_PACKET_ID": true,
+    "OUTGOING_STRING_CR_DELIMITED": false,
+    "OUTGOING_STRING_STX_DELIMITED": true,
+    "PACKET_LENGTH_BASE64_PREFIXED": true,
+    "STRING_PACKET_ID": false,
+    "VL64": true
+  },
   "Incoming": {
     "Handshake.InfoRetrieve": {
       "Id": 7,

@@ -1,7 +1,11 @@
 {
   "Revision": "WIN63-202111081545-75921380",
-  "Protocol": "Modern",
-  "Capabilities": {},
+  "Capabilities": {
+    "INCOMING_STRING_SHORT_LENGTH_PREFIXED": true,
+    "NUMERIC_PACKET_ID": true,
+    "OUTGOING_STRING_SHORT_LENGTH_PREFIXED": true,
+    "PACKET_LENGTH_INT_PREFIXED": true
+  },
   "Incoming": {
     "Advertisement.GetInterstitial": {
       "Id": 349,

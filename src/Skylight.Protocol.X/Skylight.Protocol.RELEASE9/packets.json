@@ -1,7 +1,12 @@
 {
   "Revision": "RELEASE9",
-  "Protocol": "Legacy",
-  "Capabilities": {},
+  "Capabilities": {
+    "INCOMING_STRING_BASE64_LENGTH_PREFIXED": true,
+    "NUMERIC_PACKET_ID": true,
+    "OUTGOING_STRING_STX_DELIMITED": true,
+    "PACKET_LENGTH_BASE64_PREFIXED": true,
+    "VL64": true
+  },
   "Incoming": {
     "Handshake.GenerateKey": {
       "Id": 202,

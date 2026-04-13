@@ -7,9 +7,6 @@ public abstract class AbstractGamePacketManager<T>(IServiceProvider serviceProvi
 	: PacketManager<T>(serviceProvider, AbstractGamePacketManager<T>.Combine(baseData, protocolData)), IGamePacketManager
 	where T : notnull
 {
-	public abstract bool Modern { get; }
-	public abstract bool Fuse { get; }
-
 	public abstract FrozenSet<string> Capabilities { get; }
 
 	private static PacketManagerData<T> Combine(PacketManagerData baseData, PacketManagerData<T> protocolData)

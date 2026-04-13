@@ -1,8 +1,10 @@
 {
   "Revision": "RELEASE5",
   "Inherit": "RELEASE1",
-  "Protocol": "Fuse",
-  "Capabilities": {},
+  "Capabilities": {
+    "PACKET_LENGTH_BASE128_PREFIXED": true,
+    "PACKET_LENGTH_STRING_PREFIXED": false
+  },
   "Incoming": {},
   "Outgoing": {
     "Handshake.AuthenticationOK": {

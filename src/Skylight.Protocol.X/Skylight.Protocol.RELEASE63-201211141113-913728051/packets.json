@@ -1,7 +1,11 @@
 {
   "Revision": "RELEASE63-201211141113-913728051",
-  "Protocol": "Modern",
-  "Capabilities": {},
+  "Capabilities": {
+    "INCOMING_STRING_SHORT_LENGTH_PREFIXED": true,
+    "NUMERIC_PACKET_ID": true,
+    "OUTGOING_STRING_SHORT_LENGTH_PREFIXED": true,
+    "PACKET_LENGTH_INT_PREFIXED": true
+  },
   "Incoming": {
     "Advertisement.GetInterstitial": {
       "Id": 3080,

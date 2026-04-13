@@ -43,19 +43,23 @@ public static class ProtocolGenerator
 		{
 			try
 			{
-				if (protocol.Protocol is "Fuse")
+				if (protocol.Capabilities.Contains("STRING_PACKET_ID"))
 				{
 					if (packet.Id is not string)
 					{
 						continue;
 					}
 				}
-				else
+				else if (protocol.Capabilities.Contains("NUMERIC_PACKET_ID"))
 				{
 					if (packet.Id is not int)
 					{
 						continue;
 					}
+				}
+				else
+				{
+					continue;
 				}
 
 				int groupIdentifier = packet.Name.LastIndexOf('.');
@@ -85,19 +89,23 @@ public static class ProtocolGenerator
 		{
 			try
 			{
-				if (protocol.Protocol is "Fuse")
+				if (protocol.Capabilities.Contains("STRING_PACKET_ID"))
 				{
 					if (packet.Id is not string)
 					{
 						continue;
 					}
 				}
-				else
+				else if (protocol.Capabilities.Contains("NUMERIC_PACKET_ID"))
 				{
 					if (packet.Id is not int)
 					{
 						continue;
 					}
+				}
+				else
+				{
+					continue;
 				}
 
 				int groupIdentifier = packet.Name.LastIndexOf('.');

@@ -1,7 +1,12 @@
 {
   "Revision": "RELEASE39-200910220522-22363",
-  "Protocol": "Legacy",
-  "Capabilities": {},
+  "Capabilities": {
+    "INCOMING_STRING_BASE64_LENGTH_PREFIXED": true,
+    "NUMERIC_PACKET_ID": true,
+    "OUTGOING_STRING_STX_DELIMITED": true,
+    "PACKET_LENGTH_BASE64_PREFIXED": true,
+    "VL64": true
+  },
   "Incoming": {
     "Advertisement.GetInterstitial": {
       "Id": 182,
