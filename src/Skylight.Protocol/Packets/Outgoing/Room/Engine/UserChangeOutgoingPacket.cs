@@ -2,10 +2,10 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Skylight.Protocol.Packets.Outgoing.Room.Engine;
 
-public sealed class UserChangeOutgoingPacket : IGameOutgoingPacket
+public sealed class UserChangeOutgoingPacket<TFigureData> : IGameOutgoingPacket
 {
 	public required int RoomUnitId { get; init; }
-	public required string Figure { get; init; }
+	public required TFigureData Figure { get; init; }
 	public required string Gender { get; init; }
 	public required string Motto { get; init; }
 	public required int AchievementScore { get; init; }
@@ -15,7 +15,7 @@ public sealed class UserChangeOutgoingPacket : IGameOutgoingPacket
 	}
 
 	[SetsRequiredMembers]
-	public UserChangeOutgoingPacket(int roomUnitId, string figure, string gender, string motto, int achievementScore)
+	public UserChangeOutgoingPacket(int roomUnitId, TFigureData figure, string gender, string motto, int achievementScore)
 	{
 		this.RoomUnitId = roomUnitId;
 		this.Figure = figure;

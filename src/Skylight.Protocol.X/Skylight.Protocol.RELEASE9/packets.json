@@ -143,6 +143,9 @@
     },
     "Handshake.UserObject": {
       "Id": 5,
+      "Converters": {
+        "TFigureData": "Skylight.Protocol.Packets.Convertors.Users.IFigureDataConverter<TFigureData>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -152,7 +155,7 @@
         {
           "Mapping": "Field",
           "Type": "text:figure",
-          "Name": "Figure"
+          "Name": "Classic(Figure)"
         },
         {
           "Mapping": "Field",

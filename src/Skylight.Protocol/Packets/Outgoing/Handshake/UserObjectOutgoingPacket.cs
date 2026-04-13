@@ -2,14 +2,14 @@
 
 namespace Skylight.Protocol.Packets.Outgoing.Handshake;
 
-public sealed class UserObjectOutgoingPacket : IGameOutgoingPacket
+public sealed class UserObjectOutgoingPacket<TFigureData> : IGameOutgoingPacket
 {
 	public required int UserId { get; init; }
 
 	public required string Username { get; init; }
 	public required string RealName { get; init; }
 
-	public required string Figure { get; init; }
+	public required TFigureData Figure { get; init; }
 	public required string Gender { get; init; }
 	public required string SwimSuit { get; init; }
 
@@ -33,7 +33,7 @@ public sealed class UserObjectOutgoingPacket : IGameOutgoingPacket
 	}
 
 	[SetsRequiredMembers]
-	public UserObjectOutgoingPacket(int userId, string username, string realName, string figure, string gender, string swimSuit, string customData, int tickets, int film, int respectTotal, int respectLeft, int perRespectLeft, DateTime lastAccessDate, bool directMail, bool streamPublishingAllowed, bool nameChangeAllowed, bool accountSafetyLocked)
+	public UserObjectOutgoingPacket(int userId, string username, string realName, TFigureData figure, string gender, string swimSuit, string customData, int tickets, int film, int respectTotal, int respectLeft, int perRespectLeft, DateTime lastAccessDate, bool directMail, bool streamPublishingAllowed, bool nameChangeAllowed, bool accountSafetyLocked)
 	{
 		this.UserId = userId;
 

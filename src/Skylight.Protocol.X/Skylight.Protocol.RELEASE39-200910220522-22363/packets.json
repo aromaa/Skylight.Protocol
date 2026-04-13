@@ -330,6 +330,9 @@
     },
     "Handshake.UserObject": {
       "Id": 5,
+      "Converters": {
+        "TFigureData": "Skylight.Protocol.Packets.Convertors.Users.IFigureDataConverter<TFigureData>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -344,7 +347,7 @@
         {
           "Mapping": "Field",
           "Type": "string",
-          "Name": "Figure"
+          "Name": "Modern(Figure)"
         },
         {
           "Mapping": "Field",
@@ -526,6 +529,9 @@
     },
     "Room.Engine.Users": {
       "Id": 28,
+      "Converters": {
+        "TFigureData": "Skylight.Protocol.Packets.Convertors.Users.IFigureDataConverter<TFigureData>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -1075,7 +1081,7 @@
       {
         "Mapping": "Field",
         "Type": "string",
-        "Name": "Figure"
+        "Name": "Modern(Figure)"
       },
       {
         "Mapping": "Field",

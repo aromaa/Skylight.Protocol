@@ -90,6 +90,9 @@
   "Outgoing": {
     "Handshake.UserObject": {
       "Id": "USEROBJECT",
+      "Converters": {
+        "TFigureData": "Skylight.Protocol.Packets.Convertors.Users.IFigureDataConverter<TFigureData>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -160,6 +163,9 @@
     },
     "Room.Engine.Users": {
       "Id": "USERS",
+      "Converters": {
+        "TFigureData": "Skylight.Protocol.Packets.Convertors.Users.IFigureDataConverter<TFigureData>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -284,7 +290,7 @@
           {
             "Mapping": "Field",
             "Type": "string",
-            "Name": "Figure"
+            "Name": "Mobiles(Figure)"
           },
           {
             "Mapping": "Constant",
@@ -368,7 +374,7 @@
           {
             "Mapping": "Field",
             "Type": "string",
-            "Name": "Figure"
+            "Name": "Mobiles(Figure)"
           },
           {
             "Mapping": "Constant",

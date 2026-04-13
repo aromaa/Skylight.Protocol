@@ -1015,6 +1015,9 @@
     },
     "Avatar.Wardrobe": {
       "Id": 5,
+      "Converters": {
+        "TFigureData": "Skylight.Protocol.Packets.Convertors.Users.IFigureDataConverter<TFigureData>"
+      },
       "Structure": [
         {
           "Mapping": "Constant",
@@ -1244,6 +1247,9 @@
     },
     "Handshake.UserObject": {
       "Id": 2853,
+      "Converters": {
+        "TFigureData": "Skylight.Protocol.Packets.Convertors.Users.IFigureDataConverter<TFigureData>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -1258,7 +1264,7 @@
         {
           "Mapping": "Field",
           "Type": "string",
-          "Name": "Figure"
+          "Name": "Modern(Figure)"
         },
         {
           "Mapping": "Field",
@@ -2292,6 +2298,9 @@
     },
     "Room.Engine.UserChange": {
       "Id": 2711,
+      "Converters": {
+        "TFigureData": "Skylight.Protocol.Packets.Convertors.Users.IFigureDataConverter<TFigureData>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -2301,7 +2310,7 @@
         {
           "Mapping": "Field",
           "Type": "string",
-          "Name": "Figure"
+          "Name": "Modern(Figure)"
         },
         {
           "Mapping": "Field",
@@ -2332,6 +2341,9 @@
     },
     "Room.Engine.Users": {
       "Id": 2471,
+      "Converters": {
+        "TFigureData": "Skylight.Protocol.Packets.Convertors.Users.IFigureDataConverter<TFigureData>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -2719,6 +2731,9 @@
     },
     "Users.ExtendedProfile": {
       "Id": 2854,
+      "Converters": {
+        "TFigureData": "Skylight.Protocol.Packets.Convertors.Users.IFigureDataConverter<TFigureData>"
+      },
       "Structure": [
         {
           "Mapping": "Field",
@@ -2995,7 +3010,7 @@
       {
         "Mapping": "Field",
         "Type": "string",
-        "Name": "Figure"
+        "Name": "Modern(Figure)"
       },
       {
         "Mapping": "Field",
@@ -3804,7 +3819,7 @@
       {
         "Mapping": "Field",
         "Type": "string",
-        "Name": "Figure"
+        "Name": "Modern(Figure)"
       },
       {
         "Mapping": "Field",
@@ -4122,7 +4137,7 @@
       {
         "Mapping": "Field",
         "Type": "string",
-        "Name": "Figure"
+        "Name": "Modern(Figure)"
       },
       {
         "Mapping": "Field",

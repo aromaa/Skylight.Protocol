@@ -2,11 +2,11 @@
 
 namespace Skylight.Protocol.Packets.Data.Users;
 
-public sealed class ExtendedProfileData
+public sealed class ExtendedProfileData<TFigureData>
 {
 	public required int UserId { get; init; }
 	public required string Username { get; init; }
-	public required string Figure { get; init; }
+	public required TFigureData Figure { get; init; }
 	public required string Motto { get; init; }
 	public required string CreationDate { get; init; }
 	public required int AchievementScore { get; init; }
@@ -29,7 +29,7 @@ public sealed class ExtendedProfileData
 	}
 
 	[SetsRequiredMembers]
-	public ExtendedProfileData(int userId, string username, string figure, string motto, string creationDate, int achievementScore, int friendCount, bool friends, bool friendRequestSent, bool online, List<string> groups, int lastAccessSinceInSeconds, bool openProfile, bool publicProfile, int accountLevel, int totalAccountLevel, int starGemCount, bool friendRequestsEnabled, bool closeOthers)
+	public ExtendedProfileData(int userId, string username, TFigureData figure, string motto, string creationDate, int achievementScore, int friendCount, bool friends, bool friendRequestSent, bool online, List<string> groups, int lastAccessSinceInSeconds, bool openProfile, bool publicProfile, int accountLevel, int totalAccountLevel, int starGemCount, bool friendRequestsEnabled, bool closeOthers)
 	{
 		this.UserId = userId;
 		this.Username = username;

@@ -3,7 +3,7 @@
 namespace Skylight.Protocol.Packets.Data.Room.Engine;
 
 //TODO: Abstract
-public sealed class RoomUnitData
+public sealed class RoomUnitData<TFigureData>
 {
 	public required int IdentifierId { get; set; }
 	public required int RoomUnitId { get; set; }
@@ -11,7 +11,7 @@ public sealed class RoomUnitData
 	public required string Name { get; init; }
 	public required string Motto { get; init; }
 
-	public required string Figure { get; init; }
+	public required TFigureData Figure { get; init; }
 	public required string Gender { get; init; }
 	public required string SwimSuit { get; init; }
 
@@ -36,7 +36,7 @@ public sealed class RoomUnitData
 	}
 
 	[SetsRequiredMembers]
-	public RoomUnitData(int identifierId, int roomUnitId, string name, string motto, string figure, string gender, string swimSuit, int x, int y, double z, int direction, int type, int groupId, int groupStatus, string groupName, int achievementScore, bool isModerator)
+	public RoomUnitData(int identifierId, int roomUnitId, string name, string motto, TFigureData figure, string gender, string swimSuit, int x, int y, double z, int direction, int type, int groupId, int groupStatus, string groupName, int achievementScore, bool isModerator)
 	{
 		this.IdentifierId = identifierId;
 		this.RoomUnitId = roomUnitId;

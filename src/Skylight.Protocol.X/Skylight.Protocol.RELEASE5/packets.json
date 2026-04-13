@@ -7,6 +7,41 @@
     "Handshake.AuthenticationOK": {
       "Id": "OK",
       "Structure": []
+    },
+    "Handshake.UserObject": {
+      "Id": "USEROBJECT",
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "text:name",
+          "Name": "Username"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:figure",
+          "Name": "Classic(Figure)"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:sex",
+          "Name": "Gender"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:customData",
+          "Name": "CustomData"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:ph_tickets",
+          "Name": "Tickets"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:photo_film",
+          "Name": "Film"
+        }
+      ]
     }
   },
   "Structures": {},
