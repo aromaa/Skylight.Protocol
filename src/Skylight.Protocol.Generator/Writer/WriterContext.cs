@@ -26,9 +26,9 @@ internal struct WriterContext(PacketStructure packet, Dictionary<Type, MappingWr
 		this.handlers[mapping.GetType()].ReadPost(ref this, protocol, writer, mapping, type);
 	}
 
-	public void Write(ProtocolStructure protocol, IndentedTextWriter writer, AbstractMappingSyntax mapping, MemberInfo type)
+	public void Write(ProtocolStructure protocol, IndentedTextWriter writer, string? method, AbstractMappingSyntax mapping, MemberInfo type)
 	{
-		this.handlers[mapping.GetType()].Write(ref this, protocol, writer, mapping, type);
+		this.handlers[mapping.GetType()].Write(ref this, protocol, writer, method, mapping, type);
 	}
 
 	[UnscopedRef]

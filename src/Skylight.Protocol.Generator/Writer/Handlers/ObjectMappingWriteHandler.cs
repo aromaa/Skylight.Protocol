@@ -14,7 +14,7 @@ internal sealed class ObjectMappingWriteHandler : MappingWriterHandler
 		throw new NotImplementedException();
 	}
 
-	internal override void Write(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, AbstractMappingSyntax mapping, MemberInfo type)
+	internal override void Write(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, string? method, AbstractMappingSyntax mapping, MemberInfo type)
 	{
 		if (mapping is not ObjectMappingSyntax objectMapping)
 		{
@@ -38,14 +38,14 @@ internal sealed class ObjectMappingWriteHandler : MappingWriterHandler
 				{
 					using (context.PushScope(name, true))
 					{
-						context.Write(protocol, writer, new ObjectMappingSyntax(mappingTarget), interfaceType.Assembly.GetType(objectData)!);
+						context.Write(protocol, writer, method, new ObjectMappingSyntax(mappingTarget), interfaceType.Assembly.GetType(objectData)!);
 					}
 				}
 				else
 				{
 					using (context.PushScope(context.Name[..context.Name.LastIndexOf('.')], true))
 					{
-						context.Write(protocol, writer, new ObjectMappingSyntax(mappingTarget), type.DeclaringType!);
+						context.Write(protocol, writer, method, new ObjectMappingSyntax(mappingTarget), type.DeclaringType!);
 					}
 				}
 
@@ -101,7 +101,7 @@ internal sealed class ObjectMappingWriteHandler : MappingWriterHandler
 
 		ObjectStructure structure = protocol.Structures[objectMapping.Name];
 
-		foreach ((string? fieldName, AbstractMappingSyntax syntax) in structure.Mapping)
+		foreach ((string? fieldMethod, string? fieldName, AbstractMappingSyntax syntax) in structure.Mapping)
 		{
 			if (structure.Recursive && syntax is GenericTypeMappingSyntax genericSyntax && genericSyntax.GenericArgument == mapping)
 			{
@@ -127,7 +127,7 @@ internal sealed class ObjectMappingWriteHandler : MappingWriterHandler
 
 						FieldInfo fieldInfo = tupleTargetType.GetField($"Item{index}")!;
 
-						context.Write(protocol, writer, syntax, fieldInfo.FieldType);
+						context.Write(protocol, writer, fieldMethod, syntax, fieldInfo.FieldType);
 
 						continue;
 					}
@@ -136,14 +136,14 @@ internal sealed class ObjectMappingWriteHandler : MappingWriterHandler
 						PropertyInfo? property = typeType.GetProperty(fieldName);
 						if (property is not null)
 						{
-							context.Write(protocol, writer, syntax, property);
+							context.Write(protocol, writer, fieldMethod, syntax, property);
 
 							continue;
 						}
 					}
 				}
 
-				context.Write(protocol, writer, syntax, type);
+				context.Write(protocol, writer, fieldMethod, syntax, type);
 			}
 		}
 	}

@@ -10,11 +10,11 @@ internal sealed class ObjectStructure
 
 	internal bool Recursive { get; }
 
-	internal ImmutableArray<(string? FieldName, AbstractMappingSyntax Mapping)> Mapping { get; }
+	internal ImmutableArray<(string? Method, string? FieldName, AbstractMappingSyntax Mapping)> Mapping { get; }
 
 	private readonly Dictionary<string, AbstractMappingSyntax> fields;
 
-	internal ObjectStructure(string name, bool recursive, ImmutableArray<(string? FieldName, AbstractMappingSyntax Mapping)> mapping, Dictionary<string, AbstractMappingSyntax> fields)
+	internal ObjectStructure(string name, bool recursive, ImmutableArray<(string? Method, string? FieldName, AbstractMappingSyntax Mapping)> mapping, Dictionary<string, AbstractMappingSyntax> fields)
 	{
 		this.Name = name;
 

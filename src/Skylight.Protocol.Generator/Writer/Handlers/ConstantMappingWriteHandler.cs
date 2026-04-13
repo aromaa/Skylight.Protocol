@@ -12,7 +12,7 @@ internal sealed class ConstantMappingWriteHandler : MappingWriterHandler
 		throw new NotImplementedException();
 	}
 
-	internal override void Write(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, AbstractMappingSyntax mapping, MemberInfo type)
+	internal override void Write(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, string? method, AbstractMappingSyntax mapping, MemberInfo type)
 	{
 		if (mapping is not ConstantMappingSyntax constantMapping)
 		{
@@ -23,14 +23,14 @@ internal sealed class ConstantMappingWriteHandler : MappingWriterHandler
 		{
 			using (context.PushScope(boolean ? "true" : "false", true))
 			{
-				context.Write(protocol, writer, constantMapping.Type, constantMapping.Value.GetType());
+				context.Write(protocol, writer, method, constantMapping.Type, constantMapping.Value.GetType());
 			}
 		}
 		else
 		{
 			using (context.PushScope(constantMapping.Value.ToString(), true))
 			{
-				context.Write(protocol, writer, constantMapping.Type, constantMapping.Value.GetType());
+				context.Write(protocol, writer, method, constantMapping.Type, constantMapping.Value.GetType());
 			}
 		}
 	}

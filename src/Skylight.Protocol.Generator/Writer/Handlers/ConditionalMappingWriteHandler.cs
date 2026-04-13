@@ -42,7 +42,7 @@ internal sealed class ConditionalMappingWriteHandler : MappingWriterHandler
 		}
 	}
 
-	internal override void Write(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, AbstractMappingSyntax mapping, MemberInfo type)
+	internal override void Write(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, string? method, AbstractMappingSyntax mapping, MemberInfo type)
 	{
 		if (mapping is not ConditionalMappingSyntax conditionalMapping)
 		{
@@ -53,7 +53,7 @@ internal sealed class ConditionalMappingWriteHandler : MappingWriterHandler
 		writer.WriteLine($"{{");
 		writer.Indent++;
 
-		context.Write(protocol, writer, conditionalMapping.WhenTrue, type);
+		context.Write(protocol, writer, method, conditionalMapping.WhenTrue, type);
 
 		writer.Indent--;
 		writer.WriteLine($"}}");

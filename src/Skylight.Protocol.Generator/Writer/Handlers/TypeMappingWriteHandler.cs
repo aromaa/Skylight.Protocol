@@ -101,7 +101,7 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 		}
 	}
 
-	internal override void Write(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, AbstractMappingSyntax mapping, MemberInfo type)
+	internal override void Write(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, string? method, AbstractMappingSyntax mapping, MemberInfo type)
 	{
 		if (mapping is not TypeMappingSyntax typeMapping)
 		{
@@ -116,7 +116,18 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 		string target = context.Name;
 		if (type is Type { IsGenericType: true } genericType && context.Packet.Type.GetGenericArguments().Any(a => a == genericType))
 		{
-			target = $"{genericType.GetGenericArguments()[0].Name}Converter.Convert({target})";
+			if (method is null && genericType.GetMethods() is [MethodInfo singleMethod])
+			{
+				target = $"{genericType.GetGenericArguments()[0].Name}Converter.{singleMethod.Name}({target})";
+			}
+			else if (method is not null)
+			{
+				target = $"{genericType.GetGenericArguments()[0].Name}Converter.{method}({target})";
+			}
+			else
+			{
+				throw new ArgumentNullException(nameof(method), "Converter method contains more than single method, you must define the target method.");
+			}
 		}
 
 		if (typeMapping.Type == typeof(bool).FromAssembly(typeMapping.Type))

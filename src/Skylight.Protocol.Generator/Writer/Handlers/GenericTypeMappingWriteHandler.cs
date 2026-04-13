@@ -61,7 +61,7 @@ internal sealed class GenericTypeMappingWriteHandler : MappingWriterHandler
 		}
 	}
 
-	internal override void Write(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, AbstractMappingSyntax mapping, MemberInfo type)
+	internal override void Write(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, string? method, AbstractMappingSyntax mapping, MemberInfo type)
 	{
 		if (mapping is not GenericTypeMappingSyntax genericMapping)
 		{
@@ -90,11 +90,11 @@ internal sealed class GenericTypeMappingWriteHandler : MappingWriterHandler
 				{
 					if (genericMapping.ExtraData is null or "int")
 					{
-						context.Write(protocol, writer, new TypeMappingSyntax(typeof(int)), typeof(int));
+						context.Write(protocol, writer, method, new TypeMappingSyntax(typeof(int)), typeof(int));
 					}
 					else if (genericMapping.ExtraData is "byte")
 					{
-						context.Write(protocol, writer, new TypeMappingSyntax(typeof(byte)), typeof(int));
+						context.Write(protocol, writer, method, new TypeMappingSyntax(typeof(byte)), typeof(int));
 					}
 					else
 					{
@@ -113,16 +113,16 @@ internal sealed class GenericTypeMappingWriteHandler : MappingWriterHandler
 				{
 					if (propertyInfo.GetCustomAttributesData().Any(a => a.AttributeType == typeof(TupleElementNamesAttribute).FromAssembly(type)))
 					{
-						context.Write(protocol, writer, genericMapping.GenericArgument, type);
+						context.Write(protocol, writer, method, genericMapping.GenericArgument, type);
 					}
 					else
 					{
-						context.Write(protocol, writer, genericMapping.GenericArgument, propertyInfo.PropertyType.GetGenericArguments()[0]);
+						context.Write(protocol, writer, method, genericMapping.GenericArgument, propertyInfo.PropertyType.GetGenericArguments()[0]);
 					}
 				}
 				else
 				{
-					context.Write(protocol, writer, genericMapping.GenericArgument, ((Type)type).GetGenericArguments()[0]);
+					context.Write(protocol, writer, method, genericMapping.GenericArgument, ((Type)type).GetGenericArguments()[0]);
 				}
 			}
 

@@ -17,7 +17,7 @@ internal static class ProtocolParser
 
 		foreach ((string name, List<AbstractMappingSchema> structure) in protocol.Structures)
 		{
-			ImmutableArray<(string? FieldName, AbstractMappingSyntax Mapping)>.Builder mappings = ImmutableArray.CreateBuilder<(string?, AbstractMappingSyntax)>(structure.Count);
+			ImmutableArray<(string? Method, string? FieldName, AbstractMappingSyntax Mapping)>.Builder mappings = ImmutableArray.CreateBuilder<(string?, string?, AbstractMappingSyntax)>(structure.Count);
 
 			Dictionary<string, AbstractMappingSyntax> fields = [];
 
@@ -29,12 +29,22 @@ internal static class ProtocolParser
 
 				if (mapping is FieldMappingSchema fieldMapping)
 				{
-					mappings.Add((fieldMapping.Name, syntax));
-					fields.TryAdd(fieldMapping.Name, syntax);
+					string? methodCall = null;
+					string fieldName = fieldMapping.Name;
+
+					int methodCallIndex = fieldMapping.Name.IndexOf('(');
+					if (methodCallIndex != -1)
+					{
+						methodCall = fieldName[..methodCallIndex];
+						fieldName = fieldMapping.Name[(methodCallIndex + 1)..^1];
+					}
+
+					mappings.Add((methodCall, fieldName, syntax));
+					fields.TryAdd(fieldName, syntax);
 				}
 				else
 				{
-					mappings.Add((null, syntax));
+					mappings.Add((null, null, syntax));
 				}
 
 				if (syntax is ObjectMappingSyntax objectMapping)
@@ -164,18 +174,28 @@ internal static class ProtocolParser
 
 			if (mapping is FieldMappingSchema fieldMapping)
 			{
-				MemberInfo target = fieldMapping.Name == "this" ?
-					packetType :
-					packetType.GetProperty(fieldMapping.Name) ?? throw new Exception($"No definition for field {fieldMapping.Name} in type {packetType}");
+				string? methodCall = null;
+				string fieldName = fieldMapping.Name;
 
-				MappingStructure mappingStructure = new(fieldMapping.Name, syntax, target);
+				int methodCallIndex = fieldMapping.Name.IndexOf('(');
+				if (methodCallIndex != -1)
+				{
+					methodCall = fieldName[..methodCallIndex];
+					fieldName = fieldMapping.Name[(methodCallIndex + 1)..^1];
+				}
+
+				MemberInfo target = fieldName == "this" ?
+					packetType :
+					packetType.GetProperty(fieldName) ?? throw new Exception($"No definition for field {fieldName} in type {packetType}");
+
+				MappingStructure mappingStructure = new(methodCall, fieldName, syntax, target);
 
 				mappings.Add(mappingStructure);
-				fields.Add(fieldMapping.Name, mappingStructure);
+				fields.Add(fieldName, mappingStructure);
 			}
 			else if (syntax is ConstantMappingSyntax { Type: TypeMappingSyntax typeMappingSyntax })
 			{
-				mappings.Add(new MappingStructure(null, syntax, typeMappingSyntax.Type));
+				mappings.Add(new MappingStructure(null, null, syntax, typeMappingSyntax.Type));
 			}
 			else if (syntax is ConditionalMappingSyntax conditionalMapping)
 			{
@@ -185,7 +205,7 @@ internal static class ProtocolParser
 
 					PropertyInfo property = packetType.GetProperty(fieldName) ?? throw new Exception($"No definition for field {fieldName} in type {packetType}");
 
-					MappingStructure mappingStructure = new(null, syntax, property);
+					MappingStructure mappingStructure = new(null, null, syntax, property);
 
 					mappings.Add(mappingStructure);
 					fields.Add(fieldName, mappingStructure);

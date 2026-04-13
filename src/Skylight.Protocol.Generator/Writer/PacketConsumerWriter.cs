@@ -173,14 +173,14 @@ internal static partial class PacketConsumerWriter
 			{
 				if (mapping.Name == "this")
 				{
-					context.Write(protocol, writer, mapping.Syntax, mapping.Type);
+					context.Write(protocol, writer, mapping.Method, mapping.Syntax, mapping.Type);
 
 					continue;
 				}
 
 				using (context.PushScope(mapping.Name))
 				{
-					context.Write(protocol, writer, mapping.Syntax, mapping.Type);
+					context.Write(protocol, writer, mapping.Method, mapping.Syntax, mapping.Type);
 				}
 			}
 		}

@@ -15,7 +15,7 @@ internal sealed class CombineMappingWriteHandler : MappingWriterHandler
 		throw new NotImplementedException();
 	}
 
-	internal override void Write(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, AbstractMappingSyntax mapping, MemberInfo type)
+	internal override void Write(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, string? method, AbstractMappingSyntax mapping, MemberInfo type)
 	{
 		if (mapping is not CombineMappingSyntax combineMapping)
 		{
@@ -37,7 +37,22 @@ internal sealed class CombineMappingWriteHandler : MappingWriterHandler
 					else if (field is TypeMappingSyntax fieldTypeMapping)
 					{
 						PropertyInfo property = ((Type)type).GetProperty(fieldTypeMapping.Name!)!;
-						if (property.PropertyType == typeof(Color).FromAssembly(property.PropertyType))
+						if (property.PropertyType is Type { IsGenericType: true } genericType && context.Packet.Type.GetGenericArguments().Any(a => a == genericType))
+						{
+							if (fieldTypeMapping.Method is null && genericType.GetMethods() is [MethodInfo singleMethod])
+							{
+								stringBuilder.Append($"{{{genericType.GetGenericArguments()[0].Name}Converter.{singleMethod.Name}({context.Name}.{fieldTypeMapping.Name})}}");
+							}
+							else if (fieldTypeMapping.Method is not null)
+							{
+								stringBuilder.Append($"{{{genericType.GetGenericArguments()[0].Name}Converter.{fieldTypeMapping.Method}({context.Name}.{fieldTypeMapping.Name})}}");
+							}
+							else
+							{
+								throw new ArgumentNullException(nameof(method), "Converter method contains more than single method, you must define the target method.");
+							}
+						}
+						else if (property.PropertyType == typeof(Color).FromAssembly(property.PropertyType))
 						{
 							stringBuilder.Append($"{{{context.Name}.{fieldTypeMapping.Name}.ToArgb():X6}}");
 						}
@@ -56,7 +71,7 @@ internal sealed class CombineMappingWriteHandler : MappingWriterHandler
 
 				using (context.PushScope(stringBuilder.ToString(), true))
 				{
-					context.Write(protocol, writer, typeMapping, type);
+					context.Write(protocol, writer, method, typeMapping, type);
 				}
 
 				return;

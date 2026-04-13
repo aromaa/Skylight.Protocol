@@ -39,74 +39,88 @@ public static class ProtocolGenerator
 			_ = File.WriteAllTextAsync(Path.Join(packetsDir, "GamePacketManager.cs"), writer.ToString(), Encoding.UTF8);
 		}
 
-		foreach (PacketStructure packet in protocol.Incoming.Values)
+		foreach ((string key, PacketStructure packet) in protocol.Incoming)
 		{
-			if (protocol.Protocol is "Fuse")
+			try
 			{
-				if (packet.Id is not string)
+				if (protocol.Protocol is "Fuse")
 				{
-					continue;
+					if (packet.Id is not string)
+					{
+						continue;
+					}
 				}
-			}
-			else
-			{
-				if (packet.Id is not int)
+				else
 				{
-					continue;
+					if (packet.Id is not int)
+					{
+						continue;
+					}
 				}
+
+				int groupIdentifier = packet.Name.LastIndexOf('.');
+
+				string packetGroup = packet.Name.Substring(0, groupIdentifier);
+				string packetName = packet.Name.Substring(groupIdentifier + 1);
+
+				string dir = Path.Join(packetsDir, "Parsers", Path.Join(packetGroup.Split('.')));
+				if (!Directory.Exists(dir))
+				{
+					Directory.CreateDirectory(dir);
+				}
+
+				StringWriter writer = new();
+
+				PacketParserWriter.Write(writer, protocol, packet);
+
+				_ = File.WriteAllTextAsync(Path.Join(dir, $"{packetName}PacketParser.cs"), writer.ToString(), Encoding.UTF8);
 			}
-
-			int groupIdentifier = packet.Name.LastIndexOf('.');
-
-			string packetGroup = packet.Name.Substring(0, groupIdentifier);
-			string packetName = packet.Name.Substring(groupIdentifier + 1);
-
-			string dir = Path.Join(packetsDir, "Parsers", Path.Join(packetGroup.Split('.')));
-			if (!Directory.Exists(dir))
+			catch (Exception e)
 			{
-				Directory.CreateDirectory(dir);
+				throw new Exception($"Failure to write parser for incoming packet {key}", e);
 			}
-
-			StringWriter writer = new();
-
-			PacketParserWriter.Write(writer, protocol, packet);
-
-			_ = File.WriteAllTextAsync(Path.Join(dir, $"{packetName}PacketParser.cs"), writer.ToString(), Encoding.UTF8);
 		}
 
-		foreach (PacketStructure packet in protocol.Outgoing.Values)
+		foreach ((string key, PacketStructure packet) in protocol.Outgoing)
 		{
-			if (protocol.Protocol is "Fuse")
+			try
 			{
-				if (packet.Id is not string)
+				if (protocol.Protocol is "Fuse")
 				{
-					continue;
+					if (packet.Id is not string)
+					{
+						continue;
+					}
 				}
-			}
-			else
-			{
-				if (packet.Id is not int)
+				else
 				{
-					continue;
+					if (packet.Id is not int)
+					{
+						continue;
+					}
 				}
+
+				int groupIdentifier = packet.Name.LastIndexOf('.');
+
+				string packetGroup = packet.Name.Substring(0, groupIdentifier);
+				string packetName = packet.Name.Substring(groupIdentifier + 1);
+
+				string dir = Path.Join(packetsDir, "Composers", Path.Join(packetGroup.Split('.')));
+				if (!Directory.Exists(dir))
+				{
+					Directory.CreateDirectory(dir);
+				}
+
+				StringWriter writer = new();
+
+				PacketConsumerWriter.Write(writer, protocol, packet);
+
+				_ = File.WriteAllTextAsync(Path.Join(dir, $"{packetName}PacketComposer.cs"), writer.ToString(), Encoding.UTF8);
 			}
-
-			int groupIdentifier = packet.Name.LastIndexOf('.');
-
-			string packetGroup = packet.Name.Substring(0, groupIdentifier);
-			string packetName = packet.Name.Substring(groupIdentifier + 1);
-
-			string dir = Path.Join(packetsDir, "Composers", Path.Join(packetGroup.Split('.')));
-			if (!Directory.Exists(dir))
+			catch (Exception e)
 			{
-				Directory.CreateDirectory(dir);
+				throw new Exception($"Failure to write composer for outgoing packet {key}", e);
 			}
-
-			StringWriter writer = new();
-
-			PacketConsumerWriter.Write(writer, protocol, packet);
-
-			_ = File.WriteAllTextAsync(Path.Join(dir, $"{packetName}PacketComposer.cs"), writer.ToString(), Encoding.UTF8);
 		}
 	}
 }

@@ -11,7 +11,17 @@ internal static class MappingParser
 	{
 		if (mapping is FieldMappingSchema fieldMapping)
 		{
-			return MappingParser.ParseType(fieldMapping.Type, assembly, fieldMapping.Name);
+			string? methodCall = null;
+			string fieldName = fieldMapping.Name;
+
+			int methodCallIndex = fieldMapping.Name.IndexOf('(');
+			if (methodCallIndex != -1)
+			{
+				methodCall = fieldName[..methodCallIndex];
+				fieldName = fieldMapping.Name[(methodCallIndex + 1)..^1];
+			}
+
+			return MappingParser.ParseType(fieldMapping.Type, assembly, methodCall, fieldName);
 		}
 		else if (mapping is ConstantMappingSchema constantMapping)
 		{
@@ -32,7 +42,7 @@ internal static class MappingParser
 		throw new NotSupportedException();
 	}
 
-	private static AbstractMappingSyntax ParseType(string type, Assembly assembly, string? name = default)
+	private static AbstractMappingSyntax ParseType(string type, Assembly assembly, string? method = default, string? name = default)
 	{
 		Span<Range> ranges = stackalloc Range[2];
 
@@ -41,21 +51,21 @@ internal static class MappingParser
 		switch (type.AsSpan()[ranges[0]])
 		{
 			case "string":
-				return new TypeMappingSyntax(typeof(string).FromAssembly(assembly), name, splitCount == 2 ? type[ranges[1]] : null);
+				return new TypeMappingSyntax(typeof(string).FromAssembly(assembly), method, name, splitCount == 2 ? type[ranges[1]] : null);
 			case "text":
-				return new TypeMappingSyntax(typeof(byte[]).FromAssembly(assembly), name, splitCount == 2 ? type[ranges[1]] : null);
+				return new TypeMappingSyntax(typeof(byte[]).FromAssembly(assembly), method, name, splitCount == 2 ? type[ranges[1]] : null);
 			case "int":
-				return new TypeMappingSyntax(typeof(int).FromAssembly(assembly), name, splitCount == 2 ? type[ranges[1]] : null);
+				return new TypeMappingSyntax(typeof(int).FromAssembly(assembly), method, name, splitCount == 2 ? type[ranges[1]] : null);
 			case "short":
-				return new TypeMappingSyntax(typeof(short).FromAssembly(assembly), name);
+				return new TypeMappingSyntax(typeof(short).FromAssembly(assembly), method, name);
 			case "byte":
-				return new TypeMappingSyntax(typeof(byte).FromAssembly(assembly), name);
+				return new TypeMappingSyntax(typeof(byte).FromAssembly(assembly), method, name);
 			case "bool":
-				return new TypeMappingSyntax(typeof(bool).FromAssembly(assembly), name);
+				return new TypeMappingSyntax(typeof(bool).FromAssembly(assembly), method, name);
 			case "List":
-				return new TypeMappingSyntax(typeof(List<>).FromAssembly(assembly), name);
+				return new TypeMappingSyntax(typeof(List<>).FromAssembly(assembly), method, name);
 			case "BufferedList":
-				return new TypeMappingSyntax(typeof(IAsyncEnumerator<>).FromAssembly(assembly), name);
+				return new TypeMappingSyntax(typeof(IAsyncEnumerator<>).FromAssembly(assembly), method, name);
 		}
 
 		int genericArgumentIndex = type.IndexOf('<');

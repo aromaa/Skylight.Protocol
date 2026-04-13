@@ -13,5 +13,5 @@ internal abstract class MappingWriterHandler
 	{
 	}
 
-	internal abstract void Write(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, AbstractMappingSyntax mapping, MemberInfo type);
+	internal abstract void Write(ref WriterContext context, ProtocolStructure protocol, IndentedTextWriter writer, string? method, AbstractMappingSyntax mapping, MemberInfo type);
 }
