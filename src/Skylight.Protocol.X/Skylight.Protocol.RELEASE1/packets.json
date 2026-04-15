@@ -25,9 +25,15 @@
       "Id": "GETCREDITS",
       "Structure": []
     },
-    "Room.Engine.GetRoomEntryData": {
+    "Room.Session.GoToFlat": {
       "Id": "GOTOFLAT",
-      "Structure": []
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int:/",
+          "Name": "RoomId"
+        }
+      ]
     },
     "Room.Session.OpenFlatConnection": {
       "Id": "TRYFLAT",
@@ -119,6 +125,19 @@
         }
       ]
     },
+    "Room.Engine.Objects": {
+      "Id": "ACTIVE_OBJECTS",
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "BufferedList<ObjectData>",
+          "Name": "Objects"
+        }
+      ]
+    },
     "Room.Engine.PublicRoomObjects": {
       "Id": " OBJECTS {LayoutId}",
       "Structure": [
@@ -128,6 +147,10 @@
           "Name": "Objects"
         }
       ]
+    },
+    "Room.Permissions.YouAreOwner": {
+      "Id": "YOUAREOWNER",
+      "Structure": []
     },
     "Room.Session.RoomReady": {
       "Id": "FLAT_LETIN",
@@ -321,6 +344,187 @@
             "Mapping": "Field",
             "Type": "string",
             "Name": "Name"
+          }
+        ]
+      }
+    ],
+    "ObjectData": [
+      {
+        "Mapping": "Combine",
+        "Type": "string",
+        "Fields": [
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"bar_chair_armas\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Id"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\",\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"bar_chair_armas\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "X"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Y"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"1\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"1\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Direction"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Z"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"1\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"/\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"aaa\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"/\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"bbb\""
+          }
+        ]
+      }
+    ],
+    "RoomUser": [
+      {
+        "Mapping": "Combine",
+        "Type": "string",
+        "Fields": [
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Name"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Goldfish(Figure)"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "int",
+            "Name": "X"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "int",
+            "Name": "Y"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "int",
+            "Name": "Z"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Motto"
           }
         ]
       }
