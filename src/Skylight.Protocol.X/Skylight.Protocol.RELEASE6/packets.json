@@ -1,71 +1,9 @@
 {
   "Revision": "RELEASE6",
   "Inherit": "RELEASE5",
-  "Capabilities": {
-    "INCOMING_STRING_BASE64_LENGTH_PREFIXED": true,
-    "INCOMING_STRING_SPACE_DELIMITED": false,
-    "NUMERIC_PACKET_ID": true,
-    "OUTGOING_STRING_CR_DELIMITED": false,
-    "OUTGOING_STRING_STX_DELIMITED": true,
-    "PACKET_LENGTH_BASE64_PREFIXED": true,
-    "STRING_PACKET_ID": false,
-    "VL64": true
-  },
-  "Incoming": {
-    "Handshake.InfoRetrieve": {
-      "Id": 7,
-      "Structure": []
-    },
-    "Handshake.TryLogin": {
-      "Id": 4
-    },
-    "Handshake.VersionCheck": {
-      "Id": 5,
-      "Structure": [
-        {
-          "Mapping": "Field",
-          "Type": "short",
-          "Name": "VersionId"
-        }
-      ]
-    },
-    "Purse.GetCreditsInfo": {
-      "Id": 8,
-      "Structure": []
-    }
-  },
-  "Outgoing": {
-    "Handshake.AuthenticationOK": {
-      "Id": 3
-    },
-    "Handshake.CompleteDiffieHandshake": {
-      "Id": 1,
-      "Structure": [
-        {
-          "Mapping": "Field",
-          "Type": "text",
-          "Name": "EncryptedPublicKey"
-        }
-      ]
-    },
-    "Handshake.ServerHello": {
-      "Id": 0,
-      "Structure": [
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "0",
-          "Comment": "Session params"
-        }
-      ]
-    },
-    "Handshake.UserObject": {
-      "Id": 5
-    },
-    "Purse.CreditBalance": {
-      "Id": 6
-    }
-  },
+  "Capabilities": {},
+  "Incoming": {},
+  "Outgoing": {},
   "Structures": {},
   "Interfaces": {}
 }
