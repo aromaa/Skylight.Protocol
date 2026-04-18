@@ -1,5 +1,6 @@
 {
   "Revision": "RELEASE9",
+  "Inherit": "RELEASE8",
   "Capabilities": {
     "INCOMING_STRING_BASE64_LENGTH_PREFIXED": true,
     "NUMERIC_PACKET_ID": true,
@@ -8,67 +9,6 @@
     "VL64": true
   },
   "Incoming": {
-    "Handshake.GenerateKey": {
-      "Id": 202,
-      "Structure": []
-    },
-    "Handshake.GetSessionParameters": {
-      "Id": 181,
-      "Structure": []
-    },
-    "Handshake.InfoRetrieve": {
-      "Id": 7,
-      "Structure": []
-    },
-    "Handshake.TryLogin": {
-      "Id": 4,
-      "Structure": [
-        {
-          "Mapping": "Field",
-          "Type": "string",
-          "Name": "Username"
-        },
-        {
-          "Mapping": "Field",
-          "Type": "string",
-          "Name": "Password"
-        }
-      ]
-    },
-    "Handshake.UniqueID": {
-      "Id": 6,
-      "Structure": [
-        {
-          "Mapping": "Field",
-          "Type": "string",
-          "Name": "MachineId"
-        }
-      ]
-    },
-    "Handshake.VersionCheck": {
-      "Id": 5,
-      "Structure": [
-        {
-          "Mapping": "Field",
-          "Type": "int",
-          "Name": "VersionId"
-        },
-        {
-          "Mapping": "Field",
-          "Type": "string",
-          "Name": "ClientUrl"
-        },
-        {
-          "Mapping": "Field",
-          "Type": "string",
-          "Name": "ExternalVariablesUrl"
-        }
-      ]
-    },
-    "Purse.GetCreditsInfo": {
-      "Id": 8,
-      "Structure": []
-    },
     "Registration.ApproveEmail": {
       "Id": 197,
       "Structure": [
@@ -119,82 +59,6 @@
     }
   },
   "Outgoing": {
-    "Handshake.AuthenticationOK": {
-      "Id": 3,
-      "Structure": []
-    },
-    "Handshake.CompleteDiffieHandshake": {
-      "Id": 1,
-      "Structure": [
-        {
-          "Mapping": "Field",
-          "Type": "text",
-          "Name": "EncryptedPublicKey"
-        }
-      ]
-    },
-    "Handshake.ServerHello": {
-      "Id": 0,
-      "Structure": []
-    },
-    "Handshake.SessionParameters": {
-      "Id": 257,
-      "Structure": [
-        {
-          "Mapping": "Constant",
-          "Type": "int",
-          "Value": "0"
-        }
-      ]
-    },
-    "Handshake.UserObject": {
-      "Id": 5,
-      "Converters": {
-        "TFigureData": "Skylight.Protocol.Packets.Convertors.Users.IFigureDataConverter<TFigureData>"
-      },
-      "Structure": [
-        {
-          "Mapping": "Field",
-          "Type": "text:name",
-          "Name": "Username"
-        },
-        {
-          "Mapping": "Field",
-          "Type": "text:figure",
-          "Name": "Classic(Figure)"
-        },
-        {
-          "Mapping": "Field",
-          "Type": "text:sex",
-          "Name": "Gender"
-        },
-        {
-          "Mapping": "Field",
-          "Type": "text:customData",
-          "Name": "CustomData"
-        },
-        {
-          "Mapping": "Field",
-          "Type": "text:ph_tickets",
-          "Name": "Tickets"
-        },
-        {
-          "Mapping": "Field",
-          "Type": "text:photo_film",
-          "Name": "Film"
-        }
-      ]
-    },
-    "Purse.CreditBalance": {
-      "Id": 6,
-      "Structure": [
-        {
-          "Mapping": "Field",
-          "Type": "string",
-          "Name": "Balance"
-        }
-      ]
-    },
     "Registration.ApproveEmailAccepted": {
       "Id": 271,
       "Structure": []
