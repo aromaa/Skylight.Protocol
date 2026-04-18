@@ -1,0 +1,31 @@
+{
+  "Revision": "RELEASE8",
+  "Inherit": "RELEASE7",
+  "Capabilities": {},
+  "Incoming": {
+    "Advertisement.GetInterstitial": {
+      "Id": 182,
+      "Structure": []
+    },
+    "Handshake.GenerateKey": {
+      "Id": 202,
+      "Structure": []
+    },
+    "Handshake.GetSessionParameters": {
+      "Id": 181,
+      "Structure": []
+    }
+  },
+  "Outgoing": {
+    "Advertisement.Interstitial": {
+      "Id": 258,
+      "Structure": []
+    },
+    "Handshake.SessionParameters": {
+      "Id": 257,
+      "Structure": []
+    }
+  },
+  "Structures": {},
+  "Interfaces": {}
+}
