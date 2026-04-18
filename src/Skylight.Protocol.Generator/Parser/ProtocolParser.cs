@@ -212,6 +212,10 @@ internal static class ProtocolParser
 					fields.Add(fieldName, mappingStructure);
 				}
 			}
+			else if (syntax is CombineMappingSyntax combineMapping)
+			{
+				mappings.Add(new MappingStructure(null, null, syntax, packetType));
+			}
 			else
 			{
 				throw new NotSupportedException();
