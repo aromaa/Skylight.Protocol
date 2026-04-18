@@ -238,7 +238,23 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 		{
 			if (typeMapping.ExtraData is not null)
 			{
-				writer.WriteLine($"writer.WriteBytes(\"{typeMapping.ExtraData}=\"u8);");
+				Span<Range> ranges = stackalloc Range[2];
+
+				string fieldName;
+				string separator;
+				int splitCount = typeMapping.ExtraData.AsSpan().Split(ranges, ':', StringSplitOptions.TrimEntries);
+				if (splitCount == 2)
+				{
+					fieldName = typeMapping.ExtraData[0].ToString();
+					separator = typeMapping.ExtraData[1].ToString();
+				}
+				else
+				{
+					fieldName = typeMapping.ExtraData;
+					separator = "=";
+				}
+
+				writer.WriteLine($"writer.WriteBytes(\"{fieldName}{separator}\"u8);");
 				WriteText(ref context, protocol, writer, mapping, type, target);
 				writer.WriteLine($"writer.WriteByte(13);");
 			}
