@@ -1,0 +1,319 @@
+{
+  "Revision": "RELEASE3",
+  "Inherit": "RELEASE1",
+  "Capabilities": {},
+  "Incoming": {
+    "Navigator.GetAllUnits": {
+      "Id": "GETALLUNITS",
+      "Structure": []
+    },
+    "Navigator.GetGuestRoom": {
+      "Id": "GETFLATINFO",
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int:/",
+          "Name": "RoomId"
+        }
+      ]
+    },
+    "Navigator.MyRoomsSearch": {
+      "Id": "SUSERF",
+      "Structure": []
+    },
+    "Room.Engine.GetRoomEntryData": {
+      "Id": "G_HMAP",
+      "Structure": []
+    }
+  },
+  "Outgoing": {
+    "Handshake.AuthenticationOK": {
+      "Id": "OK",
+      "Structure": []
+    },
+    "Navigator.GetGuestRoomResult": {
+      "Id": "FLATINFO",
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "GuestRoomData",
+          "Name": "Room"
+        }
+      ]
+    },
+    "Navigator.PrivateUnits": {
+      "Id": "PRVUNITS",
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "BufferedList<PrivateUnit>",
+          "Name": "Units"
+        }
+      ]
+    },
+    "Room.Session.RoomReady": {
+      "Id": "ROOM_READY",
+      "Structure": [
+        {
+          "Mapping": "Combine",
+          "Type": "string",
+          "Fields": [
+            {
+              "Mapping": "Field",
+              "Type": "string",
+              "Name": "LayoutId"
+            },
+            {
+              "Mapping": "Constant",
+              "Type": "string",
+              "Value": "\" \""
+            },
+            {
+              "Mapping": "Field",
+              "Type": "string",
+              "Name": "RoomId"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "Structures": {
+    "GuestRoomData": [
+      {
+        "Mapping": "Field",
+        "Type": "text:i",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "text:n",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "text:o",
+        "Name": "OwnerName"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "text:u",
+        "Name": "Port"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "text:t",
+        "Name": "LayoutId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "text:d",
+        "Name": "Description"
+      }
+    ],
+    "GuestRoomSearchData": [
+      {
+        "Mapping": "Combine",
+        "Type": "string",
+        "Fields": [
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Id"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Name"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "OwnerName"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"open\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Port"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "UserCount"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"0\"",
+            "Comment": "No filter"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Description"
+          }
+        ]
+      }
+    ],
+    "PrivateUnit": [
+      {
+        "Mapping": "Combine",
+        "Type": "string",
+        "Fields": [
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Port"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "IP"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\"",
+            "Comment": "Floor, unused"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"0\"",
+            "Comment": "Users, unused"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"0\"",
+            "Comment": "Users max, unused"
+          }
+        ]
+      }
+    ],
+    "RoomUser": [
+      {
+        "Mapping": "Field",
+        "Type": "text:n::",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "text:f::",
+        "Name": "Goldfish(Figure)"
+      },
+      {
+        "Mapping": "Combine",
+        "Type": "string",
+        "Fields": [
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"l:\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "X"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Y"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Z"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          }
+        ]
+      },
+      {
+        "Mapping": "Field",
+        "Type": "text:c::",
+        "Name": "Motto"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "text:s::",
+        "Name": "Gender"
+      }
+    ]
+  },
+  "Interfaces": {}
+}
