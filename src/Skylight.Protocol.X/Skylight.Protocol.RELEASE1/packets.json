@@ -125,6 +125,13 @@
         }
       ]
     },
+    "Room.Engine.Items": {
+      "Id": "ITEMS",
+      "Converters": {
+        "TRoomItemId": "Skylight.Protocol.Packets.Convertors.Room.Engine.IRoomItemIdConverter<TRoomItemId>"
+      },
+      "Structure": []
+    },
     "Room.Engine.Objects": {
       "Id": "ACTIVE_OBJECTS",
       "Converters": {
