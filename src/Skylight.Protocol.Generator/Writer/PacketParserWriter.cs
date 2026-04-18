@@ -40,7 +40,7 @@ internal static class PacketParserWriter
 		string packetName = name.Substring(groupIdentifier + 1);
 
 		writer.WriteLine($"using System.Buffers;");
-		if (protocol.Capabilities.Contains("INCOMING_STRING_SPACE_DELIMITED") || protocol.Capabilities.Contains("VL128"))
+		if (protocol.Capabilities.Contains("INCOMING_STRING_SPACE_DELIMITED") || protocol.Capabilities.Contains("VL64") || protocol.Capabilities.Contains("VL128"))
 		{
 			writer.WriteLine($"using System.Buffers.Text;");
 		}
@@ -48,7 +48,7 @@ internal static class PacketParserWriter
 		writer.WriteLine($"using Skylight.Protocol.Extensions;");
 		writer.WriteLine($"using Skylight.Protocol.Packets.Incoming.{packetGroup};");
 		writer.WriteLine($"using Net.Buffers;");
-		if (protocol.Capabilities.Contains("INCOMING_STRING_SPACE_DELIMITED") || protocol.Capabilities.Contains("VL128"))
+		if (protocol.Capabilities.Contains("INCOMING_STRING_SPACE_DELIMITED") || protocol.Capabilities.Contains("VL64") || protocol.Capabilities.Contains("VL128"))
 		{
 			writer.WriteLine($"using Net.Buffers.Extensions;");
 		}

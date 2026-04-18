@@ -2,51 +2,36 @@
   "Revision": "RELEASE5",
   "Inherit": "RELEASE4",
   "Capabilities": {
-    "PACKET_LENGTH_BASE128_PREFIXED": true,
-    "PACKET_LENGTH_STRING_PREFIXED": false
+    "INCOMING_STRING_BASE128_LENGTH_PREFIXED": false,
+    "INCOMING_STRING_BASE64_LENGTH_PREFIXED": true,
+    "PACKET_LENGTH_BASE128_PREFIXED": false,
+    "PACKET_LENGTH_BASE64_PREFIXED": true,
+    "VL128": false,
+    "VL64": true
   },
-  "Incoming": {},
-  "Outgoing": {
-    "Handshake.AuthenticationOK": {
-      "Id": "OK",
-      "Structure": []
-    },
-    "Handshake.UserObject": {
-      "Id": "USEROBJECT",
+  "Incoming": {
+    "Room.Session.OpenConnection": {
+      "Id": 2,
       "Structure": [
         {
           "Mapping": "Field",
-          "Type": "text:name",
-          "Name": "Username"
+          "Type": "int",
+          "Name": "InstanceType"
         },
         {
           "Mapping": "Field",
-          "Type": "text:figure",
-          "Name": "Classic(Figure)"
+          "Type": "int",
+          "Name": "InstanceId"
         },
         {
           "Mapping": "Field",
-          "Type": "text:sex",
-          "Name": "Gender"
-        },
-        {
-          "Mapping": "Field",
-          "Type": "text:customData",
-          "Name": "CustomData"
-        },
-        {
-          "Mapping": "Field",
-          "Type": "text:ph_tickets",
-          "Name": "Tickets"
-        },
-        {
-          "Mapping": "Field",
-          "Type": "text:photo_film",
-          "Name": "Film"
+          "Type": "int",
+          "Name": "WorldId"
         }
       ]
     }
   },
+  "Outgoing": {},
   "Structures": {},
   "Interfaces": {}
 }
