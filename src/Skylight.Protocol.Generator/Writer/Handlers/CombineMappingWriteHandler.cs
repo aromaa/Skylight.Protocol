@@ -24,7 +24,7 @@ internal sealed class CombineMappingWriteHandler : MappingWriterHandler
 
 		if (combineMapping.Type is TypeMappingSyntax typeMapping)
 		{
-			if (typeMapping.Type == typeof(string).FromAssembly(typeMapping.Type))
+			if (typeMapping.Type == typeof(string).FromAssembly(typeMapping.Type) || typeMapping.Type == typeof(byte[]).FromAssembly(typeMapping.Type))
 			{
 				StringBuilder stringBuilder = new(@$"$""");
 

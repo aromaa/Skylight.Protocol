@@ -20,6 +20,20 @@ public static class PacketReaderExtensions
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool TryReadBase128UInt32(ref this PacketReader reader, int bytes, out uint value)
+	{
+		if (reader.Remaining >= bytes)
+		{
+			value = reader.ReadBase128UInt32(bytes);
+			return true;
+		}
+
+		Unsafe.SkipInit(out value);
+
+		return false;
+	}
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static uint ReadBase64UInt32(ref this PacketReader reader, int bytes)
 	{
 		uint result = 0;

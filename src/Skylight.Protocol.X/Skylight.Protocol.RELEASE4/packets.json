@@ -1,0 +1,602 @@
+{
+  "Revision": "RELEASE4",
+  "Inherit": "RELEASE3",
+  "Capabilities": {
+    "INCOMING_STRING_BASE128_LENGTH_PREFIXED": true,
+    "INCOMING_STRING_SPACE_DELIMITED": false,
+    "NUMERIC_PACKET_ID": true,
+    "OUTGOING_STRING_CR_DELIMITED": false,
+    "OUTGOING_STRING_STX_DELIMITED": true,
+    "PACKET_LENGTH_BASE128_PREFIXED": true,
+    "PACKET_LENGTH_STRING_PREFIXED": false,
+    "STRING_PACKET_ID": false,
+    "VL128": true
+  },
+  "Incoming": {
+    "Handshake.InfoRetrieve": {
+      "Id": 7,
+      "Structure": []
+    },
+    "Handshake.TryLogin": {
+      "Id": 4
+    },
+    "Handshake.VersionCheck": {
+      "Id": 5,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "short",
+          "Name": "VersionId"
+        }
+      ]
+    },
+    "Navigator.GetGuestRoom": {
+      "Id": 21,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "RoomId"
+        }
+      ]
+    },
+    "Navigator.MyRoomsSearch": {
+      "Id": 16,
+      "Structure": []
+    },
+    "Purse.GetCreditsInfo": {
+      "Id": 8,
+      "Structure": []
+    },
+    "Room.Engine.GetRoomEntryData": {
+      "Id": 60,
+      "Structure": []
+    },
+    "Room.Engine.MoveAvatar": {
+      "Id": 75,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "short",
+          "Name": "X"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "short",
+          "Name": "Y"
+        }
+      ]
+    },
+    "Room.Session.OpenConnection": {
+      "Id": 2,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "byte",
+          "Name": "InstanceType"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "InstanceId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "WorldId"
+        }
+      ]
+    }
+  },
+  "Outgoing": {
+    "Handshake.AuthenticationOK": {
+      "Id": 3
+    },
+    "Handshake.CompleteDiffieHandshake": {
+      "Id": 1,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "text",
+          "Name": "EncryptedPublicKey"
+        }
+      ]
+    },
+    "Handshake.ServerHello": {
+      "Id": 0,
+      "Structure": []
+    },
+    "Handshake.UserObject": {
+      "Id": 5,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "text:name",
+          "Name": "Username"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:figure",
+          "Name": "Classic(Figure)"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:sex",
+          "Name": "Gender"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:customData",
+          "Name": "CustomData"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:ph_tickets",
+          "Name": "Tickets"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "text:photo_film",
+          "Name": "Film"
+        }
+      ]
+    },
+    "Navigator.GetGuestRoomResult": {
+      "Id": 54,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "GuestRoomData",
+          "Name": "Room"
+        }
+      ]
+    },
+    "Navigator.GuestRoomSearchResult": {
+      "Id": 16
+    },
+    "Purse.CreditBalance": {
+      "Id": 6
+    },
+    "Room.Engine.FloorHeightMap": {
+      "Id": 31
+    },
+    "Room.Engine.Items": {
+      "Id": 45
+    },
+    "Room.Engine.Objects": {
+      "Id": 32
+    },
+    "Room.Engine.PublicRoomObjects": {
+      "Id": 30
+    },
+    "Room.Engine.Users": {
+      "Id": 28
+    },
+    "Room.Engine.UserUpdate": {
+      "Id": 34
+    },
+    "Room.Permissions.YouAreController": {
+      "Id": 42,
+      "Structure": []
+    },
+    "Room.Permissions.YouAreNotController": {
+      "Id": 43,
+      "Structure": []
+    },
+    "Room.Permissions.YouAreOwner": {
+      "Id": 47,
+      "Structure": []
+    },
+    "Room.Session.RoomReady": {
+      "Id": 69,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "text",
+          "Name": "LayoutId"
+        }
+      ]
+    }
+  },
+  "Structures": {
+    "GuestRoomData": [
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0",
+        "Comment": "All rights"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0",
+        "Comment": "Door"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "OwnerName"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "LayoutId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Description"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0",
+        "Comment": "Show owner"
+      }
+    ],
+    "GuestRoomSearchData": [
+      {
+        "Mapping": "Combine",
+        "Type": "text",
+        "Fields": [
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Id"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Name"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "OwnerName"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"open\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Port"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "UserCount"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"0\"",
+            "Comment": "No filter"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Description"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\\r\""
+          }
+        ]
+      }
+    ],
+    "ObjectData": [
+      {
+        "Mapping": "Combine",
+        "Type": "text",
+        "Fields": [
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Id"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\",\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"bar_chair_armas\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "X"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Y"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"1\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"1\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Direction"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Z"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"1\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"/\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"aaa\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"/\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"bbb\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\\r\""
+          }
+        ]
+      }
+    ],
+    "RoomUser": [
+      {
+        "Mapping": "Field",
+        "Type": "text:i:_",
+        "Name": "RoomUnitId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "text:n:_",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "text:f:_",
+        "Name": "Classic(Figure)"
+      },
+      {
+        "Mapping": "Combine",
+        "Type": "text",
+        "Fields": [
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"l:\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "X"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Y"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Z"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\\r\""
+          }
+        ]
+      },
+      {
+        "Mapping": "Field",
+        "Type": "text:c:_",
+        "Name": "Motto"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "text:s:_",
+        "Name": "Gender"
+      }
+    ],
+    "UserUpdate": [
+      {
+        "Mapping": "Combine",
+        "Type": "string",
+        "Fields": [
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "RoomUnitId"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "int",
+            "Name": "X"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\",\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "int",
+            "Name": "Y"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\",\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "int",
+            "Name": "Z"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\",\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "int",
+            "Name": "HeadDirection"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\",\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "int",
+            "Name": "BodyDirection"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"/\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Data"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\\r\""
+          }
+        ]
+      }
+    ]
+  },
+  "Interfaces": {}
+}

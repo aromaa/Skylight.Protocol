@@ -25,17 +25,35 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 		{
 			string variableName = context.Name.Replace('.', '_').ToLowerInvariant();
 
-			if (protocol.Capabilities.Contains("INCOMING_STRING_SPACE_DELIMITED"))
+			if (type == typeof(int).FromAssembly(typeMapping.Type))
 			{
-				writer.Write($"reader.GetReaderRef().TryReadTo(out ReadOnlySequence<byte> {variableName}, (byte)' ') ? {variableName} : reader.ReadBytes(reader.Remaining)");
+				if (typeMapping.ExtraData is not { } prefix)
+				{
+					writer.Write($"Utf8Parser.TryParse(reader.GetReaderRef().TryReadTo(out ReadOnlySequence<byte> _{variableName}, (byte)' ') ? _{variableName}.ToArray() : reader.ReadBytes(reader.Remaining).ToArray(), out int {variableName}, out _) ? {variableName} : default");
+				}
+				else
+				{
+					writer.Write($"Utf8Parser.TryParse(reader.GetReaderRef().IsNext((byte)'{prefix}', advancePast: true) && reader.GetReaderRef().TryReadTo(out ReadOnlySequence<byte> _{variableName}, (byte)'{prefix}') ? _{variableName}.ToArray() : reader.ReadBytes(reader.Remaining).ToArray(), out int {variableName}, out _) ? {variableName} : default");
+				}
 			}
-			else if (protocol.Capabilities.Contains("INCOMING_STRING_SHORT_LENGTH_PREFIXED"))
+			else
 			{
-				writer.Write($"reader.ReadBytes(reader.ReadInt16())");
-			}
-			else if (protocol.Capabilities.Contains("INCOMING_STRING_BASE64_LENGTH_PREFIXED"))
-			{
-				writer.Write($"reader.ReadBytes(reader.ReadBase64UInt32(2))");
+				if (protocol.Capabilities.Contains("INCOMING_STRING_SPACE_DELIMITED"))
+				{
+					writer.Write($"reader.GetReaderRef().TryReadTo(out ReadOnlySequence<byte> {variableName}, (byte)' ') ? {variableName} : reader.ReadBytes(reader.Remaining)");
+				}
+				else if (protocol.Capabilities.Contains("INCOMING_STRING_SHORT_LENGTH_PREFIXED"))
+				{
+					writer.Write($"reader.ReadBytes(reader.ReadInt16())");
+				}
+				else if (protocol.Capabilities.Contains("INCOMING_STRING_BASE64_LENGTH_PREFIXED"))
+				{
+					writer.Write($"reader.ReadBytes(reader.ReadBase64UInt32(2))");
+				}
+				else if (protocol.Capabilities.Contains("INCOMING_STRING_BASE128_LENGTH_PREFIXED"))
+				{
+					writer.Write($"reader.ReadBytes(reader.ReadBase128UInt32(2))");
+				}
 			}
 		}
 		else if (typeMapping.Type == typeof(int).FromAssembly(typeMapping.Type))
@@ -74,9 +92,25 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 			}
 			else
 			{
-				writer.Write(!protocol.Capabilities.Contains("VL64")
-					? $"reader.ReadInt32()"
-					: "(int)reader.ReadVL64UInt32()");
+				if (protocol.Capabilities.Contains("VL128"))
+				{
+					writer.Write("(int)reader.ReadBase128UInt32(4)");
+				}
+				else if (protocol.Capabilities.Contains("VL64"))
+				{
+					writer.Write("(int)reader.ReadVL64UInt32()");
+				}
+				else
+				{
+					writer.Write($"reader.ReadInt32()");
+				}
+			}
+		}
+		else if (typeMapping.Type == typeof(byte).FromAssembly(typeMapping.Type))
+		{
+			if (protocol.Capabilities.Contains("VL128"))
+			{
+				writer.Write("(int)reader.ReadBase128UInt32(1)");
 			}
 		}
 		else if (typeMapping.Type == typeof(bool).FromAssembly(typeMapping.Type))
@@ -96,9 +130,18 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 			}
 			else
 			{
-				writer.Write(!protocol.Capabilities.Contains("VL64")
-					? "reader.ReadInt16()"
-					: "(int)reader.ReadBase64UInt32(2)");
+				if (protocol.Capabilities.Contains("VL128"))
+				{
+					writer.Write("(int)reader.ReadBase128UInt32(2)");
+				}
+				else if (protocol.Capabilities.Contains("VL64"))
+				{
+					writer.Write("(int)reader.ReadBase64UInt32(2)");
+				}
+				else
+				{
+					writer.Write("reader.ReadInt16()");
+				}
 			}
 		}
 		else
@@ -155,19 +198,19 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 		{
 			if (type == typeof(bool).FromAssembly(type))
 			{
-				writer.WriteLine(!protocol.Capabilities.Contains("VL64")
+				writer.WriteLine(!protocol.Capabilities.Contains("VL64") && !protocol.Capabilities.Contains("VL128")
 					? $"writer.WriteInt32({target} ? 1 : 0);"
 					: $"writer.WriteVL64Int32({target} ? 1 : 0);");
 			}
 			else if (((Type)type).IsEnum)
 			{
-				writer.WriteLine(!protocol.Capabilities.Contains("VL64")
+				writer.WriteLine(!protocol.Capabilities.Contains("VL64") && !protocol.Capabilities.Contains("VL128")
 					? $"writer.WriteInt32((int){target});"
 					: $"writer.WriteVL64Int32((int){target});");
 			}
 			else
 			{
-				writer.WriteLine(!protocol.Capabilities.Contains("VL64")
+				writer.WriteLine(!protocol.Capabilities.Contains("VL64") && !protocol.Capabilities.Contains("VL128")
 					? $"writer.WriteInt32({target});"
 					: $"writer.WriteVL64Int32({target});");
 			}
@@ -176,13 +219,13 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 		{
 			if (type == typeof(byte).FromAssembly(type))
 			{
-				writer.WriteLine(!protocol.Capabilities.Contains("VL64")
+				writer.WriteLine(!protocol.Capabilities.Contains("VL64") && !protocol.Capabilities.Contains("VL128")
 					? $"writer.WriteByte({target});"
 					: throw new NotSupportedException());
 			}
 			else if (type == typeof(int).FromAssembly(type))
 			{
-				writer.WriteLine(!protocol.Capabilities.Contains("VL64")
+				writer.WriteLine(!protocol.Capabilities.Contains("VL64") && !protocol.Capabilities.Contains("VL128")
 					? $"writer.WriteByte((byte){target});"
 					: throw new NotSupportedException());
 			}
@@ -245,8 +288,8 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 				int splitCount = typeMapping.ExtraData.AsSpan().Split(ranges, ':', StringSplitOptions.TrimEntries);
 				if (splitCount == 2)
 				{
-					fieldName = typeMapping.ExtraData[0].ToString();
-					separator = typeMapping.ExtraData[1].ToString();
+					fieldName = typeMapping.ExtraData[ranges[0]].ToString();
+					separator = typeMapping.ExtraData[ranges[1]].ToString();
 				}
 				else
 				{
