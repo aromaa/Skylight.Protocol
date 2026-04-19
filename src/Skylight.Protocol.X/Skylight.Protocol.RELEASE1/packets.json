@@ -1,7 +1,9 @@
 {
   "Revision": "RELEASE1",
   "Inherit": "MOBILES-DISCO",
-  "Capabilities": {},
+  "Capabilities": {
+    "RC4_HEX": true
+  },
   "Incoming": {
     "Handshake.VersionCheck": {
       "Id": "VERSIONCHECK",
