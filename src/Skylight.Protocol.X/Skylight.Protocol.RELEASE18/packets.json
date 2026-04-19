@@ -1,0 +1,130 @@
+{
+  "Revision": "RELEASE18",
+  "Inherit": "RELEASE17",
+  "Capabilities": {},
+  "Incoming": {},
+  "Outgoing": {
+    "Handshake.UserObject": {
+      "Id": 5,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "UserId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Username"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Modern(Figure)"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Gender"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "CustomData"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Tickets"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "string",
+          "Value": "\"\"",
+          "Comment": "Swimsuit"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Film"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "DirectMail"
+        }
+      ]
+    }
+  },
+  "Structures": {
+    "RoomUser": [
+      {
+        "Mapping": "Field",
+        "Type": "text:i:_",
+        "Name": "RoomUnitId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "text:n:_",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "text:f:_",
+        "Name": "Modern(Figure)"
+      },
+      {
+        "Mapping": "Combine",
+        "Type": "text",
+        "Fields": [
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"l:\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "X"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Y"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Z"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\\r\""
+          }
+        ]
+      },
+      {
+        "Mapping": "Field",
+        "Type": "text:c:_",
+        "Name": "Motto"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "text:s:_",
+        "Name": "Gender"
+      }
+    ]
+  },
+  "Interfaces": {}
+}
