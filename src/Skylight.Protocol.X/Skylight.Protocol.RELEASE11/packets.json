@@ -1,0 +1,19 @@
+{
+  "Revision": "RELEASE11",
+  "Inherit": "RELEASE10",
+  "Capabilities": {},
+  "Incoming": {
+    "Handshake.InitDiffieHandshake": {
+      "Id": 206,
+      "Structure": []
+    }
+  },
+  "Outgoing": {
+    "Handshake.InitDiffieHandshake": {
+      "Id": 277,
+      "Structure": []
+    }
+  },
+  "Structures": {},
+  "Interfaces": {}
+}
