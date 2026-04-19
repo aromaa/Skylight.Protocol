@@ -14,6 +14,7 @@
     <Project Path="src/Skylight.Protocol.X/Skylight.Protocol.RELEASE19/Skylight.Protocol.RELEASE19.csproj" />
     <Project Path="src/Skylight.Protocol.X/Skylight.Protocol.RELEASE20/Skylight.Protocol.RELEASE20.csproj" />
     <Project Path="src/Skylight.Protocol.X/Skylight.Protocol.RELEASE21/Skylight.Protocol.RELEASE21.csproj" />
+    <Project Path="src/Skylight.Protocol.X/Skylight.Protocol.RELEASE22/Skylight.Protocol.RELEASE22.csproj" />
     <Project Path="src/Skylight.Protocol.X/Skylight.Protocol.RELEASE3/Skylight.Protocol.RELEASE3.csproj" />
     <Project Path="src/Skylight.Protocol.X/Skylight.Protocol.RELEASE39-200910220522-22363/Skylight.Protocol.RELEASE39-200910220522-22363.csproj" />
     <Project Path="src/Skylight.Protocol.X/Skylight.Protocol.RELEASE4/Skylight.Protocol.RELEASE4.csproj" />
