@@ -1,0 +1,61 @@
+{
+  "Revision": "RELEASE10",
+  "Inherit": "RELEASE9",
+  "Capabilities": {},
+  "Incoming": {},
+  "Outgoing": {
+    "Handshake.UserObject": {
+      "Id": 5,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "UserId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Username"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Classic(Figure)"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Gender"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "CustomData"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Tickets"
+        },
+        {
+          "Mapping": "Constant",
+          "Type": "string",
+          "Value": "\"\"",
+          "Comment": "Swimsuit"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Film"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "DirectMail"
+        }
+      ]
+    }
+  },
+  "Structures": {},
+  "Interfaces": {}
+}

@@ -4,6 +4,7 @@
     "projects": [
       "src\\Skylight.Protocol.Generator\\Skylight.Protocol.Generator.csproj",
       "src\\Skylight.Protocol.X\\Skylight.Protocol.MOBILES-DISCO\\Skylight.Protocol.MOBILES-DISCO.csproj",
+      "src\\Skylight.Protocol.X\\Skylight.Protocol.RELEASE10\\Skylight.Protocol.RELEASE10.csproj",
       "src\\Skylight.Protocol.X\\Skylight.Protocol.RELEASE1\\Skylight.Protocol.RELEASE1.csproj",
       "src\\Skylight.Protocol.X\\Skylight.Protocol.RELEASE39-200910220522-22363\\Skylight.Protocol.RELEASE39-200910220522-22363.csproj",
       "src\\Skylight.Protocol.X\\Skylight.Protocol.RELEASE3\\Skylight.Protocol.RELEASE3.csproj",
