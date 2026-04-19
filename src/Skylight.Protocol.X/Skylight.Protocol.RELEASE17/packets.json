@@ -1,0 +1,21 @@
+{
+  "Revision": "RELEASE17",
+  "Inherit": "RELEASE16",
+  "Capabilities": {},
+  "Incoming": {
+    "Handshake.CompleteDiffieHandshake": {
+      "Id": 202,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "PublicKey"
+        }
+      ]
+    },
+    "Handshake.GenerateKey": {}
+  },
+  "Outgoing": {},
+  "Structures": {},
+  "Interfaces": {}
+}
