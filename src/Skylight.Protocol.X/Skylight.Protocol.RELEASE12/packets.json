@@ -1,0 +1,177 @@
+{
+  "Revision": "RELEASE12",
+  "Inherit": "RELEASE11",
+  "Capabilities": {},
+  "Incoming": {},
+  "Outgoing": {},
+  "Structures": {
+    "GuestRoomData": [
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0",
+        "Comment": "All rights"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0",
+        "Comment": "Door"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "OwnerName"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "LayoutId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Description"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "1",
+        "Comment": "Show owner"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "1",
+        "Comment": "Trading"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0",
+        "Comment": "Alert no category"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "UsersMax"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "int",
+        "Value": "0",
+        "Comment": "Users Max Limit"
+      }
+    ],
+    "GuestRoomSearchData": [
+      {
+        "Mapping": "Combine",
+        "Type": "text",
+        "Fields": [
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Id"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Name"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "OwnerName"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"open\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Port"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "UserCount"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "UsersMax"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"0\"",
+            "Comment": "No filter"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\t\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "Description"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"\\r\""
+          }
+        ]
+      }
+    ]
+  },
+  "Interfaces": {}
+}
