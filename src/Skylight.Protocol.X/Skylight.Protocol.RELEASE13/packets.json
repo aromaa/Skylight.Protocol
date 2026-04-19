@@ -1,0 +1,9 @@
+{
+  "Revision": "RELEASE13",
+  "Inherit": "RELEASE12",
+  "Capabilities": {},
+  "Incoming": {},
+  "Outgoing": {},
+  "Structures": {},
+  "Interfaces": {}
+}
