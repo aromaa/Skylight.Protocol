@@ -1,0 +1,253 @@
+{
+  "Revision": "RELEASE33",
+  "Inherit": "RELEASE29",
+  "Capabilities": {},
+  "Incoming": {
+    "Navigator.GetGuestRoom": {
+      "Id": 21,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        }
+      ]
+    },
+    "Room.Engine.MoveAvatar": {
+      "Id": 75,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "X"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "Y"
+        }
+      ]
+    }
+  },
+  "Outgoing": {
+    "Navigator.GuestRoomSearchResult": {
+      "Id": 16,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<GuestRoomSearchData>",
+          "Name": "Rooms"
+        }
+      ]
+    },
+    "Room.Engine.FloorHeightMap": {
+      "Id": 470,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "text",
+          "Name": "HeightMap"
+        }
+      ]
+    },
+    "Room.Engine.HeightMap": {
+      "Id": 31,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "text",
+          "Name": "HeightMap"
+        }
+      ]
+    },
+    "Room.Engine.Users": {
+      "Id": 28,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<RoomUser>",
+          "Name": "Users"
+        }
+      ]
+    },
+    "Room.Engine.UserUpdate": {
+      "Id": 34,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "List<UserUpdate>",
+          "Name": "Updates"
+        }
+      ]
+    },
+    "Room.Session.RoomReady": {
+      "Id": 69,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "LayoutId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "RoomId"
+        }
+      ]
+    }
+  },
+  "Structures": {
+    "GuestRoomSearchData": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Id"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "OwnerName"
+      },
+      {
+        "Mapping": "Constant",
+        "Type": "string",
+        "Value": "\"open\""
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "UserCount"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "UsersMax"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Description"
+      }
+    ],
+    "RoomUser": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "IdentifierId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Name"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Motto"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Modern(Figure)"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "RoomUnitId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "X"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Y"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Z"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Direction"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Type"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Gender"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "AchievementScore"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "GroupId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "GroupStatus"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "SwimSuit"
+      }
+    ],
+    "UserUpdate": [
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "RoomUnitId"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "X"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "Y"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Z"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "BodyDirection"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "int",
+        "Name": "HeadDirection"
+      },
+      {
+        "Mapping": "Field",
+        "Type": "string",
+        "Name": "Data"
+      }
+    ]
+  },
+  "Interfaces": {}
+}
