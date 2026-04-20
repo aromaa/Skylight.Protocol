@@ -1,0 +1,27 @@
+{
+  "Revision": "RELEASE28",
+  "Inherit": "RELEASE26",
+  "Capabilities": {
+    "RC4_HEX": false
+  },
+  "Incoming": {},
+  "Outgoing": {
+    "Handshake.InitDiffieHandshake": {
+      "Id": 277,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "EncryptedPrime"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "ServerClientEncryption"
+        }
+      ]
+    }
+  },
+  "Structures": {},
+  "Interfaces": {}
+}
