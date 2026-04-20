@@ -1,0 +1,69 @@
+{
+  "Revision": "RELEASE26",
+  "Inherit": "RELEASE24",
+  "Capabilities": {},
+  "Incoming": {
+    "Handshake.CompleteDiffieHandshake": {
+      "Id": 2002,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "PublicKey"
+        }
+      ]
+    },
+    "Handshake.GetSessionParameters": {
+      "Id": 1817,
+      "Structure": []
+    },
+    "Handshake.TryLogin": {
+      "Id": 756,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Username"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "Password"
+        }
+      ]
+    },
+    "Handshake.UniqueID": {
+      "Id": 813,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "MachineId"
+        }
+      ]
+    },
+    "Handshake.VersionCheck": {
+      "Id": 1170,
+      "Structure": [
+        {
+          "Mapping": "Field",
+          "Type": "int",
+          "Name": "VersionId"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ClientUrl"
+        },
+        {
+          "Mapping": "Field",
+          "Type": "string",
+          "Name": "ExternalVariablesUrl"
+        }
+      ]
+    }
+  },
+  "Outgoing": {},
+  "Structures": {},
+  "Interfaces": {}
+}
