@@ -56,6 +56,10 @@ internal sealed class CombineMappingWriteHandler : MappingWriterHandler
 						{
 							stringBuilder.Append($"{{{context.Name}.{fieldTypeMapping.Name}.ToArgb():X6}}");
 						}
+						else if (property.PropertyType == typeof(double).FromAssembly(property.PropertyType))
+						{
+							stringBuilder.Append($"{{{context.Name}.{fieldTypeMapping.Name}.ToString(CultureInfo.InvariantCulture)}}");
+						}
 						else
 						{
 							stringBuilder.Append($"{{{context.Name}.{fieldTypeMapping.Name}}}");
