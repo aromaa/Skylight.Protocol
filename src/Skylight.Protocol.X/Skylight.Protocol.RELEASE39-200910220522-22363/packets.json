@@ -1,5 +1,6 @@
 {
   "Revision": "RELEASE39-200910220522-22363",
+  "Inherit": "RELEASE38",
   "Capabilities": {
     "INCOMING_STRING_BASE64_LENGTH_PREFIXED": true,
     "NUMERIC_PACKET_ID": true,
