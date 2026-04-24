@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Skylight.Protocol.Packets.Data.Room.Engine.Unit.Action;
 
-namespace Skylight.Protocol.Packets.Data.Room.Engine;
+namespace Skylight.Protocol.Packets.Data.Room.Engine.Unit;
 
 public sealed class RoomUnitUpdateData
 {
@@ -14,14 +15,14 @@ public sealed class RoomUnitUpdateData
 	public required int BodyDirection { get; init; }
 	public required int HeadDirection { get; init; }
 
-	public required string Data { get; init; }
+	public required List<RoomUnitActionData> Actions { get; init; }
 
 	public RoomUnitUpdateData()
 	{
 	}
 
 	[SetsRequiredMembers]
-	public RoomUnitUpdateData(int roomUnitId, string username, int x, int y, double z, int bodyDirection, int headDirection, string data)
+	public RoomUnitUpdateData(int roomUnitId, string username, int x, int y, double z, int bodyDirection, int headDirection, List<RoomUnitActionData> actions)
 	{
 		this.RoomUnitId = roomUnitId;
 		this.Username = username;
@@ -33,6 +34,6 @@ public sealed class RoomUnitUpdateData
 		this.BodyDirection = bodyDirection;
 		this.HeadDirection = headDirection;
 
-		this.Data = data;
+		this.Actions = actions;
 	}
 }

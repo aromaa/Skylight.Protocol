@@ -1218,8 +1218,8 @@
       },
       {
         "Mapping": "Field",
-        "Type": "string",
-        "Name": "Data"
+        "Type": "UnitActions",
+        "Name": "Actions"
       }
     ]
   },

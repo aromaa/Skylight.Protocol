@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Skylight.Protocol.Packets.Data.Room.Engine;
+using Skylight.Protocol.Packets.Data.Room.Engine.Unit;
 
 namespace Skylight.Protocol.Packets.Outgoing.Room.Engine;
 

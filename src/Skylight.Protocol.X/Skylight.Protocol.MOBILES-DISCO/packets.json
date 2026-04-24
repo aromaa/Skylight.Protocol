@@ -277,6 +277,90 @@
         ]
       }
     ],
+    "RoomUnitLayAction": [
+      {
+        "Mapping": "Combine",
+        "Type": "string",
+        "Fields": [
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"lay \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "OffsetZ"
+          }
+        ]
+      }
+    ],
+    "RoomUnitMoveAction": [
+      {
+        "Mapping": "Combine",
+        "Type": "string",
+        "Fields": [
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"mv \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "TargetX"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\",\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "TargetY"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\",\""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "TargetZ"
+          }
+        ]
+      }
+    ],
+    "RoomUnitSitAction": [
+      {
+        "Mapping": "Combine",
+        "Type": "string",
+        "Fields": [
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\"sit \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "string",
+            "Name": "OffsetZ"
+          },
+          {
+            "Mapping": "Constant",
+            "Type": "string",
+            "Value": "\" \""
+          },
+          {
+            "Mapping": "Field",
+            "Type": "int",
+            "Name": "CanStandUp"
+          }
+        ]
+      }
+    ],
     "RoomUser": [
       {
         "Mapping": "Combine",
@@ -336,6 +420,20 @@
             "Mapping": "Field",
             "Type": "string",
             "Name": "Motto"
+          }
+        ]
+      }
+    ],
+    "UnitActions": [
+      {
+        "Mapping": "Join",
+        "Delimiter": "\"/\"",
+        "Type": "string",
+        "Fields": [
+          {
+            "Mapping": "Field",
+            "Type": "IUnitAction",
+            "Name": "Value"
           }
         ]
       }
@@ -514,12 +612,18 @@
           },
           {
             "Mapping": "Field",
-            "Type": "string",
-            "Name": "Data"
+            "Type": "UnitActions",
+            "Name": "Actions"
           }
         ]
       }
     ]
   },
-  "Interfaces": {}
+  "Interfaces": {
+    "IUnitAction": {
+      "Skylight.Protocol.Packets.Data.Room.Engine.Unit.Action.RoomUnitLayAction": "RoomUnitLayAction",
+      "Skylight.Protocol.Packets.Data.Room.Engine.Unit.Action.RoomUnitMoveAction": "RoomUnitMoveAction",
+      "Skylight.Protocol.Packets.Data.Room.Engine.Unit.Action.RoomUnitSitAction": "RoomUnitSitAction"
+    }
+  }
 }

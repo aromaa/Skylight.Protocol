@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Skylight.Protocol.Packets.Data.Room.Engine;
+namespace Skylight.Protocol.Packets.Data.Room.Engine.Unit;
 
 //TODO: Abstract
 public sealed class RoomUnitData<TFigureData>
