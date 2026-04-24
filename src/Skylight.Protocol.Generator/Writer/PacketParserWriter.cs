@@ -2,11 +2,13 @@
 using System.CodeDom.Compiler;
 using System.Reflection;
 using System.Text;
+using Net.Buffers;
 using Skylight.Protocol.Generator.Extensions;
 using Skylight.Protocol.Generator.Parser.Mapping;
 using Skylight.Protocol.Generator.Structure;
 using Skylight.Protocol.Generator.Structure.Mapping;
 using Skylight.Protocol.Generator.Writer.Handlers;
+using static Skylight.Protocol.Generator.Writer.WriterContext;
 
 namespace Skylight.Protocol.Generator.Writer;
 
@@ -98,7 +100,7 @@ internal static class PacketParserWriter
 
 				writer.Write($"{field} = ");
 
-				using (context.PushScope(field))
+				using (context.PushScope(field, target: new TargetData("reader", typeof(PacketReader))))
 				{
 					context.Read(protocol, writer, mapping.Syntax, mapping.Type);
 				}
@@ -110,7 +112,7 @@ internal static class PacketParserWriter
 
 			foreach ((string field, MappingStructure mapping) in packet.Fields)
 			{
-				using (context.PushScope(field))
+				using (context.PushScope(field, target: new TargetData("reader", typeof(PacketReader))))
 				{
 					context.ReadPost(protocol, writer, mapping.Syntax, mapping.Type);
 				}

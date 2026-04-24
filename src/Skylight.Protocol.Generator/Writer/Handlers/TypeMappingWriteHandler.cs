@@ -1,6 +1,8 @@
 ﻿using System.Buffers;
 using System.CodeDom.Compiler;
 using System.Reflection;
+using System.Text;
+using Net.Buffers;
 using Skylight.Protocol.Generator.Extensions;
 using Skylight.Protocol.Generator.Parser.Mapping;
 using Skylight.Protocol.Generator.Structure;
@@ -236,45 +238,56 @@ internal sealed class TypeMappingWriteHandler : MappingWriterHandler
 		}
 		else if (typeMapping.Type == typeof(string).FromAssembly(typeMapping.Type))
 		{
-			if (type == typeof(ICollection<short>).FromAssembly(type))
+			if (context.Target.Type == typeof(PacketWriter))
 			{
-				writer.WriteLine($"writer.WriteFixedUInt16String(string.Join('\\r', {target}.Select(i => (byte)('0' + i)).Chunk((int)packet.Width).Select(c => System.Text.Encoding.UTF8.GetString(c))));");
+				if (type == typeof(ICollection<short>).FromAssembly(type))
+				{
+					writer.WriteLine($"writer.WriteFixedUInt16String(string.Join('\\r', {target}.Select(i => (byte)('0' + i)).Chunk((int)packet.Width).Select(c => System.Text.Encoding.UTF8.GetString(c))));");
+				}
+				else if (type == typeof(double).FromAssembly(type))
+				{
+					writer.WriteLine(protocol.Capabilities.Contains("OUTGOING_STRING_SHORT_LENGTH_PREFIXED")
+						? $"writer.WriteFixedUInt16String({target}.ToString(CultureInfo.InvariantCulture));"
+						: $"writer.WriteDelimiter2BrokenString({target}.ToString(CultureInfo.InvariantCulture));");
+				}
+				else if (type != typeof(string).FromAssembly(type))
+				{
+					if (protocol.Capabilities.Contains("OUTGOING_STRING_SHORT_LENGTH_PREFIXED"))
+					{
+						writer.WriteLine($"writer.WriteFixedUInt16String({target}.ToString());");
+					}
+					else if (protocol.Capabilities.Contains("OUTGOING_STRING_CR_DELIMITED"))
+					{
+						writer.WriteLine($"writer.WriteDelimiterBrokenString({target}.ToString(), (byte)'\\r');");
+					}
+					else if (protocol.Capabilities.Contains("OUTGOING_STRING_STX_DELIMITED"))
+					{
+						writer.WriteLine($"writer.WriteDelimiter2BrokenString({target}.ToString());");
+					}
+				}
+				else
+				{
+					if (protocol.Capabilities.Contains("OUTGOING_STRING_SHORT_LENGTH_PREFIXED"))
+					{
+						writer.WriteLine($"writer.WriteFixedUInt16String({target});");
+					}
+					else if (protocol.Capabilities.Contains("OUTGOING_STRING_CR_DELIMITED"))
+					{
+						writer.WriteLine($"writer.WriteDelimiterBrokenString({target}, (byte)'\\r');");
+					}
+					else if (protocol.Capabilities.Contains("OUTGOING_STRING_STX_DELIMITED"))
+					{
+						writer.WriteLine($"writer.WriteDelimiter2BrokenString({target});");
+					}
+				}
 			}
-			else if (type == typeof(double).FromAssembly(type))
+			else if (context.Target.Type == typeof(StringBuilder))
 			{
-				writer.WriteLine(protocol.Capabilities.Contains("OUTGOING_STRING_SHORT_LENGTH_PREFIXED")
-					? $"writer.WriteFixedUInt16String({target}.ToString(CultureInfo.InvariantCulture));"
-					: $"writer.WriteDelimiter2BrokenString({target}.ToString(CultureInfo.InvariantCulture));");
-			}
-			else if (type != typeof(string).FromAssembly(type))
-			{
-				if (protocol.Capabilities.Contains("OUTGOING_STRING_SHORT_LENGTH_PREFIXED"))
-				{
-					writer.WriteLine($"writer.WriteFixedUInt16String({target}.ToString());");
-				}
-				else if (protocol.Capabilities.Contains("OUTGOING_STRING_CR_DELIMITED"))
-				{
-					writer.WriteLine($"writer.WriteDelimiterBrokenString({target}.ToString(), (byte)'\\r');");
-				}
-				else if (protocol.Capabilities.Contains("OUTGOING_STRING_STX_DELIMITED"))
-				{
-					writer.WriteLine($"writer.WriteDelimiter2BrokenString({target}.ToString());");
-				}
+				writer.WriteLine($"{context.Target.Name}.Append({target});");
 			}
 			else
 			{
-				if (protocol.Capabilities.Contains("OUTGOING_STRING_SHORT_LENGTH_PREFIXED"))
-				{
-					writer.WriteLine($"writer.WriteFixedUInt16String({target});");
-				}
-				else if (protocol.Capabilities.Contains("OUTGOING_STRING_CR_DELIMITED"))
-				{
-					writer.WriteLine($"writer.WriteDelimiterBrokenString({target}, (byte)'\\r');");
-				}
-				else if (protocol.Capabilities.Contains("OUTGOING_STRING_STX_DELIMITED"))
-				{
-					writer.WriteLine($"writer.WriteDelimiter2BrokenString({target});");
-				}
+				writer.WriteLine($"return {target};");
 			}
 		}
 		else if (typeMapping.Type == typeof(byte[]).FromAssembly(typeMapping.Type))

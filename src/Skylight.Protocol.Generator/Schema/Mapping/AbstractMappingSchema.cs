@@ -7,6 +7,7 @@ namespace Skylight.Protocol.Generator.Schema.Mapping;
 [JsonDerivedType(typeof(ConstantMappingSchema), "Constant")]
 [JsonDerivedType(typeof(ConditionalMappingSchema), "Conditional")]
 [JsonDerivedType(typeof(CombineMappingSchema), "Combine")]
+[JsonDerivedType(typeof(JoinMappingSchema), "Join")]
 public abstract class AbstractMappingSchema
 {
 	public string? Comment { get; set; }

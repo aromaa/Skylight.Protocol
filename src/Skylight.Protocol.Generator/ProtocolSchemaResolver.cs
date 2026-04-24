@@ -87,12 +87,15 @@ public sealed class ProtocolSchemaResolver(bool reformat = false)
 		}
 		else
 		{
-			if (!this.dependencies.TryGetValue(schema.Inherit, out HashSet<ProtocolSchema>? dependencies))
+			lock (this.dependencies)
 			{
-				this.dependencies[schema.Inherit] = dependencies = [];
-			}
+				if (!this.dependencies.TryGetValue(schema.Inherit, out HashSet<ProtocolSchema>? dependencies))
+				{
+					this.dependencies[schema.Inherit] = dependencies = [];
+				}
 
-			dependencies.Add(schema);
+				dependencies.Add(schema);
+			}
 		}
 
 		if (this.reformat)

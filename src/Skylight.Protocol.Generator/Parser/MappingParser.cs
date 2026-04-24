@@ -38,6 +38,10 @@ internal static class MappingParser
 		{
 			return new CombineMappingSyntax(MappingParser.ParseType(combineMapping.Type, assembly), combineMapping.Fields.Select(f => MappingParser.Parse(f, assembly)).ToList());
 		}
+		else if (mapping is JoinMappingSchema joinMapping)
+		{
+			return new JoinMappingSyntax(MappingParser.ParseType(joinMapping.Type, assembly), joinMapping.Delimiter, joinMapping.Fields.Select(f => MappingParser.Parse(f, assembly)).ToList());
+		}
 
 		throw new NotSupportedException();
 	}
@@ -80,6 +84,6 @@ internal static class MappingParser
 			}
 		}
 
-		return new ObjectMappingSyntax(type);
+		return new ObjectMappingSyntax(type, name);
 	}
 }

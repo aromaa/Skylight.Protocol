@@ -1,10 +1,12 @@
 ﻿using System.CodeDom.Compiler;
 using System.Text;
 using System.Text.RegularExpressions;
+using Net.Buffers;
 using Skylight.Protocol.Generator.Parser.Mapping;
 using Skylight.Protocol.Generator.Structure;
 using Skylight.Protocol.Generator.Structure.Mapping;
 using Skylight.Protocol.Generator.Writer.Handlers;
+using static Skylight.Protocol.Generator.Writer.WriterContext;
 
 namespace Skylight.Protocol.Generator.Writer;
 
@@ -28,7 +30,8 @@ internal static partial class PacketConsumerWriter
 			{ typeof(ObjectMappingSyntax), new ObjectMappingWriteHandler() },
 			{ typeof(ConstantMappingSyntax), new ConstantMappingWriteHandler() },
 			{ typeof(ConditionalMappingSyntax), new ConditionalMappingWriteHandler() },
-			{ typeof(CombineMappingSyntax), new CombineMappingWriteHandler() }
+			{ typeof(CombineMappingSyntax), new CombineMappingWriteHandler() },
+			{ typeof(JoinMappingSyntax), new JoinMappingWriteHandler() }
 		};
 
 		using IndentedTextWriter writer = new(stream, "\t");
@@ -167,7 +170,7 @@ internal static partial class PacketConsumerWriter
 
 		WriterContext context = new(packet, handlers);
 
-		using (context.PushScope("packet"))
+		using (context.PushScope("packet", target: new TargetData("writer", typeof(PacketWriter))))
 		{
 			foreach (MappingStructure mapping in packet.Mapping)
 			{

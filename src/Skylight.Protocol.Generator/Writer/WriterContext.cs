@@ -15,6 +15,7 @@ internal struct WriterContext(PacketStructure packet, Dictionary<Type, MappingWr
 	public PacketStructure Packet { get; } = packet;
 
 	public string Name { get; private set; } = string.Empty;
+	public TargetData Target { get; private set; } = new TargetData(string.Empty, typeof(object));
 
 	public void Read(ProtocolStructure protocol, IndentedTextWriter writer, AbstractMappingSyntax mapping, MemberInfo type)
 	{
@@ -32,30 +33,41 @@ internal struct WriterContext(PacketStructure packet, Dictionary<Type, MappingWr
 	}
 
 	[UnscopedRef]
-	public Scope PushScope(string? name, bool overrideName = false)
+	public Scope PushScope(string? name, bool overrideName = false, TargetData? target = null)
 	{
-		if (name is null)
-		{
-			return default;
-		}
-
 		string oldName = this.Name;
+		TargetData oldTarget = this.Target;
 
-		if (this.Name.Length == 0 || overrideName)
+		if (name is not null)
 		{
-			this.Name = name;
-		}
-		else
-		{
-			this.Name = $"{this.Name}.{name}";
+			if (this.Name.Length == 0 || overrideName)
+			{
+				this.Name = name;
+			}
+			else
+			{
+				this.Name = $"{this.Name}.{name}";
+			}
 		}
 
-		return new Scope(ref this, oldName);
+		if (target is not null)
+		{
+			this.Target = target;
+		}
+
+		return new Scope(ref this, oldName, oldTarget);
 	}
 
-	private void ExitScope(string name)
+	private void ExitScope(string name, TargetData target)
 	{
 		this.Name = name;
+		this.Target = target;
+	}
+
+	internal class TargetData(string name, Type type)
+	{
+		public string Name { get; } = name;
+		public Type Type { get; } = type;
 	}
 
 	internal ref struct Scope
@@ -63,12 +75,14 @@ internal struct WriterContext(PacketStructure packet, Dictionary<Type, MappingWr
 		internal ref WriterContext context;
 
 		internal string name;
+		internal TargetData target;
 
-		internal Scope(ref WriterContext context, string name)
+		internal Scope(ref WriterContext context, string name, TargetData target)
 		{
 			this.context = ref context;
 
 			this.name = name;
+			this.target = target;
 		}
 
 		public void Dispose()
@@ -78,7 +92,7 @@ internal struct WriterContext(PacketStructure packet, Dictionary<Type, MappingWr
 				return;
 			}
 
-			this.context.ExitScope(this.name);
+			this.context.ExitScope(this.name, this.target);
 			this.context = ref Unsafe.NullRef<WriterContext>();
 		}
 	}

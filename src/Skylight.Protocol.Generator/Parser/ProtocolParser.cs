@@ -50,14 +50,14 @@ internal static class ProtocolParser
 
 				if (syntax is ObjectMappingSyntax objectMapping)
 				{
-					if (objectMapping.Name == name)
+					if (objectMapping.Type == name)
 					{
 						recursive = true;
 					}
 				}
 				else if (syntax is GenericTypeMappingSyntax genericMapping)
 				{
-					if (genericMapping.GenericArgument is ObjectMappingSyntax genericArgument && genericArgument.Name == name)
+					if (genericMapping.GenericArgument is ObjectMappingSyntax genericArgument && genericArgument.Type == name)
 					{
 						recursive = true;
 					}

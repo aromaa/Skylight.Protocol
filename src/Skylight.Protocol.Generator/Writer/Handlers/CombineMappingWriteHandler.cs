@@ -65,6 +65,18 @@ internal sealed class CombineMappingWriteHandler : MappingWriterHandler
 							stringBuilder.Append($"{{{context.Name}.{fieldTypeMapping.Name}}}");
 						}
 					}
+					else if (field is ObjectMappingSyntax objectMapping)
+					{
+						stringBuilder.Append('{');
+
+						PropertyInfo property = ((Type)type).GetProperty(objectMapping.Name!)!;
+						using (context.PushScope(objectMapping.Name, target: new WriterContext.TargetData(string.Empty, typeof(string))))
+						{
+							context.Write(protocol, new IndentedTextWriter(new StringWriter(stringBuilder), "\t") { Indent = writer.Indent }, method, objectMapping, property);
+						}
+
+						stringBuilder.Append('}');
+					}
 					else
 					{
 						throw new NotSupportedException();

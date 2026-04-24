@@ -21,7 +21,7 @@ internal sealed class ObjectMappingWriteHandler : MappingWriterHandler
 			throw new NotSupportedException();
 		}
 
-		if (protocol.Interfaces.TryGetValue(objectMapping.Name, out Dictionary<string, string>? interfaces))
+		if (protocol.Interfaces.TryGetValue(objectMapping.Type, out Dictionary<string, string>? interfaces))
 		{
 			bool first = true;
 			foreach ((string objectData, string mappingTarget) in interfaces)
@@ -99,7 +99,7 @@ internal sealed class ObjectMappingWriteHandler : MappingWriterHandler
 			names = null;
 		}
 
-		ObjectStructure structure = protocol.Structures[objectMapping.Name];
+		ObjectStructure structure = protocol.Structures[objectMapping.Type];
 
 		foreach ((string? fieldMethod, string? fieldName, AbstractMappingSyntax syntax) in structure.Mapping)
 		{

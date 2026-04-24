@@ -2,10 +2,12 @@
 
 internal sealed class ObjectMappingSyntax : AbstractMappingSyntax
 {
-	public string Name { get; }
+	public string Type { get; }
+	public string? Name { get; }
 
-	internal ObjectMappingSyntax(string name)
+	internal ObjectMappingSyntax(string type, string? name = default)
 	{
+		this.Type = type;
 		this.Name = name;
 	}
 }
