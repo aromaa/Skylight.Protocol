@@ -1,0 +1,5858 @@
+{
+  "Cababilities": {
+    "ACHIEVEMENTS": {},
+    "AIR": {},
+    "ASSETS_DYNAMIC": {},
+    "BADGES": {},
+    "BATTLE_BALL_REBOUND": {},
+    "CAMERA": {},
+    "CATALOG_CATEGORIES": {},
+    "CATALOG_DYNAMIC": {},
+    "CATALOG_OFFER_DATA_LINGO": {},
+    "CATALOG_OFFER_DATA_XML": {},
+    "CLUB": {},
+    "EFFECTS": {},
+    "ENTRY_BASE": {},
+    "ENTRY_INIT": {},
+    "EXTERNAL_PARAMETERS": {},
+    "EXTERNAL_PARAMETERS_DELIMITED": {},
+    "FIGURE_ACCESSORIES": {},
+    "FIGURE_ANIMATIONS_DYNAMIC": {},
+    "FIGURE_DATA_XML": {},
+    "FIGURE_DRAW_ORDER_DYNAMIC": {},
+    "FIGURE_MAP_XML": {},
+    "FIGURE_PART_LIST_DYNAMIC": {},
+    "FIGURE_PART_SETS_DYNAMIC": {},
+    "FLASH": {},
+    "FURNITURE_DATA_XML": {},
+    "FURNITURE_DYNAMIC": {},
+    "GAMEDATA_HASHES": {},
+    "GUIDE": {},
+    "INSTANT_MESSENGER": {},
+    "INTERNAL_VARIABLES": {
+      "Description": "During the early Fuse client 2.0 Beta many of the internal cast variables were in the variables.txt."
+    },
+    "JOYSTICK": {},
+    "NAVIGATOR_CASTS": {},
+    "PETS": {},
+    "PIXELS": {},
+    "POLLS": {},
+    "PURSE": {},
+    "RECYCLER": {},
+    "REGISTRATION": {},
+    "ROOMDIMMER": {},
+    "SECURITY_CAST": {},
+    "SHOCKWAVE": {},
+    "SSO_TICKET": {},
+    "TRAX": {},
+    "TUTORIAL": {},
+    "UTF-8": {}
+  },
+  "Variables": {
+    "asset.base.url": {
+      "Name": "Client assets base path",
+      "Description": "The base path used to resolve relative client assets.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string"
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "catalog.offer.data.url": {
+      "Name": "Catalog offers localization file",
+      "Description": "The URL of the file containing the localization data of catalog offer's names and descriptions.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "productdata.load.url": {
+                  "Type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "xml": {
+                  "Values": {
+                    "default": {}
+                  },
+                  "RuleSets": {
+                    "supports_offer_data_xml": {
+                      "Rules": {
+                        "catalog_offer_data_xml_capability": {
+                          "Subject": "Capability",
+                          "Capability": "CATALOG_OFFER_DATA_XML",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "lingo": {
+                  "Values": {
+                    "default": {}
+                  },
+                  "RuleSets": {
+                    "supports_offer_data_lingo": {
+                      "Rules": {
+                        "catalog_offer_data_lingo_capability": {
+                          "Subject": "Capability",
+                          "Capability": "CATALOG_OFFER_DATA_LINGO",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "command.list.user": {
+      "Name": "User targeted commands",
+      "Description": "List of commands that replace the character \"x\" in the first parameter of the command with the username of the selected user.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "command": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "moderator.cmds": {
+                  "Type": "string[]"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "alert": {
+          "Type": "Static",
+          "Fields": {
+            "command": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": ":alert x"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ban": {
+          "Type": "Static",
+          "Fields": {
+            "command": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": ":ban x"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "kick": {
+          "Type": "Static",
+          "Fields": {
+            "command": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": ":kick x"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "superban": {
+          "Type": "Static",
+          "Fields": {
+            "command": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": ":superban x"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "shutup": {
+          "Type": "Static",
+          "Fields": {
+            "command": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": ":shutup x"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "unmute": {
+          "Type": "Static",
+          "Fields": {
+            "command": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": ":unmute x"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "transfer": {
+          "Type": "Static",
+          "Fields": {
+            "command": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": ":transfer x"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "softkick": {
+          "Type": "Static",
+          "Fields": {
+            "command": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": ":softkick x"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "RuleSets": {
+        "is_shockwave": {
+          "Rules": {
+            "shockwave_capability": {
+              "Subject": "Capability",
+              "Capability": "SHOCKWAVE",
+              "Expressions": [
+                {
+                  "Operation": "Equals"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "core.asset": {
+      "Name": "Client core files",
+      "Description": "Files the client is required to download before starting up.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "file": {
+          "Type": "string",
+          "KeySets": {
+            "shockwave": {
+              "Keys": {
+                "cast.entry.[1..]": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "supports_dynamic_assets": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    },
+                    "assets_dynamic_capability": {
+                      "Subject": "Capability",
+                      "Capability": "ASSETS_DYNAMIC",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "entry": {
+          "Type": "Group",
+          "EntrySelectStrategy": "First",
+          "Entries": {
+            "finnish": {
+              "Type": "Static",
+              "Fields": {
+                "file": {
+                  "ValueSets": {
+                    "default": {
+                      "Values": {
+                        "default": {
+                          "Value": "hh_entry_fi"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "RuleSets": {
+                "finnish_locale": {
+                  "Rules": {
+                    "fi_FI_locale": {
+                      "Subject": "Locale",
+                      "Locale": "fi_FI"
+                    }
+                  }
+                }
+              }
+            },
+            "united_kingdom": {
+              "Type": "Static",
+              "Fields": {
+                "file": {
+                  "ValueSets": {
+                    "default": {
+                      "Values": {
+                        "default": {
+                          "Value": "hh_entry_uk"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "RuleSets": {
+                "united_kingdom_locale": {
+                  "Rules": {
+                    "en_GB_locale": {
+                      "Subject": "Locale",
+                      "Locale": "en_GB"
+                    }
+                  }
+                }
+              }
+            },
+            "fallback": {
+              "Type": "Static",
+              "Fields": {
+                "file": {
+                  "ValueSets": {
+                    "default": {
+                      "Values": {
+                        "default": {
+                          "Value": "hh_entry_fi"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Group of different entries to be selected. Only one should be active at given time.",
+          "RuleSets": {
+            "is_shockwave": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "clothing": {
+          "Type": "Group",
+          "EntrySelectStrategy": "First",
+          "Entries": {
+            "modern": {
+              "Type": "Group",
+              "EntrySelectStrategy": "All",
+              "Entries": {
+                "base": {
+                  "Type": "Group",
+                  "EntrySelectStrategy": "All",
+                  "Entries": {
+                    "normal": {
+                      "Type": "Group",
+                      "EntrySelectStrategy": "All",
+                      "Entries": {
+                        "hats": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_hats"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "hair": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_hair"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "face": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_face"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "body": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_body"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "shirt": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_shirt"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "item": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_item"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "leg": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_leg"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "shoe": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_shoe"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "Description": "Remaining files are loaded on room load."
+                    },
+                    "small": {
+                      "Type": "Group",
+                      "EntrySelectStrategy": "All",
+                      "Entries": {
+                        "hats": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_50_hats"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "hair": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_50_hair"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "face": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_50_face"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "body": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_50_body"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "Description": "Zoomed out. Remaining files are loaded on room entry."
+                    }
+                  },
+                  "Description": "Group of basic clotching."
+                },
+                "accessories": {
+                  "Type": "Group",
+                  "EntrySelectStrategy": "All",
+                  "Entries": {
+                    "normal": {
+                      "Type": "Group",
+                      "EntrySelectStrategy": "All",
+                      "Entries": {
+                        "head": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_acc_head"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "face": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_acc_face"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "eye": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_acc_eye"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "Description": "Remaining files are loaded on room load."
+                    },
+                    "small": {
+                      "Type": "Group",
+                      "EntrySelectStrategy": "All",
+                      "Entries": {
+                        "head": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_50_acc_head"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "face": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_50_acc_face"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "eye": {
+                          "Type": "Static",
+                          "Fields": {
+                            "file": {
+                              "ValueSets": {
+                                "default": {
+                                  "Values": {
+                                    "default": {
+                                      "Value": "hh_human_50_acc_eye"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "Description": "Zoomed out. Remaining files are loaded on room load."
+                    }
+                  },
+                  "Description": "Group of accessories.",
+                  "RuleSets": {
+                    "supports_figure_accessories": {
+                      "Rules": {
+                        "shockwave_capability": {
+                          "Subject": "Capability",
+                          "Capability": "SHOCKWAVE",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        },
+                        "figure_accessories_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FIGURE_ACCESSORIES",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "Description": "Group of modern clotching.",
+              "RuleSets": {
+                "supports_modern_clothing": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    },
+                    "figure_data_xml_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FIGURE_DATA_XML",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "classic": {
+              "Type": "Group",
+              "EntrySelectStrategy": "All",
+              "Entries": {
+                "people_1": {
+                  "Type": "Static",
+                  "Fields": {
+                    "file": {
+                      "ValueSets": {
+                        "default": {
+                          "Values": {
+                            "default": {
+                              "Value": "hh_people_1"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "people_2": {
+                  "Type": "Static",
+                  "Fields": {
+                    "file": {
+                      "ValueSets": {
+                        "default": {
+                          "Values": {
+                            "default": {
+                              "Value": "hh_people_2"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "Description": "Group of classic clotching. Zoomed out files are loaded on room entry.",
+              "RuleSets": {
+                "supports_classic_clotching": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    },
+                    "no_figure_data_xml_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FIGURE_DATA_XML",
+                      "Expressions": [
+                        {
+                          "Operation": "Not",
+                          "Expression": {
+                            "Operation": "Equals"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Group of different clothing variations.",
+          "RuleSets": {
+            "is_shockwave": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "shared": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_shared"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Internal shared library for basic client functionality.",
+          "RuleSets": {
+            "has_shared": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "no_navigator_casts_capability": {
+                  "Subject": "Capability",
+                  "Capability": "NAVIGATOR_CASTS",
+                  "Expressions": [
+                    {
+                      "Operation": "Not",
+                      "Expression": {
+                        "Operation": "Equals"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "entry_base": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_entry_base"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Shared hotel view animation logic. ",
+          "RuleSets": {
+            "has_entry_base": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "entry_base_capability": {
+                  "Subject": "Capability",
+                  "Capability": "ENTRY_BASE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "interface": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_interface"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Core interface logic.",
+          "RuleSets": {
+            "is_shockwave": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "patch": {
+          "Type": "Group",
+          "EntrySelectStrategy": "First",
+          "Entries": {
+            "finnish": {
+              "Type": "Static",
+              "Fields": {
+                "file": {
+                  "ValueSets": {
+                    "default": {
+                      "Values": {
+                        "default": {
+                          "Value": "hh_patch_fi"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "RuleSets": {
+                "finnish_locale": {
+                  "Rules": {
+                    "fi_FI_locale": {
+                      "Subject": "Locale",
+                      "Locale": "fi_FI"
+                    }
+                  }
+                }
+              }
+            },
+            "united_kingdom": {
+              "Type": "Static",
+              "Fields": {
+                "file": {
+                  "ValueSets": {
+                    "default": {
+                      "Values": {
+                        "default": {
+                          "Value": "hh_patch_uk"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "RuleSets": {
+                "united_kingdom_locale": {
+                  "Rules": {
+                    "en_GB_locale": {
+                      "Subject": "Locale",
+                      "Locale": "en_GB"
+                    }
+                  }
+                }
+              }
+            },
+            "fallback": {
+              "Type": "Static",
+              "Fields": {
+                "file": {
+                  "ValueSets": {
+                    "default": {
+                      "Values": {
+                        "default": {
+                          "Value": "hh_patch_fi"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Group of different localization specific patches for assets, texts and logic. Only one should be active at given time."
+        },
+        "human": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_human"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Human rendered logic.",
+          "RuleSets": {
+            "supports_battle_ball_rebound": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "battle_battle_rebound_capability": {
+                  "Subject": "Capability",
+                  "Capability": "BATTLE_BALL_REBOUND",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "messenger": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_messenger"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "The og console.",
+          "RuleSets": {
+            "supports_instant_messenger": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "no_instant_messenger_capability": {
+                  "Subject": "Capability",
+                  "Capability": "INSTANT_MESSENGER",
+                  "Expressions": [
+                    {
+                      "Operation": "Not",
+                      "Expression": {
+                        "Operation": "Equals"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "registration": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_registrat"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Registration.",
+          "RuleSets": {
+            "supports_registration": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "registration_capability": {
+                  "Subject": "Capability",
+                  "Capability": "REGISTRATION",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "kiosk_room": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_kiosk_room"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Room creator.",
+          "RuleSets": {
+            "is_shockwave": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "pets_common": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_pets_common"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Shared pet classes.",
+          "RuleSets": {
+            "supports_dynamic_furniture": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "furniture_dynamic_capability": {
+                  "Subject": "Capability",
+                  "Capability": "FURNITURE_DYNAMIC",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "room_utils": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_room_utils"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Shared classes for public and private rooms and games.",
+          "RuleSets": {
+            "supports_battle_ball_rebound": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "battle_ball_rebound_capability": {
+                  "Subject": "Capability",
+                  "Capability": "BATTLE_BALL_REBOUND",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "room_ui": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_room_ui"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Shared UI elements for public and private rooms and games.",
+          "RuleSets": {
+            "supports_modern_clothing": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "figure_data_xml_capability": {
+                  "Subject": "Capability",
+                  "Capability": "FIGURE_DATA_XML",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "furni_classes": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_furni_classes"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Shared furniture classes.",
+          "RuleSets": {
+            "supports_dynamic_furniture": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "furniture_dynamic_capability": {
+                  "Subject": "Capability",
+                  "Capability": "FURNITURE_DYNAMIC",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "room": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_room"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Shared room protocol handlers.",
+          "RuleSets": {
+            "is_shockwave": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "club": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_club"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Club UI and logic.",
+          "RuleSets": {
+            "supports_club": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "club_capability": {
+                  "Subject": "Capability",
+                  "Capability": "CLUB",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "photo": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_photo"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Photo UI and logic.",
+          "RuleSets": {
+            "supports_camera": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "camera_capability": {
+                  "Subject": "Capability",
+                  "Capability": "CAMERA",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "navigator": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_navigator"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Navigator UI and logic.",
+          "RuleSets": {
+            "is_shockwave": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "purse": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_purse"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Purse UI and logic.",
+          "RuleSets": {
+            "supports_purse": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "pruse_capability": {
+                  "Subject": "Capability",
+                  "Capability": "PURSE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "furniture": {
+          "Type": "Group",
+          "EntrySelectStrategy": "All",
+          "Entries": {
+            "dynamic": {
+              "Type": "Group",
+              "EntrySelectStrategy": "All",
+              "Entries": {
+                "buffer": {
+                  "Type": "Static",
+                  "Fields": {
+                    "file": {
+                      "ValueSets": {
+                        "default": {
+                          "Values": {
+                            "default": {
+                              "Value": "hh_buffer"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "Description": "Furniture placeholder manager."
+                },
+                "downloader": {
+                  "Type": "Static",
+                  "Fields": {
+                    "file": {
+                      "ValueSets": {
+                        "default": {
+                          "Values": {
+                            "default": {
+                              "Value": "hh_dynamic_downloader"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "Description": "Dynamic furniture loader."
+                }
+              },
+              "Description": "Group of dynamic furniture loading logic.",
+              "RuleSets": {
+                "supports_dynamic_furniture": {
+                  "Rules": {
+                    "furniture_dynamic_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FURNITURE_DYNAMIC",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Group of furniture related files.",
+          "RuleSets": {
+            "is_shockwave": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "catalog": {
+          "Type": "Group",
+          "EntrySelectStrategy": "First",
+          "Entries": {
+            "dynamic": {
+              "Type": "Group",
+              "EntrySelectStrategy": "All",
+              "Entries": {
+                "catalog": {
+                  "Type": "Static",
+                  "Fields": {
+                    "file": {
+                      "ValueSets": {
+                        "categories": {
+                          "Description": "Catalog with categories support.",
+                          "Values": {
+                            "default": {
+                              "Value": "hh_cat_new"
+                            }
+                          },
+                          "RuleSets": {
+                            "supports_catalog_categories": {
+                              "Rules": {
+                                "catalog_categories_capability": {
+                                  "Subject": "Capability",
+                                  "Capability": "CATALOG_CATEGORIES",
+                                  "Expressions": [
+                                    {
+                                      "Operation": "Equals"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "default": {
+                          "Values": {
+                            "default": {
+                              "Value": "hh_cat_code"
+                            }
+                          },
+                          "RuleSets": {
+                            "supports_flattened_catalog": {
+                              "Rules": {
+                                "no_catalog_categories_capability": {
+                                  "Subject": "Capability",
+                                  "Capability": "CATALOG_CATEGORIES",
+                                  "Expressions": [
+                                    {
+                                      "Operation": "Not",
+                                      "Expression": {
+                                        "Operation": "Equals"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "RuleSets": {
+                    "supports_static_catalog": {
+                      "Rules": {
+                        "no_catalog_categories_capability": {
+                          "Subject": "Capability",
+                          "Capability": "CATALOG_CATEGORIES",
+                          "Expressions": [
+                            {
+                              "Operation": "Not",
+                              "Expression": {
+                                "Operation": "Equals"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "assets": {
+                  "Type": "Static",
+                  "Fields": {
+                    "file": {
+                      "ValueSets": {
+                        "default": {
+                          "Values": {
+                            "default": {
+                              "Value": "hh_cat_gfx_all"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "Description": "Catalog assets."
+                }
+              },
+              "Description": "Group of dynamic catalog related files.",
+              "RuleSets": {
+                "supports_dynamic_catalog": {
+                  "Rules": {
+                    "catalog_dynamic_capability": {
+                      "Subject": "Capability",
+                      "Capability": "CATALOG_DYNAMIC",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Group of catalog related files.",
+          "RuleSets": {
+            "is_shockwave": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "recycler": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_recycler"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Recycler UI and logic.",
+          "RuleSets": {
+            "supports_recycler": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "recycler_capability": {
+                  "Subject": "Capability",
+                  "Capability": "RECYCLER",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "poll": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_poll"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Poll UI and logic.",
+          "RuleSets": {
+            "supports_polls": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "polls_capability": {
+                  "Subject": "Capability",
+                  "Capability": "POLLS",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tutorial": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_tutorial"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Tutorial UI and logic.",
+          "RuleSets": {
+            "supports_tutorial": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "tutorial_capability": {
+                  "Subject": "Capability",
+                  "Capability": "TUTORIAL",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "entry_init": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "entry_init": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_entry_init"
+                    }
+                  },
+                  "RuleSets": {
+                    "has_entry_base": {
+                      "Rules": {
+                        "entry_base_capability": {
+                          "Subject": "Capability",
+                          "Capability": "ENTRY_BASE",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "entry": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_entry"
+                    }
+                  },
+                  "RuleSets": {
+                    "has_no_entry_base": {
+                      "Rules": {
+                        "no_entry_base_capability": {
+                          "Subject": "Capability",
+                          "Capability": "ENTRY_BASE",
+                          "Expressions": [
+                            {
+                              "Operation": "Not",
+                              "Expression": {
+                                "Operation": "Equals"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Login initialization logic.",
+          "RuleSets": {
+            "has_entry_init": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "entry_init_capability": {
+                  "Subject": "Capability",
+                  "Capability": "ENTRY_INIT",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "friend_list": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_friend_list"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "New messenger friend list UI and logic.",
+          "RuleSets": {
+            "supports_instant_messenger": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "instant_messenger_capability": {
+                  "Subject": "Capability",
+                  "Capability": "INSTANT_MESSENGER",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "instant_messenger": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_instant_messenger"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "New messenger chat UI & and logic.",
+          "RuleSets": {
+            "supports_instant_messenger": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "instant_messenger_capability": {
+                  "Subject": "Capability",
+                  "Capability": "INSTANT_MESSENGER",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "joystick": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_ig"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Joystick logic.",
+          "RuleSets": {
+            "supports_joystick": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "joystick_capability": {
+                  "Subject": "Capability",
+                  "Capability": "JOYSTICK",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "joystick_interface": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_ig_interface"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Joystick UI.",
+          "RuleSets": {
+            "supports_joystick": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "joystick_capability": {
+                  "Subject": "Capability",
+                  "Capability": "JOYSTICK",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "hh_pets": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_pets"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Pet assets.",
+          "RuleSets": {
+            "supports_pets": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "pets_capability": {
+                  "Subject": "Capability",
+                  "Capability": "PETS",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "hh_guide": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_guide"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Guide UI and logic.",
+          "RuleSets": {
+            "supports_guides": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "guide_capability": {
+                  "Subject": "Capability",
+                  "Capability": "GUIDE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "hh_badges": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "hh_badges"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Achievement badge assets.",
+          "RuleSets": {
+            "supports_achievements": {
+              "Rules": {
+                "shockwave_capability": {
+                  "Subject": "Capability",
+                  "Capability": "SHOCKWAVE",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                },
+                "achievements_capability": {
+                  "Subject": "Capability",
+                  "Capability": "ACHIEVEMENTS",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "core.base.url": {
+      "Name": "Client files base path",
+      "Description": "The base path used to resolve relative client files.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "flash": {
+              "Keys": {
+                "flash.client.url": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "is_flash": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "#asset.base.url#client/#REVISION#/"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "core.configuration.data.url": {
+      "Name": "Client configuration file",
+      "Description": "The URL of the client configuration file.",
+      "Dynamic": true,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "external.variables.txt": {
+                  "Type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "core.configuration.hash.data.url": {
+      "Name": "Game data hashes file",
+      "Description": "The URL of the game data hashes file.",
+      "Dynamic": true,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "gamedata.hashes.url": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "supports_gamedata_hashes": {
+                  "Rules": {
+                    "gamedata_hashes_capability": {
+                      "Subject": "Capability",
+                      "Capability": "GAMEDATA_HASHES",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {}
+                  },
+                  "RuleSets": {
+                    "supports_gamedata_hashes": {
+                      "Rules": {
+                        "gamedata_hashes_capability": {
+                          "Subject": "Capability",
+                          "Capability": "GAMEDATA_HASHES",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "core.localization": {
+      "Name": "Client localization options",
+      "Description": "The available localizations for the client. These are shown in the AIR client hotel selection. The client language can also be switched by the :lang command.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "id": {
+          "Description": "The id used by the :lang command.",
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "localization.[1..]": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "is_air": {
+                  "Rules": {
+                    "air_capability": {
+                      "Subject": "Capability",
+                      "Capability": "AIR",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "code": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "localization.[1..].code": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "is_air": {
+                  "Rules": {
+                    "air_capability": {
+                      "Subject": "Capability",
+                      "Capability": "AIR",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "name": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "localization.[1..].name": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "is_air": {
+                  "Rules": {
+                    "air_capability": {
+                      "Subject": "Capability",
+                      "Capability": "AIR",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "localization.[1..].url": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "is_air": {
+                  "Rules": {
+                    "air_capability": {
+                      "Subject": "Capability",
+                      "Capability": "AIR",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "english": {
+          "Type": "Static",
+          "Fields": {
+            "code": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "en_US.iso-8859-1"
+                    }
+                  }
+                }
+              }
+            },
+            "id": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "en"
+                    }
+                  }
+                }
+              }
+            },
+            "name": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "English"
+                    }
+                  }
+                }
+              }
+            },
+            "url": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "core.localization.data.url": {
+      "Name": "Client localization file",
+      "Description": "The URL of the file containing the client localization data.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "external.texts.txt": {
+                  "Type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "core.url": {
+      "Name": "Client game file",
+      "Description": "The URL of the client game file. This is the file that is opened to launch the client.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string"
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "flash": {
+                  "Values": {
+                    "swf": {
+                      "Value": "#core.base.url#client.swf"
+                    }
+                  },
+                  "RuleSets": {
+                    "is_flash": {
+                      "Rules": {
+                        "flash_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FLASH",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "shockwave": {
+                  "Values": {
+                    "dcr": {
+                      "Value": "#core.base.url#client.dcr"
+                    }
+                  },
+                  "RuleSets": {
+                    "is_shockwave": {
+                      "Rules": {
+                        "shockwave_capability": {
+                          "Subject": "Capability",
+                          "Capability": "SHOCKWAVE",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "core.version.id": {
+      "Name": "Client version",
+      "Description": "The version number the client sends to the server.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "version": {
+          "Type": "string",
+          "KeySets": {
+            "shockwave": {
+              "Keys": {
+                "client.version.id": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "is_shockwave": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "version": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "53411647"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "cryptography.parameter.data.url": {
+      "Name": "Secure cast file path",
+      "Description": "The URL of the secure cast file. This contains the cryptography generator and prime used to generate the client's private key.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "security.cast.load.url": {
+                  "Type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "#core.base.url#sec.cct?t=%token%"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "RuleSets": {
+        "supports_security_cast": {
+          "Rules": {
+            "shockwave_capability": {
+              "Subject": "Capability",
+              "Capability": "SHOCKWAVE",
+              "Expressions": [
+                {
+                  "Operation": "Equals"
+                }
+              ]
+            },
+            "security_cast_capability": {
+              "Subject": "Capability",
+              "Capability": "SECURITY_CAST",
+              "Expressions": [
+                {
+                  "Operation": "Equals"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "furniture.asset.base.url": {
+      "Name": "Furniture assets base path",
+      "Description": "The base path used to resolve furniture files.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "flash": {
+              "Keys": {
+                "flash.dynamic.download.url": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "is_flash": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "shockwave": {
+              "Keys": {
+                "dynamic.download.url": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "supports_dynamic_furniture": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    },
+                    "furniture_dynamic_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FURNITURE_DYNAMIC",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "flash": {
+                  "Values": {
+                    "default": {
+                      "Value": "#asset.base.url#furniture/swf/"
+                    }
+                  },
+                  "RuleSets": {
+                    "is_flash": {
+                      "Rules": {
+                        "flash_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FLASH",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "shockwave": {
+                  "Values": {
+                    "default": {
+                      "Value": "#asset.base.url#furniture/cct/"
+                    }
+                  },
+                  "RuleSets": {
+                    "is_shockwave": {
+                      "Rules": {
+                        "shockwave_capability": {
+                          "Subject": "Capability",
+                          "Capability": "SHOCKWAVE",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "furniture.asset.icon.url.template": {
+      "Name": "Furniture icon file template",
+      "Description": "The furniture icon file name template.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "template": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "flash.dynamic.icon.download.name.template": {
+                  "Type": "string",
+                  "RuleSets": {
+                    "is_flash": {
+                      "Rules": {
+                        "flash_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FLASH",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "template": {
+              "ValueSets": {
+                "flash": {
+                  "Values": {
+                    "default": {
+                      "Value": "%revision%/%typeid%%param%_icon.png"
+                    }
+                  },
+                  "RuleSets": {
+                    "is_flash": {
+                      "Rules": {
+                        "flash_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FLASH",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "furniture.asset.url.template": {
+      "Name": "Furniture assets file template",
+      "Description": "The furniture file name template.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "template": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "flash.dynamic.download.name.template": {
+                  "Type": "string",
+                  "RuleSets": {
+                    "is_flash": {
+                      "Rules": {
+                        "flash_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FLASH",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "template": {
+              "ValueSets": {
+                "flash": {
+                  "Values": {
+                    "default": {
+                      "Value": "%revision%/%typeid%.swf"
+                    }
+                  },
+                  "RuleSets": {
+                    "is_flash": {
+                      "Rules": {
+                        "flash_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FLASH",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "furniture.data.url": {
+      "Name": "Furniture data file",
+      "Description": "The URL of the furniture data file.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "furnidata.load.url": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "supports_dynamic_furniture": {
+                  "Rules": {
+                    "furniture_dynamic_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FURNITURE_DYNAMIC",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "xml": {
+                  "Values": {
+                    "default": {}
+                  },
+                  "RuleSets": {
+                    "supports_xml_furniture_data": {
+                      "Rules": {
+                        "furniture_data_xml_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FURNITURE_DATA_XML",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "lingo": {
+                  "Values": {
+                    "default": {}
+                  },
+                  "RuleSets": {
+                    "is_shockwave": {
+                      "Rules": {
+                        "shockwave": {
+                          "Subject": "Capability",
+                          "Capability": "SHOCKWAVE",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "http.request.limit.max": {
+      "Name": "Concurrent HTTP requests limit",
+      "Description": "The maximum amount of concurrent HTTP requests the client is allowed to make.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "count": {
+          "Type": "int",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "net.operation.count": {
+                  "Type": "int"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "count": {
+              "ValueSets": {
+                "development": {
+                  "Values": {
+                    "default": {
+                      "Value": "100"
+                    }
+                  },
+                  "RuleSets": {
+                    "is_development_environment": {
+                      "Rules": {
+                        "development_environment": {
+                          "Subject": "Environment",
+                          "Environment": "Development",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "5"
+                    }
+                  },
+                  "RuleSets": {
+                    "is_not_development_environment": {
+                      "Rules": {
+                        "not_development_environment": {
+                          "Subject": "Environment",
+                          "Environment": "Development",
+                          "Expressions": [
+                            {
+                              "Operation": "Not",
+                              "Expression": {
+                                "Operation": "Equals"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "RuleSets": {
+        "is_shockwave": {
+          "Rules": {
+            "shockwave": {
+              "Subject": "Capability",
+              "Capability": "SHOCKWAVE",
+              "Expressions": [
+                {
+                  "Operation": "Equals"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "human.figure.animation.data.url": {
+      "Name": "Human animation data file",
+      "Description": "The URL of the human animation data file.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "shockwave": {
+              "Keys": {
+                "figure.animation.xml": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "supports_dynamic_figure_animations": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    },
+                    "figure_animations_dynamic_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FIGURE_ANIMATIONS_DYNAMIC",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "shockwave": {
+                  "Values": {
+                    "default": {
+                      "Value": "#core.base.url#animation.xml"
+                    }
+                  },
+                  "RuleSets": {
+                    "supports_dynamic_figure_animations": {
+                      "Rules": {
+                        "shockwave_capability": {
+                          "Subject": "Capability",
+                          "Capability": "SHOCKWAVE",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        },
+                        "figure_animations_dynamic_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FIGURE_ANIMATIONS_DYNAMIC",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "human.figure.asset.base.url": {
+      "Name": "Human assets base path",
+      "Description": "The base path used to resolve clothing files.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "flash": {
+              "Keys": {
+                "flash.dynamic.avatar.download.url": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "is_flash": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "flash": {
+                  "Values": {
+                    "default": {
+                      "Value": "#asset.base.url#figure/swf/"
+                    }
+                  },
+                  "RuleSets": {
+                    "is_flash": {
+                      "Rules": {
+                        "flash_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FLASH",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "human.figure.asset.url.template": {
+      "Name": "Human asset file template",
+      "Description": "The clothing file name template.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "template": {
+          "Type": "string",
+          "KeySets": {
+            "flash": {
+              "Keys": {
+                "flash.dynamic.avatar.download.name.template": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "is_flash": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "template": {
+              "ValueSets": {
+                "flash": {
+                  "Values": {
+                    "default": {
+                      "Value": "%revision%/%libname%.swf"
+                    }
+                  },
+                  "RuleSets": {
+                    "is_flash": {
+                      "Rules": {
+                        "flash_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FLASH",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "human.figure.data.url": {
+      "Name": "Clothing data file",
+      "Description": "The URL of the clothing data file.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "external.figurepartlist.txt": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "supports_dynamic_figure_part_list": {
+                  "Rules": {
+                    "figure_part_list_dynamic_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FIGURE_PART_LIST_DYNAMIC",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "xml": {
+                  "Values": {
+                    "default": {}
+                  },
+                  "RuleSets": {
+                    "supports_xml_figure_data": {
+                      "Rules": {
+                        "figure_data_xml_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FIGURE_DATA_XML",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "lingo": {
+                  "Values": {
+                    "default": {}
+                  },
+                  "RuleSets": {
+                    "supports_lingo_figure_data": {
+                      "Rules": {
+                        "shockwave_capability": {
+                          "Subject": "Capability",
+                          "Capability": "SHOCKWAVE",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        },
+                        "no_figure_data_xml_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FIGURE_DATA_XML",
+                          "Expressions": [
+                            {
+                              "Operation": "Not",
+                              "Expression": {
+                                "Operation": "Equals"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "human.figure.map.data.url": {
+      "Name": "Human assets map file",
+      "Description": "The URL of the human assets map file.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "flash": {
+              "Keys": {
+                "flash.dynamic.avatar.download.configuration": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "supports_figure_map": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    },
+                    "figure_map_xml_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FIGURE_MAP_XML",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "xml": {
+                  "Values": {
+                    "default": {}
+                  },
+                  "RuleSets": {
+                    "supports_figure_map": {
+                      "Rules": {
+                        "flash_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FLASH",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        },
+                        "figure_map_xml_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FIGURE_MAP_XML",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "human.figure.part": {
+      "Name": "Human asset parts",
+      "Description": "The parts that the human object consist of. The asset prefixes used in the human size configuration are used here as the key.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "parts": {
+          "Type": "string",
+          "KeySets": {
+            "shockwave": {
+              "Keys": {
+                "human.parts.#KEY#": {
+                  "Type": "string[]"
+                }
+              },
+              "RuleSets": {
+                "has_no_internal_variables": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    },
+                    "no_internal_variables_capability": {
+                      "Subject": "Capability",
+                      "Capability": "INTERNAL_VARIABLES",
+                      "Expressions": [
+                        {
+                          "Operation": "Not",
+                          "Expression": {
+                            "Operation": "Equals"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "h": {
+          "Type": "Static",
+          "Fields": {
+            "parts": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "left_item": {
+                      "Name": "Left item",
+                      "Value": "li"
+                    },
+                    "left_hand": {
+                      "Name": "Left hand",
+                      "Value": "lh"
+                    },
+                    "left_shirt": {
+                      "Name": "Left shirt",
+                      "Value": "ls"
+                    },
+                    "body": {
+                      "Name": "Body",
+                      "Value": "bd"
+                    },
+                    "shoes": {
+                      "Name": "Shoes",
+                      "Value": "sh"
+                    },
+                    "leggings": {
+                      "Name": "Leggings",
+                      "Value": "lg"
+                    },
+                    "chest": {
+                      "Name": "Chest",
+                      "Value": "ch"
+                    },
+                    "hand": {
+                      "Name": "Head",
+                      "Value": "hd"
+                    },
+                    "face": {
+                      "Name": "Face",
+                      "Value": "fc"
+                    },
+                    "eyes": {
+                      "Name": "Eyes",
+                      "Value": "ey"
+                    },
+                    "hair": {
+                      "Name": "Hair",
+                      "Value": "hr"
+                    },
+                    "right_item": {
+                      "Name": "Right item",
+                      "Value": "ri"
+                    },
+                    "right_hand": {
+                      "Name": "Right hand",
+                      "Value": "rh"
+                    },
+                    "right_shirt": {
+                      "Name": "Right shirt",
+                      "Value": "rs"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Name": "Normal"
+        },
+        "sh": {
+          "Type": "Static",
+          "Fields": {
+            "parts": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "left_item": {
+                      "Name": "Left item",
+                      "Value": "li"
+                    },
+                    "left_hand": {
+                      "Name": "Left hand",
+                      "Value": "lh"
+                    },
+                    "left_shirt": {
+                      "Name": "Left shirt",
+                      "Value": "ls"
+                    },
+                    "body": {
+                      "Name": "Body",
+                      "Value": "bd"
+                    },
+                    "shoes": {
+                      "Name": "Shoes",
+                      "Value": "sh"
+                    },
+                    "leggings": {
+                      "Name": "Leggings",
+                      "Value": "lg"
+                    },
+                    "chest": {
+                      "Name": "Chest",
+                      "Value": "ch"
+                    },
+                    "hand": {
+                      "Name": "Head",
+                      "Value": "hd"
+                    },
+                    "face": {
+                      "Name": "Face",
+                      "Value": "fc"
+                    },
+                    "eyes": {
+                      "Name": "Eyes",
+                      "Value": "ey"
+                    },
+                    "hair": {
+                      "Name": "Hair",
+                      "Value": "hr"
+                    },
+                    "right_item": {
+                      "Name": "Right item",
+                      "Value": "ri"
+                    },
+                    "right_hand": {
+                      "Name": "Right hand",
+                      "Value": "rh"
+                    },
+                    "right_shirt": {
+                      "Name": "Right shirt",
+                      "Value": "rs"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Name": "Small",
+          "Description": "Zoomed out."
+        }
+      }
+    },
+    "human.figure.part.set.data.url": {
+      "Name": "Human part sets file",
+      "Description": "The URL of the human part sets file.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "shockwave": {
+              "Keys": {
+                "figure.partsets.xml": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "supports_dynamic_figure_part_sets": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    },
+                    "figure_part_sets_dynamic_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FIGURE_PART_SETS_DYNAMIC",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "shockwave": {
+                  "Values": {
+                    "default": {
+                      "Value": "#core.base.url#partsets.xml"
+                    }
+                  },
+                  "RuleSets": {
+                    "supports_dynamic_figure_part_sets": {
+                      "Rules": {
+                        "shockwave_capability": {
+                          "Subject": "Capability",
+                          "Capability": "SHOCKWAVE",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        },
+                        "figure_part_sets_dynamic_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FIGURE_PART_SETS_DYNAMIC",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "human.figure.render.canvas": {
+      "Name": "Human geometry",
+      "Description": "The configuration used to render the human according to its state. The asset prefixes used in the human size configuration are used here as the key and then the respective state.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "states": {
+          "Name": "States",
+          "Type": "object[]",
+          "KeySets": {
+            "shockwave": {
+              "Keys": {
+                "human.canvas.#KEY#": {
+                  "Type": "object[]"
+                }
+              },
+              "RuleSets": {
+                "has_no_internal_variables": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    },
+                    "no_internal_variables_capability": {
+                      "Subject": "Capability",
+                      "Capability": "INTERNAL_VARIABLES",
+                      "Expressions": [
+                        {
+                          "Operation": "Not",
+                          "Expression": {
+                            "Operation": "Equals"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "states.geometry": {
+          "Name": "Geomertry",
+          "Type": "int[]",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "#VALUE#": {
+                  "Type": "int[]"
+                }
+              }
+            }
+          }
+        },
+        "states.geometry.width": {
+          "Name": "Width",
+          "Description": "The width required to render the human correctly.",
+          "Type": "int"
+        },
+        "states.geometry.height": {
+          "Name": "Height",
+          "Description": "The height required to render the human correctly.",
+          "Type": "int"
+        },
+        "states.geometry.bit_depth": {
+          "Name": "Bit depth",
+          "Description": "Valid values are 1, 2, 4, 8, 16, or 32.",
+          "Type": "int"
+        },
+        "states.geometry.offset_y": {
+          "Name": "Offset Y",
+          "Description": "Modifies the relative vertical render offset.",
+          "Type": "int"
+        }
+      },
+      "Entries": {
+        "h": {
+          "Type": "Static",
+          "Fields": {
+            "states": {
+              "ValueSets": {
+                "default": {}
+              }
+            },
+            "states.geometry": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "standing": {
+                      "Name": "Standing",
+                      "Value": "std"
+                    },
+                    "laying": {
+                      "Name": "Laying",
+                      "Value": "lay"
+                    }
+                  }
+                }
+              }
+            },
+            "states.geometry.bit_depth": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "standing": {
+                      "Value": "32"
+                    },
+                    "laying": {
+                      "Value": "32"
+                    }
+                  }
+                }
+              }
+            },
+            "states.geometry.height": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "standing": {
+                      "Value": "106"
+                    },
+                    "laying": {
+                      "Value": "70"
+                    }
+                  }
+                }
+              }
+            },
+            "states.geometry.offset_y": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "standing": {
+                      "Value": "-8"
+                    },
+                    "laying": {
+                      "Value": "-8"
+                    }
+                  }
+                }
+              }
+            },
+            "states.geometry.width": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "standing": {
+                      "Value": "64"
+                    },
+                    "laying": {
+                      "Value": "89"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Name": "Normal"
+        },
+        "sh": {
+          "Type": "Static",
+          "Fields": {
+            "states": {
+              "ValueSets": {
+                "default": {}
+              }
+            },
+            "states.geometry": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "standing": {
+                      "Name": "Standing",
+                      "Value": "std"
+                    },
+                    "laying": {
+                      "Name": "Laying",
+                      "Value": "lay"
+                    },
+                    "swimming": {
+                      "Name": "Swimming",
+                      "Value": "swm"
+                    }
+                  }
+                }
+              }
+            },
+            "states.geometry.bit_depth": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "standing": {
+                      "Value": "32"
+                    },
+                    "laying": {
+                      "Value": "32"
+                    },
+                    "swimming": {
+                      "Value": "32"
+                    }
+                  }
+                }
+              }
+            },
+            "states.geometry.height": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "standing": {
+                      "Value": "62"
+                    },
+                    "laying": {
+                      "Value": "40"
+                    },
+                    "swimming": {
+                      "Value": "60"
+                    }
+                  }
+                }
+              }
+            },
+            "states.geometry.offset_y": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "standing": {
+                      "Value": "-8"
+                    },
+                    "laying": {
+                      "Value": "-8"
+                    },
+                    "swimming": {
+                      "Value": "-8"
+                    }
+                  }
+                }
+              }
+            },
+            "states.geometry.width": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "standing": {
+                      "Value": "32"
+                    },
+                    "laying": {
+                      "Value": "62"
+                    },
+                    "swimming": {
+                      "Value": "60"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Name": "Small",
+          "Description": "Zoomed out."
+        }
+      }
+    },
+    "human.figure.render.order.data.url": {
+      "Name": "Human assets draw order file",
+      "Description": "The URL of the human assets draw order file.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "shockwave": {
+              "Keys": {
+                "figure.draworder.xml": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "supports_dynamic_figure_draw_order": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    },
+                    "figure_draw_order_dynamic_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FIGURE_DRAW_ORDER_DYNAMIC",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "shockwave": {
+                  "Values": {
+                    "default": {
+                      "Value": "#core.base.url#draworder.xml"
+                    }
+                  },
+                  "RuleSets": {
+                    "supports_dynamic_figure_draw_order": {
+                      "Rules": {
+                        "shockwave_capability": {
+                          "Subject": "Capability",
+                          "Capability": "SHOCKWAVE",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        },
+                        "figure_draw_order_dynamic_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FIGURE_DRAW_ORDER_DYNAMIC",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "human.figure.render.size": {
+      "Name": "Human asset size",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "asset_prefix": {
+          "Type": "string",
+          "KeySets": {
+            "shockwave": {
+              "Keys": {
+                "human.size.#KEY#": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "has_no_internal_variables": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    },
+                    "no_internal_variables_capability": {
+                      "Subject": "Capability",
+                      "Capability": "INTERNAL_VARIABLES",
+                      "Expressions": [
+                        {
+                          "Operation": "Not",
+                          "Expression": {
+                            "Operation": "Equals"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "64": {
+          "Type": "Static",
+          "Fields": {
+            "asset_prefix": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "Normal",
+                      "Value": "h"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Name": "Normal"
+        },
+        "32": {
+          "Type": "Static",
+          "Fields": {
+            "asset_prefix": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "Small",
+                      "Value": "sh"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Name": "Small",
+          "Description": "Zoomed out."
+        }
+      }
+    },
+    "image.asset.base.url": {
+      "Name": "Image library base path",
+      "Description": "The base path used to resolve image files.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "image.library.url": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "supports_badges": {
+                  "Rules": {
+                    "badges_capability": {
+                      "Subject": "Capability",
+                      "Capability": "BADGES",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "#asset.base.url#images/"
+                    }
+                  },
+                  "RuleSets": {
+                    "supports_badges": {
+                      "Rules": {
+                        "badges_capability": {
+                          "Subject": "Capability",
+                          "Capability": "BADGES",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "pet.figure.asset.base.url": {
+      "Name": "Pet assets base path",
+      "Description": "The base path used to resolve pet files.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "url": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "pet.dynamic.download.url": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "is_flash": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "url": {
+              "ValueSets": {
+                "flash": {
+                  "Values": {
+                    "default": {
+                      "Value": "#asset.base.url#pet/swf/"
+                    }
+                  },
+                  "RuleSets": {
+                    "is_flash": {
+                      "Rules": {
+                        "flash_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FLASH",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "pet.figure.asset.url.template": {
+      "Name": "Pet assets file template",
+      "Description": "The pet assets file name template.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "template": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "pet.dynamic.download.name.template": {
+                  "Type": "string"
+                }
+              },
+              "RuleSets": {
+                "is_flash": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "template": {
+              "ValueSets": {
+                "flash": {
+                  "Values": {
+                    "default": {
+                      "Value": "%type%.swf"
+                    }
+                  },
+                  "RuleSets": {
+                    "is_flash": {
+                      "Rules": {
+                        "flash_capability": {
+                          "Subject": "Capability",
+                          "Capability": "FLASH",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "room.asset": {
+      "Name": "Room files",
+      "Description": "Files the client is required to download before entering a room.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "file": {
+          "Type": "string",
+          "KeySets": {
+            "shockwave": {
+              "Keys": {
+                "room.cast.#KEY#": {
+                  "Type": "string[]"
+                }
+              },
+              "RuleSets": {
+                "supports_dynamic_assets": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    },
+                    "assets_dynamic_capability": {
+                      "Subject": "Capability",
+                      "Capability": "ASSETS_DYNAMIC",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "private": {
+          "Type": "Static",
+          "Fields": {
+            "file": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "room": {
+                      "Value": "hh_room_private"
+                    }
+                  },
+                  "RuleSets": {
+                    "supports_dynamic_assets": {
+                      "Rules": {
+                        "shockwave_capability": {
+                          "Subject": "Capability",
+                          "Capability": "SHOCKWAVE",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        },
+                        "assets_dynamic_capability": {
+                          "Subject": "Capability",
+                          "Capability": "ASSETS_DYNAMIC",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "furniture": {
+                  "Values": {
+                    "armas": {
+                      "Value": "hh_furni_armas"
+                    },
+                    "drken": {
+                      "Description": "Polyfon, Plasty, Norja & Misc",
+                      "Value": "hh_furni_drken"
+                    },
+                    "special": {
+                      "Description": "Rares, GC, Gifts, Holidays, Rollers",
+                      "Value": "hh_furni_special"
+                    },
+                    "wall_furniture": {
+                      "Value": "hh_furni_items"
+                    },
+                    "small": {
+                      "Description": "Zoomed out",
+                      "Value": "hh_furni_small"
+                    }
+                  },
+                  "RuleSets": {
+                    "supports_static_furntiure_casts": {
+                      "Rules": {
+                        "shockwave_capability": {
+                          "Subject": "Capability",
+                          "Capability": "SHOCKWAVE",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        },
+                        "no_assets_dynamic_capability": {
+                          "Subject": "Capability",
+                          "Capability": "ASSETS_DYNAMIC",
+                          "Expressions": [
+                            {
+                              "Operation": "Not",
+                              "Expression": {
+                                "Operation": "Equals"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "room.map.cache": {
+      "Name": "Room heightmap cache",
+      "Description": "Whatever to cache room heightmap. Not recommended to be turned on, as its likely to cause desync when changes are made.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "enabled": {
+          "Type": "bool",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "room.map.cache": {
+                  "Type": "int"
+                }
+              },
+              "RuleSets": {
+                "has_no_internal_variables": {
+                  "Rules": {
+                    "no_internal_variables_capability": {
+                      "Subject": "Capability",
+                      "Capability": "INTERNAL_VARIABLES",
+                      "Expressions": [
+                        {
+                          "Operation": "Not",
+                          "Expression": {
+                            "Operation": "Equals"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "enabled": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "false"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "RuleSets": {
+        "is_shockwave": {
+          "Rules": {
+            "shockwave_capability": {
+              "Subject": "Capability",
+              "Capability": "SHOCKWAVE",
+              "Expressions": [
+                {
+                  "Operation": "Equals"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "server.connection.channel": {
+      "Name": "Client connection channel id",
+      "Description": "Controls which channel the client uses for different connections. Not recommended to be changed from the given defaults.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "id": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "connection.#KEY#.id": {
+                  "Type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "info": {
+          "Type": "Static",
+          "Fields": {
+            "id": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "#info"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Name": "Hotel view"
+        },
+        "room": {
+          "Type": "Static",
+          "Fields": {
+            "id": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "#info"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "mus": {
+          "Type": "Static",
+          "Fields": {
+            "id": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "#mus"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "RuleSets": {
+        "has_no_internal_variables": {
+          "Rules": {
+            "shockwave_capability": {
+              "Subject": "Capability",
+              "Capability": "SHOCKWAVE",
+              "Expressions": [
+                {
+                  "Operation": "Equals"
+                }
+              ]
+            },
+            "no_internal_variables_capability": {
+              "Subject": "Capability",
+              "Capability": "INTERNAL_VARIABLES",
+              "Expressions": [
+                {
+                  "Operation": "Not",
+                  "Expression": {
+                    "Operation": "Equals"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "server.connection.endpoint": {
+      "Name": "Server connection info",
+      "Description": "The address the client attempt's to connect to.",
+      "Dynamic": true,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "host": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "connection.info.host": {
+                  "Type": "string"
+                }
+              }
+            }
+          }
+        },
+        "port": {
+          "Type": "int[]",
+          "KeySets": {
+            "shockwave": {
+              "Description": "Shockwave client only supports a single port.",
+              "Keys": {
+                "connection.info.port": {
+                  "Type": "int"
+                }
+              },
+              "RuleSets": {
+                "is_shockwave": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "flash": {
+              "Description": "Flash client supports multiple ports that it attempts to connect against in declaration order.",
+              "Keys": {
+                "connection.info.port": {
+                  "Type": "int[]"
+                }
+              },
+              "RuleSets": {
+                "is_flash": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "development": {
+          "Type": "Static",
+          "Fields": {
+            "host": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "127.0.0.1"
+                    }
+                  }
+                }
+              }
+            },
+            "port": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "30000"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Connection info used during development to connect to the local server.",
+          "RuleSets": {
+            "is_development_environment": {
+              "Rules": {
+                "development_environment": {
+                  "Subject": "Environment",
+                  "Environment": "Development",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "production": {
+          "Type": "Static",
+          "Fields": {
+            "host": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {}
+                  }
+                }
+              }
+            },
+            "port": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {}
+                  }
+                }
+              }
+            }
+          },
+          "Description": "Connection info used for the live server.",
+          "RuleSets": {
+            "is_production_environment": {
+              "Rules": {
+                "production_environment": {
+                  "Subject": "Environment",
+                  "Environment": "Production",
+                  "Expressions": [
+                    {
+                      "Operation": "Equals"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "sso.ticket": {
+      "Name": "SSO ticket",
+      "Description": "The SSO ticket used to authenticate the user to the server.",
+      "Dynamic": true,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "value": {
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "sso.ticket": {
+                  "Type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "value": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "#SSO_TICKET#"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "RuleSets": {
+        "is_sso_ticket_enabled": {
+          "Rules": {
+            "sso_ticket_enabled_dependency": {
+              "Subject": "Dependency",
+              "Variable": "sso.ticket.enabled",
+              "Condition": {
+                "Condition": "ActiveValueSet",
+                "ValueSet": "enabled"
+              },
+              "Expressions": [
+                {
+                  "Operation": "Equals"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "sso.ticket.enabled": {
+      "Name": "SSO ticket enabled",
+      "Description": "Whatever the client should use SSO ticket to authenticate the user to the server.",
+      "Dynamic": true,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "enabled": {
+          "Type": "bool",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "use.sso.ticket": {
+                  "Type": "int"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "enabled": {
+              "ValueSets": {
+                "enabled": {
+                  "Values": {
+                    "state": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "RuleSets": {
+        "supports_sso_ticket": {
+          "Rules": {
+            "sso_ticket_capability": {
+              "Subject": "Capability",
+              "Capability": "SSO_TICKET",
+              "Expressions": [
+                {
+                  "Operation": "Equals"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "text.encoding.utf8": {
+      "Name": "Client UTF-8 text encoding enabled",
+      "Description": "Toggles whatever the client should use UTF-8 encoding for text or fallback to a region specific code pages. The client may not support this or permit it to be switched from the default encoding. This option has compatibility considerations on whatever all text renders correctly across different regions. It may also have different performance characteristics depending on whatever the client has to emulate the encoding on top of its own native encoding.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "enabled": {
+          "Type": "bool",
+          "KeySets": {
+            "shockwave": {
+              "Keys": {
+                "client.textdata.utf8": {
+                  "Type": "int"
+                }
+              },
+              "RuleSets": {
+                "supports_utf8": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    },
+                    "utf8_capability": {
+                      "Subject": "Capability",
+                      "Capability": "UTF-8",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "default": {
+          "Type": "Static",
+          "Fields": {
+            "enabled": {
+              "ValueSets": {
+                "enabled": {
+                  "Values": {
+                    "state": {
+                      "Value": "true"
+                    }
+                  },
+                  "RuleSets": {
+                    "utf8_encoding_enabled": {
+                      "Rules": {
+                        "utf8_encoding": {
+                          "Subject": "Encoding",
+                          "Encoding": "UTF-8",
+                          "Expressions": [
+                            {
+                              "Operation": "Equals"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "disabled": {
+                  "Values": {
+                    "state": {
+                      "Value": "false"
+                    }
+                  },
+                  "RuleSets": {
+                    "utf8_encoding_disabled": {
+                      "Rules": {
+                        "no_ut8_encoding": {
+                          "Subject": "Encoding",
+                          "Encoding": "UTF-8",
+                          "Expressions": [
+                            {
+                              "Operation": "Not",
+                              "Expression": {
+                                "Operation": "Equals"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ui.font": {
+      "Name": "Client font data",
+      "Description": "Font definitions used by the Shockwave client.",
+      "Dynamic": false,
+      "EntrySelectStrategy": "All",
+      "Fields": {
+        "font": {
+          "Name": "Font object",
+          "Type": "object",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "struct.font.#KEY#": {
+                  "Type": "object"
+                }
+              }
+            }
+          }
+        },
+        "font.name": {
+          "Name": "Name",
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "#font": {
+                  "Type": "string"
+                }
+              }
+            }
+          }
+        },
+        "font.size": {
+          "Name": "Size",
+          "Type": "int",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "#fontSize": {
+                  "Type": "int"
+                }
+              }
+            }
+          }
+        },
+        "font.height": {
+          "Name": "Heigh",
+          "Description": "The vertical spacing between paragraphs.",
+          "Type": "int",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "#lineHeight": {
+                  "Type": "int"
+                }
+              }
+            }
+          }
+        },
+        "font.color": {
+          "Name": "Color",
+          "Description": "The RGB color as a HTML color code.",
+          "Type": "string",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "#color": {
+                  "Type": "rgb"
+                }
+              }
+            }
+          }
+        },
+        "font.styles": {
+          "Name": "Styles",
+          "Type": "string[]",
+          "KeySets": {
+            "default": {
+              "Keys": {
+                "#fontStyle": {
+                  "Type": "symbol[]"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Entries": {
+        "plain": {
+          "Type": "Static",
+          "Fields": {
+            "font": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "Type",
+                      "Value": "struct"
+                    }
+                  }
+                }
+              }
+            },
+            "font.color": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "White",
+                      "Value": "#000000"
+                    }
+                  }
+                }
+              }
+            },
+            "font.height": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "10"
+                    }
+                  }
+                }
+              }
+            },
+            "font.name": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "Volter",
+                      "Value": "v"
+                    }
+                  }
+                }
+              }
+            },
+            "font.size": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "9"
+                    }
+                  }
+                }
+              }
+            },
+            "font.styles": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "plain"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Name": "Plain",
+          "Description": "The font that's generally used on most labels."
+        },
+        "italic": {
+          "Type": "Static",
+          "Fields": {
+            "font": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "Type",
+                      "Value": "struct"
+                    }
+                  }
+                }
+              }
+            },
+            "font.color": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "White",
+                      "Value": "#000000"
+                    }
+                  }
+                }
+              }
+            },
+            "font.height": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "10"
+                    }
+                  }
+                }
+              }
+            },
+            "font.name": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "Volter",
+                      "Value": "v"
+                    }
+                  }
+                }
+              }
+            },
+            "font.size": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "9"
+                    }
+                  }
+                }
+              }
+            },
+            "font.styles": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "italic"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Name": "Italic",
+          "Description": "The font used for italic text."
+        },
+        "link": {
+          "Type": "Static",
+          "Fields": {
+            "font": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "Type",
+                      "Value": "struct"
+                    }
+                  }
+                }
+              }
+            },
+            "font.color": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "White",
+                      "Value": "#000000"
+                    }
+                  }
+                }
+              }
+            },
+            "font.height": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "10"
+                    }
+                  }
+                }
+              }
+            },
+            "font.name": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "Volter",
+                      "Value": "v"
+                    }
+                  }
+                }
+              }
+            },
+            "font.size": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "9"
+                    }
+                  }
+                }
+              }
+            },
+            "font.styles": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "underline"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Name": "Link",
+          "Description": "The font used for links."
+        },
+        "grey": {
+          "Type": "Static",
+          "Fields": {
+            "font": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "Type",
+                      "Value": "struct"
+                    }
+                  }
+                }
+              }
+            },
+            "font.color": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "Grey",
+                      "Value": "#666666"
+                    }
+                  }
+                }
+              }
+            },
+            "font.height": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "10"
+                    }
+                  }
+                }
+              }
+            },
+            "font.name": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "Volter",
+                      "Value": "v"
+                    }
+                  }
+                }
+              }
+            },
+            "font.size": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "9"
+                    }
+                  }
+                }
+              }
+            },
+            "font.styles": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "italic"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Name": "Grey",
+          "Description": "The font used for links."
+        },
+        "bold": {
+          "Type": "Static",
+          "Fields": {
+            "font": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "Type",
+                      "Value": "struct"
+                    }
+                  }
+                }
+              }
+            },
+            "font.color": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "White",
+                      "Value": "#000000"
+                    }
+                  }
+                }
+              }
+            },
+            "font.height": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "10"
+                    }
+                  }
+                }
+              }
+            },
+            "font.name": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "Volter Bold",
+                      "Value": "vb"
+                    }
+                  }
+                }
+              }
+            },
+            "font.size": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "9"
+                    }
+                  }
+                }
+              }
+            },
+            "font.styles": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "plain"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Name": "Bold",
+          "Description": "The font used for captions."
+        },
+        "tooltip": {
+          "Type": "Static",
+          "Fields": {
+            "font": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "Type",
+                      "Value": "struct"
+                    }
+                  }
+                }
+              }
+            },
+            "font.color": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "White",
+                      "Value": "#000000"
+                    }
+                  }
+                }
+              }
+            },
+            "font.height": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "10"
+                    }
+                  }
+                }
+              }
+            },
+            "font.name": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Name": "Volter",
+                      "Value": "v"
+                    }
+                  }
+                }
+              }
+            },
+            "font.size": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "9"
+                    }
+                  }
+                }
+              }
+            },
+            "font.styles": {
+              "ValueSets": {
+                "default": {
+                  "Values": {
+                    "default": {
+                      "Value": "plain"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Name": "Tooltip",
+          "Description": "The font used by the debug tooltip window."
+        }
+      },
+      "RuleSets": {
+        "is_shockwave": {
+          "Rules": {
+            "shockwave_capability": {
+              "Subject": "Capability",
+              "Capability": "SHOCKWAVE",
+              "Expressions": [
+                {
+                  "Operation": "Equals"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

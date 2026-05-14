@@ -1,7 +1,9 @@
 {
   "Revision": "RELEASE11",
   "Inherit": "RELEASE10",
-  "Capabilities": {},
+  "Capabilities": {
+    "SSO_TICKET": true
+  },
   "Incoming": {
     "Handshake.InitDiffieHandshake": {
       "Id": 206,

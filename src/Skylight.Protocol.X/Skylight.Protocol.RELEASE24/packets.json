@@ -1,7 +1,11 @@
 {
   "Revision": "RELEASE24",
   "Inherit": "RELEASE23",
-  "Capabilities": {},
+  "Capabilities": {
+    "GUIDE": true,
+    "JOYSTICK": true,
+    "PURSE": false
+  },
   "Incoming": {},
   "Outgoing": {},
   "Structures": {},

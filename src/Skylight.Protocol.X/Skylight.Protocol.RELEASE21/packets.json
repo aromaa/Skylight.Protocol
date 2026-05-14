@@ -1,7 +1,9 @@
 {
   "Revision": "RELEASE21",
   "Inherit": "RELEASE20",
-  "Capabilities": {},
+  "Capabilities": {
+    "ROOMDIMMER": true
+  },
   "Incoming": {},
   "Outgoing": {},
   "Structures": {},

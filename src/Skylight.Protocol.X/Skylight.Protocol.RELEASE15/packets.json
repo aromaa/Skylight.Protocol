@@ -1,7 +1,9 @@
 {
   "Revision": "RELEASE15",
   "Inherit": "RELEASE14",
-  "Capabilities": {},
+  "Capabilities": {
+    "TUTORIAL": true
+  },
   "Incoming": {},
   "Outgoing": {},
   "Structures": {},

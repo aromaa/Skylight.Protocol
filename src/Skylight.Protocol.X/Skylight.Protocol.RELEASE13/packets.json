@@ -1,7 +1,13 @@
 {
   "Revision": "RELEASE13",
   "Inherit": "RELEASE12",
-  "Capabilities": {},
+  "Capabilities": {
+    "BATTLE_BALL_REBOUND": true,
+    "FURNITURE_DYNAMIC": true,
+    "POLLS": true,
+    "RECYCLER": true,
+    "TRAX": true
+  },
   "Incoming": {},
   "Outgoing": {},
   "Structures": {},

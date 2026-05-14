@@ -1,7 +1,9 @@
 {
   "Revision": "RELEASE26",
   "Inherit": "RELEASE24",
-  "Capabilities": {},
+  "Capabilities": {
+    "ACHIEVEMENTS": true
+  },
   "Incoming": {
     "Handshake.CompleteDiffieHandshake": {
       "Id": 2002,

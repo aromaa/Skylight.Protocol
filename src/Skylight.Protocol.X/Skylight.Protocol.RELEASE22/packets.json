@@ -1,7 +1,10 @@
 {
   "Revision": "RELEASE22",
   "Inherit": "RELEASE21",
-  "Capabilities": {},
+  "Capabilities": {
+    "INSTANT_MESSENGER": true,
+    "UTF-8": true
+  },
   "Incoming": {},
   "Outgoing": {},
   "Structures": {},

@@ -1,7 +1,13 @@
 {
   "Revision": "RELEASE3",
   "Inherit": "RELEASE1",
-  "Capabilities": {},
+  "Capabilities": {
+    "ASSETS_DYNAMIC": true,
+    "CAMERA": true,
+    "EXTERNAL_PARAMETERS": true,
+    "NAVIGATOR_CASTS": true,
+    "REGISTRATION": true
+  },
   "Incoming": {
     "Navigator.GetAllUnits": {
       "Id": "GETALLUNITS",

@@ -2,6 +2,8 @@
   "Revision": "RELEASE9",
   "Inherit": "RELEASE8",
   "Capabilities": {
+    "ENTRY_INIT": true,
+    "EXTERNAL_PARAMETERS_DELIMITED": true,
     "INCOMING_STRING_BASE64_LENGTH_PREFIXED": true,
     "NUMERIC_PACKET_ID": true,
     "OUTGOING_STRING_STX_DELIMITED": true,

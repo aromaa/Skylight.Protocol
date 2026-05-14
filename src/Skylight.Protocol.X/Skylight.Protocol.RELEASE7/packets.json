@@ -1,7 +1,9 @@
 {
   "Revision": "RELEASE7",
   "Inherit": "RELEASE6",
-  "Capabilities": {},
+  "Capabilities": {
+    "BADGES": true
+  },
   "Incoming": {},
   "Outgoing": {},
   "Structures": {},

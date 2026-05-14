@@ -1,7 +1,9 @@
 {
   "Revision": "RELEASE17",
   "Inherit": "RELEASE16",
-  "Capabilities": {},
+  "Capabilities": {
+    "FIGURE_DATA_XML": true
+  },
   "Incoming": {
     "Handshake.CompleteDiffieHandshake": {
       "Id": 202,

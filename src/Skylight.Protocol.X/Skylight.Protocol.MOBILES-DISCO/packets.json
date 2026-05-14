@@ -4,6 +4,7 @@
     "INCOMING_STRING_SPACE_DELIMITED": true,
     "OUTGOING_STRING_CR_DELIMITED": true,
     "PACKET_LENGTH_STRING_PREFIXED": true,
+    "SHOCKWAVE": true,
     "STRING_PACKET_ID": true
   },
   "Incoming": {

@@ -1,7 +1,12 @@
 {
   "Revision": "RELEASE18",
   "Inherit": "RELEASE17",
-  "Capabilities": {},
+  "Capabilities": {
+    "FIGURE_ACCESSORIES": true,
+    "FIGURE_ANIMATIONS_DYNAMIC": true,
+    "FIGURE_DRAW_ORDER_DYNAMIC": true,
+    "FIGURE_PART_SETS_DYNAMIC": true
+  },
   "Incoming": {},
   "Outgoing": {
     "Handshake.UserObject": {

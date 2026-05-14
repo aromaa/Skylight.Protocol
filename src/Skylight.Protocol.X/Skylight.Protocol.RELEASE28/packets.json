@@ -2,7 +2,12 @@
   "Revision": "RELEASE28",
   "Inherit": "RELEASE26",
   "Capabilities": {
-    "RC4_HEX": false
+    "CATALOG_CATEGORIES": true,
+    "CATALOG_OFFER_DATA_LINGO": true,
+    "EFFECTS": true,
+    "PIXELS": true,
+    "RC4_HEX": false,
+    "SECURITY_CAST": true
   },
   "Incoming": {},
   "Outgoing": {

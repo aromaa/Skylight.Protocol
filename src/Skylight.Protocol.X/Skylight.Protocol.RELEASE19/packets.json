@@ -1,7 +1,10 @@
 {
   "Revision": "RELEASE19",
   "Inherit": "RELEASE18",
-  "Capabilities": {},
+  "Capabilities": {
+    "ENTRY_BASE": true,
+    "REGISTRATION": false
+  },
   "Incoming": {},
   "Outgoing": {},
   "Structures": {},
