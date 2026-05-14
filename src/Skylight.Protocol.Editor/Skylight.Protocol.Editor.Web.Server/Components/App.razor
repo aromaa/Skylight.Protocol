@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<base href="/" />
+		<ResourcePreloader />
+		<link rel="stylesheet" href="_content/Skylight.Protocol.Editor.Web/lib/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="_content/Skylight.Protocol.Editor.Web/app.css" />
+		<link rel="stylesheet" href="_content/Skylight.Protocol.Editor/library.css" />
+		<link rel="stylesheet" href="Skylight.Protocol.Editor.Web.Server.styles.css" />
+		<ImportMap />
+		<HeadOutlet @rendermode="InteractiveWebAssembly" />
+	</head>
+	<body>
+		<Routes @rendermode="InteractiveWebAssembly" />
+		<script src="@Assets["_framework/blazor.web.js"]"></script>
+	</body>
+</html>

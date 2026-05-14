@@ -1,0 +1,83 @@
+﻿@using Skylight.Protocol.Client.Variables
+@using Skylight.Protocol.Client.Variables.Keys
+@using Skylight.Protocol.Editor.Components.Variables.Rules
+
+<tr>
+	<td>
+		<input class="form-control form-control-sm" value="@this.KeySetCode" @onchange="e => this.RenameCallback.InvokeAsync(e.Value?.ToString() ?? this.KeySetCode)" />
+	</td>
+	<td>
+		<input class="form-control form-control-sm" value="@this.KeySet.Name" @onchange="e => this.KeySet.Name = e.Value?.ToString() ?? string.Empty" />
+	</td>
+	<td>
+		<input class="form-control form-control-sm" value="@this.KeySet.Description" @onchange="e => this.KeySet.Description = e.Value?.ToString() ?? string.Empty" />
+	</td>
+	<td class="text-end">
+		<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move up"
+				disabled="@(this.Index == 0)"
+				@onclick="() => this.MoveCallback.InvokeAsync(-1)">
+			↑
+		</button>
+		<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move down"
+				disabled="@(this.Index == this.Field.KeySets.Count - 1)"
+				@onclick="() => this.MoveCallback.InvokeAsync(1)">
+			↓
+		</button>
+		<button type="button" class="btn @(this.expandKeys ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
+				@onclick="() => this.expandKeys = !this.expandKeys">
+			Keys <span class="badge bg-secondary">@this.KeySet.Keys.Count</span>
+		</button>
+		<button type="button" class="btn @(this.expandRules ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
+				@onclick="() => this.expandRules = !this.expandRules">
+			Rules <span class="badge bg-secondary">@this.KeySet.RuleSets.Count</span>
+		</button>
+		<button type="button" class="btn btn-outline-danger btn-sm" @onclick="this.RemoveCallback">
+			Delete
+		</button>
+	</td>
+</tr>
+
+@if (this.expandKeys)
+{
+	<tr>
+		<td colspan="4" class="bg-light">
+			<ClientVariableKeysComponent KeySet="this.KeySet" />
+		</td>
+	</tr>
+}
+
+@if (this.expandRules)
+{
+	<tr>
+		<td colspan="4" class="bg-light">
+			<ClientVariableRuleSetsComponent RuleSets="this.KeySet.RuleSets" />
+		</td>
+	</tr>
+}
+
+@code
+{
+	[Parameter]
+	public required ClientVariableField Field { get; set; }
+
+	[Parameter]
+	public required int Index { get; set; }
+
+	[Parameter]
+	public required string KeySetCode { get; set; }
+
+	[Parameter]
+	public required ClientVariableKeySet KeySet { get; set; }
+
+	[Parameter]
+	public EventCallback<string> RenameCallback { get; set; }
+
+	[Parameter]
+	public EventCallback<int> MoveCallback { get; set; }
+
+	[Parameter]
+	public EventCallback RemoveCallback { get; set; }
+
+	private bool expandKeys;
+	private bool expandRules;
+}

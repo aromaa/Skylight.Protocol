@@ -1,0 +1,99 @@
+﻿@using Skylight.Protocol.Client.Variables
+@using Skylight.Protocol.Client.Variables.Entries
+
+<div class="editor-tree-branch">
+	<h3 class="h6 mt-2 mb-2">Fields</h3>
+	<table class="table table-sm align-middle">
+		<thead>
+			<tr>
+				<th style="width:20%">Code</th>
+				<th style="width:22%">Type</th>
+				<th style="width:22%">Name</th>
+				<th>Description</th>
+				<th style="width:260px"></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ((string fieldCode, ClientVariableField field) in this.Variable.Fields)
+			{
+				int index = this.Variable.Fields.IndexOf(fieldCode);
+
+				<ClientVariableFieldComponent @key="field" Variable="this.Variable" FieldCode="@fieldCode" Field="field" Index="index" RenameCallback="newFieldCode => this.RenameField(index, newFieldCode)" MoveCallback="direction => this.MoveField(index, direction)" RemoveCallback="() => this.Variable.Fields.RemoveAt(index)" />
+			}
+		</tbody>
+	</table>
+	<button type="button" class="btn btn-outline-primary btn-sm mb-4" @onclick="() => this.AddField()">
+		+ Add field
+	</button>
+</div>
+
+@code
+{
+	[Parameter]
+	public required ClientVariable Variable { get; set; }
+
+	private void AddField()
+	{
+		ClientVariableField field = new();
+
+		int i = 1;
+		while (!this.Variable.Fields.TryAdd($"FIELD_{i++}", field))
+		{
+		}
+	}
+
+	private void RenameField(int index, string newCode)
+	{
+		if (this.Variable.Fields.ContainsKey(newCode))
+		{
+			return;
+		}
+
+		(string oldCode, ClientVariableField field) = this.Variable.Fields.GetAt(index);
+
+		this.Variable.Fields.SetAt(index, newCode, field);
+
+		foreach (ClientVariableEntry entry in FlattenEntries(this.Variable.Entries.Values))
+		{
+			if (entry is ClientVariableStaticEntry staticEntry)
+			{
+				if (staticEntry.Fields.Remove(oldCode, out ClientVariableStaticEntryValue? value))
+				{
+					staticEntry.Fields.Add(newCode, value);
+				}
+			}
+		}
+
+		static IEnumerable<ClientVariableEntry> FlattenEntries(IEnumerable<ClientVariableEntry> entries)
+		{
+			foreach (ClientVariableEntry entry in entries)
+			{
+				if (entry is not ClientVariableGroupEntry groupEntry)
+				{
+					yield return entry;
+				}
+				else
+				{
+					foreach (ClientVariableEntry childEntry in FlattenEntries(groupEntry.Entries.Values))
+					{
+						yield return childEntry;
+					}
+				}
+			}
+		}
+	}
+
+	private void MoveField(int index, int offset)
+	{
+		int newIndex = index + offset;
+		if (newIndex < 0 || newIndex >= this.Variable.Fields.Count)
+		{
+			return;
+		}
+
+		(string code, ClientVariableField field) = this.Variable.Fields.GetAt(index);
+
+		this.Variable.Fields.RemoveAt(index);
+		this.Variable.Fields.Insert(newIndex, code, field);
+	}
+}

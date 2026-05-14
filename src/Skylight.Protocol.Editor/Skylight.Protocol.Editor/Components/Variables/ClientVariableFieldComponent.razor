@@ -1,0 +1,71 @@
+﻿@using Skylight.Protocol.Client.Variables
+@using Skylight.Protocol.Editor.Components.Variables.Keys
+
+<tr>
+	<td>
+		<input class="form-control form-control-sm" value="@this.FieldCode" @onchange="e => this.RenameCallback.InvokeAsync(e.Value?.ToString() ?? this.FieldCode)" />
+	</td>
+	<td>
+		<input class="form-control form-control-sm" value="@this.Field.Type" @onchange="e => this.Field.Type = e.Value?.ToString() ?? string.Empty" />
+	</td>
+	<td>
+		<input class="form-control form-control-sm" value="@this.Field.Name" @onchange="e => this.Field.Name = e.Value?.ToString() ?? string.Empty" />
+	</td>
+	<td>
+		<input class="form-control form-control-sm" value="@this.Field.Description" @onchange="e => this.Field.Description = e.Value?.ToString() ?? string.Empty" />
+	</td>
+	<td class="text-end">
+		<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move up"
+				disabled="@(this.Index == 0)"
+				@onclick="() => this.MoveCallback.InvokeAsync(-1)">
+			↑
+		</button>
+		<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move down"
+				disabled="@(this.Index == this.Variable.Fields.Count - 1)"
+				@onclick="() => this.MoveCallback.InvokeAsync(1)">
+			↓
+		</button>
+		<button type="button" class="btn @(this.expandKeySets ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
+				@onclick="() => this.expandKeySets = !this.expandKeySets">
+			Key sets <span class="badge bg-secondary">@this.Field.KeySets.Count</span>
+		</button>
+		<button type="button" class="btn btn-outline-danger btn-sm" @onclick="this.RemoveCallback">
+			Delete
+		</button>
+	</td>
+</tr>
+
+@if (this.expandKeySets)
+{
+	<tr>
+		<td colspan="5" class="bg-light">
+			<ClientVariableKeySetsComponent Field="this.Field" />
+		</td>
+	</tr>
+}
+
+@code
+{
+	[Parameter]
+	public required ClientVariable Variable { get; set; }
+
+	[Parameter]
+	public required int Index { get; set; }
+
+	[Parameter]
+	public required string FieldCode { get; set; }
+
+	[Parameter]
+	public required ClientVariableField Field { get; set; }
+
+	[Parameter]
+	public EventCallback<string> RenameCallback { get; set; }
+
+	[Parameter]
+	public EventCallback<int> MoveCallback { get; set; }
+
+	[Parameter]
+	public EventCallback RemoveCallback { get; set; }
+
+	private bool expandKeySets;
+}

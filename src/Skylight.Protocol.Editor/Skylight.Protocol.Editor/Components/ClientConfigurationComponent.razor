@@ -1,0 +1,141 @@
+﻿@using System.Text.Json
+@using Microsoft.JSInterop
+@using Skylight.Protocol.Client
+@using Skylight.Protocol.Client.Variables
+@using Skylight.Protocol.Client.Variables.Entries
+@using Skylight.Protocol.Editor.Components.Variables
+@inject IJSRuntime JS
+@implements IAsyncDisposable
+
+<div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+	<div class="btn-group" role="group">
+		@foreach (Tab tab in Enum.GetValues<Tab>())
+		{
+			<button type="button"
+				class="btn @(this.activeTab == tab ? "btn-primary" : "btn-outline-primary")"
+				@onclick="() => this.activeTab = tab">
+				@tab <span class="badge bg-secondary">@this.TabItemCount(tab)</span>
+			</button>
+		}
+	</div>
+	<div class="ms-auto d-flex gap-2">
+		<a class="btn btn-success" @onclick="this.DownloadClientInfoAsync">
+			Download JSON
+		</a>
+		<button type="button" class="btn btn-outline-secondary" @onclick="this.OnReset">
+			Load another file
+		</button>
+	</div>
+</div>
+
+@switch (this.activeTab)
+{
+	case Tab.Capabilities:
+		<ClientCapabilitiesComponent Configuration="this.Configuration" />
+		break;
+	case Tab.Variables:
+		<ClientVariablesComponent Configuration="this.Configuration" />
+		break;
+}
+
+@code
+{
+	[Parameter]
+	public required ClientConfiguration Configuration { get; set; }
+
+	[Parameter]
+	public string? FileName { get; set; }
+
+	[Parameter]
+	public EventCallback OnReset { get; set; }
+
+	private Lazy<Task<IJSObjectReference>> moduleTask = null!;
+
+	private Tab activeTab;
+
+	protected override void OnInitialized()
+	{
+		this.moduleTask = new(() => this.JS.InvokeAsync<IJSObjectReference>("import", "./_content/Skylight.Protocol.Editor/editor-helpers.js").AsTask());
+	}
+
+	private async Task DownloadClientInfoAsync()
+	{
+		// Create a deep copy of the configuration to avoid modifying the original object
+		ClientConfiguration? configuration = JsonSerializer.Deserialize<ClientConfiguration>(JsonSerializer.SerializeToUtf8Bytes(this.Configuration, ClientConfiguration.JsonOptions), ClientConfiguration.JsonOptions);
+		if (configuration is null)
+		{
+			return;
+		}
+
+		CleanUp(configuration);
+
+		IJSObjectReference module = await this.moduleTask.Value;
+
+		await module.InvokeVoidAsync("downloadFileBlob", this.FileName ?? "ClientInfo.json", "application/json", JsonSerializer.SerializeToUtf8Bytes(configuration, ClientConfiguration.JsonOptions));
+
+		static void CleanUp(ClientConfiguration configuration)
+		{
+			foreach (ClientVariable variable in configuration.Variables.Values)
+			{
+				foreach (ClientVariableEntry entry in variable.Entries.Values)
+				{
+					CleanUp(entry);
+				}
+			}
+
+			static void CleanUp(ClientVariableEntry entry)
+			{
+				if (entry is ClientVariableStaticEntry staticEntry)
+				{
+					HashSet<string> emptyFields = [];
+					foreach ((string fieldKey, ClientVariableStaticEntryValue field) in staticEntry.Fields)
+					{
+						if (field.Name == string.Empty && field.Description == string.Empty && field.ValueSets.Count == 0)
+						{
+							emptyFields.Add(fieldKey);
+						}
+					}
+
+					foreach (string fieldKey in emptyFields)
+					{
+						staticEntry.Fields.Remove(fieldKey);
+					}
+				}
+				else if (entry is ClientVariableGroupEntry groupEntry)
+				{
+					foreach (ClientVariableEntry childEntry in groupEntry.Entries.Values)
+					{
+						CleanUp(childEntry);
+					}
+				}
+			}
+		}
+	}
+
+	private int TabItemCount(Tab tab)
+	{
+		return tab switch
+		{
+			Tab.Capabilities => this.Configuration.Capabilities.Count,
+			Tab.Variables => this.Configuration.Variables.Count,
+
+			_ => 0
+		};
+	}
+
+	public async ValueTask DisposeAsync()
+	{
+		if (this.moduleTask.IsValueCreated)
+		{
+			IJSObjectReference module = await this.moduleTask.Value;
+
+			await module.DisposeAsync();
+		}
+	}
+
+	private enum Tab
+	{
+		Capabilities,
+		Variables
+	}
+}

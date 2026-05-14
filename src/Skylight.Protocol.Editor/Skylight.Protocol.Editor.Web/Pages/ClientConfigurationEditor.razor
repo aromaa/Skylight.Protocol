@@ -1,0 +1,68 @@
+﻿@using System.Text.Json
+@using Skylight.Protocol.Client
+@using Skylight.Protocol.Editor.Components
+@page "/client-configuration-editor"
+
+<PageTitle>Configuration Editor</PageTitle>
+
+<h1>Configuration Editor</h1>
+
+@if (this.configuration is null)
+{
+	<p>Upload a <code>ClientConfiguration</code> JSON file to begin editing.</p>
+
+	<div class="mb-3">
+		<InputFile OnChange="this.OnFileSelectedAsync" accept=".json,application/json" class="form-control" />
+	</div>
+
+	@if (this.errorMessage is not null)
+	{
+		<div class="alert alert-danger">@this.errorMessage</div>
+	}
+
+	<p class="text-muted">
+		The file is processed entirely in your browser; nothing is uploaded to the server.
+	</p>
+}
+else
+{
+	<ClientConfigurationComponent @key="this.configuration" Configuration="this.configuration" FileName="@this.fileName" OnReset="this.Reset" />
+}
+
+@code
+{
+	private ClientConfiguration? configuration;
+	private string? fileName;
+
+	private string? errorMessage;
+
+	private async Task OnFileSelectedAsync(InputFileChangeEventArgs e)
+	{
+		this.errorMessage = null;
+
+		IBrowserFile file = e.File;
+
+		try
+		{
+			using Stream stream = file.OpenReadStream(maxAllowedSize: 8 * 1024 * 1024);
+
+			this.configuration = await JsonSerializer.DeserializeAsync<ClientConfiguration>(stream, ClientConfiguration.JsonOptions);
+			if (this.configuration is null)
+			{
+				this.errorMessage = "Missing or invalid ClientConfiguration data.";
+			}
+
+			this.fileName = file.Name;
+		}
+		catch (Exception ex)
+		{
+			this.errorMessage = $"Failed to read the file. Please ensure it's a valid ClientConfiguration JSON file. {ex.Message}";
+		}
+	}
+
+	private void Reset()
+	{
+		this.configuration = null;
+		this.errorMessage = null;
+	}
+}

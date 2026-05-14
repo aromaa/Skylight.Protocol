@@ -1,6 +1,6 @@
 using Microsoft.Build.Locator;
 
-namespace Skylight.Protocol.Editor;
+namespace Skylight.Protocol.Editor.Forms;
 
 internal static class Program
 {

@@ -1,0 +1,38 @@
+﻿@using System.Text.Json
+@using Skylight.Protocol.Client
+@using Skylight.Protocol.Client.Variables.Rules
+
+<div class="editor-tree-branch">
+	<JsonInputComponent Reset="() => JsonSerializer.Serialize(this.RuleSets, ClientConfiguration.JsonOptions)" Apply="json => this.Update(this.RuleSets, json)" />
+</div>
+
+@code
+{
+	[Parameter]
+	public required OrderedDictionary<string, ClientVariableRuleSet> RuleSets { get; set; }
+
+	private string? Update(OrderedDictionary<string, ClientVariableRuleSet> ruleSets, string json)
+	{
+		try
+		{
+			OrderedDictionary<string, ClientVariableRuleSet>? newRuleSets = JsonSerializer.Deserialize<OrderedDictionary<string, ClientVariableRuleSet>>(json, ClientConfiguration.JsonOptions);
+			if (newRuleSets is null)
+			{
+				return "Missing or invalid JSON";
+			}
+
+			ruleSets.Clear();
+
+			foreach ((string key, ClientVariableRuleSet value) in newRuleSets)
+			{
+				ruleSets.Add(key, value);
+			}
+
+			return null;
+		}
+		catch (Exception ex)
+		{
+			return $"Invalid JSON: {ex.Message}";
+		}
+	}
+}

@@ -1,0 +1,134 @@
+﻿@using Skylight.Protocol.Client.Variables
+@using Skylight.Protocol.Client.Variables.Entries
+
+<div class="editor-tree-branch">
+	<div class="row g-2 align-items-end mb-2">
+		<div class="col-md-3">
+			<label class="form-label">Entry select strategy</label>
+			<select class="form-select form-select-sm" @onchange="e => this.ChangeSelectStrategy(e.Value?.ToString())">
+			@foreach (ClientVariableSelectStrategy strategy in Enum.GetValues<ClientVariableSelectStrategy>())
+			{
+				<option value="@strategy" selected="@(this.SelectStrategy == strategy)">@strategy</option>
+			}
+			</select>
+		</div>
+	</div>
+
+	<div class="table-responsive">
+		<table class="table table-sm align-middle">
+			<thead>
+				<tr>
+					<th style="min-width:140px">Code</th>
+					<th style="width:110px">Type</th>
+					<th style="min-width:140px">Name</th>
+					<th style="min-width:160px">Description</th>
+					<th style="width:360px"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach ((string entryCode, ClientVariableEntry entry) in this.Entries)
+				{
+					int index = this.Entries.IndexOf(entryCode);
+
+					<ClientVariableEntryComponent @key="entry" Variable="this.Variable" Entries="this.Entries" Index="index" EntryCode="@entryCode" Entry="entry" RenameCallback="newCode => this.RenameEntry(index, newCode)" MoveCallback="offset => this.MoveEntry(index, offset)" ChangeTypeCallback="newType => this.ChangeEntryType(index, newType)" RemoveCallback="() => this.Entries.RemoveAt(index)" />
+				}
+			</tbody>
+		</table>
+	</div>
+	<div class="btn-group btn-group-sm mb-4" role="group">
+		<button type="button" class="btn btn-outline-primary" @onclick="() => this.AddEntry(new ClientVariableStaticEntry())">
+			+ Static entry
+		</button>
+		<button type="button" class="btn btn-outline-primary" @onclick="() => this.AddEntry(new ClientVariableDynamicEntry())">
+			+ Dynamic entry
+		</button>
+		<button type="button" class="btn btn-outline-primary" @onclick="() => this.AddEntry(new ClientVariableGroupEntry())">
+			+ Group entry
+		</button>
+	</div>
+</div>
+
+@code
+{
+	[Parameter]
+	public required ClientVariable Variable { get; set; }
+
+	[Parameter]
+	public required ClientVariableSelectStrategy SelectStrategy { get; set; }
+
+	[Parameter]
+	public required OrderedDictionary<string, ClientVariableEntry> Entries { get; set; }
+
+	[Parameter]
+	public EventCallback<ClientVariableSelectStrategy> ChangeSelectStrategyCallback { get; set; }
+
+	private void ChangeSelectStrategy(string? value)
+	{
+		if (Enum.TryParse<ClientVariableSelectStrategy>(value, out ClientVariableSelectStrategy strategy))
+		{
+			this.ChangeSelectStrategyCallback.InvokeAsync(strategy);
+
+			this.SelectStrategy = strategy;
+		}
+	}
+
+	private void AddEntry(ClientVariableEntry entry)
+	{
+		int i = 1;
+		while (!this.Entries.TryAdd($"ENTRY_{i++}", entry))
+		{
+		}
+	}
+
+	private void RenameEntry(int index, string code)
+	{
+		if (this.Entries.ContainsKey(code))
+		{
+			return;
+		}
+
+		this.Entries.SetAt(index, code, this.Entries.GetAt(index).Value);
+	}
+
+	private void ChangeEntryType(int index, string newType)
+	{
+		(string code, ClientVariableEntry entry) = this.Entries.GetAt(index);
+
+		ClientVariableEntry newEntry = newType switch
+		{
+			"Static" => new ClientVariableStaticEntry
+			{
+				Name = entry.Name,
+				Description = entry.Description
+			},
+			"Dynamic" => new ClientVariableDynamicEntry
+			{
+				Name = entry.Name,
+				Description = entry.Description
+			},
+			"Group" => new ClientVariableGroupEntry
+			{
+				Name = entry.Name,
+				Description = entry.Description
+			},
+
+			_ => entry
+		};
+
+		this.Entries.SetAt(index, code, newEntry);
+	}
+
+	private void MoveEntry(int index, int offset)
+	{
+		int newIndex = index + offset;
+		if (newIndex < 0 || newIndex >= this.Entries.Count)
+		{
+			return;
+		}
+
+		(string code, ClientVariableEntry entry) = this.Entries.GetAt(index);
+
+		this.Entries.RemoveAt(index);
+		this.Entries.Insert(newIndex, code, entry);
+	}
+}

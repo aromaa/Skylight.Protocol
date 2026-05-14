@@ -4,6 +4,7 @@ using System.Text.Json;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Locator;
+using Skylight.Protocol.Editor.Forms;
 using Skylight.Protocol.Generator;
 using Skylight.Protocol.Generator.Schema;
 using Skylight.Protocol.Generator.Schema.Mapping;

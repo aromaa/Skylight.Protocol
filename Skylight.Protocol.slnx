@@ -38,7 +38,15 @@
     <Project Path="src/Skylight.Protocol.X/Skylight.Protocol.WIN63-202111081545-75921380/Skylight.Protocol.WIN63-202111081545-75921380.csproj" />
   </Folder>
   <Folder Name="/src/">
-    <Project Path="src/Skylight.Protocol.Editor/Skylight.Protocol.Editor.csproj" />
+    <Project Path="src/Skylight.Protocol.Client/Skylight.Protocol.Client.csproj" Id="825ab379-a1ec-4409-8240-01a82757e7cb" />
+    <Project Path="src/Skylight.Protocol.Editor.Forms/Skylight.Protocol.Editor.Forms.csproj" />
+    <Project Path="src/Skylight.Protocol.Editor/Skylight.Protocol.Editor.Maui/Skylight.Protocol.Editor.Maui.csproj" Id="30f1bda0-8d37-4cc7-b326-b552edb1ec0c">
+      <Deploy />
+    </Project>
+    <Project Path="src/Skylight.Protocol.Editor/Skylight.Protocol.Editor.Web.Client/Skylight.Protocol.Editor.Web.Client.csproj" Id="d1598a3b-1f82-441d-84cf-9f136db05c3c" />
+    <Project Path="src/Skylight.Protocol.Editor/Skylight.Protocol.Editor.Web.Server/Skylight.Protocol.Editor.Web.Server.csproj" Id="534d9647-1a33-4fd2-9dee-e8cad70a1e51" />
+    <Project Path="src/Skylight.Protocol.Editor/Skylight.Protocol.Editor.Web/Skylight.Protocol.Editor.Web.csproj" Id="6398a487-7b58-46b1-94d0-390ee1d374d8" />
+    <Project Path="src/Skylight.Protocol.Editor/Skylight.Protocol.Editor/Skylight.Protocol.Editor.csproj" Id="24f45dc7-ff3b-48a6-87aa-d671aed2fff2" />
     <Project Path="src/Skylight.Protocol.Generator/Skylight.Protocol.Generator.csproj" />
     <Project Path="src/Skylight.Protocol/Skylight.Protocol.csproj" />
   </Folder>

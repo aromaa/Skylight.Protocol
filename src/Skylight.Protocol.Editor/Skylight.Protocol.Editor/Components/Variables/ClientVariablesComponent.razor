@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Skylight.Protocol.Client
+@using Skylight.Protocol.Client.Variables
+
+<div class="mb-3 d-flex justify-content-between align-items-center">
+	<h2 class="h4 mb-0">Variables</h2>
+	<button type="button" class="btn btn-primary btn-sm" @onclick="this.AddVariable">+ Add variable</button>
+</div>
+
+<Virtualize Items="this.Configuration.Variables" Context="variable">
+	<ClientVariableComponent @key="variable.Value" VariableCode="@variable.Key" Variable="variable.Value" RenameCallback="newCode => this.RenameVariable(variable.Key, newCode)" RemoveCallback="() => this.Configuration.Variables.Remove(variable.Key)" />
+</Virtualize>
+
+@code
+{
+	[Parameter]
+	public required ClientConfiguration Configuration { get; set; }
+
+	private void AddVariable()
+	{
+		ClientVariable variable = new();
+
+		int i = 1;
+		while (!this.Configuration.Variables.TryAdd($"VARIABLE_{i++}", variable))
+		{
+		}
+	}
+
+	private void RenameVariable(string oldCode, string newCode)
+	{
+		if (this.Configuration.Variables.ContainsKey(newCode))
+		{
+			return;
+		}
+
+		if (this.Configuration.Variables.TryGetValue(oldCode, out ClientVariable? variable))
+		{
+			this.Configuration.Variables.Remove(oldCode);
+			this.Configuration.Variables.Add(newCode, variable);
+		}
+	}
+}

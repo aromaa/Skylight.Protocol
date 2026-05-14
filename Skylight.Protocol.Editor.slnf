@@ -2,7 +2,13 @@
   "solution": {
     "path": "Skylight.Protocol.slnx",
     "projects": [
-      "src\\Skylight.Protocol.Editor\\Skylight.Protocol.Editor.csproj",
+      "src\\Skylight.Protocol.Client\\Skylight.Protocol.Client.csproj",
+      "src\\Skylight.Protocol.Editor.Forms\\Skylight.Protocol.Editor.Forms.csproj",
+      "src\\Skylight.Protocol.Editor\\Skylight.Protocol.Editor.Maui\\Skylight.Protocol.Editor.Maui.csproj",
+      "src\\Skylight.Protocol.Editor\\Skylight.Protocol.Editor.Web.Client\\Skylight.Protocol.Editor.Web.Client.csproj",
+      "src\\Skylight.Protocol.Editor\\Skylight.Protocol.Editor.Web.Server\\Skylight.Protocol.Editor.Web.Server.csproj",
+      "src\\Skylight.Protocol.Editor\\Skylight.Protocol.Editor.Web\\Skylight.Protocol.Editor.Web.csproj",
+      "src\\Skylight.Protocol.Editor\\Skylight.Protocol.Editor\\Skylight.Protocol.Editor.csproj",
       "src\\Skylight.Protocol.Generator\\Skylight.Protocol.Generator.csproj",
       "src\\Skylight.Protocol\\Skylight.Protocol.csproj",
       "src\\submodules\\Net\\Net.Buffers\\Net.Buffers.csproj",

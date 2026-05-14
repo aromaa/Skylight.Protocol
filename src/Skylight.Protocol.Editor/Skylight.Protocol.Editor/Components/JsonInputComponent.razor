@@ -1,0 +1,41 @@
+﻿<label class="form-label d-flex justify-content-between align-items-center">
+	<span>RuleSets <span class="text-muted small">(JSON)</span></span>
+	<span class="d-flex gap-2">
+		<button type="button" class="btn btn-sm btn-outline-secondary" @onclick="() => this.Json = this.Reset()">
+			Reset
+		</button>
+		<button type="button" class="btn btn-sm btn-outline-primary" @onclick="() => this.parseError = this.Apply(this.Json)">
+			Apply
+		</button>
+	</span>
+</label>
+
+<textarea class="form-control font-monospace @(this.parseError is not null ? "is-invalid" : string.Empty)"
+		  rows="8"
+		  spellcheck="false"
+		  value="@this.Json"
+		  @oninput="e => this.Json = e.Value?.ToString() ?? string.Empty"></textarea>
+
+@if (this.parseError is not null)
+{
+	<div class="invalid-feedback d-block">@this.parseError</div>
+}
+
+@code
+{
+	[Parameter]
+	public string Json { get; set; } = string.Empty;
+
+	[Parameter]
+	public Func<string> Reset { get; set; } = () => string.Empty;
+
+	[Parameter]
+	public Func<string, string?> Apply { get; set; } = _ => null;
+
+	private string? parseError = null;
+
+	protected override void OnParametersSet()
+	{
+		this.Json = this.Reset();
+	}
+}

@@ -1,0 +1,68 @@
+﻿@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Skylight.Protocol.Client
+
+<div class="mb-3 d-flex justify-content-between align-items-center">
+	<h2 class="h4 mb-0">Capabilities</h2>
+	<button type="button" class="btn btn-primary btn-sm" @onclick="this.AddCapability">+ Add capability</button>
+</div>
+
+<table class="table table-sm align-middle">
+	<thead>
+		<tr>
+			<th style="width:25%">Code</th>
+			<th style="width:25%">Name</th>
+			<th>Description</th>
+			<th style="width:90px"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<Virtualize Items="this.Configuration.Capabilities" Context="capability">
+			<tr @key="capability.Value">
+				<td>
+					<input class="form-control form-control-sm" value="@capability.Key" @onchange="e => this.RenameCapability(capability.Key, e.Value?.ToString() ?? string.Empty)" />
+				</td>
+				<td>
+					<input class="form-control form-control-sm" value="@capability.Value.Name" @onchange="e => capability.Value.Name = e.Value?.ToString() ?? string.Empty" />
+				</td>
+				<td>
+					<input class="form-control form-control-sm" value="@capability.Value.Description" @onchange="e => capability.Value.Description = e.Value?.ToString() ?? string.Empty" />
+				</td>
+				<td class="text-end">
+					<button type="button" class="btn btn-outline-danger btn-sm" @onclick="() => this.Configuration.Capabilities.Remove(capability.Key)">
+						Delete
+					</button>
+				</td>
+			</tr>
+		</Virtualize >
+	</tbody>
+</table>
+
+@code
+{
+	[Parameter]
+	public required ClientConfiguration Configuration { get; set; }
+
+	private void AddCapability()
+	{
+		ClientCapability capability = new();
+
+		int i = 1;
+		while (!this.Configuration.Capabilities.TryAdd($"CAPABILITY_{i++}", capability))
+		{
+		}
+	}
+
+	private void RenameCapability(string oldCode, string newCode)
+	{
+		if (this.Configuration.Capabilities.ContainsKey(newCode))
+		{
+			return;
+		}
+
+		if (this.Configuration.Capabilities.TryGetValue(oldCode, out ClientCapability? capability))
+		{
+			this.Configuration.Capabilities.Remove(oldCode);
+			this.Configuration.Capabilities.Add(newCode, capability);
+		}
+	}
+}

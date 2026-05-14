@@ -1,0 +1,67 @@
+﻿@using Skylight.Protocol.Client.Variables.Keys
+
+<div class="table-responsive editor-tree-branch">
+	<table class="table table-sm align-middle mb-2">
+		<thead>
+			<tr>
+				<th style="min-width:140px">Code</th>
+				<th style="min-width:140px">Type</th>
+				<th style="min-width:140px">Name</th>
+				<th>Description</th>
+				<th style="width:260px"></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ((string keyCode, ClientVariableKey key) in this.KeySet.Keys)
+			{
+				int index = this.KeySet.Keys.IndexOf(keyCode);
+
+				<ClientVariableKeyComponent @key="key" KeySet="this.KeySet" Index="index" KeyCode="@keyCode" Key="key" RenameCallback="code => this.RenameKey(index, code)" MoveCallback="offset => this.MoveKey(index, offset)" RemoveCallback="() => this.KeySet.Keys.RemoveAt(index)" />
+			}
+		</tbody>
+	</table>
+
+	<button type="button" class="btn btn-outline-primary btn-sm mb-2" @onclick="this.AddKey">
+		+ Add key
+	</button>
+</div>
+
+@code
+{
+	[Parameter]
+	public required ClientVariableKeySet KeySet { get; set; }
+
+	private void AddKey()
+	{
+		ClientVariableKey keySet = new();
+
+		int i = 1;
+		while (!this.KeySet.Keys.TryAdd($"KEY_{i++}", keySet))
+		{
+		}
+	}
+
+	private void RenameKey(int index, string code)
+	{
+		if (this.KeySet.Keys.ContainsKey(code))
+		{
+			return;
+		}
+
+		this.KeySet.Keys.SetAt(index, code, this.KeySet.Keys.GetAt(index).Value);
+	}
+
+	private void MoveKey(int index, int offset)
+	{
+		int newIndex = index + offset;
+		if (newIndex < 0 || newIndex >= this.KeySet.Keys.Count)
+		{
+			return;
+		}
+
+		(string code, ClientVariableKey key) = this.KeySet.Keys.GetAt(index);
+
+		this.KeySet.Keys.RemoveAt(index);
+		this.KeySet.Keys.Insert(newIndex, code, key);
+	}
+}

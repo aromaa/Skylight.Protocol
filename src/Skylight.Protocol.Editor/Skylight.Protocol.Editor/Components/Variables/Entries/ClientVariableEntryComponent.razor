@@ -1,0 +1,139 @@
+﻿@using Skylight.Protocol.Client.Variables
+@using Skylight.Protocol.Client.Variables.Entries
+@using Skylight.Protocol.Editor.Components.Variables.Rules
+<tr>
+	<td>
+		<input class="form-control form-control-sm" value="@this.EntryCode" @onchange="e => this.RenameCallback.InvokeAsync(e.Value?.ToString() ?? this.EntryCode)" />
+	</td>
+	<td>
+		<select class="form-select form-select-sm" @onchange="@(e => this.ChangeTypeCallback.InvokeAsync(e.Value?.ToString() ?? "Static"))">
+			<option value="Static" selected="@(Entry is ClientVariableStaticEntry)">Static</option>
+			<option value="Dynamic" selected="@(Entry is ClientVariableDynamicEntry)">Dynamic</option>
+			<option value="Group" selected="@(Entry is ClientVariableGroupEntry)">Group</option>
+		</select>
+	</td>
+	<td>
+		<input class="form-control form-control-sm" value="@this.Entry.Name" @onchange="e => this.Entry.Name = e.Value?.ToString() ?? string.Empty" />
+	</td>
+	<td>
+		<input class="form-control form-control-sm" value="@this.Entry.Description" @onchange="e => this.Entry.Description = e.Value?.ToString() ?? string.Empty" />
+	</td>
+	<td class="text-end">
+		<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move up"
+				disabled="@(this.Index == 0)"
+				@onclick="() => this.MoveCallback.InvokeAsync(-1)">
+			↑
+		</button>
+		<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move down"
+				disabled="@(this.Index == this.Entries.Count - 1)"
+				@onclick="() => this.MoveCallback.InvokeAsync(1)">
+			↓
+		</button>
+		<button type="button" class="btn @(this.expand ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
+				@onclick="() => this.expand = !this.expand">
+			@if (this.Entry is ClientVariableGroupEntry group)
+			{
+				<text>Children <span class="badge bg-secondary">@group.Entries.Count</span></text>
+			}
+			else
+			{
+				<text>Expand</text>
+			}
+		</button>
+		<button type="button" class="btn @(this.expandRules ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
+				@onclick="() => this.expandRules = !this.expandRules">
+			Rules <span class="badge bg-secondary">@this.Entry.RuleSets.Count</span>
+		</button>
+		<button type="button" class="btn btn-outline-danger btn-sm" @onclick="this.RemoveCallback">
+			Delete
+		</button>
+	</td>
+</tr>
+
+@if (this.expand)
+{
+	<tr>
+		<td colspan="5" class="bg-light editor-tree-branch">
+			@if (this.Entry is ClientVariableStaticEntry staticEntry)
+			{
+				foreach ((string fieldCode, ClientVariableField field) in this.Variable.Fields)
+				{
+					if (!staticEntry.Fields.TryGetValue(fieldCode, out ClientVariableStaticEntryValue? fieldValue))
+					{
+						fieldValue = new ClientVariableStaticEntryValue();
+
+						staticEntry.Fields.Add(fieldCode, fieldValue);
+					}
+
+					<div @key="fieldValue" class="mb-3 p-2">
+						<div class="row g-2 mb-2 align-items-center">
+							<div class="col-md-2"><code>@fieldCode</code></div>
+							<div class="col-md-4">
+								<input class="form-control form-control-sm" placeholder="Name"
+									   value="@(fieldValue.Name ?? string.Empty)"
+									   @onchange="e => fieldValue.Name = e.Value?.ToString() ?? string.Empty" />
+							</div>
+							<div class="col-md-6">
+								<input class="form-control form-control-sm" placeholder="Description"
+									   value="@(fieldValue.Description ?? string.Empty)"
+									   @onchange="e => fieldValue.Description = e.Value?.ToString() ?? string.Empty" />
+							</div>
+						</div>
+						<div class="ms-2">
+							<h5 class="h6 mb-2">Value sets</h5>
+							<ClientVariableStaticEntryValueComponent Field="fieldValue" />
+						</div>
+					</div>
+				}
+			}
+			else if (this.Entry is ClientVariableGroupEntry groupEntry)
+			{
+				<h4 class="h6 mt-3">Group entries</h4>
+
+				<ClientVariableEntriesComponent Variable="this.Variable" SelectStrategy="groupEntry.EntrySelectStrategy" Entries="groupEntry.Entries" ChangeSelectStrategyCallback="stragedy => groupEntry.EntrySelectStrategy = stragedy" />
+			}
+		</td>
+	</tr>
+}
+
+@if (this.expandRules)
+{
+	<tr>
+		<td colspan="5" class="bg-light">
+			<ClientVariableRuleSetsComponent RuleSets="this.Entry.RuleSets" />
+		</td>
+	</tr>
+}
+
+@code
+{
+	[Parameter]
+	public required ClientVariable Variable { get; set; }
+
+	[Parameter]
+	public required OrderedDictionary<string, ClientVariableEntry> Entries { get; set; }
+
+	[Parameter]
+	public required int Index { get; set; }
+
+	[Parameter]
+	public required string EntryCode { get; set; }
+
+	[Parameter]
+	public required ClientVariableEntry Entry { get; set; }
+
+	[Parameter]
+	public EventCallback<string> RenameCallback { get; set; }
+
+	[Parameter]
+	public EventCallback<string> ChangeTypeCallback { get; set; }
+
+	[Parameter]
+	public EventCallback<int> MoveCallback { get; set; }
+
+	[Parameter]
+	public EventCallback RemoveCallback { get; set; }
+
+	private bool expand;
+	private bool expandRules;
+}

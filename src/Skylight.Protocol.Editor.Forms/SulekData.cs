@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Skylight.Protocol.Editor;
+namespace Skylight.Protocol.Editor.Forms;
 
 internal sealed class SulekData
 {

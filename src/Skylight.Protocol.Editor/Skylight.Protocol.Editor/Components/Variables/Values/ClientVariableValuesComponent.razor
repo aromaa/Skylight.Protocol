@@ -1,0 +1,113 @@
+﻿@using Skylight.Protocol.Client.Variables.Values
+@using Skylight.Protocol.Editor.Components.Variables.Rules
+
+<div class="table-responsive editor-tree-branch">
+	<table class="table table-sm align-middle mb-2">
+		<thead>
+			<tr>
+				<th style="width:25%">Code</th>
+				<th style="min-width:140px">Name</th>
+				<th style="min-width:160px">Description</th>
+				<th>Value</th>
+				<th style="width:320px"></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ((string valueCode, ClientVariableValue value) in this.ValueSet.Values)
+			{
+				int index = this.ValueSet.Values.IndexOf(valueCode);
+
+				<tr @key="value">
+					<td>
+						<input class="form-control form-control-sm" value="@valueCode" @onchange="e => this.RenameValue(index, e.Value?.ToString() ?? valueCode)" />
+					</td>
+					<td>
+						<input class="form-control form-control-sm" value="@value.Name" @onchange="e => value.Name = e.Value?.ToString() ?? string.Empty" />
+					</td>
+					<td>
+						<input class="form-control form-control-sm" value="@value.Description" @onchange="e => value.Description = e.Value?.ToString() ?? string.Empty" />
+					</td>
+					<td>
+						<input class="form-control form-control-sm" value="@value.Value" @onchange="e => value.Value = e.Value?.ToString()" />
+					</td>
+					<td class="text-end">
+						<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move up"
+								disabled="@(index == 0)"
+								@onclick="() => this.MoveValue(index, -1)">
+							↑
+						</button>
+						<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move down"
+								disabled="@(index == this.ValueSet.Values.Count - 1)"
+								@onclick="() => this.MoveValue(index, 1)">
+							↓
+						</button>
+						<button type="button" class="btn @(this.ruleSetsExpanded ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
+								@onclick="() => this.ruleSetsExpanded = !this.ruleSetsExpanded">
+							Rules <span class="badge bg-secondary">@value.RuleSets.Count</span>
+						</button>
+						<button type="button" class="btn btn-outline-danger btn-sm" @onclick="() => this.ValueSet.Values.RemoveAt(index)">
+							Delete
+						</button>
+					</td>
+				</tr>
+
+				@if (this.ruleSetsExpanded)
+				{
+					<tr>
+						<td colspan="5" class="bg-light">
+							<ClientVariableRuleSetsComponent RuleSets="value.RuleSets" />
+						</td>
+					</tr>
+				}
+			}
+		</tbody>
+	</table>
+	<button type="button" class="btn btn-outline-primary btn-sm mb-2" @onclick="this.AddValue">
+		+ Add value
+	</button>
+</div>
+
+@code
+{
+	[Parameter]
+	public required ClientVariableValueSet ValueSet { get; set; }
+
+	private bool ruleSetsExpanded;
+
+
+	private void AddValue()
+	{
+		ClientVariableValue value = new();
+
+		int i = 1;
+		while (!this.ValueSet.Values.TryAdd($"VALUE_{i++}", value))
+		{
+		}
+	}
+
+	private void RenameValue(int index, string newCode)
+	{
+		if (this.ValueSet.Values.ContainsKey(newCode))
+		{
+			return;
+		}
+
+		(string code, ClientVariableValue value) = this.ValueSet.Values.GetAt(index);
+
+		this.ValueSet.Values.SetAt(index, newCode, value);
+	}
+
+	private void MoveValue(int index, int offset)
+	{
+		int newIndex = index + offset;
+		if (newIndex < 0 || newIndex >= this.ValueSet.Values.Count)
+		{
+			return;
+		}
+
+		(string code, ClientVariableValue value) = this.ValueSet.Values.GetAt(index);
+
+		this.ValueSet.Values.RemoveAt(index);
+		this.ValueSet.Values.Insert(newIndex, code, value);
+	}
+}

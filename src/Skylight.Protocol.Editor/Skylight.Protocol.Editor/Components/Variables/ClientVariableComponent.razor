@@ -1,0 +1,71 @@
+﻿@using Skylight.Protocol.Client.Variables
+@using Skylight.Protocol.Editor.Components.Variables.Entries
+@using Skylight.Protocol.Editor.Components.Variables.Rules
+
+<div class="card mb-5">
+	<div class="card-body">
+		<div class="row g-2 align-items-end mb-2">
+			<div class="col-md-3">
+				<label class="form-label">Code</label>
+				<input class="form-control" value="@this.VariableCode" @onchange="e => this.RenameCallback.InvokeAsync(e.Value?.ToString() ?? this.VariableCode)" />
+			</div>
+			<div class="col-md-3">
+				<label class="form-label">Name</label>
+				<input class="form-control" value="@this.Variable.Name" @onchange="e => this.Variable.Name = e.Value?.ToString() ?? string.Empty" />
+			</div>
+			<div class="col-md-3">
+				<label class="form-label">Description</label>
+				<input class="form-control" value="@this.Variable.Description" @onchange="e => this.Variable.Description = e.Value?.ToString() ?? string.Empty" />
+			</div>
+			<div class="col-md-3 text-end">
+				<button type="button" class="btn @(this.expandFields ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
+						@onclick="() => this.expandFields = !this.expandFields">
+					Fields <span class="badge bg-secondary">@this.Variable.Fields.Count</span>
+				</button>
+				<button type="button" class="btn @(this.expandEntries ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
+						@onclick="() => this.expandEntries = !this.expandEntries">
+					Entries <span class="badge bg-secondary">@this.Variable.Entries.Count</span>
+				</button>
+				<button type="button" class="btn @(this.expandRules ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
+						@onclick="() => this.expandRules = !this.expandRules">
+					Rules <span class="badge bg-secondary">@this.Variable.RuleSets.Count</span>
+				</button>
+				<button type="button" class="btn btn-outline-danger btn-sm" @onclick="this.RemoveCallback">Delete</button>
+			</div>
+		</div>
+
+		@if (this.expandFields)
+		{
+			<ClientVariableFieldsComponent Variable="this.Variable" />
+		}
+
+		@if (this.expandEntries)
+		{
+			<ClientVariableEntriesComponent Variable="this.Variable" SelectStrategy="this.Variable.EntrySelectStrategy" Entries="this.Variable.Entries" ChangeSelectStrategyCallback="stragedy => this.Variable.EntrySelectStrategy = stragedy" />
+		}
+
+		@if (this.expandRules)
+		{
+			<ClientVariableRuleSetsComponent RuleSets="this.Variable.RuleSets" />
+		}
+	</div>
+</div>
+
+@code
+{
+	[Parameter]
+	public required string VariableCode { get; set; }
+
+	[Parameter]
+	public required ClientVariable Variable { get; set; }
+
+	[Parameter]
+	public EventCallback<string> RenameCallback { get; set; }
+
+	[Parameter]
+	public EventCallback RemoveCallback { get; set; }
+
+	private bool expandFields;
+	private bool expandEntries;
+	private bool expandRules;
+}
