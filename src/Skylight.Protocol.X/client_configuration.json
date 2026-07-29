@@ -62,10 +62,10 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {}
                   }
@@ -98,46 +98,50 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "xml": {
+          "ValueSets": {
+            "xml": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {}
-                  },
-                  "RuleSets": {
-                    "supports_offer_data_xml": {
-                      "Rules": {
-                        "catalog_offer_data_xml_capability": {
-                          "Subject": "Capability",
-                          "Capability": "CATALOG_OFFER_DATA_XML",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "supports_offer_data_xml": {
+                  "Rules": {
+                    "catalog_offer_data_xml_capability": {
+                      "Subject": "Capability",
+                      "Capability": "CATALOG_OFFER_DATA_XML",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
-                },
-                "lingo": {
+                }
+              }
+            },
+            "lingo": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {}
-                  },
-                  "RuleSets": {
-                    "supports_offer_data_lingo": {
-                      "Rules": {
-                        "catalog_offer_data_lingo_capability": {
-                          "Subject": "Capability",
-                          "Capability": "CATALOG_OFFER_DATA_LINGO",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "supports_offer_data_lingo": {
+                  "Rules": {
+                    "catalog_offer_data_lingo_capability": {
+                      "Subject": "Capability",
+                      "Capability": "CATALOG_OFFER_DATA_LINGO",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
                 }
@@ -169,10 +173,10 @@
       "Entries": {
         "alert": {
           "Type": "Static",
-          "Fields": {
-            "command": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "command": {
                   "Values": {
                     "default": {
                       "Value": ":alert x"
@@ -185,10 +189,10 @@
         },
         "ban": {
           "Type": "Static",
-          "Fields": {
-            "command": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "command": {
                   "Values": {
                     "default": {
                       "Value": ":ban x"
@@ -201,10 +205,10 @@
         },
         "kick": {
           "Type": "Static",
-          "Fields": {
-            "command": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "command": {
                   "Values": {
                     "default": {
                       "Value": ":kick x"
@@ -217,10 +221,10 @@
         },
         "superban": {
           "Type": "Static",
-          "Fields": {
-            "command": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "command": {
                   "Values": {
                     "default": {
                       "Value": ":superban x"
@@ -233,10 +237,10 @@
         },
         "shutup": {
           "Type": "Static",
-          "Fields": {
-            "command": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "command": {
                   "Values": {
                     "default": {
                       "Value": ":shutup x"
@@ -249,10 +253,10 @@
         },
         "unmute": {
           "Type": "Static",
-          "Fields": {
-            "command": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "command": {
                   "Values": {
                     "default": {
                       "Value": ":unmute x"
@@ -265,10 +269,10 @@
         },
         "transfer": {
           "Type": "Static",
-          "Fields": {
-            "command": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "command": {
                   "Values": {
                     "default": {
                       "Value": ":transfer x"
@@ -281,10 +285,10 @@
         },
         "softkick": {
           "Type": "Static",
-          "Fields": {
-            "command": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "command": {
                   "Values": {
                     "default": {
                       "Value": ":softkick x"
@@ -362,10 +366,10 @@
           "Entries": {
             "finnish": {
               "Type": "Static",
-              "Fields": {
-                "file": {
-                  "ValueSets": {
-                    "default": {
+              "ValueSets": {
+                "default": {
+                  "Fields": {
+                    "file": {
                       "Values": {
                         "default": {
                           "Value": "hh_entry_fi"
@@ -388,10 +392,10 @@
             },
             "united_kingdom": {
               "Type": "Static",
-              "Fields": {
-                "file": {
-                  "ValueSets": {
-                    "default": {
+              "ValueSets": {
+                "default": {
+                  "Fields": {
+                    "file": {
                       "Values": {
                         "default": {
                           "Value": "hh_entry_uk"
@@ -414,10 +418,10 @@
             },
             "fallback": {
               "Type": "Static",
-              "Fields": {
-                "file": {
-                  "ValueSets": {
-                    "default": {
+              "ValueSets": {
+                "default": {
+                  "Fields": {
+                    "file": {
                       "Values": {
                         "default": {
                           "Value": "hh_entry_fi"
@@ -464,10 +468,10 @@
                       "Entries": {
                         "hats": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_hats"
@@ -480,10 +484,10 @@
                         },
                         "hair": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_hair"
@@ -496,10 +500,10 @@
                         },
                         "face": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_face"
@@ -512,10 +516,10 @@
                         },
                         "body": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_body"
@@ -528,10 +532,10 @@
                         },
                         "shirt": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_shirt"
@@ -544,10 +548,10 @@
                         },
                         "item": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_item"
@@ -560,10 +564,10 @@
                         },
                         "leg": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_leg"
@@ -576,10 +580,10 @@
                         },
                         "shoe": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_shoe"
@@ -599,10 +603,10 @@
                       "Entries": {
                         "hats": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_50_hats"
@@ -615,10 +619,10 @@
                         },
                         "hair": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_50_hair"
@@ -631,10 +635,10 @@
                         },
                         "face": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_50_face"
@@ -647,10 +651,10 @@
                         },
                         "body": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_50_body"
@@ -677,10 +681,10 @@
                       "Entries": {
                         "head": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_acc_head"
@@ -693,10 +697,10 @@
                         },
                         "face": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_acc_face"
@@ -709,10 +713,10 @@
                         },
                         "eye": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_acc_eye"
@@ -732,10 +736,10 @@
                       "Entries": {
                         "head": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_50_acc_head"
@@ -748,10 +752,10 @@
                         },
                         "face": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_50_acc_face"
@@ -764,10 +768,10 @@
                         },
                         "eye": {
                           "Type": "Static",
-                          "Fields": {
-                            "file": {
-                              "ValueSets": {
-                                "default": {
+                          "ValueSets": {
+                            "default": {
+                              "Fields": {
+                                "file": {
                                   "Values": {
                                     "default": {
                                       "Value": "hh_human_50_acc_eye"
@@ -841,10 +845,10 @@
               "Entries": {
                 "people_1": {
                   "Type": "Static",
-                  "Fields": {
-                    "file": {
-                      "ValueSets": {
-                        "default": {
+                  "ValueSets": {
+                    "default": {
+                      "Fields": {
+                        "file": {
                           "Values": {
                             "default": {
                               "Value": "hh_people_1"
@@ -857,10 +861,10 @@
                 },
                 "people_2": {
                   "Type": "Static",
-                  "Fields": {
-                    "file": {
-                      "ValueSets": {
-                        "default": {
+                  "ValueSets": {
+                    "default": {
+                      "Fields": {
+                        "file": {
                           "Values": {
                             "default": {
                               "Value": "hh_people_2"
@@ -921,10 +925,10 @@
         },
         "shared": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_shared"
@@ -965,10 +969,10 @@
         },
         "entry_base": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_entry_base"
@@ -1006,10 +1010,10 @@
         },
         "interface": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_interface"
@@ -1042,10 +1046,10 @@
           "Entries": {
             "finnish": {
               "Type": "Static",
-              "Fields": {
-                "file": {
-                  "ValueSets": {
-                    "default": {
+              "ValueSets": {
+                "default": {
+                  "Fields": {
+                    "file": {
                       "Values": {
                         "default": {
                           "Value": "hh_patch_fi"
@@ -1068,10 +1072,10 @@
             },
             "united_kingdom": {
               "Type": "Static",
-              "Fields": {
-                "file": {
-                  "ValueSets": {
-                    "default": {
+              "ValueSets": {
+                "default": {
+                  "Fields": {
+                    "file": {
                       "Values": {
                         "default": {
                           "Value": "hh_patch_uk"
@@ -1094,10 +1098,10 @@
             },
             "fallback": {
               "Type": "Static",
-              "Fields": {
-                "file": {
-                  "ValueSets": {
-                    "default": {
+              "ValueSets": {
+                "default": {
+                  "Fields": {
+                    "file": {
                       "Values": {
                         "default": {
                           "Value": "hh_patch_fi"
@@ -1113,10 +1117,10 @@
         },
         "human": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_human"
@@ -1154,10 +1158,10 @@
         },
         "messenger": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_messenger"
@@ -1198,10 +1202,10 @@
         },
         "registration": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_registrat"
@@ -1239,10 +1243,10 @@
         },
         "kiosk_room": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_kiosk_room"
@@ -1271,10 +1275,10 @@
         },
         "pets_common": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_pets_common"
@@ -1312,10 +1316,10 @@
         },
         "room_utils": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_room_utils"
@@ -1353,10 +1357,10 @@
         },
         "room_ui": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_room_ui"
@@ -1394,10 +1398,10 @@
         },
         "furni_classes": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_furni_classes"
@@ -1435,10 +1439,10 @@
         },
         "room": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_room"
@@ -1467,10 +1471,10 @@
         },
         "club": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_club"
@@ -1508,10 +1512,10 @@
         },
         "photo": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_photo"
@@ -1549,10 +1553,10 @@
         },
         "navigator": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_navigator"
@@ -1581,10 +1585,10 @@
         },
         "purse": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_purse"
@@ -1630,10 +1634,10 @@
               "Entries": {
                 "buffer": {
                   "Type": "Static",
-                  "Fields": {
-                    "file": {
-                      "ValueSets": {
-                        "default": {
+                  "ValueSets": {
+                    "default": {
+                      "Fields": {
+                        "file": {
                           "Values": {
                             "default": {
                               "Value": "hh_buffer"
@@ -1647,10 +1651,10 @@
                 },
                 "downloader": {
                   "Type": "Static",
-                  "Fields": {
-                    "file": {
-                      "ValueSets": {
-                        "default": {
+                  "ValueSets": {
+                    "default": {
+                      "Fields": {
+                        "file": {
                           "Values": {
                             "default": {
                               "Value": "hh_dynamic_downloader"
@@ -1708,54 +1712,58 @@
               "Entries": {
                 "catalog": {
                   "Type": "Static",
-                  "Fields": {
-                    "file": {
-                      "ValueSets": {
-                        "categories": {
-                          "Description": "Catalog with categories support.",
+                  "ValueSets": {
+                    "categories": {
+                      "Description": "Catalog with categories support.",
+                      "Fields": {
+                        "file": {
                           "Values": {
                             "default": {
                               "Value": "hh_cat_new"
                             }
-                          },
-                          "RuleSets": {
-                            "supports_catalog_categories": {
-                              "Rules": {
-                                "catalog_categories_capability": {
-                                  "Subject": "Capability",
-                                  "Capability": "CATALOG_CATEGORIES",
-                                  "Expressions": [
-                                    {
-                                      "Operation": "Equals"
-                                    }
-                                  ]
+                          }
+                        }
+                      },
+                      "RuleSets": {
+                        "supports_catalog_categories": {
+                          "Rules": {
+                            "catalog_categories_capability": {
+                              "Subject": "Capability",
+                              "Capability": "CATALOG_CATEGORIES",
+                              "Expressions": [
+                                {
+                                  "Operation": "Equals"
                                 }
-                              }
+                              ]
                             }
                           }
-                        },
-                        "default": {
+                        }
+                      }
+                    },
+                    "default": {
+                      "Fields": {
+                        "file": {
                           "Values": {
                             "default": {
                               "Value": "hh_cat_code"
                             }
-                          },
-                          "RuleSets": {
-                            "supports_flattened_catalog": {
-                              "Rules": {
-                                "no_catalog_categories_capability": {
-                                  "Subject": "Capability",
-                                  "Capability": "CATALOG_CATEGORIES",
-                                  "Expressions": [
-                                    {
-                                      "Operation": "Not",
-                                      "Expression": {
-                                        "Operation": "Equals"
-                                      }
-                                    }
-                                  ]
+                          }
+                        }
+                      },
+                      "RuleSets": {
+                        "supports_flattened_catalog": {
+                          "Rules": {
+                            "no_catalog_categories_capability": {
+                              "Subject": "Capability",
+                              "Capability": "CATALOG_CATEGORIES",
+                              "Expressions": [
+                                {
+                                  "Operation": "Not",
+                                  "Expression": {
+                                    "Operation": "Equals"
+                                  }
                                 }
-                              }
+                              ]
                             }
                           }
                         }
@@ -1783,10 +1791,10 @@
                 },
                 "assets": {
                   "Type": "Static",
-                  "Fields": {
-                    "file": {
-                      "ValueSets": {
-                        "default": {
+                  "ValueSets": {
+                    "default": {
+                      "Fields": {
+                        "file": {
                           "Values": {
                             "default": {
                               "Value": "hh_cat_gfx_all"
@@ -1836,10 +1844,10 @@
         },
         "recycler": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_recycler"
@@ -1877,10 +1885,10 @@
         },
         "poll": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_poll"
@@ -1918,10 +1926,10 @@
         },
         "tutorial": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_tutorial"
@@ -1959,53 +1967,57 @@
         },
         "entry_init": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "entry_init": {
+          "ValueSets": {
+            "entry_init": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_entry_init"
                     }
-                  },
-                  "RuleSets": {
-                    "has_entry_base": {
-                      "Rules": {
-                        "entry_base_capability": {
-                          "Subject": "Capability",
-                          "Capability": "ENTRY_BASE",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "has_entry_base": {
+                  "Rules": {
+                    "entry_base_capability": {
+                      "Subject": "Capability",
+                      "Capability": "ENTRY_BASE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
-                },
-                "entry": {
+                }
+              }
+            },
+            "entry": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_entry"
                     }
-                  },
-                  "RuleSets": {
-                    "has_no_entry_base": {
-                      "Rules": {
-                        "no_entry_base_capability": {
-                          "Subject": "Capability",
-                          "Capability": "ENTRY_BASE",
-                          "Expressions": [
-                            {
-                              "Operation": "Not",
-                              "Expression": {
-                                "Operation": "Equals"
-                              }
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "has_no_entry_base": {
+                  "Rules": {
+                    "no_entry_base_capability": {
+                      "Subject": "Capability",
+                      "Capability": "ENTRY_BASE",
+                      "Expressions": [
+                        {
+                          "Operation": "Not",
+                          "Expression": {
+                            "Operation": "Equals"
+                          }
                         }
-                      }
+                      ]
                     }
                   }
                 }
@@ -2040,10 +2052,10 @@
         },
         "friend_list": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_friend_list"
@@ -2081,10 +2093,10 @@
         },
         "instant_messenger": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_instant_messenger"
@@ -2122,10 +2134,10 @@
         },
         "joystick": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_ig"
@@ -2163,10 +2175,10 @@
         },
         "joystick_interface": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_ig_interface"
@@ -2204,10 +2216,10 @@
         },
         "hh_pets": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_pets"
@@ -2245,10 +2257,10 @@
         },
         "hh_guide": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_guide"
@@ -2286,10 +2298,10 @@
         },
         "hh_badges": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "default": {
                       "Value": "hh_badges"
@@ -2364,10 +2376,10 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {
                       "Value": "#asset.base.url#client/#REVISION#/"
@@ -2402,10 +2414,10 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {}
                   }
@@ -2453,26 +2465,26 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {}
-                  },
-                  "RuleSets": {
-                    "supports_gamedata_hashes": {
-                      "Rules": {
-                        "gamedata_hashes_capability": {
-                          "Subject": "Capability",
-                          "Capability": "GAMEDATA_HASHES",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "supports_gamedata_hashes": {
+                  "Rules": {
+                    "gamedata_hashes_capability": {
+                      "Subject": "Capability",
+                      "Capability": "GAMEDATA_HASHES",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
                 }
@@ -2601,43 +2613,31 @@
       "Entries": {
         "english": {
           "Type": "Static",
-          "Fields": {
-            "code": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "code": {
                   "Values": {
                     "default": {
                       "Value": "en_US.iso-8859-1"
                     }
                   }
-                }
-              }
-            },
-            "id": {
-              "ValueSets": {
-                "default": {
+                },
+                "id": {
                   "Values": {
                     "default": {
                       "Value": "en"
                     }
                   }
-                }
-              }
-            },
-            "name": {
-              "ValueSets": {
-                "default": {
+                },
+                "name": {
                   "Values": {
                     "default": {
                       "Value": "English"
                     }
                   }
-                }
-              }
-            },
-            "url": {
-              "ValueSets": {
-                "default": {
+                },
+                "url": {
                   "Values": {
                     "default": {}
                   }
@@ -2670,10 +2670,10 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {}
                   }
@@ -2697,50 +2697,54 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "flash": {
+          "ValueSets": {
+            "flash": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "swf": {
                       "Value": "#core.base.url#client.swf"
                     }
-                  },
-                  "RuleSets": {
-                    "is_flash": {
-                      "Rules": {
-                        "flash_capability": {
-                          "Subject": "Capability",
-                          "Capability": "FLASH",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "is_flash": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
-                },
-                "shockwave": {
+                }
+              }
+            },
+            "shockwave": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "dcr": {
                       "Value": "#core.base.url#client.dcr"
                     }
-                  },
-                  "RuleSets": {
-                    "is_shockwave": {
-                      "Rules": {
-                        "shockwave_capability": {
-                          "Subject": "Capability",
-                          "Capability": "SHOCKWAVE",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "is_shockwave": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
                 }
@@ -2787,10 +2791,10 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "version": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "version": {
                   "Values": {
                     "default": {
                       "Value": "53411647"
@@ -2825,10 +2829,10 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {
                       "Value": "#core.base.url#sec.cct?t=%token%"
@@ -2933,50 +2937,54 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "flash": {
+          "ValueSets": {
+            "flash": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {
                       "Value": "#asset.base.url#furniture/swf/"
                     }
-                  },
-                  "RuleSets": {
-                    "is_flash": {
-                      "Rules": {
-                        "flash_capability": {
-                          "Subject": "Capability",
-                          "Capability": "FLASH",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "is_flash": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
-                },
-                "shockwave": {
+                }
+              }
+            },
+            "shockwave": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {
                       "Value": "#asset.base.url#furniture/cct/"
                     }
-                  },
-                  "RuleSets": {
-                    "is_shockwave": {
-                      "Rules": {
-                        "shockwave_capability": {
-                          "Subject": "Capability",
-                          "Capability": "SHOCKWAVE",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "is_shockwave": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
                 }
@@ -3023,28 +3031,28 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "template": {
-              "ValueSets": {
-                "flash": {
+          "ValueSets": {
+            "flash": {
+              "Fields": {
+                "template": {
                   "Values": {
                     "default": {
                       "Value": "%revision%/%typeid%%param%_icon.png"
                     }
-                  },
-                  "RuleSets": {
-                    "is_flash": {
-                      "Rules": {
-                        "flash_capability": {
-                          "Subject": "Capability",
-                          "Capability": "FLASH",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "is_flash": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
                 }
@@ -3091,28 +3099,28 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "template": {
-              "ValueSets": {
-                "flash": {
+          "ValueSets": {
+            "flash": {
+              "Fields": {
+                "template": {
                   "Values": {
                     "default": {
                       "Value": "%revision%/%typeid%.swf"
                     }
-                  },
-                  "RuleSets": {
-                    "is_flash": {
-                      "Rules": {
-                        "flash_capability": {
-                          "Subject": "Capability",
-                          "Capability": "FLASH",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "is_flash": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
                 }
@@ -3159,46 +3167,50 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "xml": {
+          "ValueSets": {
+            "xml": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {}
-                  },
-                  "RuleSets": {
-                    "supports_xml_furniture_data": {
-                      "Rules": {
-                        "furniture_data_xml_capability": {
-                          "Subject": "Capability",
-                          "Capability": "FURNITURE_DATA_XML",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "supports_xml_furniture_data": {
+                  "Rules": {
+                    "furniture_data_xml_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FURNITURE_DATA_XML",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
-                },
-                "lingo": {
+                }
+              }
+            },
+            "lingo": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {}
-                  },
-                  "RuleSets": {
-                    "is_shockwave": {
-                      "Rules": {
-                        "shockwave": {
-                          "Subject": "Capability",
-                          "Capability": "SHOCKWAVE",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "is_shockwave": {
+                  "Rules": {
+                    "shockwave": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
                 }
@@ -3230,53 +3242,57 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "count": {
-              "ValueSets": {
-                "development": {
+          "ValueSets": {
+            "development": {
+              "Fields": {
+                "count": {
                   "Values": {
                     "default": {
                       "Value": "100"
                     }
-                  },
-                  "RuleSets": {
-                    "is_development_environment": {
-                      "Rules": {
-                        "development_environment": {
-                          "Subject": "Environment",
-                          "Environment": "Development",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "is_development_environment": {
+                  "Rules": {
+                    "development_environment": {
+                      "Subject": "Environment",
+                      "Environment": "Development",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
-                },
-                "default": {
+                }
+              }
+            },
+            "default": {
+              "Fields": {
+                "count": {
                   "Values": {
                     "default": {
                       "Value": "5"
                     }
-                  },
-                  "RuleSets": {
-                    "is_not_development_environment": {
-                      "Rules": {
-                        "not_development_environment": {
-                          "Subject": "Environment",
-                          "Environment": "Development",
-                          "Expressions": [
-                            {
-                              "Operation": "Not",
-                              "Expression": {
-                                "Operation": "Equals"
-                              }
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "is_not_development_environment": {
+                  "Rules": {
+                    "not_development_environment": {
+                      "Subject": "Environment",
+                      "Environment": "Development",
+                      "Expressions": [
+                        {
+                          "Operation": "Not",
+                          "Expression": {
+                            "Operation": "Equals"
+                          }
                         }
-                      }
+                      ]
                     }
                   }
                 }
@@ -3347,37 +3363,37 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "shockwave": {
+          "ValueSets": {
+            "shockwave": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {
                       "Value": "#core.base.url#animation.xml"
                     }
-                  },
-                  "RuleSets": {
-                    "supports_dynamic_figure_animations": {
-                      "Rules": {
-                        "shockwave_capability": {
-                          "Subject": "Capability",
-                          "Capability": "SHOCKWAVE",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
-                        },
-                        "figure_animations_dynamic_capability": {
-                          "Subject": "Capability",
-                          "Capability": "FIGURE_ANIMATIONS_DYNAMIC",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "supports_dynamic_figure_animations": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
+                    },
+                    "figure_animations_dynamic_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FIGURE_ANIMATIONS_DYNAMIC",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
                     }
                   }
                 }
@@ -3424,28 +3440,28 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "flash": {
+          "ValueSets": {
+            "flash": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {
                       "Value": "#asset.base.url#figure/swf/"
                     }
-                  },
-                  "RuleSets": {
-                    "is_flash": {
-                      "Rules": {
-                        "flash_capability": {
-                          "Subject": "Capability",
-                          "Capability": "FLASH",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "is_flash": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
                 }
@@ -3492,28 +3508,28 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "template": {
-              "ValueSets": {
-                "flash": {
+          "ValueSets": {
+            "flash": {
+              "Fields": {
+                "template": {
                   "Values": {
                     "default": {
                       "Value": "%revision%/%libname%.swf"
                     }
-                  },
-                  "RuleSets": {
-                    "is_flash": {
-                      "Rules": {
-                        "flash_capability": {
-                          "Subject": "Capability",
-                          "Capability": "FLASH",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "is_flash": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
                 }
@@ -3560,58 +3576,62 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "xml": {
+          "ValueSets": {
+            "xml": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {}
-                  },
-                  "RuleSets": {
-                    "supports_xml_figure_data": {
-                      "Rules": {
-                        "figure_data_xml_capability": {
-                          "Subject": "Capability",
-                          "Capability": "FIGURE_DATA_XML",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "supports_xml_figure_data": {
+                  "Rules": {
+                    "figure_data_xml_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FIGURE_DATA_XML",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
-                },
-                "lingo": {
+                }
+              }
+            },
+            "lingo": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {}
-                  },
-                  "RuleSets": {
-                    "supports_lingo_figure_data": {
-                      "Rules": {
-                        "shockwave_capability": {
-                          "Subject": "Capability",
-                          "Capability": "SHOCKWAVE",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
-                        },
-                        "no_figure_data_xml_capability": {
-                          "Subject": "Capability",
-                          "Capability": "FIGURE_DATA_XML",
-                          "Expressions": [
-                            {
-                              "Operation": "Not",
-                              "Expression": {
-                                "Operation": "Equals"
-                              }
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "supports_lingo_figure_data": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
+                    },
+                    "no_figure_data_xml_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FIGURE_DATA_XML",
+                      "Expressions": [
+                        {
+                          "Operation": "Not",
+                          "Expression": {
+                            "Operation": "Equals"
+                          }
+                        }
+                      ]
                     }
                   }
                 }
@@ -3667,35 +3687,35 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "xml": {
+          "ValueSets": {
+            "xml": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {}
-                  },
-                  "RuleSets": {
-                    "supports_figure_map": {
-                      "Rules": {
-                        "flash_capability": {
-                          "Subject": "Capability",
-                          "Capability": "FLASH",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
-                        },
-                        "figure_map_xml_capability": {
-                          "Subject": "Capability",
-                          "Capability": "FIGURE_MAP_XML",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "supports_figure_map": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
+                    },
+                    "figure_map_xml_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FIGURE_MAP_XML",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
                     }
                   }
                 }
@@ -3754,10 +3774,10 @@
       "Entries": {
         "h": {
           "Type": "Static",
-          "Fields": {
-            "parts": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "parts": {
                   "Values": {
                     "left_item": {
                       "Name": "Left item",
@@ -3824,10 +3844,10 @@
         },
         "sh": {
           "Type": "Static",
-          "Fields": {
-            "parts": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "parts": {
                   "Values": {
                     "left_item": {
                       "Name": "Left item",
@@ -3941,37 +3961,37 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "shockwave": {
+          "ValueSets": {
+            "shockwave": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {
                       "Value": "#core.base.url#partsets.xml"
                     }
-                  },
-                  "RuleSets": {
-                    "supports_dynamic_figure_part_sets": {
-                      "Rules": {
-                        "shockwave_capability": {
-                          "Subject": "Capability",
-                          "Capability": "SHOCKWAVE",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
-                        },
-                        "figure_part_sets_dynamic_capability": {
-                          "Subject": "Capability",
-                          "Capability": "FIGURE_PART_SETS_DYNAMIC",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "supports_dynamic_figure_part_sets": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
+                    },
+                    "figure_part_sets_dynamic_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FIGURE_PART_SETS_DYNAMIC",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
                     }
                   }
                 }
@@ -4064,15 +4084,10 @@
       "Entries": {
         "h": {
           "Type": "Static",
-          "Fields": {
-            "states": {
-              "ValueSets": {
-                "default": {}
-              }
-            },
-            "states.geometry": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "states.geometry": {
                   "Values": {
                     "standing": {
                       "Name": "Standing",
@@ -4083,12 +4098,8 @@
                       "Value": "lay"
                     }
                   }
-                }
-              }
-            },
-            "states.geometry.bit_depth": {
-              "ValueSets": {
-                "default": {
+                },
+                "states.geometry.bit_depth": {
                   "Values": {
                     "standing": {
                       "Value": "32"
@@ -4097,12 +4108,8 @@
                       "Value": "32"
                     }
                   }
-                }
-              }
-            },
-            "states.geometry.height": {
-              "ValueSets": {
-                "default": {
+                },
+                "states.geometry.height": {
                   "Values": {
                     "standing": {
                       "Value": "106"
@@ -4111,12 +4118,8 @@
                       "Value": "70"
                     }
                   }
-                }
-              }
-            },
-            "states.geometry.offset_y": {
-              "ValueSets": {
-                "default": {
+                },
+                "states.geometry.offset_y": {
                   "Values": {
                     "standing": {
                       "Value": "-8"
@@ -4125,12 +4128,8 @@
                       "Value": "-8"
                     }
                   }
-                }
-              }
-            },
-            "states.geometry.width": {
-              "ValueSets": {
-                "default": {
+                },
+                "states.geometry.width": {
                   "Values": {
                     "standing": {
                       "Value": "64"
@@ -4147,15 +4146,10 @@
         },
         "sh": {
           "Type": "Static",
-          "Fields": {
-            "states": {
-              "ValueSets": {
-                "default": {}
-              }
-            },
-            "states.geometry": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "states.geometry": {
                   "Values": {
                     "standing": {
                       "Name": "Standing",
@@ -4170,12 +4164,8 @@
                       "Value": "swm"
                     }
                   }
-                }
-              }
-            },
-            "states.geometry.bit_depth": {
-              "ValueSets": {
-                "default": {
+                },
+                "states.geometry.bit_depth": {
                   "Values": {
                     "standing": {
                       "Value": "32"
@@ -4187,12 +4177,8 @@
                       "Value": "32"
                     }
                   }
-                }
-              }
-            },
-            "states.geometry.height": {
-              "ValueSets": {
-                "default": {
+                },
+                "states.geometry.height": {
                   "Values": {
                     "standing": {
                       "Value": "62"
@@ -4204,12 +4190,8 @@
                       "Value": "60"
                     }
                   }
-                }
-              }
-            },
-            "states.geometry.offset_y": {
-              "ValueSets": {
-                "default": {
+                },
+                "states.geometry.offset_y": {
                   "Values": {
                     "standing": {
                       "Value": "-8"
@@ -4221,12 +4203,8 @@
                       "Value": "-8"
                     }
                   }
-                }
-              }
-            },
-            "states.geometry.width": {
-              "ValueSets": {
-                "default": {
+                },
+                "states.geometry.width": {
                   "Values": {
                     "standing": {
                       "Value": "32"
@@ -4293,37 +4271,37 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "shockwave": {
+          "ValueSets": {
+            "shockwave": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {
                       "Value": "#core.base.url#draworder.xml"
                     }
-                  },
-                  "RuleSets": {
-                    "supports_dynamic_figure_draw_order": {
-                      "Rules": {
-                        "shockwave_capability": {
-                          "Subject": "Capability",
-                          "Capability": "SHOCKWAVE",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
-                        },
-                        "figure_draw_order_dynamic_capability": {
-                          "Subject": "Capability",
-                          "Capability": "FIGURE_DRAW_ORDER_DYNAMIC",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "supports_dynamic_figure_draw_order": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
+                    },
+                    "figure_draw_order_dynamic_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FIGURE_DRAW_ORDER_DYNAMIC",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
                     }
                   }
                 }
@@ -4381,10 +4359,10 @@
       "Entries": {
         "64": {
           "Type": "Static",
-          "Fields": {
-            "asset_prefix": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "asset_prefix": {
                   "Values": {
                     "default": {
                       "Name": "Normal",
@@ -4399,10 +4377,10 @@
         },
         "32": {
           "Type": "Static",
-          "Fields": {
-            "asset_prefix": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "asset_prefix": {
                   "Values": {
                     "default": {
                       "Name": "Small",
@@ -4455,28 +4433,28 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {
                       "Value": "#asset.base.url#images/"
                     }
-                  },
-                  "RuleSets": {
-                    "supports_badges": {
-                      "Rules": {
-                        "badges_capability": {
-                          "Subject": "Capability",
-                          "Capability": "BADGES",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "supports_badges": {
+                  "Rules": {
+                    "badges_capability": {
+                      "Subject": "Capability",
+                      "Capability": "BADGES",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
                 }
@@ -4523,28 +4501,28 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "url": {
-              "ValueSets": {
-                "flash": {
+          "ValueSets": {
+            "flash": {
+              "Fields": {
+                "url": {
                   "Values": {
                     "default": {
                       "Value": "#asset.base.url#pet/swf/"
                     }
-                  },
-                  "RuleSets": {
-                    "is_flash": {
-                      "Rules": {
-                        "flash_capability": {
-                          "Subject": "Capability",
-                          "Capability": "FLASH",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "is_flash": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
                 }
@@ -4591,28 +4569,28 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "template": {
-              "ValueSets": {
-                "flash": {
+          "ValueSets": {
+            "flash": {
+              "Fields": {
+                "template": {
                   "Values": {
                     "default": {
                       "Value": "%type%.swf"
                     }
-                  },
-                  "RuleSets": {
-                    "is_flash": {
-                      "Rules": {
-                        "flash_capability": {
-                          "Subject": "Capability",
-                          "Capability": "FLASH",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "is_flash": {
+                  "Rules": {
+                    "flash_capability": {
+                      "Subject": "Capability",
+                      "Capability": "FLASH",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
                 }
@@ -4668,41 +4646,45 @@
       "Entries": {
         "private": {
           "Type": "Static",
-          "Fields": {
-            "file": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "room": {
                       "Value": "hh_room_private"
                     }
-                  },
-                  "RuleSets": {
-                    "supports_dynamic_assets": {
-                      "Rules": {
-                        "shockwave_capability": {
-                          "Subject": "Capability",
-                          "Capability": "SHOCKWAVE",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
-                        },
-                        "assets_dynamic_capability": {
-                          "Subject": "Capability",
-                          "Capability": "ASSETS_DYNAMIC",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "supports_dynamic_assets": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
+                    },
+                    "assets_dynamic_capability": {
+                      "Subject": "Capability",
+                      "Capability": "ASSETS_DYNAMIC",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
+                        }
+                      ]
                     }
                   }
-                },
-                "furniture": {
+                }
+              }
+            },
+            "furniture": {
+              "Fields": {
+                "file": {
                   "Values": {
                     "armas": {
                       "Value": "hh_furni_armas"
@@ -4722,32 +4704,32 @@
                       "Description": "Zoomed out",
                       "Value": "hh_furni_small"
                     }
-                  },
-                  "RuleSets": {
-                    "supports_static_furntiure_casts": {
-                      "Rules": {
-                        "shockwave_capability": {
-                          "Subject": "Capability",
-                          "Capability": "SHOCKWAVE",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
-                        },
-                        "no_assets_dynamic_capability": {
-                          "Subject": "Capability",
-                          "Capability": "ASSETS_DYNAMIC",
-                          "Expressions": [
-                            {
-                              "Operation": "Not",
-                              "Expression": {
-                                "Operation": "Equals"
-                              }
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "supports_static_furntiure_casts": {
+                  "Rules": {
+                    "shockwave_capability": {
+                      "Subject": "Capability",
+                      "Capability": "SHOCKWAVE",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
+                    },
+                    "no_assets_dynamic_capability": {
+                      "Subject": "Capability",
+                      "Capability": "ASSETS_DYNAMIC",
+                      "Expressions": [
+                        {
+                          "Operation": "Not",
+                          "Expression": {
+                            "Operation": "Equals"
+                          }
+                        }
+                      ]
                     }
                   }
                 }
@@ -4797,10 +4779,10 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "enabled": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "enabled": {
                   "Values": {
                     "default": {
                       "Value": "false"
@@ -4850,10 +4832,10 @@
       "Entries": {
         "info": {
           "Type": "Static",
-          "Fields": {
-            "id": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "id": {
                   "Values": {
                     "default": {
                       "Value": "#info"
@@ -4867,10 +4849,10 @@
         },
         "room": {
           "Type": "Static",
-          "Fields": {
-            "id": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "id": {
                   "Values": {
                     "default": {
                       "Value": "#info"
@@ -4883,10 +4865,10 @@
         },
         "mus": {
           "Type": "Static",
-          "Fields": {
-            "id": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "id": {
                   "Values": {
                     "default": {
                       "Value": "#mus"
@@ -4999,21 +4981,17 @@
       "Entries": {
         "development": {
           "Type": "Static",
-          "Fields": {
-            "host": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "host": {
                   "Values": {
                     "default": {
                       "Value": "127.0.0.1"
                     }
                   }
-                }
-              }
-            },
-            "port": {
-              "ValueSets": {
-                "default": {
+                },
+                "port": {
                   "Values": {
                     "default": {
                       "Value": "30000"
@@ -5042,19 +5020,15 @@
         },
         "production": {
           "Type": "Static",
-          "Fields": {
-            "host": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "host": {
                   "Values": {
                     "default": {}
                   }
-                }
-              }
-            },
-            "port": {
-              "ValueSets": {
-                "default": {
+                },
+                "port": {
                   "Values": {
                     "default": {}
                   }
@@ -5103,10 +5077,10 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
-            "value": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "value": {
                   "Values": {
                     "default": {
                       "Value": "#SSO_TICKET#"
@@ -5160,9 +5134,9 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
+          "ValueSets": {
             "enabled": {
-              "ValueSets": {
+              "Fields": {
                 "enabled": {
                   "Values": {
                     "state": {
@@ -5237,53 +5211,57 @@
       "Entries": {
         "default": {
           "Type": "Static",
-          "Fields": {
+          "ValueSets": {
             "enabled": {
-              "ValueSets": {
+              "Fields": {
                 "enabled": {
                   "Values": {
                     "state": {
                       "Value": "true"
                     }
-                  },
-                  "RuleSets": {
-                    "utf8_encoding_enabled": {
-                      "Rules": {
-                        "utf8_encoding": {
-                          "Subject": "Encoding",
-                          "Encoding": "UTF-8",
-                          "Expressions": [
-                            {
-                              "Operation": "Equals"
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "utf8_encoding_enabled": {
+                  "Rules": {
+                    "utf8_encoding": {
+                      "Subject": "Encoding",
+                      "Encoding": "UTF-8",
+                      "Expressions": [
+                        {
+                          "Operation": "Equals"
                         }
-                      }
+                      ]
                     }
                   }
-                },
-                "disabled": {
+                }
+              }
+            },
+            "disabled": {
+              "Fields": {
+                "enabled": {
                   "Values": {
                     "state": {
                       "Value": "false"
                     }
-                  },
-                  "RuleSets": {
-                    "utf8_encoding_disabled": {
-                      "Rules": {
-                        "no_ut8_encoding": {
-                          "Subject": "Encoding",
-                          "Encoding": "UTF-8",
-                          "Expressions": [
-                            {
-                              "Operation": "Not",
-                              "Expression": {
-                                "Operation": "Equals"
-                              }
-                            }
-                          ]
+                  }
+                }
+              },
+              "RuleSets": {
+                "utf8_encoding_disabled": {
+                  "Rules": {
+                    "no_ut8_encoding": {
+                      "Subject": "Encoding",
+                      "Encoding": "UTF-8",
+                      "Expressions": [
+                        {
+                          "Operation": "Not",
+                          "Expression": {
+                            "Operation": "Equals"
+                          }
                         }
-                      }
+                      ]
                     }
                   }
                 }
@@ -5383,68 +5361,48 @@
       "Entries": {
         "plain": {
           "Type": "Static",
-          "Fields": {
-            "font": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "font": {
                   "Values": {
                     "default": {
                       "Name": "Type",
                       "Value": "struct"
                     }
                   }
-                }
-              }
-            },
-            "font.color": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.color": {
                   "Values": {
                     "default": {
                       "Name": "White",
                       "Value": "#000000"
                     }
                   }
-                }
-              }
-            },
-            "font.height": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.height": {
                   "Values": {
                     "default": {
                       "Value": "10"
                     }
                   }
-                }
-              }
-            },
-            "font.name": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.name": {
                   "Values": {
                     "default": {
                       "Name": "Volter",
                       "Value": "v"
                     }
                   }
-                }
-              }
-            },
-            "font.size": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.size": {
                   "Values": {
                     "default": {
                       "Value": "9"
                     }
                   }
-                }
-              }
-            },
-            "font.styles": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.styles": {
                   "Values": {
                     "default": {
                       "Value": "plain"
@@ -5459,68 +5417,48 @@
         },
         "italic": {
           "Type": "Static",
-          "Fields": {
-            "font": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "font": {
                   "Values": {
                     "default": {
                       "Name": "Type",
                       "Value": "struct"
                     }
                   }
-                }
-              }
-            },
-            "font.color": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.color": {
                   "Values": {
                     "default": {
                       "Name": "White",
                       "Value": "#000000"
                     }
                   }
-                }
-              }
-            },
-            "font.height": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.height": {
                   "Values": {
                     "default": {
                       "Value": "10"
                     }
                   }
-                }
-              }
-            },
-            "font.name": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.name": {
                   "Values": {
                     "default": {
                       "Name": "Volter",
                       "Value": "v"
                     }
                   }
-                }
-              }
-            },
-            "font.size": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.size": {
                   "Values": {
                     "default": {
                       "Value": "9"
                     }
                   }
-                }
-              }
-            },
-            "font.styles": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.styles": {
                   "Values": {
                     "default": {
                       "Value": "italic"
@@ -5535,68 +5473,48 @@
         },
         "link": {
           "Type": "Static",
-          "Fields": {
-            "font": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "font": {
                   "Values": {
                     "default": {
                       "Name": "Type",
                       "Value": "struct"
                     }
                   }
-                }
-              }
-            },
-            "font.color": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.color": {
                   "Values": {
                     "default": {
                       "Name": "White",
                       "Value": "#000000"
                     }
                   }
-                }
-              }
-            },
-            "font.height": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.height": {
                   "Values": {
                     "default": {
                       "Value": "10"
                     }
                   }
-                }
-              }
-            },
-            "font.name": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.name": {
                   "Values": {
                     "default": {
                       "Name": "Volter",
                       "Value": "v"
                     }
                   }
-                }
-              }
-            },
-            "font.size": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.size": {
                   "Values": {
                     "default": {
                       "Value": "9"
                     }
                   }
-                }
-              }
-            },
-            "font.styles": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.styles": {
                   "Values": {
                     "default": {
                       "Value": "underline"
@@ -5611,68 +5529,48 @@
         },
         "grey": {
           "Type": "Static",
-          "Fields": {
-            "font": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "font": {
                   "Values": {
                     "default": {
                       "Name": "Type",
                       "Value": "struct"
                     }
                   }
-                }
-              }
-            },
-            "font.color": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.color": {
                   "Values": {
                     "default": {
                       "Name": "Grey",
                       "Value": "#666666"
                     }
                   }
-                }
-              }
-            },
-            "font.height": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.height": {
                   "Values": {
                     "default": {
                       "Value": "10"
                     }
                   }
-                }
-              }
-            },
-            "font.name": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.name": {
                   "Values": {
                     "default": {
                       "Name": "Volter",
                       "Value": "v"
                     }
                   }
-                }
-              }
-            },
-            "font.size": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.size": {
                   "Values": {
                     "default": {
                       "Value": "9"
                     }
                   }
-                }
-              }
-            },
-            "font.styles": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.styles": {
                   "Values": {
                     "default": {
                       "Value": "italic"
@@ -5687,68 +5585,48 @@
         },
         "bold": {
           "Type": "Static",
-          "Fields": {
-            "font": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "font": {
                   "Values": {
                     "default": {
                       "Name": "Type",
                       "Value": "struct"
                     }
                   }
-                }
-              }
-            },
-            "font.color": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.color": {
                   "Values": {
                     "default": {
                       "Name": "White",
                       "Value": "#000000"
                     }
                   }
-                }
-              }
-            },
-            "font.height": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.height": {
                   "Values": {
                     "default": {
                       "Value": "10"
                     }
                   }
-                }
-              }
-            },
-            "font.name": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.name": {
                   "Values": {
                     "default": {
                       "Name": "Volter Bold",
                       "Value": "vb"
                     }
                   }
-                }
-              }
-            },
-            "font.size": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.size": {
                   "Values": {
                     "default": {
                       "Value": "9"
                     }
                   }
-                }
-              }
-            },
-            "font.styles": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.styles": {
                   "Values": {
                     "default": {
                       "Value": "plain"
@@ -5763,68 +5641,48 @@
         },
         "tooltip": {
           "Type": "Static",
-          "Fields": {
-            "font": {
-              "ValueSets": {
-                "default": {
+          "ValueSets": {
+            "default": {
+              "Fields": {
+                "font": {
                   "Values": {
                     "default": {
                       "Name": "Type",
                       "Value": "struct"
                     }
                   }
-                }
-              }
-            },
-            "font.color": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.color": {
                   "Values": {
                     "default": {
                       "Name": "White",
                       "Value": "#000000"
                     }
                   }
-                }
-              }
-            },
-            "font.height": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.height": {
                   "Values": {
                     "default": {
                       "Value": "10"
                     }
                   }
-                }
-              }
-            },
-            "font.name": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.name": {
                   "Values": {
                     "default": {
                       "Name": "Volter",
                       "Value": "v"
                     }
                   }
-                }
-              }
-            },
-            "font.size": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.size": {
                   "Values": {
                     "default": {
                       "Value": "9"
                     }
                   }
-                }
-              }
-            },
-            "font.styles": {
-              "ValueSets": {
-                "default": {
+                },
+                "font.styles": {
                   "Values": {
                     "default": {
                       "Value": "plain"

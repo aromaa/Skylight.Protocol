@@ -1,6 +1,7 @@
 ﻿@using Skylight.Protocol.Client.Variables
 @using Skylight.Protocol.Client.Variables.Entries
 @using Skylight.Protocol.Editor.Components.Variables.Rules
+
 <tr>
 	<td>
 		<input class="form-control form-control-sm" value="@this.EntryCode" @onchange="e => this.RenameCallback.InvokeAsync(e.Value?.ToString() ?? this.EntryCode)" />
@@ -31,7 +32,11 @@
 		</button>
 		<button type="button" class="btn @(this.expand ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
 				@onclick="() => this.expand = !this.expand">
-			@if (this.Entry is ClientVariableGroupEntry group)
+			@if (this.Entry is ClientVariableStaticEntry staticEntry)
+			{
+				<text>Sets <span class="badge bg-secondary">@staticEntry.ValueSets.Count</span></text>
+			}
+			else if (this.Entry is ClientVariableGroupEntry group)
 			{
 				<text>Children <span class="badge bg-secondary">@group.Entries.Count</span></text>
 			}
@@ -54,37 +59,9 @@
 {
 	<tr>
 		<td colspan="5" class="bg-light editor-tree-branch">
-			@if (this.Entry is ClientVariableStaticEntry staticEntry)
+			@if (this.Entry is ClientVariableStaticEntry staticEntry2)
 			{
-				foreach ((string fieldCode, ClientVariableField field) in this.Variable.Fields)
-				{
-					if (!staticEntry.Fields.TryGetValue(fieldCode, out ClientVariableStaticEntryValue? fieldValue))
-					{
-						fieldValue = new ClientVariableStaticEntryValue();
-
-						staticEntry.Fields.Add(fieldCode, fieldValue);
-					}
-
-					<div @key="fieldValue" class="mb-3 p-2">
-						<div class="row g-2 mb-2 align-items-center">
-							<div class="col-md-2"><code>@fieldCode</code></div>
-							<div class="col-md-4">
-								<input class="form-control form-control-sm" placeholder="Name"
-									   value="@(fieldValue.Name ?? string.Empty)"
-									   @onchange="e => fieldValue.Name = e.Value?.ToString() ?? string.Empty" />
-							</div>
-							<div class="col-md-6">
-								<input class="form-control form-control-sm" placeholder="Description"
-									   value="@(fieldValue.Description ?? string.Empty)"
-									   @onchange="e => fieldValue.Description = e.Value?.ToString() ?? string.Empty" />
-							</div>
-						</div>
-						<div class="ms-2">
-							<h5 class="h6 mb-2">Value sets</h5>
-							<ClientVariableStaticEntryValueComponent Field="fieldValue" />
-						</div>
-					</div>
-				}
+				<ClientVariableStaticEntryComponent Variable="this.Variable" Entry="staticEntry2" />
 			}
 			else if (this.Entry is ClientVariableGroupEntry groupEntry)
 			{

@@ -3,6 +3,7 @@
 @using Skylight.Protocol.Client
 @using Skylight.Protocol.Client.Variables
 @using Skylight.Protocol.Client.Variables.Entries
+@using Skylight.Protocol.Client.Variables.Values
 @using Skylight.Protocol.Editor.Components.Variables
 @inject IJSRuntime JS
 @implements IAsyncDisposable
@@ -87,18 +88,21 @@
 			{
 				if (entry is ClientVariableStaticEntry staticEntry)
 				{
-					HashSet<string> emptyFields = [];
-					foreach ((string fieldKey, ClientVariableStaticEntryValue field) in staticEntry.Fields)
+					foreach (ClientVariableValueSet valueSet in staticEntry.ValueSets.Values)
 					{
-						if (field.Name == string.Empty && field.Description == string.Empty && field.ValueSets.Count == 0)
+						HashSet<string> emptyFields = [];
+						foreach ((string fieldKey, ClientVariableValueSetField field) in valueSet.Fields)
 						{
-							emptyFields.Add(fieldKey);
+							if (field.Name == string.Empty && field.Description == string.Empty && field.Values.Count == 0)
+							{
+								emptyFields.Add(fieldKey);
+							}
 						}
-					}
 
-					foreach (string fieldKey in emptyFields)
-					{
-						staticEntry.Fields.Remove(fieldKey);
+						foreach (string fieldKey in emptyFields)
+						{
+							valueSet.Fields.Remove(fieldKey);
+						}
 					}
 				}
 				else if (entry is ClientVariableGroupEntry groupEntry)

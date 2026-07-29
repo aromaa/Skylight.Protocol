@@ -1,4 +1,5 @@
-﻿@using Skylight.Protocol.Client.Variables.Entries
+﻿@using Skylight.Protocol.Client.Variables
+@using Skylight.Protocol.Client.Variables.Entries
 @using Skylight.Protocol.Client.Variables.Values
 @using Skylight.Protocol.Editor.Components.Variables.Rules
 
@@ -19,13 +20,13 @@
 			↑
 		</button>
 		<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move down"
-			disabled="@(this.Index == this.Field.ValueSets.Count - 1)"
+			disabled="@(this.Index == this.Entry.ValueSets.Count - 1)"
 			@onclick="() => this.MoveCallback.InvokeAsync(1)">
 			↓
 		</button>
-		<button type="button" class="btn @(this.valuesExpanded ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
-			@onclick="() => this.valuesExpanded = !this.valuesExpanded">
-			Values <span class="badge bg-secondary">@this.ValueSet.Values.Count</span>
+		<button type="button" class="btn @(this.fieldsExpanded ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
+			@onclick="() => this.fieldsExpanded = !this.fieldsExpanded">
+			Fields
 		</button>
 		<button type="button" class="btn @(this.ruleSetsExpanded ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
 			@onclick="() => this.ruleSetsExpanded = !this.ruleSetsExpanded">
@@ -37,11 +38,11 @@
 	</td>
 </tr>
 
-@if (this.valuesExpanded)
+@if (this.fieldsExpanded)
 {
-	<tr @key=this.ValueSet.Values>
+	<tr @key=this.ValueSet.Fields>
 		<td colspan="4" class="bg-light">
-			<ClientVariableValuesComponent ValueSet="this.ValueSet" />
+			<ClientVariableValueSetFieldsComponent Variable="this.Variable" ValueSet="this.ValueSet" />
 		</td>
 	</tr>
 }
@@ -58,7 +59,10 @@
 @code
 {
 	[Parameter]
-	public required ClientVariableStaticEntryValue Field { get; set; }
+	public required ClientVariable Variable { get; set; }
+
+	[Parameter]
+	public required ClientVariableStaticEntry Entry { get; set; }
 
 	[Parameter]
 	public required int Index { get; set; }
@@ -78,6 +82,6 @@
 	[Parameter]
 	public required EventCallback RemoveCallback { get; set; }
 
-	private bool valuesExpanded;
+	private bool fieldsExpanded;
 	private bool ruleSetsExpanded;
 }

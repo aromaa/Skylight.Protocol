@@ -1,5 +1,6 @@
 ﻿@using Skylight.Protocol.Client.Variables
 @using Skylight.Protocol.Client.Variables.Entries
+@using Skylight.Protocol.Client.Variables.Values
 
 <div class="editor-tree-branch">
 	<h3 class="h6 mt-2 mb-2">Fields</h3>
@@ -57,9 +58,12 @@
 		{
 			if (entry is ClientVariableStaticEntry staticEntry)
 			{
-				if (staticEntry.Fields.Remove(oldCode, out ClientVariableStaticEntryValue? value))
+				foreach (ClientVariableValueSet valueSet in staticEntry.ValueSets.Values)
 				{
-					staticEntry.Fields.Add(newCode, value);
+					if (valueSet.Fields.Remove(oldCode, out ClientVariableValueSetField? value))
+					{
+						valueSet.Fields.Add(newCode, value);
+					}
 				}
 			}
 		}

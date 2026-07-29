@@ -13,9 +13,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach ((string valueCode, ClientVariableValue value) in this.ValueSet.Values)
+			@foreach ((string valueCode, ClientVariableValue value) in this.Field.Values)
 			{
-				int index = this.ValueSet.Values.IndexOf(valueCode);
+				int index = this.Field.Values.IndexOf(valueCode);
 
 				<tr @key="value">
 					<td>
@@ -37,7 +37,7 @@
 							↑
 						</button>
 						<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move down"
-								disabled="@(index == this.ValueSet.Values.Count - 1)"
+								disabled="@(index == this.Field.Values.Count - 1)"
 								@onclick="() => this.MoveValue(index, 1)">
 							↓
 						</button>
@@ -45,7 +45,7 @@
 								@onclick="() => this.ruleSetsExpanded = !this.ruleSetsExpanded">
 							Rules <span class="badge bg-secondary">@value.RuleSets.Count</span>
 						</button>
-						<button type="button" class="btn btn-outline-danger btn-sm" @onclick="() => this.ValueSet.Values.RemoveAt(index)">
+						<button type="button" class="btn btn-outline-danger btn-sm" @onclick="() => this.Field.Values.RemoveAt(index)">
 							Delete
 						</button>
 					</td>
@@ -70,7 +70,7 @@
 @code
 {
 	[Parameter]
-	public required ClientVariableValueSet ValueSet { get; set; }
+	public required ClientVariableValueSetField Field { get; set; }
 
 	private bool ruleSetsExpanded;
 
@@ -80,34 +80,34 @@
 		ClientVariableValue value = new();
 
 		int i = 1;
-		while (!this.ValueSet.Values.TryAdd($"VALUE_{i++}", value))
+		while (!this.Field.Values.TryAdd($"VALUE_{i++}", value))
 		{
 		}
 	}
 
 	private void RenameValue(int index, string newCode)
 	{
-		if (this.ValueSet.Values.ContainsKey(newCode))
+		if (this.Field.Values.ContainsKey(newCode))
 		{
 			return;
 		}
 
-		(string code, ClientVariableValue value) = this.ValueSet.Values.GetAt(index);
+		(string code, ClientVariableValue value) = this.Field.Values.GetAt(index);
 
-		this.ValueSet.Values.SetAt(index, newCode, value);
+		this.Field.Values.SetAt(index, newCode, value);
 	}
 
 	private void MoveValue(int index, int offset)
 	{
 		int newIndex = index + offset;
-		if (newIndex < 0 || newIndex >= this.ValueSet.Values.Count)
+		if (newIndex < 0 || newIndex >= this.Field.Values.Count)
 		{
 			return;
 		}
 
-		(string code, ClientVariableValue value) = this.ValueSet.Values.GetAt(index);
+		(string code, ClientVariableValue value) = this.Field.Values.GetAt(index);
 
-		this.ValueSet.Values.RemoveAt(index);
-		this.ValueSet.Values.Insert(newIndex, code, value);
+		this.Field.Values.RemoveAt(index);
+		this.Field.Values.Insert(newIndex, code, value);
 	}
 }
