@@ -1,0 +1,64 @@
+﻿<div class="table-responsive editor-tree-branch">
+	<table class="table table-sm align-middle mb-2">
+		<thead>
+			<tr>
+				<th style="width:25%">Mapped field</th>
+				<th style="width:320px"></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ((string key, SortedSet<string> fields) in this.Mappings)
+			{
+				int index = this.Mappings.IndexOf(key);
+
+				<ClientVariableDynamicMappingFieldComponent Mappings="this.Mappings" Fields="fields" Index="index" Key="@key" RenameCallback="code => this.RenameMapping(index, code)" MoveCallback="offset => this.MoveMapping(index, offset)" RemoveCallback="() => this.Mappings.RemoveAt(index)" />
+			}
+		</tbody>
+	</table>
+	<button type="button" class="btn btn-outline-primary btn-sm mb-2" @onclick="this.AddValue">
+		+ Add mapped field
+	</button>
+</div>
+
+@code
+{
+	[Parameter]
+	public required OrderedDictionary<string, SortedSet<string>> Mappings { get; set; }
+
+
+	private void AddValue()
+	{
+		OrderedDictionary<string, SortedSet<string>> value = new();
+
+		int i = 1;
+		while (!this.Mappings.TryAdd($"FIELD_{i++}", []))
+		{
+		}
+	}
+
+	private void RenameMapping(int index, string newCode)
+	{
+		if (this.Mappings.ContainsKey(newCode))
+		{
+			return;
+		}
+
+		(string code, SortedSet<string> fields) = this.Mappings.GetAt(index);
+
+		this.Mappings.SetAt(index, newCode, fields);
+	}
+
+	private void MoveMapping(int index, int offset)
+	{
+		int newIndex = index + offset;
+		if (newIndex < 0 || newIndex >= this.Mappings.Count)
+		{
+			return;
+		}
+
+		(string code, SortedSet<string> fields) = this.Mappings.GetAt(index);
+
+		this.Mappings.RemoveAt(index);
+		this.Mappings.Insert(newIndex, code, fields);
+	}
+}

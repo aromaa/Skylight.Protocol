@@ -1,4 +1,4 @@
-﻿@using Skylight.Protocol.Client.Variables.Values
+﻿@using Skylight.Protocol.Client.Variables.Values.Static
 @using Skylight.Protocol.Editor.Components.Variables.Rules
 
 <div class="table-responsive editor-tree-branch">
@@ -13,7 +13,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach ((string valueCode, ClientVariableValue value) in this.Field.Values)
+			@foreach ((string valueCode, ClientVariableStaticValue value) in this.Field.Values)
 			{
 				int index = this.Field.Values.IndexOf(valueCode);
 
@@ -70,14 +70,14 @@
 @code
 {
 	[Parameter]
-	public required ClientVariableValueSetField Field { get; set; }
+	public required ClientVariableStaticValueSetField Field { get; set; }
 
 	private bool ruleSetsExpanded;
 
 
 	private void AddValue()
 	{
-		ClientVariableValue value = new();
+		ClientVariableStaticValue value = new();
 
 		int i = 1;
 		while (!this.Field.Values.TryAdd($"VALUE_{i++}", value))
@@ -92,7 +92,7 @@
 			return;
 		}
 
-		(string code, ClientVariableValue value) = this.Field.Values.GetAt(index);
+		(string code, ClientVariableStaticValue value) = this.Field.Values.GetAt(index);
 
 		this.Field.Values.SetAt(index, newCode, value);
 	}
@@ -105,7 +105,7 @@
 			return;
 		}
 
-		(string code, ClientVariableValue value) = this.Field.Values.GetAt(index);
+		(string code, ClientVariableStaticValue value) = this.Field.Values.GetAt(index);
 
 		this.Field.Values.RemoveAt(index);
 		this.Field.Values.Insert(newIndex, code, value);

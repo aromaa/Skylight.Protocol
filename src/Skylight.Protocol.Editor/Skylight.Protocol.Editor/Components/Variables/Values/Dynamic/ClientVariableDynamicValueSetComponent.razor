@@ -1,6 +1,6 @@
 ﻿@using Skylight.Protocol.Client.Variables
 @using Skylight.Protocol.Client.Variables.Entries
-@using Skylight.Protocol.Client.Variables.Values
+@using Skylight.Protocol.Client.Variables.Values.Dynamic
 @using Skylight.Protocol.Editor.Components.Variables.Rules
 
 <tr>
@@ -15,21 +15,21 @@
 	</td>
 	<td class="text-end">
 		<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move up"
-			disabled="@(this.Index == 0)"
-			@onclick="() => this.MoveCallback.InvokeAsync(-1)">
+				disabled="@(this.Index == 0)"
+				@onclick="() => this.MoveCallback.InvokeAsync(-1)">
 			↑
 		</button>
 		<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move down"
-			disabled="@(this.Index == this.Entry.ValueSets.Count - 1)"
-			@onclick="() => this.MoveCallback.InvokeAsync(1)">
+				disabled="@(this.Index == this.Entry.ValueSets.Count - 1)"
+				@onclick="() => this.MoveCallback.InvokeAsync(1)">
 			↓
 		</button>
-		<button type="button" class="btn @(this.fieldsExpanded ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
-			@onclick="() => this.fieldsExpanded = !this.fieldsExpanded">
-			Fields
+		<button type="button" class="btn @(this.mappingsExpanded ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
+				@onclick="() => this.mappingsExpanded = !this.mappingsExpanded">
+			Mapping
 		</button>
 		<button type="button" class="btn @(this.ruleSetsExpanded ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
-			@onclick="() => this.ruleSetsExpanded = !this.ruleSetsExpanded">
+				@onclick="() => this.ruleSetsExpanded = !this.ruleSetsExpanded">
 			Rules <span class="badge bg-secondary">@this.ValueSet.RuleSets.Count</span>
 		</button>
 		<button type="button" class="btn btn-outline-danger btn-sm" @onclick="this.RemoveCallback">
@@ -38,11 +38,11 @@
 	</td>
 </tr>
 
-@if (this.fieldsExpanded)
+@if (this.mappingsExpanded)
 {
-	<tr @key=this.ValueSet.Fields>
+	<tr @key=this.ValueSet.Mappings>
 		<td colspan="4" class="bg-light">
-			<ClientVariableValueSetFieldsComponent Variable="this.Variable" ValueSet="this.ValueSet" />
+			<ClientVariableDynamicMappingsComponent Variable="this.Variable" ValueSet="this.ValueSet" />
 		</td>
 	</tr>
 }
@@ -62,7 +62,7 @@
 	public required ClientVariable Variable { get; set; }
 
 	[Parameter]
-	public required ClientVariableStaticEntry Entry { get; set; }
+	public required ClientVariableDynamicEntry Entry { get; set; }
 
 	[Parameter]
 	public required int Index { get; set; }
@@ -71,7 +71,7 @@
 	public required string ValueSetCode { get; set; }
 
 	[Parameter]
-	public required ClientVariableValueSet ValueSet { get; set; }
+	public required ClientVariableDynamicValueSet ValueSet { get; set; }
 
 	[Parameter]
 	public EventCallback<string> RenameCallback { get; set; }
@@ -82,6 +82,6 @@
 	[Parameter]
 	public required EventCallback RemoveCallback { get; set; }
 
-	private bool fieldsExpanded;
+	private bool mappingsExpanded;
 	private bool ruleSetsExpanded;
 }

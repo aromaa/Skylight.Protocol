@@ -1,7 +1,7 @@
 ﻿@using Skylight.Protocol.Client.Variables
 @using Skylight.Protocol.Client.Variables.Entries
-@using Skylight.Protocol.Client.Variables.Values.Static
-@using Skylight.Protocol.Editor.Components.Variables.Values.Static
+@using Skylight.Protocol.Client.Variables.Values.Dynamic
+@using Skylight.Protocol.Editor.Components.Variables.Values.Dynamic
 
 <div class="table-responsive">
 	<h3 class="h6 mt-2 mb-2">Value sets</h3>
@@ -15,11 +15,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach ((string valueSetCode, ClientVariableStaticValueSet valueSet) in this.Entry.ValueSets)
+			@foreach ((string valueSetCode, ClientVariableDynamicValueSet valueSet) in this.Entry.ValueSets)
 			{
 				int index = this.Entry.ValueSets.IndexOf(valueSetCode);
 
-				<ClientVariableStaticValueSetComponent @key="valueSet" Variable="this.Variable" Entry="this.Entry" Index="index" ValueSetCode="@valueSetCode" ValueSet="valueSet" RenameCallback="code => this.RenameValueSet(index, code)" MoveCallback="offset => this.MoveValueSet(index, offset)" RemoveCallback="() => this.Entry.ValueSets.RemoveAt(index)" />
+				<ClientVariableDynamicValueSetComponent @key="valueSet" Variable="this.Variable" Entry="this.Entry" Index="index" ValueSetCode="@valueSetCode" ValueSet="valueSet" RenameCallback="code => this.RenameValueSet(index, code)" MoveCallback="offset => this.MoveValueSet(index, offset)" RemoveCallback="() => this.Entry.ValueSets.RemoveAt(index)" />
 			}
 		</tbody>
 	</table>
@@ -34,14 +34,14 @@
 	public required ClientVariable Variable { get; set; }
 
 	[Parameter]
-	public required ClientVariableStaticEntry Entry { get; set; }
+	public required ClientVariableDynamicEntry Entry { get; set; }
 
 	[Parameter]
-	public required ClientVariableStaticValueSet Field { get; set; }
+	public required ClientVariableDynamicValueSet Field { get; set; }
 
 	private void AddValueSet()
 	{
-		ClientVariableStaticValueSet valueSet = new();
+		ClientVariableDynamicValueSet valueSet = new();
 
 		int i = 1;
 		while (!this.Entry.ValueSets.TryAdd($"VALUE_SET_{i++}", valueSet))
@@ -67,7 +67,7 @@
 			return;
 		}
 
-		(string code, ClientVariableStaticValueSet valueSet) = this.Entry.ValueSets.GetAt(index);
+		(string code, ClientVariableDynamicValueSet valueSet) = this.Entry.ValueSets.GetAt(index);
 
 		this.Entry.ValueSets.RemoveAt(index);
 		this.Entry.ValueSets.Insert(newIndex, code, valueSet);

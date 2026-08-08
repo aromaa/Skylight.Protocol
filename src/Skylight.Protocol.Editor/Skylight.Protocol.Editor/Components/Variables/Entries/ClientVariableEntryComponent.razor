@@ -36,6 +36,10 @@
 			{
 				<text>Sets <span class="badge bg-secondary">@staticEntry.ValueSets.Count</span></text>
 			}
+			else if (this.Entry is ClientVariableDynamicEntry dynamic)
+			{
+				<text>Sets <span class="badge bg-secondary">@dynamic.ValueSets.Count</span></text>
+			}
 			else if (this.Entry is ClientVariableGroupEntry group)
 			{
 				<text>Children <span class="badge bg-secondary">@group.Entries.Count</span></text>
@@ -62,6 +66,10 @@
 			@if (this.Entry is ClientVariableStaticEntry staticEntry2)
 			{
 				<ClientVariableStaticEntryComponent Variable="this.Variable" Entry="staticEntry2" />
+			}
+			else if (this.Entry is ClientVariableDynamicEntry dynamicEntry)
+			{
+				<ClientVariableDynamicEntryComponent Variable="this.Variable" Entry="dynamicEntry" />
 			}
 			else if (this.Entry is ClientVariableGroupEntry groupEntry)
 			{

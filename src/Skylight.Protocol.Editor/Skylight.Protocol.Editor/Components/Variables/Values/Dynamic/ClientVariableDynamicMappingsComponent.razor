@@ -1,0 +1,70 @@
+﻿@using Skylight.Protocol.Client.Variables
+@using Skylight.Protocol.Client.Variables.Values.Dynamic
+
+<div class="table-responsive editor-tree-branch">
+	<table class="table table-sm align-middle mb-2">
+		<thead>
+			<tr>
+				<th style="width:25%">Key</th>
+				<th style="width:320px"></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ((string key, OrderedDictionary<string, SortedSet<string>> mapping) in this.ValueSet.Mappings)
+			{
+				int index = this.ValueSet.Mappings.IndexOf(key);
+
+				<ClientVariableDynamicMappingComponent @key="mapping" ValueSet="this.ValueSet" Index="index" Key="@key" Mappings="mapping" RenameCallback="code => this.RenameMapping(index, code)" MoveCallback="offset => this.MoveMapping(index, offset)" RemoveCallback="() => this.ValueSet.Mappings.RemoveAt(index)" />
+			}
+		</tbody>
+	</table>
+	<button type="button" class="btn btn-outline-primary btn-sm mb-2" @onclick="this.AddMapping">
+		+ Add mapping
+	</button>
+</div>
+
+@code
+{
+	[Parameter]
+	public required ClientVariable Variable { get; set; }
+
+	[Parameter]
+	public required ClientVariableDynamicValueSet ValueSet { get; set; }
+
+
+	private void AddMapping()
+	{
+		OrderedDictionary<string, SortedSet<string>> value = new();
+
+		int i = 1;
+		while (!this.ValueSet.Mappings.TryAdd($"MAPPING_{i++}", value))
+		{
+		}
+	}
+
+	private void RenameMapping(int index, string newCode)
+	{
+		if (this.ValueSet.Mappings.ContainsKey(newCode))
+		{
+			return;
+		}
+
+		(string code, OrderedDictionary<string, SortedSet<string>> fields) = this.ValueSet.Mappings.GetAt(index);
+
+		this.ValueSet.Mappings.SetAt(index, newCode, fields);
+	}
+
+	private void MoveMapping(int index, int offset)
+	{
+		int newIndex = index + offset;
+		if (newIndex < 0 || newIndex >= this.ValueSet.Mappings.Count)
+		{
+			return;
+		}
+
+		(string code, OrderedDictionary<string, SortedSet<string>> fields) = this.ValueSet.Mappings.GetAt(index);
+
+		this.ValueSet.Mappings.RemoveAt(index);
+		this.ValueSet.Mappings.Insert(newIndex, code, fields);
+	}
+}

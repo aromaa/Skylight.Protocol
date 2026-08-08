@@ -1,0 +1,108 @@
+﻿<tr @key="this.Fields">
+	<td>
+		<input class="form-control form-control-sm" value="@this.Key" @onchange="e => this.RenameCallback.InvokeAsync(e.Value?.ToString() ?? this.Key)" />
+	</td>
+	<td class="text-end">
+		<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move up"
+				disabled="@(this.Index == 0)"
+				@onclick="() => this.MoveCallback.InvokeAsync(-1)">
+			↑
+		</button>
+		<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move down"
+				disabled="@(this.Index == this.Mappings.Count - 1)"
+				@onclick="() => this.MoveCallback.InvokeAsync(1)">
+			↓
+		</button>
+		<button type="button" class="btn @(this.fieldsExpanded ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
+				@onclick="() => this.fieldsExpanded = !this.fieldsExpanded">
+			Fields
+		</button>
+		<button type="button" class="btn btn-outline-danger btn-sm" @onclick="this.RemoveCallback">
+			Delete
+		</button>
+	</td>
+</tr>
+
+@if (this.fieldsExpanded)
+{
+	<tr>
+		<td colspan="4" class="bg-light">
+			<div class="table-responsive editor-tree-branch">
+				<table class="table table-sm align-middle mb-2">
+					<thead>
+						<tr>
+							<th style="width:25%">Destination field</th>
+							<th style="width:320px"></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (string field in this.Fields)
+						{
+							<tr @key="field">
+								<td>
+									<input class="form-control form-control-sm" value="@field" @onchange="e => this.RenameField(field, e.Value?.ToString() ?? field)" />
+								</td>
+								<td class="text-end">
+									<button type="button" class="btn btn-outline-danger btn-sm" @onclick="() => this.Fields.Remove(field)">
+										Delete
+									</button>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+				<button type="button" class="btn btn-outline-primary btn-sm mb-2" @onclick="this.AddField">
+					+ Add destination field
+				</button>
+			</div>
+		</td>
+	</tr>
+}
+
+@code
+{
+	[Parameter]
+	public required OrderedDictionary<string, SortedSet<string>> Mappings { get; set; }
+
+	[Parameter]
+	public required SortedSet<string> Fields { get; set; }
+
+	[Parameter]
+	public required int Index { get; set; }
+
+	[Parameter]
+	public required string Key { get; set; }
+
+	[Parameter]
+	public EventCallback<string> RenameCallback { get; set; }
+
+	[Parameter]
+	public EventCallback<int> MoveCallback { get; set; }
+
+	[Parameter]
+	public required EventCallback RemoveCallback { get; set; }
+
+	private bool fieldsExpanded;
+
+
+	private void AddField()
+	{
+		OrderedDictionary<string, SortedSet<string>> value = new();
+
+		int i = 1;
+		while (!this.Fields.Add($"FIELD_{i++}"))
+		{
+		}
+	}
+
+	private void RenameField(string oldField, string newField)
+	{
+		if (this.Fields.Contains(newField))
+		{
+			return;
+		}
+
+		this.Fields.Remove(oldField);
+		this.Fields.Add(newField);
+	}
+}

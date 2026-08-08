@@ -1,0 +1,87 @@
+﻿@using Skylight.Protocol.Client.Variables
+@using Skylight.Protocol.Client.Variables.Entries
+@using Skylight.Protocol.Client.Variables.Values.Static
+@using Skylight.Protocol.Editor.Components.Variables.Rules
+
+<tr>
+	<td>
+		<input class="form-control form-control-sm" value="@this.ValueSetCode" @onchange="e => this.RenameCallback.InvokeAsync(e.Value?.ToString() ?? this.ValueSetCode)" />
+	</td>
+	<td>
+		<input class="form-control form-control-sm" value="@this.ValueSet.Name" @onchange="e => this.ValueSet.Name = e.Value?.ToString() ?? string.Empty" />
+	</td>
+	<td>
+		<input class="form-control form-control-sm" value="@this.ValueSet.Description" @onchange="e => this.ValueSet.Description = e.Value?.ToString() ?? string.Empty" />
+	</td>
+	<td class="text-end">
+		<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move up"
+			disabled="@(this.Index == 0)"
+			@onclick="() => this.MoveCallback.InvokeAsync(-1)">
+			↑
+		</button>
+		<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move down"
+			disabled="@(this.Index == this.Entry.ValueSets.Count - 1)"
+			@onclick="() => this.MoveCallback.InvokeAsync(1)">
+			↓
+		</button>
+		<button type="button" class="btn @(this.fieldsExpanded ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
+			@onclick="() => this.fieldsExpanded = !this.fieldsExpanded">
+			Fields
+		</button>
+		<button type="button" class="btn @(this.ruleSetsExpanded ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
+			@onclick="() => this.ruleSetsExpanded = !this.ruleSetsExpanded">
+			Rules <span class="badge bg-secondary">@this.ValueSet.RuleSets.Count</span>
+		</button>
+		<button type="button" class="btn btn-outline-danger btn-sm" @onclick="this.RemoveCallback">
+			Delete
+		</button>
+	</td>
+</tr>
+
+@if (this.fieldsExpanded)
+{
+	<tr @key=this.ValueSet.Fields>
+		<td colspan="4" class="bg-light">
+			<ClientVariableStaticValueSetFieldsComponent Variable="this.Variable" ValueSet="this.ValueSet" />
+		</td>
+	</tr>
+}
+
+@if (this.ruleSetsExpanded)
+{
+	<tr @key=this.ValueSet.RuleSets>
+		<td colspan="4" class="bg-light">
+			<ClientVariableRuleSetsComponent RuleSets="this.ValueSet.RuleSets" />
+		</td>
+	</tr>
+}
+
+@code
+{
+	[Parameter]
+	public required ClientVariable Variable { get; set; }
+
+	[Parameter]
+	public required ClientVariableStaticEntry Entry { get; set; }
+
+	[Parameter]
+	public required int Index { get; set; }
+
+	[Parameter]
+	public required string ValueSetCode { get; set; }
+
+	[Parameter]
+	public required ClientVariableStaticValueSet ValueSet { get; set; }
+
+	[Parameter]
+	public EventCallback<string> RenameCallback { get; set; }
+
+	[Parameter]
+	public EventCallback<int> MoveCallback { get; set; }
+
+	[Parameter]
+	public required EventCallback RemoveCallback { get; set; }
+
+	private bool fieldsExpanded;
+	private bool ruleSetsExpanded;
+}

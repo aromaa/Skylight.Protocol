@@ -1,0 +1,61 @@
+﻿@using Skylight.Protocol.Client.Variables.Values.Dynamic
+
+<tr @key="this.Mappings">
+	<td>
+		<input class="form-control form-control-sm" value="@this.Key" @onchange="e => this.RenameCallback.InvokeAsync(e.Value?.ToString() ?? this.Key)" />
+	</td>
+	<td class="text-end">
+		<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move up"
+				disabled="@(this.Index == 0)"
+				@onclick="() => this.MoveCallback.InvokeAsync(-1)">
+			↑
+		</button>
+		<button type="button" class="btn btn-outline-secondary btn-sm me-1" title="Move down"
+				disabled="@(this.Index == this.ValueSet.Mappings.Count - 1)"
+				@onclick="() => this.MoveCallback.InvokeAsync(1)">
+			↓
+		</button>
+		<button type="button" class="btn @(this.fieldsExpanded ? "btn-outline-primary" : "btn-outline-secondary") btn-sm me-1"
+				@onclick="() => this.fieldsExpanded = !this.fieldsExpanded">
+			Fields
+		</button>
+		<button type="button" class="btn btn-outline-danger btn-sm" @onclick="this.RemoveCallback">
+			Delete
+		</button>
+	</td>
+</tr>
+
+@if (this.fieldsExpanded)
+{
+	<tr @key=this.ValueSet.Mappings>
+		<td colspan="4" class="bg-light">
+			<ClientVariableDynamicMappingFieldsComponent Mappings="this.Mappings" />
+		</td>
+	</tr>
+}
+
+@code
+{
+	[Parameter]
+	public required ClientVariableDynamicValueSet ValueSet { get; set; }
+
+	[Parameter]
+	public required int Index { get; set; }
+
+	[Parameter]
+	public required string Key { get; set; }
+
+	[Parameter]
+	public required OrderedDictionary<string, SortedSet<string>> Mappings { get; set; }
+
+	[Parameter]
+	public EventCallback<string> RenameCallback { get; set; }
+
+	[Parameter]
+	public EventCallback<int> MoveCallback { get; set; }
+
+	[Parameter]
+	public required EventCallback RemoveCallback { get; set; }
+
+	private bool fieldsExpanded;
+}

@@ -1,13 +1,13 @@
 ﻿@using Skylight.Protocol.Client.Variables
-@using Skylight.Protocol.Client.Variables.Values
+@using Skylight.Protocol.Client.Variables.Values.Static
 
 <div class="table-responsive editor-tree-branch">
 	<h5 class="h6 mb-2">Fields</h5>
 	@foreach ((string fieldCode, ClientVariableField field) in this.Variable.Fields)
 	{
-		if (!this.ValueSet.Fields.TryGetValue(fieldCode, out ClientVariableValueSetField? fieldValue))
+		if (!this.ValueSet.Fields.TryGetValue(fieldCode, out ClientVariableStaticValueSetField? fieldValue))
 		{
-			fieldValue = new ClientVariableValueSetField();
+			fieldValue = new ClientVariableStaticValueSetField();
 
 			this.ValueSet.Fields.Add(fieldCode, fieldValue);
 		}
@@ -26,7 +26,7 @@
 						   @onchange="e => fieldValue.Description = e.Value?.ToString() ?? string.Empty" />
 				</div>
 			</div>
-			<ClientVariableValuesComponent Field="fieldValue" />
+			<ClientVariableStaticValuesComponent Field="fieldValue" />
 		</div>
 	}
 </div>
@@ -37,5 +37,5 @@
 	public required ClientVariable Variable { get; set; }
 
 	[Parameter]
-	public required ClientVariableValueSet ValueSet { get; set; }
+	public required ClientVariableStaticValueSet ValueSet { get; set; }
 }

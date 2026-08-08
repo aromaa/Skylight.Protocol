@@ -1,3 +1,8 @@
-﻿namespace Skylight.Protocol.Client.Variables.Entries;
+﻿using Skylight.Protocol.Client.Variables.Values.Dynamic;
 
-public sealed class ClientVariableDynamicEntry : ClientVariableEntry;
+namespace Skylight.Protocol.Client.Variables.Entries;
+
+public sealed class ClientVariableDynamicEntry : ClientVariableEntry
+{
+	public OrderedDictionary<string, ClientVariableDynamicValueSet> ValueSets { get; set; } = [];
+}
