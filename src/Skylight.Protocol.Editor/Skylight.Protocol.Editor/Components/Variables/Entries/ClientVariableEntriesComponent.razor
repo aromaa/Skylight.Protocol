@@ -50,17 +50,17 @@
 
 @code
 {
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientVariable Variable { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientVariableSelectStrategy SelectStrategy { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required OrderedDictionary<string, ClientVariableEntry> Entries { get; set; }
 
-	[Parameter]
-	public EventCallback<ClientVariableSelectStrategy> ChangeSelectStrategyCallback { get; set; }
+	[Parameter, EditorRequired]
+	public required EventCallback<ClientVariableSelectStrategy> ChangeSelectStrategyCallback { get; set; }
 
 	private void ChangeSelectStrategy(string? value)
 	{

@@ -30,14 +30,11 @@
 
 @code
 {
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientVariable Variable { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientVariableStaticEntry Entry { get; set; }
-
-	[Parameter]
-	public required ClientVariableStaticValueSet Field { get; set; }
 
 	private void AddValueSet()
 	{

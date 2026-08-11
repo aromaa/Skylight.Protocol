@@ -25,10 +25,10 @@
 
 @code
 {
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientVariable Variable { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientVariableDynamicValueSet ValueSet { get; set; }
 
 

@@ -53,17 +53,17 @@
 
 @code
 {
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required string VariableCode { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientVariable Variable { get; set; }
 
-	[Parameter]
-	public EventCallback<string> RenameCallback { get; set; }
+	[Parameter, EditorRequired]
+	public required EventCallback<string> RenameCallback { get; set; }
 
-	[Parameter]
-	public EventCallback RemoveCallback { get; set; }
+	[Parameter, EditorRequired]
+	public required EventCallback RemoveCallback { get; set; }
 
 	private bool expandFields;
 	private bool expandEntries;

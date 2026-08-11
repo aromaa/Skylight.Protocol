@@ -41,14 +41,14 @@
 
 @code
 {
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientConfiguration Configuration { get; set; }
+
+	[Parameter, EditorRequired]
+	public required EventCallback OnReset { get; set; }
 
 	[Parameter]
 	public string? FileName { get; set; }
-
-	[Parameter]
-	public EventCallback OnReset { get; set; }
 
 	private Lazy<Task<IJSObjectReference>> moduleTask = null!;
 

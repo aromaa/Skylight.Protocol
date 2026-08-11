@@ -58,28 +58,28 @@
 
 @code
 {
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientVariable Variable { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientVariableDynamicEntry Entry { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required int Index { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required string ValueSetCode { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientVariableDynamicValueSet ValueSet { get; set; }
 
-	[Parameter]
-	public EventCallback<string> RenameCallback { get; set; }
+	[Parameter, EditorRequired]
+	public required EventCallback<string> RenameCallback { get; set; }
 
-	[Parameter]
-	public EventCallback<int> MoveCallback { get; set; }
+	[Parameter, EditorRequired]
+	public required EventCallback<int> MoveCallback { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required EventCallback RemoveCallback { get; set; }
 
 	private bool mappingsExpanded;

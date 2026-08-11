@@ -92,32 +92,32 @@
 
 @code
 {
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientVariable Variable { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required OrderedDictionary<string, ClientVariableEntry> Entries { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required int Index { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required string EntryCode { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientVariableEntry Entry { get; set; }
 
-	[Parameter]
-	public EventCallback<string> RenameCallback { get; set; }
+	[Parameter, EditorRequired]
+	public required EventCallback<string> RenameCallback { get; set; }
 
-	[Parameter]
-	public EventCallback<string> ChangeTypeCallback { get; set; }
+	[Parameter, EditorRequired]
+	public required EventCallback<string> ChangeTypeCallback { get; set; }
 
-	[Parameter]
-	public EventCallback<int> MoveCallback { get; set; }
+	[Parameter, EditorRequired]
+	public required EventCallback<int> MoveCallback { get; set; }
 
-	[Parameter]
-	public EventCallback RemoveCallback { get; set; }
+	[Parameter, EditorRequired]
+	public required EventCallback RemoveCallback { get; set; }
 
 	private bool expand;
 	private bool expandRules;

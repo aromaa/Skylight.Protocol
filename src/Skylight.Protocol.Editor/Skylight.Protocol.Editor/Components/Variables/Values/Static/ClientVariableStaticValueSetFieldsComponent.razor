@@ -33,9 +33,9 @@
 
 @code
 {
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientVariable Variable { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientVariableStaticValueSet ValueSet { get; set; }
 }

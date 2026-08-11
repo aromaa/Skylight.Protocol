@@ -46,26 +46,26 @@
 
 @code
 {
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientVariable Variable { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required int Index { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required string FieldCode { get; set; }
 
-	[Parameter]
+	[Parameter, EditorRequired]
 	public required ClientVariableField Field { get; set; }
 
-	[Parameter]
-	public EventCallback<string> RenameCallback { get; set; }
+	[Parameter, EditorRequired]
+	public required EventCallback<string> RenameCallback { get; set; }
 
-	[Parameter]
-	public EventCallback<int> MoveCallback { get; set; }
+	[Parameter, EditorRequired]
+	public required EventCallback<int> MoveCallback { get; set; }
 
-	[Parameter]
-	public EventCallback RemoveCallback { get; set; }
+	[Parameter, EditorRequired]
+	public required EventCallback RemoveCallback { get; set; }
 
 	private bool expandKeySets;
 }
