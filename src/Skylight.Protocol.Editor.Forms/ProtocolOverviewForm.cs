@@ -196,7 +196,7 @@ internal partial class ProtocolOverviewForm : Form
 
 		Control packetId;
 		if ((this.schema.Capabilities.TryGetValue("NUMERIC_PACKET_ID", out bool value) && value)
-			|| (this.parentSchema?.Capabilities.TryGetValue("NUMERIC_PACKET_ID", out value) ?? false && value))
+			|| (this.parentSchema?.Capabilities.TryGetValue("NUMERIC_PACKET_ID", out value) == false && value))
 		{
 			NumericUpDown numericPacketId = new()
 			{

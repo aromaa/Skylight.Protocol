@@ -56,7 +56,17 @@
 
 	protected override void OnInitialized()
 	{
-		this.moduleTask = new(() => this.JS.InvokeAsync<IJSObjectReference>("import", "./_content/Skylight.Protocol.Editor/editor-helpers.js").AsTask());
+		this.moduleTask = new(() =>
+		{
+			try
+			{
+				return this.JS.InvokeAsync<IJSObjectReference>("import", "./_content/Skylight.Protocol.Editor/editor-helpers.js").AsTask();
+			}
+			catch (JSException ex)
+			{
+				throw new InvalidOperationException("Unable to import the JavaScript module.", ex);
+			}
+		});
 	}
 
 	private async Task DownloadClientInfoAsync()
@@ -72,7 +82,14 @@
 
 		IJSObjectReference module = await this.moduleTask.Value;
 
-		await module.InvokeVoidAsync("downloadFileBlob", this.FileName ?? "ClientInfo.json", "application/json", JsonSerializer.SerializeToUtf8Bytes(configuration, ClientConfiguration.JsonOptions));
+		try
+		{
+			await module.InvokeVoidAsync("downloadFileBlob", this.FileName ?? "ClientInfo.json", "application/json", JsonSerializer.SerializeToUtf8Bytes(configuration, ClientConfiguration.JsonOptions));
+		}
+		catch (JSException ex)
+		{
+			throw new InvalidOperationException("Unable to invoke the downloadFileBlob JavaScript function.", ex);
+		}
 
 		static void CleanUp(ClientConfiguration configuration)
 		{

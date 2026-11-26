@@ -185,9 +185,9 @@ internal static class ProtocolParser
 					fieldName = fieldMapping.Name[(methodCallIndex + 1)..^1];
 				}
 
-				MemberInfo target = fieldName == "this" ?
-					packetType :
-					packetType.GetProperty(fieldName) ?? throw new Exception($"No definition for field {fieldName} in type {packetType}");
+				MemberInfo target = fieldName == "this"
+					? packetType
+					: packetType.GetProperty(fieldName) ?? throw new Exception($"No definition for field {fieldName} in type {packetType}");
 
 				MappingStructure mappingStructure = new(methodCall, fieldName, syntax, target);
 
